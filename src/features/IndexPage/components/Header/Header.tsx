@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQueryParams, StringParam, withDefault } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
-import useLanguage from '@libs/i18n/useLanguage';
 
 import {
   AppBar,
@@ -9,12 +8,9 @@ import {
   TextField,
   InputAdornment,
   Container,
-  Button,
 } from '@material-ui/core';
-import {
-  Search as SearchIcon,
-  Language as LanguageIcon,
-} from '@material-ui/icons';
+import { Search as SearchIcon } from '@material-ui/icons';
+import VersionSelector from '@common/VersionSelector/VersionSelector';
 
 export default function Header() {
   const [query, setQuery] = useQueryParams({
@@ -24,7 +20,6 @@ export default function Header() {
     value => setQuery({ q: value }),
     1000
   );
-  const language = useLanguage();
 
   return (
     <AppBar position="fixed">
@@ -51,7 +46,7 @@ export default function Header() {
             />
           </div>
           <div>
-            <Button startIcon={<LanguageIcon />}>{language}</Button>
+            <VersionSelector />
           </div>
         </Toolbar>
       </Container>

@@ -96,14 +96,11 @@ export default function ServerSelection() {
                       }`}
                       subheader={
                         <span>
-                          Number of players:{' '}
-                          {server.numberOfPlayers.toLocaleString()}
+                          {server.numberOfPlayers.toLocaleString()} players
                           <br />
-                          Number of tribes:{' '}
-                          {server.numberOfTribes.toLocaleString()}
+                          {server.numberOfTribes.toLocaleString()} tribes
                           <br />
-                          Number of villages:{' '}
-                          {server.numberOfVillages.toLocaleString()}
+                          {server.numberOfVillages.toLocaleString()} villages
                         </span>
                       }
                     />
