@@ -2,6 +2,7 @@ import React from 'react';
 import { useQueryParams, StringParam, withDefault } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
 
+import useStyles from './styles';
 import {
   AppBar,
   Toolbar,
@@ -20,18 +21,19 @@ export default function Header() {
     value => setQuery({ q: value }),
     1000
   );
+  const classes = useStyles();
 
   return (
     <AppBar position="fixed">
       <Container>
-        <Toolbar style={{ justifyContent: 'space-between' }}>
-          <div></div>
-          <div style={{ width: '40%' }}>
+        <Toolbar disableGutters className={classes.toolbar}>
+          <div className={classes.searchInputWrapper}>
             <TextField
               fullWidth
               variant="outlined"
-              placeholder="Search"
+              placeholder="Search server"
               defaultValue={query.q}
+              size="small"
               onChange={e => {
                 debouncedSetQuery.callback(e.target.value);
               }}
