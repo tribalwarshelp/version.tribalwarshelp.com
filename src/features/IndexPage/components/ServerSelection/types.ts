@@ -6,6 +6,7 @@ export type Server = {
   numberOfPlayers: number;
   numberOfTribes: number;
   numberOfVillages: number;
+  dataUpdatedAt: string | Date;
 };
 
 export type ServerList = {

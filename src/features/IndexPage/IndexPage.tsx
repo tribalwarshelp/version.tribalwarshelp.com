@@ -5,6 +5,7 @@ import { Container, Toolbar } from '@material-ui/core';
 
 import Header from './components/Header/Header';
 import ServerSelection from './components/ServerSelection/ServerSelection';
+import Footer from './components/Footer/Footer';
 
 export default function IndexPage() {
   const classes = useStyles();
@@ -18,6 +19,7 @@ export default function IndexPage() {
           <ServerSelection />
         </Container>
       </main>
+      <Footer />
     </div>
   );
 }

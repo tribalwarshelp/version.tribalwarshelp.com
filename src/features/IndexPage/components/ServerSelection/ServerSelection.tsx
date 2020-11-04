@@ -6,6 +6,9 @@ import {
   NumberParam,
   withDefault,
 } from 'use-query-params';
+import formatDistanceToNow from '@libs/date/formatDistanceToNow';
+import { Locale } from '@libs/date/locales';
+import useLanguage from '@libs/i18n/useLanguage';
 import { SERVER_STATUS } from '@config/app';
 import { ServerList } from './types';
 import { SERVERS } from './queries';
@@ -18,12 +21,14 @@ import Pagination, {
 } from '@common/Pagination/Pagination';
 
 const PER_PAGE = 30;
+const arr = new Array(PER_PAGE).fill(0);
 
 export default function ServerSelection() {
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 1),
     q: withDefault(StringParam, ''),
   });
+  const lang = useLanguage();
   const { data, loading: loadingServers } = useQuery<ServerList>(SERVERS, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -67,12 +72,13 @@ export default function ServerSelection() {
       </Box>
     );
   };
+
   return (
     <div>
       {renderPagination(true)}
       <Grid container spacing={3}>
         {loading
-          ? new Array(PER_PAGE).fill(0).map((_, index) => {
+          ? arr.map((_, index) => {
               return (
                 <Grid key={index} item xs={12} sm={6} md={4}>
                   <Card>
@@ -101,6 +107,13 @@ export default function ServerSelection() {
                           {server.numberOfTribes.toLocaleString()} tribes
                           <br />
                           {server.numberOfVillages.toLocaleString()} villages
+                          <br />
+                          Updated{' '}
+                          {formatDistanceToNow(new Date(server.dataUpdatedAt), {
+                            locale: lang as Locale,
+                            addSuffix: true,
+                          })}
+                          .
                         </span>
                       }
                     />

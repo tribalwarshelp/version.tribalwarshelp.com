@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQueryParams, StringParam, withDefault } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
+import { TWHELP } from '@config/app';
 
 import useStyles from './styles';
 import {
@@ -9,6 +10,9 @@ import {
   TextField,
   InputAdornment,
   Container,
+  Button,
+  Hidden,
+  Link,
 } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 import VersionSelector from '@common/VersionSelector/VersionSelector';
@@ -31,7 +35,7 @@ export default function Header() {
             <TextField
               fullWidth
               variant="outlined"
-              placeholder="Search server"
+              placeholder="Search"
               defaultValue={query.q}
               size="small"
               onChange={e => {
@@ -50,6 +54,11 @@ export default function Header() {
           <div>
             <VersionSelector />
           </div>
+          <Hidden xsDown implementation="css">
+            <Link href={TWHELP} underline="none">
+              <Button>TWHelp</Button>
+            </Link>
+          </Hidden>
         </Toolbar>
       </Container>
     </AppBar>

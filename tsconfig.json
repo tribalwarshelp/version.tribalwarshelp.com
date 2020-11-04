@@ -2,31 +2,16 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@common/*": [
-        "src/common/*"
-      ],
-      "@config/*": [
-        "src/config/*"
-      ],
-      "@features/*": [
-        "src/features/*"
-      ],
-      "@libs/*": [
-        "src/libs/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ]
+      "@/*": ["src/*"],
+      "@common/*": ["src/common/*"],
+      "@config/*": ["src/config/*"],
+      "@features/*": ["src/features/*"],
+      "@libs/*": ["src/libs/*"],
+      "@theme/*": ["src/theme/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -41,10 +26,6 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }

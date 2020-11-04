@@ -5,10 +5,12 @@
       {
         "@": ["./src"],
         "alias": {
+          "@": "./src",
           "@common": "./src/common",
           "@config": "./src/config",
           "@features": "./src/features",
           "@libs": "./src/libs",
+          "@theme": "./src/theme",
           "@utils": "./src/utils"
         }
       }
