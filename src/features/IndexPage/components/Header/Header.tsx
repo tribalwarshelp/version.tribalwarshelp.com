@@ -1,7 +1,9 @@
 import React from 'react';
 import { useQueryParams, StringParam, withDefault } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
+import { useTranslation } from 'react-i18next';
 import { TWHELP } from '@config/app';
+import * as NAMESPACES from '@config/namespaces';
 
 import useStyles from './styles';
 import {
@@ -25,6 +27,7 @@ export default function Header() {
     value => setQuery({ q: value }),
     1000
   );
+  const { t } = useTranslation(NAMESPACES.INDEX_PAGE);
   const classes = useStyles();
 
   return (
@@ -35,7 +38,7 @@ export default function Header() {
             <TextField
               fullWidth
               variant="outlined"
-              placeholder="Search"
+              placeholder={t<string>('header.search')}
               defaultValue={query.q}
               size="small"
               onChange={e => {

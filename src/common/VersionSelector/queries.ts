@@ -5,6 +5,7 @@ export const LANG_VERSIONS = gql`
     langVersions(filter: $filter) {
       items {
         tag
+        host
       }
     }
   }

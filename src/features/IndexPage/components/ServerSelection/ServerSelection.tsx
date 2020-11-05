@@ -6,10 +6,12 @@ import {
   NumberParam,
   withDefault,
 } from 'use-query-params';
+import { useTranslation } from 'react-i18next';
 import formatDistanceToNow from '@libs/date/formatDistanceToNow';
 import { Locale } from '@libs/date/locales';
 import useLanguage from '@libs/i18n/useLanguage';
 import { SERVER_STATUS } from '@config/app';
+import * as NAMESPACES from '@config/namespaces';
 import { ServerList } from './types';
 import { SERVERS } from './queries';
 import extractLangTagFromHostname from '@utils/extractLangTagFromHostname';
@@ -28,6 +30,7 @@ export default function ServerSelection() {
     page: withDefault(NumberParam, 1),
     q: withDefault(StringParam, ''),
   });
+  const { t } = useTranslation(NAMESPACES.INDEX_PAGE);
   const lang = useLanguage();
   const { data, loading: loadingServers } = useQuery<ServerList>(SERVERS, {
     fetchPolicy: 'cache-and-network',
@@ -97,18 +100,30 @@ export default function ServerSelection() {
                     <CardHeader
                       title={`${server.key}${
                         SERVER_STATUS.CLOSED === server.status
-                          ? ' (closed)'
+                          ? ` (${t(
+                              NAMESPACES.COMMON +
+                                `:serverStatus.${server.status}`
+                            )})`.toLowerCase()
                           : ''
                       }`}
                       subheader={
                         <span>
-                          {server.numberOfPlayers.toLocaleString()} players
+                          {t('serverSelection.numberOfPlayers', {
+                            count: server.numberOfPlayers,
+                            num: server.numberOfPlayers.toLocaleString(),
+                          })}
                           <br />
-                          {server.numberOfTribes.toLocaleString()} tribes
+                          {t('serverSelection.numberOfTribes', {
+                            count: server.numberOfTribes,
+                            num: server.numberOfTribes.toLocaleString(),
+                          })}
                           <br />
-                          {server.numberOfVillages.toLocaleString()} villages
+                          {t('serverSelection.numberOfVillages', {
+                            count: server.numberOfVillages,
+                            num: server.numberOfVillages.toLocaleString(),
+                          })}
                           <br />
-                          Updated{' '}
+                          {t('serverSelection.updated')}{' '}
                           {formatDistanceToNow(new Date(server.dataUpdatedAt), {
                             locale: lang as Locale,
                             addSuffix: true,

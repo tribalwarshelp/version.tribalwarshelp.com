@@ -4,6 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import pl from './pl';
 import en from './en';
 import { DEFAULT_LANGUAGE } from '@config/app';
+import { COMMON } from '@config/namespaces';
 
 const init = (): i18nT => {
   i18n
@@ -20,7 +21,7 @@ const init = (): i18nT => {
         en,
         pl,
       },
-      defaultNS: 'common',
+      defaultNS: COMMON,
       react: {
         useSuspense: false,
       },
