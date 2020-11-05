@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 
 import IndexPage from './IndexPage/IndexPage';
+import NotFoundPage from './NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
       <Switch>
         <Route path={ROUTES.INDEX_PAGE} exact>
           <IndexPage />
+        </Route>
+        <Route>
+          <NotFoundPage />
         </Route>
       </Switch>
       <CssBaseline />
