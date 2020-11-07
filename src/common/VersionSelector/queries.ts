@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 
-export const LANG_VERSIONS = gql`
-  query langVersions($filter: LangVersionFilter) {
-    langVersions(filter: $filter) {
+export const VERSIONS = gql`
+  query versions($filter: VersionFilter) {
+    versions(filter: $filter) {
       items {
-        tag
+        code
         host
       }
     }

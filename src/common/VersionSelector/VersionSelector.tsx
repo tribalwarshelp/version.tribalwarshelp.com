@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import { COMMON } from '@config/namespaces';
-import { LANG_VERSIONS } from './queries';
-import { LangVersionList } from './types';
-import extractLangTagFromHostname from '@utils/extractLangTagFromHostname';
+import { VERSIONS } from './queries';
+import { VersionList } from './types';
+import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
 
 import { Button, Menu, MenuItem, Link, Tooltip } from '@material-ui/core';
 import { Language as LanguageIcon } from '@material-ui/icons';
@@ -12,17 +12,17 @@ import { Language as LanguageIcon } from '@material-ui/icons';
 function VersionSelector() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const { t } = useTranslation(COMMON);
-  const langTag = extractLangTagFromHostname(window.location.hostname);
-  const { data, loading } = useQuery<LangVersionList>(LANG_VERSIONS, {
+  const versionCode = extractVersionCodeFromHostname(window.location.hostname);
+  const { data, loading } = useQuery<VersionList>(VERSIONS, {
     fetchPolicy: 'cache-first',
     variables: {
       filter: {
-        sort: 'tag ASC',
-        tagNEQ: [langTag],
+        sort: 'code ASC',
+        codeNEQ: [versionCode],
       },
     },
   });
-  const langVersions = data?.langVersions?.items ?? [];
+  const versions = data?.versions?.items ?? [];
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -36,7 +36,7 @@ function VersionSelector() {
 
   const buildLink = (tag: string) => {
     return `${window.location.protocol}//${window.location.host.replace(
-      langTag,
+      versionCode,
       tag
     )}`;
   };
@@ -51,7 +51,7 @@ function VersionSelector() {
           startIcon={<LanguageIcon />}
           onClick={loading ? undefined : handleClick}
         >
-          {langTag}
+          {versionCode}
         </Button>
       </Tooltip>
       <Menu
@@ -60,16 +60,16 @@ function VersionSelector() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {langVersions.map(lv => {
+        {versions.map(v => {
           return (
             <MenuItem
               component={Link}
-              href={buildLink(lv.tag)}
+              href={buildLink(v.code)}
               underline="none"
-              key={lv.tag}
-              title={lv.host}
+              key={v.code}
+              title={v.host}
             >
-              {lv.host}
+              {v.host}
             </MenuItem>
           );
         })}

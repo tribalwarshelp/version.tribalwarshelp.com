@@ -7,22 +7,27 @@ import {
   withDefault,
 } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
-import formatDistanceToNow from '@libs/date/formatDistanceToNow';
-import { Locale } from '@libs/date/locales';
-import useLanguage from '@libs/i18n/useLanguage';
-import { SERVER_STATUS } from '@config/app';
 import * as NAMESPACES from '@config/namespaces';
+import { SERVER_STATUS } from '@config/app';
 import { ServerList } from './types';
 import { SERVERS } from './queries';
-import extractLangTagFromHostname from '@utils/extractLangTagFromHostname';
+import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
 
-import { Grid, Card, CardHeader, Box } from '@material-ui/core';
+import {
+  Grid,
+  Box,
+  Accordion,
+  Typography,
+  AccordionSummary,
+  AccordionDetails,
+} from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
+import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import Pagination, {
   Props as PaginationProps,
 } from '@common/Pagination/Pagination';
 
-const PER_PAGE = 30;
+const PER_PAGE = 48;
 const arr = new Array(PER_PAGE).fill(0);
 
 export default function ServerSelection() {
@@ -31,7 +36,6 @@ export default function ServerSelection() {
     q: withDefault(StringParam, ''),
   });
   const { t } = useTranslation(NAMESPACES.INDEX_PAGE);
-  const lang = useLanguage();
   const { data, loading: loadingServers } = useQuery<ServerList>(SERVERS, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -40,13 +44,13 @@ export default function ServerSelection() {
         offset: (query.page - 1) * PER_PAGE,
         keyIEQ: '%' + query.q + '%',
         limit: PER_PAGE,
-        langVersionTag: [extractLangTagFromHostname(window.location.hostname)],
+        versionCode: [extractVersionCodeFromHostname(window.location.hostname)],
       },
     },
   });
   const servers = data?.servers?.items ?? [];
   const total = data?.servers?.total ?? 0;
-  const loading = servers.length === 0 && loadingServers;
+  const loading = loadingServers && servers.length === 0;
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
     setQuery({ page });
@@ -79,60 +83,54 @@ export default function ServerSelection() {
   return (
     <div>
       {renderPagination(true)}
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {loading
           ? arr.map((_, index) => {
               return (
                 <Grid key={index} item xs={12} sm={6} md={4}>
-                  <Card>
-                    <CardHeader
-                      title={<Skeleton variant="text" />}
-                      subheader={<Skeleton variant="text" />}
-                    />
-                  </Card>
+                  <Accordion>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                      <Skeleton variant="text" width="100%" />
+                    </AccordionSummary>
+                  </Accordion>
                 </Grid>
               );
             })
           : servers.map(server => {
               return (
-                <Grid key={server.key} item xs={12} sm={6} md={4}>
-                  <Card>
-                    <CardHeader
-                      title={`${server.key}${
-                        SERVER_STATUS.CLOSED === server.status
-                          ? ` (${t(
+                <Grid key={server.key} item xs={12} sm={6} md={4} lg={3}>
+                  <Accordion>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                      <Typography variant="h5">
+                        {server.key}{' '}
+                        {SERVER_STATUS.CLOSED === server.status
+                          ? `(${t(
                               NAMESPACES.COMMON +
                                 `:serverStatus.${server.status}`
-                            )})`.toLowerCase()
-                          : ''
-                      }`}
-                      subheader={
-                        <span>
-                          {t('serverSelection.numberOfPlayers', {
-                            count: server.numberOfPlayers,
-                            num: server.numberOfPlayers.toLocaleString(),
-                          })}
-                          <br />
-                          {t('serverSelection.numberOfTribes', {
-                            count: server.numberOfTribes,
-                            num: server.numberOfTribes.toLocaleString(),
-                          })}
-                          <br />
-                          {t('serverSelection.numberOfVillages', {
-                            count: server.numberOfVillages,
-                            num: server.numberOfVillages.toLocaleString(),
-                          })}
-                          <br />
-                          {t('serverSelection.updated')}{' '}
-                          {formatDistanceToNow(new Date(server.dataUpdatedAt), {
-                            locale: lang as Locale,
-                            addSuffix: true,
-                          })}
-                          .
-                        </span>
-                      }
-                    />
-                  </Card>
+                            ).toLowerCase()})`
+                          : ''}
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+                        {t('serverSelection.numberOfPlayers', {
+                          count: server.numberOfPlayers,
+                          num: server.numberOfPlayers.toLocaleString(),
+                        })}
+                        <br />
+                        {t('serverSelection.numberOfTribes', {
+                          count: server.numberOfTribes,
+                          num: server.numberOfTribes.toLocaleString(),
+                        })}
+                        <br />
+                        {t('serverSelection.numberOfVillages', {
+                          count: server.numberOfVillages,
+                          num: server.numberOfVillages.toLocaleString(),
+                        })}
+                        .
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
                 </Grid>
               );
             })}

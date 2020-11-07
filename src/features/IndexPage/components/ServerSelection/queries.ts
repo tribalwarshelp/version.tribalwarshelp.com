@@ -9,7 +9,6 @@ export const SERVERS = gql`
         numberOfPlayers
         numberOfTribes
         numberOfVillages
-        dataUpdatedAt
       }
       total
     }
