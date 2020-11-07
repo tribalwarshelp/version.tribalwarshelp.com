@@ -1,5 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import useTitle from '@libs/useTitle';
 import { INDEX_PAGE } from '@config/routes';
+import { NOT_FOUND_PAGE } from '@config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography } from '@material-ui/core';
@@ -17,20 +20,21 @@ const useStyles = makeStyles(() => ({
 
 const NotFoundPage = () => {
   const classes = useStyles();
+  const { t } = useTranslation(NOT_FOUND_PAGE);
+  useTitle(t('title'));
 
   return (
     <main>
       <Container className={classes.container}>
         <Typography gutterBottom variant="h1">
-          Page Not Found
+          {t('title')}
         </Typography>
         <Typography gutterBottom variant="h4">
-          Looks like you've followed a broken link or entered a URL that doesn't
-          exist on this site.
+          {t('description')}
         </Typography>
         <Typography variant="h4">
           <Link color="secondary" to={INDEX_PAGE}>
-            Back to our site
+            {t('backToOurSite')}
           </Link>
         </Typography>
       </Container>
