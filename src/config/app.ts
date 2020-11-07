@@ -1,5 +1,7 @@
 export const DEFAULT_LANGUAGE = process.env.DEFAULT_LANGUAGE ?? 'en';
 
+export const NAME = 'TWHelp';
+
 export const SERVER_STATUS = {
   CLOSED: 'closed',
   OPEN: 'open',

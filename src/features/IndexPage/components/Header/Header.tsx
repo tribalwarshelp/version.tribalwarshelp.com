@@ -2,7 +2,7 @@ import React from 'react';
 import { useQueryParams, StringParam, withDefault } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
 import { useTranslation } from 'react-i18next';
-import { TWHELP } from '@config/app';
+import { TWHELP, NAME } from '@config/app';
 import * as NAMESPACES from '@config/namespaces';
 
 import useStyles from './styles';
@@ -59,7 +59,7 @@ export default function Header() {
           </div>
           <Hidden xsDown implementation="css">
             <Link href={TWHELP} underline="none">
-              <Button>TWHelp</Button>
+              <Button>{NAME}</Button>
             </Link>
           </Hidden>
         </Toolbar>
