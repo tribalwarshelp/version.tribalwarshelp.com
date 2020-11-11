@@ -31,7 +31,7 @@ export default function Header() {
   const classes = useStyles();
 
   return (
-    <AppBar position="fixed" elevation={0}>
+    <AppBar position="fixed">
       <Container>
         <Toolbar disableGutters className={classes.toolbar}>
           <div className={classes.searchInputWrapper}>

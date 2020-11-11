@@ -7,7 +7,13 @@ import useStyles from './useStyles';
 import * as ROUTES from '@config/routes';
 import { Route } from './components/Nav/types';
 
-import { Divider, SwipeableDrawer, DrawerProps } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
+import {
+  Divider,
+  SwipeableDrawer,
+  DrawerProps,
+  Toolbar,
+} from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 
 import Nav from './components/Nav/Nav';
@@ -25,6 +31,7 @@ export interface Props {
 const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
   const classes = useStyles();
   const { key } = useServer();
+  const theme = useTheme();
 
   const routes: Route[] = [
     {
@@ -39,13 +46,14 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
   return (
     <SwipeableDrawer
       anchor="left"
-      classes={{ paper: classes.drawer }}
+      classes={{ paper: classes.drawerPaper }}
+      ModalProps={{ style: { zIndex: theme.zIndex.appBar - 1 } }}
       onClose={onClose}
       onOpen={onOpen}
       open={open}
       variant={variant}
-      disableBackdropTransition
     >
+      <Toolbar />
       <div className={clsx(classes.root, className)}>
         <ServerInfo t={t} />
         <Divider />

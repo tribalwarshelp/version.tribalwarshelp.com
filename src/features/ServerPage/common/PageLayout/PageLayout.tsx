@@ -57,7 +57,7 @@ function PageLayout({ children }: Props) {
           [classes.shiftContent]: isDesktop,
         })}
       >
-        <TopBar openSidebar={openSidebar} t={t} />
+        <TopBar openSidebar={open ? closeSidebar : openSidebar} t={t} />
         <Toolbar />
         <Sidebar
           onClose={closeSidebar}

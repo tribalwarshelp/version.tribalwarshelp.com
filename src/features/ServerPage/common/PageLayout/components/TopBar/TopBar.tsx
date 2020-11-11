@@ -13,7 +13,7 @@ export interface Props {
 
 const TopBar = ({ className, openSidebar }: Props) => {
   return (
-    <AppBar className={clsx(className)} elevation={0}>
+    <AppBar className={clsx(className)}>
       <Toolbar>
         <Hidden lgUp>
           <IconButton color="inherit" onClick={openSidebar}>

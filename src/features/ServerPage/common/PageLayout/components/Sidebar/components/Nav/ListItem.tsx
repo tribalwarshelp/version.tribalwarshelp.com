@@ -38,7 +38,6 @@ function ListItem({ route, nestedLevel }: Props) {
         button
         component={Box}
         pl={nestedLevel}
-        dense
       >
         <ListItemIcon>{route.Icon}</ListItemIcon>
         <ListItemText primary={route.name} />
