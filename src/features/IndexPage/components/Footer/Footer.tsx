@@ -8,7 +8,7 @@ export default function Header() {
   const classes = useStyles();
 
   return (
-    <AppBar position="static" component="footer">
+    <AppBar position="static" component="footer" elevation={0}>
       <Container>
         <Toolbar disableGutters className={classes.toolbar}>
           <Typography align="center" className={classes.copyright}>

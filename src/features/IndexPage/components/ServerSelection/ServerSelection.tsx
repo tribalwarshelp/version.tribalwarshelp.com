@@ -7,6 +7,8 @@ import {
   withDefault,
 } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
+import { generatePath } from 'react-router';
+import * as ROUTES from '@config/routes';
 import * as NAMESPACES from '@config/namespaces';
 import { SERVER_STATUS } from '@config/app';
 import { ServerList } from './types';
@@ -26,6 +28,7 @@ import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import Pagination, {
   Props as PaginationProps,
 } from '@common/Pagination/Pagination';
+import Link from '@common/Link/Link';
 
 const PER_PAGE = 48;
 const arr = new Array(PER_PAGE).fill(0);
@@ -102,13 +105,19 @@ export default function ServerSelection() {
                   <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <Typography variant="h5">
-                        {server.key}{' '}
-                        {SERVER_STATUS.CLOSED === server.status
-                          ? `(${t(
-                              NAMESPACES.COMMON +
-                                `:serverStatus.${server.status}`
-                            ).toLowerCase()})`
-                          : ''}
+                        <Link
+                          to={generatePath(ROUTES.SERVER_PAGE.INDEX_PAGE, {
+                            key: server.key,
+                          })}
+                        >
+                          {server.key}{' '}
+                          {SERVER_STATUS.CLOSED === server.status
+                            ? `(${t(
+                                NAMESPACES.COMMON +
+                                  `:serverStatus.${server.status}`
+                              ).toLowerCase()})`
+                            : ''}
+                        </Link>
                       </Typography>
                     </AccordionSummary>
                     <AccordionDetails>

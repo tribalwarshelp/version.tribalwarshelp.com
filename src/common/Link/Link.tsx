@@ -19,12 +19,30 @@ const CustomizedRRDLink = forwardRef(
   )
 );
 
-function Link({ children, ...props }: Props) {
-  return (
-    <MUILink {...props} component={CustomizedRRDLink}>
-      {children}
-    </MUILink>
-  );
-}
+const Link = forwardRef(
+  (
+    { children, ...props }: Props,
+    ref:
+      | ((instance: HTMLAnchorElement | null) => void)
+      | RefObject<HTMLAnchorElement>
+      | null
+      | undefined
+  ) => {
+    return (
+      <MUILink {...props} ref={ref} component={CustomizedRRDLink}>
+        {children}
+      </MUILink>
+    );
+  }
+);
+
+// function Link({ children, ...props }: Props) {
+//   return ;
+// }
+
+Link.defaultProps = {
+  color: 'secondary',
+  underline: 'none',
+};
 
 export default Link;

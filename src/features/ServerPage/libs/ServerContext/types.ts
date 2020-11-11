@@ -7,8 +7,15 @@ export type Server = {
   numberOfPlayers: number;
   numberOfTribes: number;
   numberOfVillages: number;
+  dataUpdatedAt: string | Date;
+  historyUpdatedAt: string | Date;
+  statsUpdatedAt: string | Date;
 };
 
 export type ServerList = {
   servers?: List<Server[]>;
+};
+
+export type Params = {
+  key: string;
 };

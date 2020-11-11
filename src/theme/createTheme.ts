@@ -21,6 +21,7 @@ const createTheme = (): Theme => {
         },
         MuiAppBar: {
           color: 'default',
+          elevation: 0,
         },
       },
     })

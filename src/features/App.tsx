@@ -6,6 +6,7 @@ import { CssBaseline } from '@material-ui/core';
 
 import IndexPage from './IndexPage/IndexPage';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
+import ServerPage from './ServerPage/ServerPage';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Switch>
         <Route path={ROUTES.INDEX_PAGE} exact>
           <IndexPage />
+        </Route>
+        <Route path={ROUTES.SERVER_PAGE.BASE}>
+          <ServerPage />
         </Route>
         <Route>
           <NotFoundPage />

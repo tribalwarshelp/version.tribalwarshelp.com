@@ -1,0 +1,75 @@
+import React, { useState } from 'react';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+import { SERVER_PAGE } from '@config/namespaces';
+import { DRAWER_WIDTH } from './components/Sidebar/contants';
+
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useMediaQuery, Toolbar } from '@material-ui/core';
+
+import ServerProvider from '@features/ServerPage/libs/ServerContext/Provider';
+import Sidebar from './components/Sidebar/Sidebar';
+import TopBar from './components/TopBar/TopBar';
+
+export interface Props {
+  children: React.ReactNode;
+}
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    paddingTop: 56,
+    height: '100%',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: 64,
+    },
+  },
+  shiftContent: {
+    paddingLeft: DRAWER_WIDTH,
+  },
+  content: {
+    height: '100%',
+    padding: theme.spacing(2),
+  },
+}));
+
+function PageLayout({ children }: Props) {
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
+    defaultMatches: true,
+  });
+  const { t } = useTranslation(SERVER_PAGE.COMMON);
+  const shouldOpenSidebar = isDesktop ? true : open;
+
+  const openSidebar = () => {
+    setOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setOpen(false);
+  };
+
+  return (
+    <ServerProvider>
+      <div
+        className={clsx({
+          [classes.shiftContent]: isDesktop,
+        })}
+      >
+        <TopBar openSidebar={openSidebar} t={t} />
+        <Toolbar />
+        <Sidebar
+          onClose={closeSidebar}
+          open={shouldOpenSidebar}
+          variant={isDesktop ? 'persistent' : 'temporary'}
+          t={t}
+          onOpen={openSidebar}
+        />
+        <main className={classes.content}>{children}</main>
+      </div>
+    </ServerProvider>
+  );
+}
+
+export default PageLayout;
