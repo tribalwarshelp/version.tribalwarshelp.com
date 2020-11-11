@@ -1,5 +1,8 @@
 const translations = {
   pageLayout: {
+    topBar: {
+      home: 'Home',
+    },
     sidebar: {
       routes: {
         dashboard: 'Dashboard',
