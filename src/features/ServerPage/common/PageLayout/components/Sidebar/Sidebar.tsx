@@ -39,7 +39,7 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
       to: generatePath(ROUTES.SERVER_PAGE.INDEX_PAGE, {
         key: key,
       }),
-      Icon: <DashboardIcon />,
+      Icon: <DashboardIcon color="inherit" />,
     },
   ];
 
