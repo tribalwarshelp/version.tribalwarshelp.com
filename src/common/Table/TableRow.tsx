@@ -11,6 +11,7 @@ export type Props<T> = {
   row: T;
   selection: boolean;
   selected: boolean;
+  size?: 'small' | 'medium';
   onSelect?: (row: T) => void;
 };
 
@@ -21,6 +22,7 @@ function EnhancedTableRow<T extends object>({
   selection = false,
   selected = false,
   onSelect,
+  size = 'medium',
 }: Props<T>) {
   const handleSelect = () => {
     if (onSelect) {
@@ -44,7 +46,7 @@ function EnhancedTableRow<T extends object>({
   return (
     <TableRow>
       {selection && (
-        <TableCell padding="checkbox">
+        <TableCell size={size} padding="checkbox">
           <Checkbox checked={selected} onClick={handleSelect} />
         </TableCell>
       )}
@@ -52,6 +54,7 @@ function EnhancedTableRow<T extends object>({
         const val = get(row, col.field, '');
         return (
           <TableCell
+            size={size}
             key={col.field}
             padding={col.disablePadding ? 'none' : 'default'}
             align={col.align ? col.align : 'left'}
@@ -65,7 +68,7 @@ function EnhancedTableRow<T extends object>({
         );
       })}
       {actions.length > 0 && (
-        <TableCell>
+        <TableCell size={size}>
           {actions.map((action, index) =>
             action.tooltip ? (
               <Tooltip key={index} title={action.tooltip}>

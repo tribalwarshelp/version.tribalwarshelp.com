@@ -1,4 +1,5 @@
 import React from 'react';
+import { TFunction } from 'i18next';
 
 import {
   TablePagination,
@@ -24,7 +25,8 @@ function TableFooter({
   rowsPerPageOptions = [25, 50, 100],
   rowsPerPage = 50,
   size = 'small',
-}: Props) {
+  t,
+}: Props & { t: TFunction }) {
   const handlePageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,
     page: number
@@ -53,6 +55,10 @@ function TableFooter({
           rowsPerPageOptions={rowsPerPageOptions}
           size={size}
           colSpan={100}
+          labelDisplayedRows={payload => t('labelDisplayedRows', payload)}
+          labelRowsPerPage={t('labelRowsPerPage')}
+          nextIconButtonText={t('next')}
+          backIconButtonText={t('prev')}
         />
       </TableRow>
     </MUITableFooter>

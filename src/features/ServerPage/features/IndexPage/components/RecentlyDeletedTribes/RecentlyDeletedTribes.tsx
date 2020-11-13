@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { RECENTLY_DELETED_PLAYERS } from './queries';
+import { RECENTLY_DELETED_TRIBES } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 import { PlayersQueryVariables } from '@libs/graphql/types';
-import { PlayerList } from './types';
+import { TribeList } from './types';
 
 import { Paper, Toolbar, Typography } from '@material-ui/core';
 import Table from '@common/Table/Table';
@@ -14,9 +14,9 @@ export interface Props {
 
 function RecentlyDeletedPlayers({ server }: Props) {
   const { loading: loadingPlayers, data } = useQuery<
-    PlayerList,
+    TribeList,
     PlayersQueryVariables
-  >(RECENTLY_DELETED_PLAYERS, {
+  >(RECENTLY_DELETED_TRIBES, {
     fetchPolicy: 'cache-and-network',
     variables: {
       filter: {
@@ -27,19 +27,19 @@ function RecentlyDeletedPlayers({ server }: Props) {
       server,
     },
   });
-  const players = data?.players?.items ?? [];
-  const loading = loadingPlayers && players.length === 0;
+  const tribes = data?.tribes?.items ?? [];
+  const loading = loadingPlayers && tribes.length === 0;
 
-  console.log(players, loading);
+  console.log(tribes, loading);
   return (
     <Paper>
       <Toolbar>
-        <Typography variant="h4">Recently deleted players</Typography>
+        <Typography variant="h4">Recently deleted tribes</Typography>
       </Toolbar>
       <Table
         columns={COLUMNS}
         loading={loading}
-        data={players}
+        data={tribes}
         size="small"
         hideFooter
         footerProps={{ rowsPerPage: LIMIT, rowsPerPageOptions: [LIMIT] }}

@@ -1,11 +1,11 @@
 const translations = {
   emptyDataSourceMessage: 'No records to display',
-  labelDisplayedRows: '{from}-{to} of {count}',
+  labelDisplayedRows: '{{from}}-{{to}} of {{count}}',
   labelRowsPerPage: 'Rows per page:',
-  firstTooltip: 'First Page',
-  previousTooltip: 'Previous Page',
-  nextTooltip: 'Next Page',
-  lastTooltip: 'Last Page',
+  first: 'First page',
+  last: 'Last page',
+  next: 'Next page',
+  previous: 'Previous page',
 };
 
 export default translations;

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { TABLE } from '@config/namespaces';
 import isObjKey from '@utils/isObjKey';
 import { Action, Column, OrderDirection } from './types';
 
@@ -7,6 +9,7 @@ import {
   TableBody,
   TableProps,
   TableBodyProps,
+  TableContainer,
 } from '@material-ui/core';
 import TableHead from './TableHead';
 import TableRow from './TableRow';
@@ -32,6 +35,7 @@ export interface Props<T> {
   tableBodyProps?: TableBodyProps;
   footerProps?: TableFooterProps;
   hideFooter?: boolean;
+  size?: 'medium' | 'small';
 }
 
 function Table<T extends object>({
@@ -48,46 +52,58 @@ function Table<T extends object>({
   tableProps = {},
   hideFooter = false,
   footerProps,
+  size,
 }: Props<T>) {
+  const { t } = useTranslation(TABLE);
   return (
-    <MUITable {...tableProps}>
-      <TableHead
-        columns={columns}
-        selection={selection}
-        orderBy={orderBy}
-        orderDirection={orderDirection}
-        onRequestSort={onRequestSort}
-        allSelected={false}
-      />
-      <TableBody {...tableBodyProps}>
-        {loading ? (
-          <TableLoading />
-        ) : data.length > 0 ? (
-          data.map((item, index) => {
-            return (
-              <TableRow
-                key={
-                  isObjKey(item, idFieldName) ? item[idFieldName] + '' : index
-                }
-                row={item}
-                actions={actions}
-                selected={false}
-                selection={selection}
-                columns={columns}
-              />
-            );
-          })
-        ) : (
-          <TableEmpty />
-        )}
-      </TableBody>
-      {!hideFooter && (
-        <TableFooter
-          count={footerProps?.count ?? data.length}
-          {...footerProps}
+    <TableContainer>
+      <MUITable size={size} {...tableProps}>
+        <TableHead
+          columns={columns}
+          selection={selection}
+          orderBy={orderBy}
+          orderDirection={orderDirection}
+          onRequestSort={onRequestSort}
+          allSelected={false}
+          size={size}
         />
-      )}
-    </MUITable>
+        <TableBody {...tableBodyProps}>
+          {loading ? (
+            <TableLoading
+              columns={columns}
+              size={size}
+              rowsPerPage={footerProps?.rowsPerPage ?? 50}
+            />
+          ) : data.length > 0 ? (
+            data.map((item, index) => {
+              return (
+                <TableRow
+                  key={
+                    isObjKey(item, idFieldName) ? item[idFieldName] + '' : index
+                  }
+                  row={item}
+                  actions={actions}
+                  selected={false}
+                  selection={selection}
+                  columns={columns}
+                  size={size}
+                />
+              );
+            })
+          ) : (
+            <TableEmpty t={t} />
+          )}
+        </TableBody>
+        {!hideFooter && (
+          <TableFooter
+            t={t}
+            count={footerProps?.count ?? data.length}
+            size={size}
+            {...footerProps}
+          />
+        )}
+      </MUITable>
+    </TableContainer>
   );
 }
 

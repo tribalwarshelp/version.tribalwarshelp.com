@@ -17,6 +17,7 @@ export interface Props {
   allSelected: boolean;
   orderDirection: OrderDirection;
   orderBy: string;
+  size?: 'small' | 'medium';
   onRequestSort?: (
     property: string,
     orderDirection: OrderDirection
@@ -31,6 +32,7 @@ function TableHead({
   selection = false,
   allSelected = false,
   onRequestSort,
+  size = 'medium',
 }: Props) {
   const createSortHandler = (property: string) => () => {
     if (onRequestSort) {
@@ -52,13 +54,14 @@ function TableHead({
     <MUITableHead>
       <TableRow>
         {selection && (
-          <TableCell padding="checkbox">
+          <TableCell size={size} padding="checkbox">
             <Checkbox checked={allSelected} onClick={handleSelectAll} />
           </TableCell>
         )}
         {columns.map(col => {
           return (
             <TableCell
+              size={size}
               key={col.field}
               padding={col.disablePadding ? 'none' : 'default'}
               align={col.align ? col.align : 'left'}

@@ -23,6 +23,13 @@ const createTheme = (): Theme => {
           color: 'default',
         },
       },
+      overrides: {
+        MuiTableContainer: {
+          root: {
+            overflow: 'auto',
+          },
+        },
+      },
     })
   );
 };

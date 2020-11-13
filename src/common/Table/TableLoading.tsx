@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Column } from './types';
 
-import { TableRow, CircularProgress, Box, TableCell } from '@material-ui/core';
+import { TableRow, TableCell } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 
-function TableLoading() {
+export interface Props {
+  rowsPerPage: number;
+  columns: Column[];
+  size?: 'small' | 'medium';
+}
+
+function TableLoading({ rowsPerPage, columns, size = 'medium' }: Props) {
   return (
-    <TableRow>
-      <TableCell colSpan={100}>
-        <Box
-          paddingY={2}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <CircularProgress size={200} />
-        </Box>
-      </TableCell>
-    </TableRow>
+    <Fragment>
+      {new Array(rowsPerPage).fill(0).map((_, index) => {
+        return (
+          <TableRow key={index}>
+            {columns.map(col => (
+              <TableCell size={size} key={col.label}>
+                <Skeleton variant="text" />
+              </TableCell>
+            ))}
+          </TableRow>
+        );
+      })}
+    </Fragment>
   );
 }
 
