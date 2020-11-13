@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 import { SERVERS } from './queries';
 import Context from './context';
 import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
+import { ServersQueryVariables } from '@libs/graphql/types';
 import { Params, ServerList } from './types';
 
 import NotFoundPage from '@features/NotFoundPage/NotFoundPage';
@@ -15,7 +16,10 @@ export interface Props {
 
 function Provider({ children }: Props) {
   const { key } = useParams<Params>();
-  const { loading: loadingServers, data } = useQuery<ServerList>(SERVERS, {
+  const { loading: loadingServers, data } = useQuery<
+    ServerList,
+    ServersQueryVariables
+  >(SERVERS, {
     fetchPolicy: 'cache-first',
     variables: {
       filter: {

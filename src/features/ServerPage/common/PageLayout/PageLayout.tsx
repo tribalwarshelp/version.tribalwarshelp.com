@@ -7,7 +7,6 @@ import { DRAWER_WIDTH } from './components/Sidebar/contants';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery, Toolbar } from '@material-ui/core';
 
-import ServerProvider from '@features/ServerPage/libs/ServerContext/Provider';
 import Sidebar from './components/Sidebar/Sidebar';
 import TopBar from './components/TopBar/TopBar';
 
@@ -51,24 +50,22 @@ function PageLayout({ children }: Props) {
   };
 
   return (
-    <ServerProvider>
-      <div
-        className={clsx({
-          [classes.shiftContent]: isDesktop,
-        })}
-      >
-        <TopBar openSidebar={open ? closeSidebar : openSidebar} t={t} />
-        <Toolbar />
-        <Sidebar
-          onClose={closeSidebar}
-          open={shouldOpenSidebar}
-          variant={isDesktop ? 'persistent' : 'temporary'}
-          t={t}
-          onOpen={openSidebar}
-        />
-        <main className={classes.content}>{children}</main>
-      </div>
-    </ServerProvider>
+    <div
+      className={clsx({
+        [classes.shiftContent]: isDesktop,
+      })}
+    >
+      <TopBar openSidebar={open ? closeSidebar : openSidebar} t={t} />
+      <Toolbar />
+      <Sidebar
+        onClose={closeSidebar}
+        open={shouldOpenSidebar}
+        variant={isDesktop ? 'persistent' : 'temporary'}
+        t={t}
+        onOpen={openSidebar}
+      />
+      <main className={classes.content}>{children}</main>
+    </div>
   );
 }
 

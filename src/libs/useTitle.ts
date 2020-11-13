@@ -29,4 +29,4 @@ function useTitle(
 
 export default typeof document !== 'undefined'
   ? useTitle
-  : (_title: string) => {};
+  : (_title: string) => _title;

@@ -11,6 +11,7 @@ import { generatePath } from 'react-router';
 import * as ROUTES from '@config/routes';
 import * as NAMESPACES from '@config/namespaces';
 import { SERVER_STATUS } from '@config/app';
+import { ServersQueryVariables } from '@libs/graphql/types';
 import { ServerList } from './types';
 import { SERVERS } from './queries';
 import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
@@ -39,7 +40,10 @@ export default function ServerSelection() {
     q: withDefault(StringParam, ''),
   });
   const { t } = useTranslation(NAMESPACES.INDEX_PAGE);
-  const { data, loading: loadingServers } = useQuery<ServerList>(SERVERS, {
+  const { data, loading: loadingServers } = useQuery<
+    ServerList,
+    ServersQueryVariables
+  >(SERVERS, {
     fetchPolicy: 'cache-and-network',
     variables: {
       filter: {
