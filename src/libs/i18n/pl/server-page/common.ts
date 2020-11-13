@@ -6,6 +6,21 @@ const translations = {
     sidebar: {
       routes: {
         dashboard: 'Dashboard',
+        rankings: {
+          name: 'Rankingi',
+          player: {
+            index: 'Gracze',
+            od: 'Gracze OD',
+            archive: 'Byli gracze',
+          },
+          tribe: {
+            index: 'Plemiona',
+            od: 'Plemiona OD',
+            archive: 'Byłe plemiona',
+          },
+        },
+        ennoblements: 'Ostatnie podbicia',
+        map: 'Narzędzie mapy',
       },
       serverInfo: {
         numberOfPlayers_0: '{{num}} gracz',

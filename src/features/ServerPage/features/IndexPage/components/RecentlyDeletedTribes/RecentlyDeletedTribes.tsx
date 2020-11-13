@@ -2,7 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { RECENTLY_DELETED_TRIBES } from './queries';
 import { COLUMNS, LIMIT } from './constants';
-import { PlayersQueryVariables } from '@libs/graphql/types';
+
+import { TFunction } from 'i18next';
+import { TribesQueryVariables } from '@libs/graphql/types';
 import { TribeList } from './types';
 
 import { Paper, Toolbar, Typography } from '@material-ui/core';
@@ -10,12 +12,13 @@ import Table from '@common/Table/Table';
 
 export interface Props {
   server: string;
+  t: TFunction;
 }
 
-function RecentlyDeletedPlayers({ server }: Props) {
-  const { loading: loadingPlayers, data } = useQuery<
+function RecentlyDeletedTribes({ server, t }: Props) {
+  const { loading: loadingTribes, data } = useQuery<
     TribeList,
-    PlayersQueryVariables
+    TribesQueryVariables
   >(RECENTLY_DELETED_TRIBES, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -28,16 +31,19 @@ function RecentlyDeletedPlayers({ server }: Props) {
     },
   });
   const tribes = data?.tribes?.items ?? [];
-  const loading = loadingPlayers && tribes.length === 0;
+  const loading = loadingTribes && tribes.length === 0;
 
   console.log(tribes, loading);
   return (
     <Paper>
       <Toolbar>
-        <Typography variant="h4">Recently deleted tribes</Typography>
+        <Typography variant="h4">{t('recentlyDeletedTribes.title')}</Typography>
       </Toolbar>
       <Table
-        columns={COLUMNS}
+        columns={COLUMNS.map(column => ({
+          ...column,
+          label: column.label ? t<string>(column.label) : '',
+        }))}
         loading={loading}
         data={tribes}
         size="small"
@@ -48,4 +54,4 @@ function RecentlyDeletedPlayers({ server }: Props) {
   );
 }
 
-export default RecentlyDeletedPlayers;
+export default RecentlyDeletedTribes;

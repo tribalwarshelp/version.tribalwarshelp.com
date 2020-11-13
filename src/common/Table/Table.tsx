@@ -18,7 +18,7 @@ import TableEmpty from './TableEmpty';
 import TableFooter, { Props as TableFooterProps } from './TableFooter';
 
 export interface Props<T> {
-  columns: Column[];
+  columns: Column<T>[];
   actions?: Action[];
   data: T[];
   orderBy?: string;
@@ -36,6 +36,7 @@ export interface Props<T> {
   footerProps?: TableFooterProps;
   hideFooter?: boolean;
   size?: 'medium' | 'small';
+  selected?: T[];
 }
 
 function Table<T extends object>({
@@ -53,8 +54,23 @@ function Table<T extends object>({
   hideFooter = false,
   footerProps,
   size,
+  selected,
+  onSelect,
 }: Props<T>) {
   const { t } = useTranslation(TABLE);
+
+  const isSelected = (row: T): boolean => {
+    return (
+      Array.isArray(selected) &&
+      selected.some(
+        otherRow =>
+          isObjKey(otherRow, idFieldName) &&
+          isObjKey(row, idFieldName) &&
+          otherRow[idFieldName] === row[idFieldName]
+      )
+    );
+  };
+
   return (
     <TableContainer>
       <MUITable size={size} {...tableProps}>
@@ -64,14 +80,17 @@ function Table<T extends object>({
           orderBy={orderBy}
           orderDirection={orderDirection}
           onRequestSort={onRequestSort}
-          allSelected={false}
-          size={size}
+          onSelectAll={() => {
+            if (onSelect) {
+              onSelect(data);
+            }
+          }}
+          allSelected={selected?.length === data.length}
         />
         <TableBody {...tableBodyProps}>
           {loading ? (
             <TableLoading
               columns={columns}
-              size={size}
               rowsPerPage={footerProps?.rowsPerPage ?? 50}
             />
           ) : data.length > 0 ? (
@@ -83,10 +102,14 @@ function Table<T extends object>({
                   }
                   row={item}
                   actions={actions}
-                  selected={false}
+                  selected={isSelected(item)}
                   selection={selection}
                   columns={columns}
-                  size={size}
+                  onSelect={row => {
+                    if (onSelect) {
+                      onSelect([row]);
+                    }
+                  }}
                 />
               );
             })

@@ -17,7 +17,7 @@ function TableLoading({ rowsPerPage, columns, size = 'medium' }: Props) {
         return (
           <TableRow key={index}>
             {columns.map(col => (
-              <TableCell size={size} key={col.label}>
+              <TableCell size={size} key={col.field}>
                 <Skeleton variant="text" />
               </TableCell>
             ))}

@@ -2,6 +2,8 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { RECENTLY_DELETED_PLAYERS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
+
+import { TFunction } from 'i18next';
 import { PlayersQueryVariables } from '@libs/graphql/types';
 import { PlayerList } from './types';
 
@@ -10,9 +12,10 @@ import Table from '@common/Table/Table';
 
 export interface Props {
   server: string;
+  t: TFunction;
 }
 
-function RecentlyDeletedPlayers({ server }: Props) {
+function RecentlyDeletedPlayers({ server, t }: Props) {
   const { loading: loadingPlayers, data } = useQuery<
     PlayerList,
     PlayersQueryVariables
@@ -34,10 +37,15 @@ function RecentlyDeletedPlayers({ server }: Props) {
   return (
     <Paper>
       <Toolbar>
-        <Typography variant="h4">Recently deleted players</Typography>
+        <Typography variant="h4">
+          {t('recentlyDeletedPlayers.title')}
+        </Typography>
       </Toolbar>
       <Table
-        columns={COLUMNS}
+        columns={COLUMNS.map(column => ({
+          ...column,
+          label: column.label ? t<string>(column.label) : '',
+        }))}
         loading={loading}
         data={players}
         size="small"

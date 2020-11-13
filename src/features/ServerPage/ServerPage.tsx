@@ -17,7 +17,7 @@ const EnhancedRoute = ({ children, ...rest }: RouteProps) => {
 function ServerPage() {
   return (
     <Switch>
-      <EnhancedRoute path={SERVER_PAGE.INDEX_PAGE}>
+      <EnhancedRoute exact path={SERVER_PAGE.INDEX_PAGE}>
         <IndexPage />
       </EnhancedRoute>
       <Route path="*">

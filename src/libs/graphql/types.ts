@@ -16,6 +16,19 @@ export type PlayersQueryVariables = {
   filter?: PlayerFilter;
 };
 
+export type TribeFilter = {
+  limit?: number;
+  offset?: number;
+  sort?: string;
+  id?: number[];
+  deletedAtGT?: Date | string;
+};
+
+export type TribesQueryVariables = {
+  server: string;
+  filter?: TribeFilter;
+};
+
 export type ServerFilter = {
   limit?: number;
   offset?: number;

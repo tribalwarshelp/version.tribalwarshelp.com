@@ -1,21 +1,22 @@
 import { Column } from '@common/Table/types';
+import { Tribe } from './types';
 
-export const COLUMNS: Column[] = [
+export const COLUMNS: Column<Tribe>[] = [
   {
     field: 'name',
-    label: 'recentlyDeletedPlayers.columns.name',
+    label: 'recentlyDeletedTribes.columns.name',
+    valueFormatter: (tribe: Tribe) => `${tribe.name} (${tribe.tag})`,
     sortable: false,
   },
   {
     field: 'mostPoints',
-    label: 'recentlyDeletedPlayers.columns.mostPoints',
+    label: 'recentlyDeletedTribes.columns.mostPoints',
     sortable: false,
-    valueFormatter: (param: string | number | boolean) =>
-      (param as number).toLocaleString(),
+    valueFormatter: (tribe: Tribe) => tribe.mostPoints.toLocaleString(),
   },
   {
     field: 'deletedAt',
-    label: 'recentlyDeletedPlayers.columns.deletedAt',
+    label: 'recentlyDeletedTribes.columns.deletedAt',
     sortable: false,
     type: 'datetime',
   },

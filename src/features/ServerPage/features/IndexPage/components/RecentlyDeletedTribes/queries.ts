@@ -5,6 +5,7 @@ export const RECENTLY_DELETED_TRIBES = gql`
     tribes(server: $server, filter: $filter) {
       items {
         id
+        tag
         name
         mostPoints
         deletedAt

@@ -18,7 +18,7 @@ function App() {
         <Route path={ROUTES.SERVER_PAGE.BASE}>
           <ServerPage />
         </Route>
-        <Route>
+        <Route path="*">
           <NotFoundPage />
         </Route>
       </Switch>

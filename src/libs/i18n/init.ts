@@ -12,7 +12,7 @@ const init = (): i18nT => {
     .use(initReactI18next)
     .init({
       fallbackLng: DEFAULT_LANGUAGE,
-      debug: false,
+      debug: process.env.NODE_ENV === 'development',
       load: 'languageOnly',
       detection: {
         order: ['subdomain'],

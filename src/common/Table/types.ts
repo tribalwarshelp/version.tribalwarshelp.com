@@ -3,11 +3,11 @@ export type Action = {
   tooltip?: string;
 };
 
-export type Column = {
+export type Column<T = any> = {
   field: string;
   label?: string;
   sortable?: boolean;
-  valueFormatter?: (v: boolean | string | number) => boolean | string | number;
+  valueFormatter?: (v: T) => React.ReactNode;
   disablePadding?: boolean;
   type?: 'normal' | 'datetime' | 'date';
   align?: 'left' | 'right' | 'center';

@@ -7,7 +7,7 @@ import { TableRow, TableCell, Checkbox, Tooltip } from '@material-ui/core';
 
 export type Props<T> = {
   actions: Action[];
-  columns: Column[];
+  columns: Column<T>[];
   row: T;
   selection: boolean;
   selected: boolean;
@@ -60,7 +60,7 @@ function EnhancedTableRow<T extends object>({
             align={col.align ? col.align : 'left'}
           >
             {col.valueFormatter
-              ? col.valueFormatter(val)
+              ? col.valueFormatter(row)
               : col.type
               ? formatValue(val, col.type)
               : val}

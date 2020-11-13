@@ -60,7 +60,7 @@ function ListItem({ route, nestedLevel }: Props) {
 
   return (
     <Fragment>
-      {!hasNested ? (
+      {!hasNested && route.to ? (
         <Link
           to={route.to}
           className={classes.link}

@@ -1,6 +1,7 @@
 import { Column } from '@common/Table/types';
+import { Player } from './types';
 
-export const COLUMNS: Column[] = [
+export const COLUMNS: Column<Player>[] = [
   {
     field: 'name',
     label: 'recentlyDeletedPlayers.columns.name',
@@ -10,8 +11,7 @@ export const COLUMNS: Column[] = [
     field: 'mostPoints',
     label: 'recentlyDeletedPlayers.columns.mostPoints',
     sortable: false,
-    valueFormatter: (param: string | number | boolean) =>
-      (param as number).toLocaleString(),
+    valueFormatter: (player: Player) => player.mostPoints.toLocaleString(),
   },
   {
     field: 'deletedAt',
