@@ -8,6 +8,7 @@ export type PlayerFilter = {
   offset?: number;
   sort?: string;
   id?: number[];
+  tribeFilter?: TribeFilter;
   deletedAtGT?: Date | string;
 };
 

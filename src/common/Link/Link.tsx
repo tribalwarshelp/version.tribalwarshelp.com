@@ -1,19 +1,30 @@
 import React, { forwardRef, RefObject } from 'react';
-import { Link as RRDLink, LinkProps as RRDLinkProps } from 'react-router-dom';
+import {
+  Link as RRDLink,
+  LinkProps as RRDLinkProps,
+  generatePath,
+} from 'react-router-dom';
 import { Link as MUILink, LinkProps as MUILinkProps } from '@material-ui/core';
 
-export type Props = MUILinkProps & RRDLinkProps;
+export type Props = MUILinkProps &
+  RRDLinkProps & {
+    params?: { [paramName: string]: string | number | boolean | undefined };
+  };
 
 const CustomizedRRDLink = forwardRef(
   (
-    { children, ...props }: Props,
+    { children, params, to, ...props }: Props,
     ref:
       | ((instance: HTMLAnchorElement | null) => void)
       | RefObject<HTMLAnchorElement>
       | null
       | undefined
   ) => (
-    <RRDLink {...props} ref={ref}>
+    <RRDLink
+      {...props}
+      to={params && typeof to === 'string' ? generatePath(to, params) : to}
+      ref={ref}
+    >
       {children}
     </RRDLink>
   )
@@ -35,10 +46,6 @@ const Link = forwardRef(
     );
   }
 );
-
-// function Link({ children, ...props }: Props) {
-//   return ;
-// }
 
 Link.defaultProps = {
   color: 'secondary',

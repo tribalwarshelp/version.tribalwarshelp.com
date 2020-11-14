@@ -1,14 +1,17 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { SERVER_PAGE } from '@config/routes';
 import { RECENTLY_DELETED_PLAYERS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
+import { Paper, Typography } from '@material-ui/core';
+import TableToolbar from '@common/Table/TableToolbar';
+import Table from '@common/Table/Table';
+import Link from '@common/Link/Link';
+
 import { TFunction } from 'i18next';
 import { PlayersQueryVariables } from '@libs/graphql/types';
-import { PlayerList } from './types';
-
-import { Paper, Toolbar, Typography } from '@material-ui/core';
-import Table from '@common/Table/Table';
+import { PlayerList, Player } from './types';
 
 export interface Props {
   server: string;
@@ -33,17 +36,27 @@ function RecentlyDeletedPlayers({ server, t }: Props) {
   const players = data?.players?.items ?? [];
   const loading = loadingPlayers && players.length === 0;
 
-  console.log(players, loading);
   return (
     <Paper>
-      <Toolbar>
+      <TableToolbar>
         <Typography variant="h4">
           {t('recentlyDeletedPlayers.title')}
         </Typography>
-      </Toolbar>
+      </TableToolbar>
       <Table
-        columns={COLUMNS.map(column => ({
+        columns={COLUMNS.map((column, index) => ({
           ...column,
+          valueFormatter:
+            index === 0
+              ? (player: Player) => (
+                  <Link
+                    to={SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE}
+                    params={{ key: server, id: player.id }}
+                  >
+                    {player.name}
+                  </Link>
+                )
+              : column.valueFormatter,
           label: column.label ? t<string>(column.label) : '',
         }))}
         loading={loading}
