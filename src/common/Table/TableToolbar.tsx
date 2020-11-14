@@ -4,9 +4,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Toolbar, ToolbarProps } from '@material-ui/core';
 
-export type Props = {
-  children?: React.ReactNode;
-} & ToolbarProps;
+export type Props = ToolbarProps;
 
 const useStyles = makeStyles(theme => {
   return {

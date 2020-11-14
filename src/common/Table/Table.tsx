@@ -80,6 +80,7 @@ function Table<T extends object>({
           orderBy={orderBy}
           orderDirection={orderDirection}
           onRequestSort={onRequestSort}
+          size={size}
           onSelectAll={() => {
             if (onSelect) {
               onSelect(data);
@@ -91,6 +92,7 @@ function Table<T extends object>({
           {loading ? (
             <TableLoading
               columns={columns}
+              size={size}
               rowsPerPage={footerProps?.rowsPerPage ?? 50}
             />
           ) : data.length > 0 ? (
@@ -105,6 +107,7 @@ function Table<T extends object>({
                   selected={isSelected(item)}
                   selection={selection}
                   columns={columns}
+                  size={size}
                   onSelect={row => {
                     if (onSelect) {
                       onSelect([row]);

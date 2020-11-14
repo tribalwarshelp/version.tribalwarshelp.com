@@ -4,10 +4,11 @@ import { SERVER_PAGE } from '@config/routes';
 import { RECENTLY_DELETED_TRIBES } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
-import { Paper, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import Table from '@common/Table/Table';
 import TableToolbar from '@common/Table/TableToolbar';
 import Link from '@common/Link/Link';
+import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
 import { TribesQueryVariables } from '@libs/graphql/types';
@@ -39,7 +40,14 @@ function RecentlyDeletedTribes({ server, t }: Props) {
   return (
     <Paper>
       <TableToolbar>
-        <Typography variant="h4">{t('recentlyDeletedTribes.title')}</Typography>
+        <Typography variant="h4">
+          <Link
+            to={SERVER_PAGE.RANKINGS_PAGE.TRIBE_PAGE.ARCHIVE_PAGE}
+            params={{ key: server }}
+          >
+            {t('recentlyDeletedTribes.title')}
+          </Link>
+        </Typography>
       </TableToolbar>
       <Table
         columns={COLUMNS.map((column, index) => ({

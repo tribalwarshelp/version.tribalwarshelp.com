@@ -4,10 +4,11 @@ import { SERVER_PAGE } from '@config/routes';
 import { RECENTLY_DELETED_PLAYERS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
-import { Paper, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import TableToolbar from '@common/Table/TableToolbar';
 import Table from '@common/Table/Table';
 import Link from '@common/Link/Link';
+import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
 import { PlayersQueryVariables } from '@libs/graphql/types';
@@ -40,7 +41,12 @@ function RecentlyDeletedPlayers({ server, t }: Props) {
     <Paper>
       <TableToolbar>
         <Typography variant="h4">
-          {t('recentlyDeletedPlayers.title')}
+          <Link
+            to={SERVER_PAGE.RANKINGS_PAGE.PLAYER_PAGE.ARCHIVE_PAGE}
+            params={{ key: server }}
+          >
+            {t('recentlyDeletedPlayers.title')}
+          </Link>
         </Typography>
       </TableToolbar>
       <Table
