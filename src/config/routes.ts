@@ -18,16 +18,18 @@ export const SERVER_PAGE = {
   VILLAGE_PAGE: {
     INDEX_PAGE: '/server/:key/village/:id',
   },
-  RANKINGS_PAGE: {
+  RANKING_PAGE: {
     PLAYER_PAGE: {
-      INDEX_PAGE: '/server/:key/rankings/player',
-      OD_PAGE: '/server/:key/rankings/player/od',
-      ARCHIVE_PAGE: '/server/:key/rankings/player/archive',
+      INDEX_PAGE: '/server/:key/ranking/player',
+      OD_PAGE: '/server/:key/ranking/player/od',
+      DAILY_PAGE: '/server/:key/ranking/player/daily',
+      ARCHIVE_PAGE: '/server/:key/ranking/player/archive',
     },
     TRIBE_PAGE: {
-      INDEX_PAGE: '/server/:key/rankings/tribe',
-      OD_PAGE: '/server/:key/rankings/tribe/od',
-      ARCHIVE_PAGE: '/server/:key/rankings/tribe/archive',
+      INDEX_PAGE: '/server/:key/ranking/tribe',
+      OD_PAGE: '/server/:key/ranking/tribe/od',
+      DAILY_PAGE: '/server/:key/ranking/tribe/daily',
+      ARCHIVE_PAGE: '/server/:key/ranking/tribe/archive',
     },
   },
   ENNOBLEMENTS_PAGE: '/server/:key/ennoblements',

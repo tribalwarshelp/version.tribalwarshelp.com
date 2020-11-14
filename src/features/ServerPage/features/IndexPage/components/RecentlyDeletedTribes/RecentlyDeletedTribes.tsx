@@ -42,7 +42,7 @@ function RecentlyDeletedTribes({ server, t }: Props) {
       <TableToolbar>
         <Typography variant="h4">
           <Link
-            to={SERVER_PAGE.RANKINGS_PAGE.TRIBE_PAGE.ARCHIVE_PAGE}
+            to={SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.ARCHIVE_PAGE}
             params={{ key: server }}
           >
             {t('recentlyDeletedTribes.title')}

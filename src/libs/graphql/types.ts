@@ -54,3 +54,16 @@ export type VersionFilter = {
 export type VersionsQueryVariables = {
   filter?: VersionFilter;
 };
+
+export type DailyPlayerStatsFilter = {
+  createDateGT?: Date | 'string';
+  limit?: number;
+  offset?: number;
+  sort?: string;
+  player?: PlayerFilter;
+};
+
+export type DailyPlayerStatsQueryVariables = {
+  server: string;
+  filter?: DailyPlayerStatsFilter;
+};

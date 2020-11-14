@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { SERVER_PAGE } from '@config/routes';
-import { RECENTLY_DELETED_PLAYERS } from './queries';
+import { DAILY_PLAYER_STATS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
 import { Typography } from '@material-ui/core';
@@ -11,41 +11,46 @@ import Link from '@common/Link/Link';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { PlayersQueryVariables } from '@libs/graphql/types';
-import { PlayerList, Player } from './types';
+import { DailyPlayerStatsQueryVariables } from '@libs/graphql/types';
+import { DailyPlayerStatsList, DailyPlayerStatsRecord } from './types';
+import { subHours } from 'date-fns';
 
 export interface Props {
   server: string;
   t: TFunction;
 }
 
-function RecentlyDeletedPlayers({ server, t }: Props) {
-  const { loading: loadingPlayers, data } = useQuery<
-    PlayerList,
-    PlayersQueryVariables
-  >(RECENTLY_DELETED_PLAYERS, {
+function DailyAchievementsPlayers({ server, t }: Props) {
+  const createDateGT = useRef(subHours(new Date(), 30));
+  const [mode, setMode] = useState<
+    'scoreAtt' | 'scoreDef' | 'scoreSup' | 'scoreTotal' | 'points' | 'villages'
+  >('scoreAtt');
+  const { loading: loadingData, data } = useQuery<
+    DailyPlayerStatsList,
+    DailyPlayerStatsQueryVariables
+  >(DAILY_PLAYER_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {
       filter: {
         limit: LIMIT,
-        sort: 'deletedAt DESC',
-        deletedAtGT: new Date(0),
+        sort: mode + ' DESC',
+        createDateGT: createDateGT.current,
       },
       server,
     },
   });
-  const players = data?.players?.items ?? [];
-  const loading = loadingPlayers && players.length === 0;
+  const records = data?.dailyPlayerStats?.items ?? [];
+  const loading = loadingData && records.length === 0;
 
   return (
     <Paper>
       <TableToolbar>
         <Typography variant="h4">
           <Link
-            to={SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.ARCHIVE_PAGE}
+            to={SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.DAILY_PAGE}
             params={{ key: server }}
           >
-            {t('recentlyDeletedPlayers.title')}
+            {t('dailyAchievementsPlayers.title')}
           </Link>
         </Typography>
       </TableToolbar>
@@ -54,19 +59,22 @@ function RecentlyDeletedPlayers({ server, t }: Props) {
           ...column,
           valueFormatter:
             index === 0
-              ? (player: Player) => (
+              ? (record: DailyPlayerStatsRecord) => (
                   <Link
                     to={SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE}
-                    params={{ key: server, id: player.id }}
+                    params={{ key: server, id: record.player.id }}
                   >
-                    {player.name}
+                    {record.player.name}
                   </Link>
                 )
+              : index === 1
+              ? (record: DailyPlayerStatsRecord) =>
+                  record[mode].toLocaleString()
               : column.valueFormatter,
           label: column.label ? t<string>(column.label) : '',
         }))}
         loading={loading}
-        data={players}
+        data={records}
         size="small"
         hideFooter
         footerProps={{ rowsPerPage: LIMIT, rowsPerPageOptions: [LIMIT] }}
@@ -75,4 +83,4 @@ function RecentlyDeletedPlayers({ server, t }: Props) {
   );
 }
 
-export default RecentlyDeletedPlayers;
+export default DailyAchievementsPlayers;
