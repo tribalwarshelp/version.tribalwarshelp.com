@@ -22,8 +22,8 @@ function Provider({ children }: Props) {
   >(SERVERS, {
     fetchPolicy: 'cache-first',
     variables: {
+      limit: 1,
       filter: {
-        limit: 1,
         versionCode: [extractVersionCodeFromHostname(window.location.hostname)],
         key: [key],
       },

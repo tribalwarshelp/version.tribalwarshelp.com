@@ -26,9 +26,9 @@ function RecentlyDeletedTribes({ server, t }: Props) {
   >(RECENTLY_DELETED_TRIBES, {
     fetchPolicy: 'cache-and-network',
     variables: {
+      limit: LIMIT,
+      sort: ['deletedAt DESC', 'mostPoints DESC'],
       filter: {
-        limit: LIMIT,
-        sort: 'deletedAt DESC',
         deletedAtGT: new Date(0),
       },
       server,

@@ -46,11 +46,11 @@ export default function ServerSelection() {
   >(SERVERS, {
     fetchPolicy: 'cache-and-network',
     variables: {
+      sort: ['status DESC', 'key ASC'],
+      offset: (query.page - 1) * PER_PAGE,
+      limit: PER_PAGE,
       filter: {
-        sort: 'key ASC',
-        offset: (query.page - 1) * PER_PAGE,
         keyIEQ: '%' + query.q + '%',
-        limit: PER_PAGE,
         versionCode: [extractVersionCodeFromHostname(window.location.hostname)],
       },
     },

@@ -4,17 +4,17 @@ import { DailyPlayerStatsRecord } from './types';
 export const COLUMNS: Column<DailyPlayerStatsRecord>[] = [
   {
     field: 'name',
-    label: 'dailyAchievementsPlayers.columns.name',
+    label: 'todaysBestStatsPlayers.columns.name',
     sortable: false,
   },
   {
     field: 'score',
-    label: 'dailyAchievementsPlayers.columns.score',
+    label: 'todaysBestStatsPlayers.columns.score',
     sortable: false,
   },
   {
     field: 'createDate',
-    label: 'dailyAchievementsPlayers.columns.createDate',
+    label: 'todaysBestStatsPlayers.columns.createDate',
     sortable: false,
     type: 'date',
   },

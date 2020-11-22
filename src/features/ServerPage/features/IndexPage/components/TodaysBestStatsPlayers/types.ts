@@ -19,3 +19,11 @@ export type DailyPlayerStatsRecord = {
 export type DailyPlayerStatsList = {
   dailyPlayerStats?: List<DailyPlayerStatsRecord[]>;
 };
+
+export type Mode =
+  | 'scoreAtt'
+  | 'scoreDef'
+  | 'scoreSup'
+  | 'scoreTotal'
+  | 'points'
+  | 'villages';

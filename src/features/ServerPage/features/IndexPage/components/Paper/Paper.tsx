@@ -8,16 +8,19 @@ export type Props = {
   size?: 'small' | 'medium' | 'large';
 } & PaperProps;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   paper: {
     overflow: 'auto',
     maxHeight: '200px',
     height: '100%',
+    [theme.breakpoints.down('md')]: {
+      maxHeight: 'none !important',
+    },
     '&.is-medium': {
-      maxHeight: '400px',
+      maxHeight: '500px',
     },
     '&.is-large': {
-      maxHeight: '600px',
+      maxHeight: '700px',
     },
   },
 }));
@@ -29,7 +32,7 @@ function EnhancedPaper({
   ...rest
 }: Props) {
   const classes = useStyles();
-  console.log(size);
+
   return (
     <Paper
       {...rest}

@@ -4,9 +4,6 @@ export type List<T> = {
 };
 
 export type PlayerFilter = {
-  limit?: number;
-  offset?: number;
-  sort?: string;
   id?: number[];
   tribeFilter?: TribeFilter;
   deletedAtGT?: Date | string;
@@ -14,56 +11,59 @@ export type PlayerFilter = {
 
 export type PlayersQueryVariables = {
   server: string;
+  sort?: string[];
+  limit?: number;
+  offset?: number;
   filter?: PlayerFilter;
 };
 
 export type TribeFilter = {
-  limit?: number;
-  offset?: number;
-  sort?: string;
   id?: number[];
   deletedAtGT?: Date | string;
 };
 
 export type TribesQueryVariables = {
   server: string;
+  sort?: string[];
+  limit?: number;
+  offset?: number;
   filter?: TribeFilter;
 };
 
 export type ServerFilter = {
-  limit?: number;
-  offset?: number;
-  sort?: string;
   key?: string[];
   keyIEQ?: string;
   versionCode?: string[];
 };
 
 export type ServersQueryVariables = {
+  sort?: string[];
+  limit?: number;
+  offset?: number;
   filter?: ServerFilter;
 };
 
 export type VersionFilter = {
-  limit?: number;
-  offset?: number;
-  sort?: string;
   code?: string[];
   codeNEQ?: string[];
 };
 
 export type VersionsQueryVariables = {
+  sort?: string[];
+  limit?: number;
+  offset?: number;
   filter?: VersionFilter;
 };
 
 export type DailyPlayerStatsFilter = {
   createDateGT?: Date | 'string';
-  limit?: number;
-  offset?: number;
-  sort?: string;
   player?: PlayerFilter;
 };
 
 export type DailyPlayerStatsQueryVariables = {
   server: string;
+  sort?: string[];
+  limit?: number;
+  offset?: number;
   filter?: DailyPlayerStatsFilter;
 };

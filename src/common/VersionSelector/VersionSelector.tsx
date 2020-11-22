@@ -19,8 +19,8 @@ function VersionSelector() {
     {
       fetchPolicy: 'cache-first',
       variables: {
+        sort: ['code ASC'],
         filter: {
-          sort: 'code ASC',
           codeNEQ: [versionCode],
         },
       },
