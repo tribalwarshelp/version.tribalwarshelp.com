@@ -5,10 +5,11 @@ import { SERVER_PAGE } from '@config/routes';
 import { DAILY_PLAYER_STATS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
-import { Typography, Button, Box } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import TableToolbar from '@common/Table/TableToolbar';
 import Table from '@common/Table/Table';
 import Link from '@common/Link/Link';
+import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 import Paper from '../Paper/Paper';
 import ModeSelector from '../ModeSelector/ModeSelector';
 
@@ -109,12 +110,7 @@ function TodaysBestStatsPlayers({ server, t }: Props) {
           valueFormatter:
             index === 0
               ? (record: DailyPlayerStatsRecord) => (
-                  <Link
-                    to={SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE}
-                    params={{ key: server, id: record.player.id }}
-                  >
-                    {record.player.name}
-                  </Link>
+                  <PlayerProfileLink player={record.player} server={server} />
                 )
               : index === 1
               ? (record: DailyPlayerStatsRecord) =>

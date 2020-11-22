@@ -3,6 +3,10 @@ import { List } from '@libs/graphql/types';
 export type Player = {
   id: number;
   name: string;
+  tribe?: {
+    id: number;
+    tag: string;
+  };
 };
 
 export type DailyPlayerStatsRecord = {

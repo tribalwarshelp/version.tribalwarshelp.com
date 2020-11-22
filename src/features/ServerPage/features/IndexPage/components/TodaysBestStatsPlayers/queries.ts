@@ -19,6 +19,10 @@ export const DAILY_PLAYER_STATS = gql`
         player {
           id
           name
+          tribe {
+            id
+            tag
+          }
         }
         scoreAtt
         scoreDef

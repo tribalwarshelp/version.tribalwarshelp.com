@@ -15,6 +15,22 @@ const translations = {
       deletedAt: 'Usunięty o',
     },
   },
+  todaysBestStatsPlayers: {
+    title: `Dzisiejsze najlepsze statystyki - gracze`,
+    modes: {
+      scoreAtt: 'ODA',
+      scoreDef: 'ODD',
+      scoreSup: 'ODS',
+      scoreTotal: 'OD',
+      points: 'Punkty',
+      villages: 'Wioski',
+    },
+    columns: {
+      name: 'Nazwa',
+      score: 'Wynik',
+      createDate: 'Data',
+    },
+  },
 };
 
 export default translations;
