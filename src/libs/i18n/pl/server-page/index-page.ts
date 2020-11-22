@@ -31,6 +31,22 @@ const translations = {
       createDate: 'Data',
     },
   },
+  todaysBestStatsTribes: {
+    title: `Dzisiejsze najlepsze statystyki - plemiona`,
+    modes: {
+      scoreAtt: 'ODA',
+      scoreDef: 'ODD',
+      scoreTotal: 'OD',
+      points: 'Punkty',
+      villages: 'Wioski',
+      members: 'Członkowie',
+    },
+    columns: {
+      name: 'Nazwa',
+      score: 'Wynik',
+      createDate: 'Data',
+    },
+  },
 };
 
 export default translations;

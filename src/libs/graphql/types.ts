@@ -67,3 +67,15 @@ export type DailyPlayerStatsQueryVariables = {
   offset?: number;
   filter?: DailyPlayerStatsFilter;
 };
+
+export type DailyTribeStatsFilter = {
+  createDateGT?: Date | 'string';
+};
+
+export type DailyTribeStatsQueryVariables = {
+  server: string;
+  sort?: string[];
+  limit?: number;
+  offset?: number;
+  filter?: DailyTribeStatsFilter;
+};

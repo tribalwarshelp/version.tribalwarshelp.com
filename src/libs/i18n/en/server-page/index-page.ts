@@ -31,6 +31,22 @@ const translations = {
       createDate: 'Date',
     },
   },
+  todaysBestStatsTribes: {
+    title: `Today's best stats - tribes`,
+    modes: {
+      scoreAtt: 'ODA',
+      scoreDef: 'ODD',
+      scoreTotal: 'OD',
+      points: 'Points',
+      villages: 'Villages',
+      members: 'Members',
+    },
+    columns: {
+      name: 'Name',
+      score: 'Score',
+      createDate: 'Date',
+    },
+  },
 };
 
 export default translations;
