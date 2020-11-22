@@ -5,6 +5,7 @@ export type List<T> = {
 
 export type PlayerFilter = {
   id?: number[];
+  exists?: boolean;
   tribeFilter?: TribeFilter;
   deletedAtGT?: Date | string;
 };

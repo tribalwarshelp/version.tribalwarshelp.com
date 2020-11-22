@@ -47,6 +47,15 @@ const translations = {
       createDate: 'Data',
     },
   },
+  top5Players: {
+    title: '5 najlepszych graczy',
+    columns: {
+      rank: 'Ranking',
+      name: 'Nazwa',
+      points: 'Punkty',
+      dailyGrowth: 'Dzienny przyrost',
+    },
+  },
 };
 
 export default translations;

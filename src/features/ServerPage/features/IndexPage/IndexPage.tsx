@@ -5,6 +5,7 @@ import { SERVER_PAGE } from '@config/namespaces';
 
 import { Container, Grid } from '@material-ui/core';
 import PageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
+import Top5Players from './components/Top5Players/Top5Players';
 import TodaysBestStatsPlayers from './components/TodaysBestStatsPlayers/TodaysBestStatsPlayers';
 import TodaysBestStatsTribes from './components/TodaysBestStatsTribes/TodaysBestStatsTribes';
 import RecentlyDeletedPlayers from './components/RecentlyDeletedPlayers/RecentlyDeletedPlayers';
@@ -17,6 +18,9 @@ function IndexPage() {
     <PageLayout>
       <Container>
         <Grid container spacing={1}>
+          <Grid item xs={12} md={6}>
+            <Top5Players server={key} t={t} />
+          </Grid>
           <Grid item xs={12} md={6}>
             <TodaysBestStatsPlayers server={key} t={t} />
           </Grid>

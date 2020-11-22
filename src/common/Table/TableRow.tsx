@@ -5,7 +5,7 @@ import { Action, Column } from './types';
 
 import { TableRow, TableCell, Checkbox, Tooltip } from '@material-ui/core';
 
-export type Props<T> = {
+export interface Props<T> {
   actions: Action[];
   columns: Column<T>[];
   row: T;
@@ -13,7 +13,7 @@ export type Props<T> = {
   selected: boolean;
   size?: 'small' | 'medium';
   onSelect?: (row: T) => void;
-};
+}
 
 function EnhancedTableRow<T extends object>({
   actions,
