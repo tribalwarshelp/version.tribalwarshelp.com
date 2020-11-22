@@ -20,6 +20,7 @@ export type PlayersQueryVariables = {
 
 export type TribeFilter = {
   id?: number[];
+  exists?: boolean;
   deletedAtGT?: Date | string;
 };
 

@@ -2,7 +2,7 @@ const translations = {
   recentlyDeletedPlayers: {
     title: 'Recently deleted players',
     columns: {
-      name: 'Name',
+      name: 'Player',
       mostPoints: 'Most points',
       deletedAt: 'Deleted at',
     },
@@ -10,7 +10,7 @@ const translations = {
   recentlyDeletedTribes: {
     title: 'Recently deleted tribes',
     columns: {
-      name: 'Name',
+      name: 'Tribe',
       mostPoints: 'Most points',
       deletedAt: 'Deleted at',
     },
@@ -26,7 +26,7 @@ const translations = {
       villages: 'Villages',
     },
     columns: {
-      name: 'Name',
+      name: 'Player',
       score: 'Score',
       createDate: 'Date',
     },
@@ -42,7 +42,7 @@ const translations = {
       members: 'Members',
     },
     columns: {
-      name: 'Name',
+      name: 'Tribe',
       score: 'Score',
       createDate: 'Date',
     },
@@ -51,9 +51,18 @@ const translations = {
     title: '5 best players',
     columns: {
       rank: 'Rank',
-      name: 'Name',
+      name: 'Player',
       points: 'Points',
       dailyGrowth: 'Daily growth',
+    },
+  },
+  top5Tribes: {
+    title: '5 best tribes',
+    columns: {
+      rank: 'Rank',
+      tag: 'Tribe',
+      points: 'Points',
+      dominance: 'Dominance',
     },
   },
 };

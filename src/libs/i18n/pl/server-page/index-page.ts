@@ -2,7 +2,7 @@ const translations = {
   recentlyDeletedPlayers: {
     title: 'Ostatnio usunięci gracze',
     columns: {
-      name: 'Nazwa',
+      name: 'Gracz',
       mostPoints: 'Najwięcej punktów',
       deletedAt: 'Usunięty o',
     },
@@ -10,7 +10,7 @@ const translations = {
   recentlyDeletedTribes: {
     title: 'Recently deleted tribes',
     columns: {
-      name: 'Nazwa',
+      name: 'Plemię',
       mostPoints: 'Najwięcej punktów',
       deletedAt: 'Usunięty o',
     },
@@ -26,7 +26,7 @@ const translations = {
       villages: 'Wioski',
     },
     columns: {
-      name: 'Nazwa',
+      name: 'Gracz',
       score: 'Wynik',
       createDate: 'Data',
     },
@@ -42,7 +42,7 @@ const translations = {
       members: 'Członkowie',
     },
     columns: {
-      name: 'Nazwa',
+      name: 'Plemię',
       score: 'Wynik',
       createDate: 'Data',
     },
@@ -51,9 +51,18 @@ const translations = {
     title: '5 najlepszych graczy',
     columns: {
       rank: 'Ranking',
-      name: 'Nazwa',
+      name: 'Gracz',
       points: 'Punkty',
       dailyGrowth: 'Dzienny przyrost',
+    },
+  },
+  top5Tribes: {
+    title: '5 najlepszych plemion',
+    columns: {
+      rank: 'Ranking',
+      tag: 'Plemię',
+      points: 'Punkty',
+      dominance: 'Dominacja',
     },
   },
 };
