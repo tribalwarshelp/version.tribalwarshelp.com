@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { SERVER_PAGE } from '@config/routes';
-import { RECENTLY_DELETED_PLAYERS } from './queries';
+import { TOP_5_PLAYERS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
 import { Typography } from '@material-ui/core';
@@ -24,7 +24,7 @@ function Top5Players({ server, t }: Props) {
   const { loading: loadingPlayers, data } = useQuery<
     PlayerList,
     PlayersQueryVariables
-  >(RECENTLY_DELETED_PLAYERS, {
+  >(TOP_5_PLAYERS, {
     fetchPolicy: 'cache-and-network',
     variables: {
       limit: LIMIT,

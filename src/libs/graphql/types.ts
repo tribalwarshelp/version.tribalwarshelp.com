@@ -8,6 +8,10 @@ export type PlayerFilter = {
   exists?: boolean;
   tribeFilter?: TribeFilter;
   deletedAtGT?: Date | string;
+  rankAttGTE?: number;
+  rankDefGTE?: number;
+  rankSupGTE?: number;
+  rankTotalGTE?: number;
 };
 
 export type PlayersQueryVariables = {
@@ -22,6 +26,10 @@ export type TribeFilter = {
   id?: number[];
   exists?: boolean;
   deletedAtGT?: Date | string;
+  rankAttGTE?: number;
+  rankDefGTE?: number;
+  rankSupGTE?: number;
+  rankTotalGTE?: number;
 };
 
 export type TribesQueryVariables = {

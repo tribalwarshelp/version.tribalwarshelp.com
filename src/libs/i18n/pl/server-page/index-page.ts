@@ -65,6 +65,20 @@ const translations = {
       dominance: 'Dominacja',
     },
   },
+  odRankingPlayers: {
+    title: 'Ranking pokonanych przeciwników - gracze',
+    modes: {
+      rankAtt: 'ODA',
+      rankDef: 'ODD',
+      rankSup: 'ODS',
+      rankTotal: 'OD',
+    },
+    columns: {
+      rank: 'Ranking',
+      name: 'Gracz',
+      score: 'Wynik',
+    },
+  },
 };
 
 export default translations;

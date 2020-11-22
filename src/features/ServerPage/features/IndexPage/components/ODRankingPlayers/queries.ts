@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const TOP_5_PLAYERS = gql`
+export const PLAYERS = gql`
   query players(
     $server: String!
     $filter: PlayerFilter
@@ -18,9 +18,14 @@ export const TOP_5_PLAYERS = gql`
       items {
         id
         name
-        points
-        rank
-        dailyGrowth
+        scoreAtt
+        rankAtt
+        scoreDef
+        rankDef
+        scoreSup
+        rankSup
+        scoreTotal
+        rankTotal
         tribe {
           id
           tag

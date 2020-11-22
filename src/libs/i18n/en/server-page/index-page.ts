@@ -65,6 +65,20 @@ const translations = {
       dominance: 'Dominance',
     },
   },
+  odRankingPlayers: {
+    title: 'OD Ranking - Players',
+    modes: {
+      rankAtt: 'ODA',
+      rankDef: 'ODD',
+      rankSup: 'ODS',
+      rankTotal: 'OD',
+    },
+    columns: {
+      rank: 'Rank',
+      name: 'Player',
+      score: 'Score',
+    },
+  },
 };
 
 export default translations;

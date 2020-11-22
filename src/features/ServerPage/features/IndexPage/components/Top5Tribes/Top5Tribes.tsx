@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { SERVER_PAGE } from '@config/routes';
-import { RECENTLY_DELETED_TRIBES } from './queries';
+import { TOP_5_TRIBES } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
 import { Typography } from '@material-ui/core';
@@ -23,7 +23,7 @@ function Top5Tribes({ server, t }: Props) {
   const { loading: loadingTribes, data } = useQuery<
     TribeList,
     TribesQueryVariables
-  >(RECENTLY_DELETED_TRIBES, {
+  >(TOP_5_TRIBES, {
     fetchPolicy: 'cache-and-network',
     variables: {
       limit: LIMIT,

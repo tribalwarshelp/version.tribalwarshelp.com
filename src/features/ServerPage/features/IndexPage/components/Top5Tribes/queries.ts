@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const RECENTLY_DELETED_TRIBES = gql`
+export const TOP_5_TRIBES = gql`
   query tribes(
     $server: String!
     $filter: TribeFilter
