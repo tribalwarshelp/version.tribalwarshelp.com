@@ -79,6 +79,20 @@ const translations = {
       score: 'Wynik',
     },
   },
+  odRankingTribes: {
+    title: 'Ranking pokonanych przeciwników - plemiona',
+    modes: {
+      rankAtt: 'ODA',
+      rankDef: 'ODD',
+      rankSup: 'ODS',
+      rankTotal: 'OD',
+    },
+    columns: {
+      rank: 'Ranking',
+      name: 'Plemię',
+      score: 'Wynik',
+    },
+  },
 };
 
 export default translations;

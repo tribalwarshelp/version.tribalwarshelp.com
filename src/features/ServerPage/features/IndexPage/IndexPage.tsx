@@ -8,6 +8,7 @@ import PageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 import Top5Players from './components/Top5Players/Top5Players';
 import Top5Tribes from './components/Top5Tribes/Top5Tribes';
 import ODRankingPlayers from './components/ODRankingPlayers/ODRankingPlayers';
+import ODRankingTribes from './components/ODRankingTribes/ODRankingTribes';
 import TodaysBestStatsPlayers from './components/TodaysBestStatsPlayers/TodaysBestStatsPlayers';
 import TodaysBestStatsTribes from './components/TodaysBestStatsTribes/TodaysBestStatsTribes';
 import RecentlyDeletedPlayers from './components/RecentlyDeletedPlayers/RecentlyDeletedPlayers';
@@ -28,6 +29,9 @@ function IndexPage() {
           </Grid>
           <Grid item xs={12} md={6}>
             <ODRankingPlayers server={key} t={t} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <ODRankingTribes server={key} t={t} />
           </Grid>
           <Grid item xs={12} md={6}>
             <TodaysBestStatsPlayers server={key} t={t} />

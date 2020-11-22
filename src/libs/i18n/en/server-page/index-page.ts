@@ -66,7 +66,7 @@ const translations = {
     },
   },
   odRankingPlayers: {
-    title: 'OD Ranking - Players',
+    title: 'OD ranking - players',
     modes: {
       rankAtt: 'ODA',
       rankDef: 'ODD',
@@ -76,6 +76,19 @@ const translations = {
     columns: {
       rank: 'Rank',
       name: 'Player',
+      score: 'Score',
+    },
+  },
+  odRankingTribes: {
+    title: 'OD ranking - tribes',
+    modes: {
+      rankAtt: 'ODA',
+      rankDef: 'ODD',
+      rankTotal: 'OD',
+    },
+    columns: {
+      rank: 'Rank',
+      name: 'Tribe',
       score: 'Score',
     },
   },
