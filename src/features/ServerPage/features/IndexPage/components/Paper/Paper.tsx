@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
     maxHeight: '200px',
     height: '100%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       maxHeight: 'none !important',
     },
     '&.is-medium': {

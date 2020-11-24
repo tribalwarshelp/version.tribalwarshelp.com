@@ -89,3 +89,15 @@ export type DailyTribeStatsQueryVariables = {
   offset?: number;
   filter?: DailyTribeStatsFilter;
 };
+
+export type ServerStatsFilter = {
+  createDateGT?: Date | 'string';
+};
+
+export type ServerStatsQueryVariables = {
+  server: string;
+  sort?: string[];
+  limit?: number;
+  offset?: number;
+  filter?: ServerStatsFilter;
+};

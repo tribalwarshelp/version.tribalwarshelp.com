@@ -1,4 +1,5 @@
 const translations = {
+  title: '{{key}} -  Dashboard',
   recentlyDeletedPlayers: {
     title: 'Ostatnio usunięci gracze',
     columns: {
@@ -92,6 +93,10 @@ const translations = {
       name: 'Plemię',
       score: 'Wynik',
     },
+  },
+  playerStatistics: {
+    title: 'Aktywni gracze',
+    players: 'Gracze',
   },
 };
 

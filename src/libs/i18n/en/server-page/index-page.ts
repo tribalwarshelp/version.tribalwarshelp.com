@@ -1,4 +1,5 @@
 const translations = {
+  title: '{{key}} -  Dashboard',
   recentlyDeletedPlayers: {
     title: 'Recently deleted players',
     columns: {
@@ -91,6 +92,10 @@ const translations = {
       name: 'Tribe',
       score: 'Score',
     },
+  },
+  playerStatistics: {
+    title: 'Active players',
+    players: 'Players',
   },
 };
 
