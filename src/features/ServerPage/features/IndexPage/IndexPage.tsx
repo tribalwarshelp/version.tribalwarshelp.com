@@ -7,6 +7,7 @@ import { SERVER_PAGE } from '@config/namespaces';
 import { Container, Grid, Hidden } from '@material-ui/core';
 import PageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 import PlayerStatistics from './components/PlayerStatistics/PlayerStatistics';
+import TribeStatistics from './components/TribeStatistics/TribeStatistics';
 import Top5Players from './components/Top5Players/Top5Players';
 import Top5Tribes from './components/Top5Tribes/Top5Tribes';
 import ODRankingPlayers from './components/ODRankingPlayers/ODRankingPlayers';
@@ -35,6 +36,11 @@ function IndexPage() {
           </Grid>
           <Grid item xs={12} md={6}>
             <Top5Tribes server={key} t={t} />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <Hidden implementation="css" xsDown>
+              <TribeStatistics server={key} t={t} />
+            </Hidden>
           </Grid>
           <Grid item xs={12} md={6}>
             <ODRankingPlayers server={key} t={t} />

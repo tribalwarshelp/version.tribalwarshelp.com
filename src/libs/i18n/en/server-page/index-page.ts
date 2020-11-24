@@ -97,6 +97,10 @@ const translations = {
     title: 'Active players',
     players: 'Players',
   },
+  tribeStatistics: {
+    title: 'Active tribes',
+    tribes: 'Tribes',
+  },
 };
 
 export default translations;

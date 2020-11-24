@@ -98,6 +98,10 @@ const translations = {
     title: 'Aktywni gracze',
     players: 'Gracze',
   },
+  tribeStatistics: {
+    title: 'Aktywne plemiona',
+    tribes: 'Plemiona',
+  },
 };
 
 export default translations;
