@@ -12,6 +12,7 @@ import TopBar from './components/TopBar/TopBar';
 
 export interface Props {
   children: React.ReactNode;
+  noPadding?: boolean;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -28,10 +29,13 @@ const useStyles = makeStyles(theme => ({
   content: {
     height: '100%',
     padding: theme.spacing(3, 0),
+    '&.no-padding': {
+      padding: '0 0',
+    },
   },
 }));
 
-function PageLayout({ children }: Props) {
+function PageLayout({ children, noPadding }: Props) {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const theme = useTheme();
@@ -64,7 +68,13 @@ function PageLayout({ children }: Props) {
         t={t}
         onOpen={openSidebar}
       />
-      <main className={classes.content}>{children}</main>
+      <main
+        className={clsx(classes.content, {
+          'no-padding': noPadding,
+        })}
+      >
+        {children}
+      </main>
     </div>
   );
 }

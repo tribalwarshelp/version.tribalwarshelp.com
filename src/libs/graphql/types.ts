@@ -101,3 +101,8 @@ export type ServerStatsQueryVariables = {
   offset?: number;
   filter?: ServerStatsFilter;
 };
+
+export type PlayerQueryVariables = {
+  server: string;
+  id: number;
+};

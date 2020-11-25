@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const SERVERS = gql`
-  query servers($filter: ServerFilter) {
-    servers(filter: $filter) {
+  query servers($filter: ServerFilter, $limit: Int) {
+    servers(filter: $filter, limit: $limit) {
       total
       items {
         key
