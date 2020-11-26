@@ -19,10 +19,10 @@ const translations = {
   todaysBestStatsPlayers: {
     title: `Dzisiejsze najlepsze statystyki - gracze`,
     modes: {
-      scoreAtt: 'ODA',
-      scoreDef: 'ODD',
-      scoreSup: 'ODS',
-      scoreTotal: 'OD',
+      scoreAtt: 'Agresor',
+      scoreDef: 'Obrońca',
+      scoreSup: 'Wspierający',
+      scoreTotal: 'Ogólnie',
       points: 'Punkty',
       villages: 'Wioski',
     },
@@ -35,9 +35,9 @@ const translations = {
   todaysBestStatsTribes: {
     title: `Dzisiejsze najlepsze statystyki - plemiona`,
     modes: {
-      scoreAtt: 'ODA',
-      scoreDef: 'ODD',
-      scoreTotal: 'OD',
+      scoreAtt: 'Agresor',
+      scoreDef: 'Obrońca',
+      scoreTotal: 'Ogólnie',
       points: 'Punkty',
       villages: 'Wioski',
       members: 'Członkowie',
@@ -69,10 +69,10 @@ const translations = {
   odRankingPlayers: {
     title: 'Ranking pokonanych przeciwników - gracze',
     modes: {
-      rankAtt: 'ODA',
-      rankDef: 'ODD',
-      rankSup: 'ODS',
-      rankTotal: 'OD',
+      rankAtt: 'Agresor',
+      rankDef: 'Obrońca',
+      rankSup: 'Wspierający',
+      rankTotal: 'Ogólnie',
     },
     columns: {
       rank: 'Ranking',
@@ -83,10 +83,10 @@ const translations = {
   odRankingTribes: {
     title: 'Ranking pokonanych przeciwników - plemiona',
     modes: {
-      rankAtt: 'ODA',
-      rankDef: 'ODD',
-      rankSup: 'ODS',
-      rankTotal: 'OD',
+      rankAtt: 'Agresor',
+      rankDef: 'Obrońca',
+      rankSup: 'Wspierający',
+      rankTotal: 'Ogólnie',
     },
     columns: {
       rank: 'Ranking',

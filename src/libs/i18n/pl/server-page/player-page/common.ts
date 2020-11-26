@@ -11,6 +11,13 @@ const translations = {
       tribeChanges: 'Zmiany plemion',
       conquersPage: 'Przejęcia',
     },
+    achievements: {
+      playerRank: '#{{rank}} punkty',
+      odaRank: '#{{rank}} agresor',
+      oddRank: '#{{rank}} obrońca',
+      odsRank: '#{{rank}} wspierający',
+      odRank: '#{{rank}} atakujący',
+    },
   },
 };
 

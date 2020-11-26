@@ -6,6 +6,31 @@ export const PLAYER = gql`
       id
       name
       exists
+      rank
+      points
+      totalVillages
+      dailyGrowth
+      scoreAtt
+      rankAtt
+      scoreDef
+      rankDef
+      scoreSup
+      rankSup
+      scoreTotal
+      rankTotal
+      mostPoints
+      mostPointsAt
+      mostVillages
+      mostVillagesAt
+      bestRank
+      bestRankAt
+      joinedAt
+      servers
+      nameChanges {
+        oldName
+        newName
+        changeDate
+      }
       tribe {
         id
         tag

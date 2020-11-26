@@ -11,6 +11,13 @@ const translations = {
       tribeChanges: 'Tribe changes',
       conquersPage: 'Conquers',
     },
+    achievements: {
+      playerRank: '#{{rank}} points',
+      odaRank: '#{{rank}} ODA',
+      oddRank: '#{{rank}} ODD',
+      odsRank: '#{{rank}} ODS',
+      odRank: '#{{rank}} OD',
+    },
   },
 };
 

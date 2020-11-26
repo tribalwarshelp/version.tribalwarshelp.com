@@ -1,11 +1,14 @@
 import React from 'react';
 
+import { Container } from '@material-ui/core';
 import PageLayout from '../../common/PageLayout/PageLayout';
 
 function IndexPage() {
   return (
     <PageLayout>
-      <p>PlayerPage - IndexPage</p>
+      <Container>
+        <p>PlayerPage - IndexPage</p>
+      </Container>
     </PageLayout>
   );
 }

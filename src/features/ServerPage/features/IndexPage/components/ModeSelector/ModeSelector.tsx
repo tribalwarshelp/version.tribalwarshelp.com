@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     flexWrap: 'wrap',
     '& > *': {
       padding: theme.spacing(0.5),
@@ -51,6 +51,7 @@ function ModeSelector({ modes, onSelect, buttonProps = {} }: Props) {
                   onSelect(m);
                 }
               }}
+              size="small"
               fullWidth
             >
               {m.label ?? m.name}
