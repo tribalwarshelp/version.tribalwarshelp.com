@@ -8,8 +8,8 @@ import { Typography } from '@material-ui/core';
 import TableToolbar from '@common/Table/TableToolbar';
 import Table from '@common/Table/Table';
 import Link from '@common/Link/Link';
+import ModeSelector from '@features/ServerPage/common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
-import ModeSelector from '../ModeSelector/ModeSelector';
 
 import { TFunction } from 'i18next';
 import { TribesQueryVariables } from '@libs/graphql/types';

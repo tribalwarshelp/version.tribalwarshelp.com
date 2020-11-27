@@ -9,8 +9,8 @@ import TableToolbar from '@common/Table/TableToolbar';
 import Table from '@common/Table/Table';
 import Link from '@common/Link/Link';
 import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import ModeSelector from '@features/ServerPage/common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
-import ModeSelector from '../ModeSelector/ModeSelector';
 
 import { TFunction } from 'i18next';
 import { PlayersQueryVariables } from '@libs/graphql/types';

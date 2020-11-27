@@ -17,7 +17,7 @@ const translations = {
     },
   },
   todaysBestStatsPlayers: {
-    title: `Dzisiejsze najlepsze statystyki - gracze`,
+    title: 'Dzisiejsze najlepsze statystyki - gracze',
     modes: {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
@@ -33,7 +33,7 @@ const translations = {
     },
   },
   todaysBestStatsTribes: {
-    title: `Dzisiejsze najlepsze statystyki - plemiona`,
+    title: 'Dzisiejsze najlepsze statystyki - plemiona',
     modes: {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
