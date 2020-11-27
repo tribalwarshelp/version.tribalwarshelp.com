@@ -26,6 +26,7 @@ export const PLAYER = gql`
       bestRankAt
       joinedAt
       servers
+      deletedAt
       nameChanges {
         oldName
         newName

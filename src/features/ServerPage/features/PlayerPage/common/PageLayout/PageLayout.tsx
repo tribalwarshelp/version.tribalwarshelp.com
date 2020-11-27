@@ -63,6 +63,13 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(0.5),
     },
   },
+  content: {
+    height: '100%',
+    padding: theme.spacing(3, 0),
+    '&.no-padding': {
+      padding: '0 0',
+    },
+  },
 }));
 
 export interface Props {
@@ -112,7 +119,7 @@ function PageLayout({ children }: Props) {
         <Toolbar className={classes.toolbar}>
           <div style={{ width: '100%' }}>
             <div className={classes.playerNameContainer}>
-              <Typography variant="h4">{player.name}</Typography>
+              <Typography variant="h3">{player.name}</Typography>
               <div className={classes.chipContainer}>
                 {!player.exists ? (
                   <Chip {...chipProps} label={t('pageLayout.noLongerExists')} />
@@ -163,7 +170,7 @@ function PageLayout({ children }: Props) {
               </div>
             </div>
             {player.tribe && (
-              <Typography variant="h5">
+              <Typography variant="h4">
                 <Link
                   to={ROUTES.SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
                   params={{ key: server.key, id: player.tribe.id }}
@@ -198,7 +205,7 @@ function PageLayout({ children }: Props) {
           })}
         </Tabs>
       </header>
-      {children}
+      <div className={classes.content}>{children}</div>
     </ServerPageLayout>
   );
 }

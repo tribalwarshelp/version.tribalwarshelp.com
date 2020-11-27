@@ -21,6 +21,7 @@ export type Player = {
   bestRank: number;
   bestRankAt: Date | string;
   joinedAt: Date | string;
+  deletedAt?: Date | string;
   servers: string[];
   nameChanges: {
     oldName: string;

@@ -3,6 +3,40 @@ export type List<T> = {
   items: T;
 };
 
+type QueryVariables<T> = {
+  sort?: string[];
+  limit?: number;
+  offset?: number;
+  filter?: T;
+};
+
+type QueryVariablesWithServer<T> = QueryVariables<T> & {
+  server: string;
+};
+
+export type VersionFilter = {
+  code?: string[];
+  codeNEQ?: string[];
+};
+
+export type VersionsQueryVariables = QueryVariables<VersionFilter>;
+
+export type ServerFilter = {
+  key?: string[];
+  keyIEQ?: string;
+  versionCode?: string[];
+};
+
+export type ServersQueryVariables = QueryVariables<ServerFilter>;
+
+export type ServerStatsFilter = {
+  createDateGT?: Date | 'string';
+};
+
+export type ServerStatsQueryVariables = QueryVariablesWithServer<
+  ServerStatsFilter
+>;
+
 export type PlayerFilter = {
   id?: number[];
   exists?: boolean;
@@ -14,12 +48,11 @@ export type PlayerFilter = {
   rankTotalGTE?: number;
 };
 
-export type PlayersQueryVariables = {
+export type PlayersQueryVariables = QueryVariablesWithServer<PlayerFilter>;
+
+export type PlayerQueryVariables = {
   server: string;
-  sort?: string[];
-  limit?: number;
-  offset?: number;
-  filter?: PlayerFilter;
+  id: number;
 };
 
 export type TribeFilter = {
@@ -32,77 +65,30 @@ export type TribeFilter = {
   rankTotalGTE?: number;
 };
 
-export type TribesQueryVariables = {
-  server: string;
-  sort?: string[];
-  limit?: number;
-  offset?: number;
-  filter?: TribeFilter;
-};
-
-export type ServerFilter = {
-  key?: string[];
-  keyIEQ?: string;
-  versionCode?: string[];
-};
-
-export type ServersQueryVariables = {
-  sort?: string[];
-  limit?: number;
-  offset?: number;
-  filter?: ServerFilter;
-};
-
-export type VersionFilter = {
-  code?: string[];
-  codeNEQ?: string[];
-};
-
-export type VersionsQueryVariables = {
-  sort?: string[];
-  limit?: number;
-  offset?: number;
-  filter?: VersionFilter;
-};
+export type TribesQueryVariables = QueryVariablesWithServer<TribeFilter>;
 
 export type DailyPlayerStatsFilter = {
   createDateGT?: Date | 'string';
   player?: PlayerFilter;
 };
 
-export type DailyPlayerStatsQueryVariables = {
-  server: string;
-  sort?: string[];
-  limit?: number;
-  offset?: number;
-  filter?: DailyPlayerStatsFilter;
-};
+export type DailyPlayerStatsQueryVariables = QueryVariablesWithServer<
+  DailyPlayerStatsFilter
+>;
 
 export type DailyTribeStatsFilter = {
   createDateGT?: Date | 'string';
 };
 
-export type DailyTribeStatsQueryVariables = {
-  server: string;
-  sort?: string[];
-  limit?: number;
-  offset?: number;
-  filter?: DailyTribeStatsFilter;
-};
+export type DailyTribeStatsQueryVariables = QueryVariablesWithServer<
+  DailyTribeStatsFilter
+>;
 
-export type ServerStatsFilter = {
+export type PlayerHistoryFilter = {
+  playerID?: number[];
   createDateGT?: Date | 'string';
 };
 
-export type ServerStatsQueryVariables = {
-  server: string;
-  sort?: string[];
-  limit?: number;
-  offset?: number;
-  filter?: ServerStatsFilter;
-};
-
-export type PlayerQueryVariables = {
-  server: string;
-  id: number;
-};
+export type PlayerHistoryQueryVariables = QueryVariablesWithServer<
+  PlayerHistoryFilter
+>;

@@ -26,10 +26,15 @@ function IndexPage() {
     <PageLayout>
       <Container>
         <Grid container spacing={1}>
-          <Grid item xs={12} md={12}>
-            <Hidden implementation="css" xsDown>
-              <PlayerStatistics server={key} t={t} />
-            </Hidden>
+          <Grid
+            component={Hidden}
+            xsDown
+            implementation="css"
+            item
+            xs={12}
+            md={12}
+          >
+            <PlayerStatistics server={key} t={t} />
           </Grid>
           <Grid item xs={12} md={6}>
             <Top5Players server={key} t={t} />
@@ -37,10 +42,15 @@ function IndexPage() {
           <Grid item xs={12} md={6}>
             <Top5Tribes server={key} t={t} />
           </Grid>
-          <Grid item xs={12} md={12}>
-            <Hidden implementation="css" xsDown>
-              <TribeStatistics server={key} t={t} />
-            </Hidden>
+          <Grid
+            component={Hidden}
+            xsDown
+            implementation="css"
+            item
+            xs={12}
+            md={12}
+          >
+            <TribeStatistics server={key} t={t} />
           </Grid>
           <Grid item xs={12} md={6}>
             <ODRankingPlayers server={key} t={t} />
