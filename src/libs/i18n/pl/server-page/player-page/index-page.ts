@@ -23,6 +23,15 @@ const translations = {
     bestRank: 'Najlepszy ranking',
     mostPoints: 'Najwięcej punktów',
     mostVillages: 'Najwięcej wiosek',
+    servers: 'Serwery',
+  },
+  nameChanges: {
+    title: 'Zmiany nicków',
+    columns: {
+      changeDate: 'Data',
+      newName: 'Nowy nick',
+      oldName: 'Stary nick',
+    },
   },
 };
 

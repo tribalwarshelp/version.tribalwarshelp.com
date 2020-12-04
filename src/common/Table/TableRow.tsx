@@ -1,9 +1,11 @@
 import React from 'react';
 import { get, isString, isNumber } from 'lodash';
 import { format } from 'date-fns';
-import { Action, Column } from './types';
+import { DATE_FORMAT } from '@config/app';
 
 import { TableRow, TableCell, Checkbox, Tooltip } from '@material-ui/core';
+
+import { Action, Column } from './types';
 
 export interface Props<T> {
   actions: Action[];
@@ -35,10 +37,13 @@ function EnhancedTableRow<T extends object>({
     type: 'datetime' | 'date' | 'normal'
   ) => {
     if ((isString(v) || isNumber(v)) && type === 'date') {
-      return format(new Date(v), 'yyyy-MM-dd');
+      return format(new Date(v), DATE_FORMAT.DAY_MONTH_AND_YEAR);
     }
     if ((isString(v) || isNumber(v)) && type === 'datetime') {
-      return format(new Date(v), 'yyyy-MM-dd HH:mm:ss');
+      return format(
+        new Date(v),
+        DATE_FORMAT.HOUR_MINUTES_SECONDS_DAY_MONTH_AND_YEAR
+      );
     }
     return v;
   };

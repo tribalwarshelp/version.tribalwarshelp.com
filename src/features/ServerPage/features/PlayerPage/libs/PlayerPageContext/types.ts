@@ -1,3 +1,9 @@
+export type NameChange = {
+  oldName: string;
+  newName: string;
+  changeDate: Date | string;
+};
+
 export type Player = {
   id: number;
   name: string;
@@ -23,11 +29,7 @@ export type Player = {
   joinedAt: Date | string;
   deletedAt?: Date | string;
   servers: string[];
-  nameChanges: {
-    oldName: string;
-    newName: string;
-    changeDate: Date | string;
-  }[];
+  nameChanges: NameChange[];
   tribe?: {
     id: number;
     tag: string;

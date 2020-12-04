@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import useTitle from '@libs/useTitle';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import usePlayer from '../../libs/PlayerPageContext/usePlayer';
+import { DATE_FORMAT } from '@config/app';
 import { SERVER_PAGE } from '@config/namespaces';
+import * as ROUTES from '@config/routes';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -14,9 +16,12 @@ import {
   Card,
   CardContent,
   Typography,
+  Chip,
 } from '@material-ui/core';
+import Link from '@common/Link/Link';
 import PageLayout from '../../common/PageLayout/PageLayout';
 import Statistics from './components/Statistics/Statistics';
+import NameChanges from './components/NameChanges/NameChanges';
 
 function IndexPage() {
   const classes = useStyles();
@@ -29,13 +34,16 @@ function IndexPage() {
     <PageLayout>
       <Container>
         <Grid container spacing={2}>
-          <Grid component={Hidden} smDown implementation="css" item xs={12}>
+          <Grid component={Hidden} xsDown implementation="css" item xs={12}>
             <Statistics server={key} playerID={player.id} t={t} />
           </Grid>
           {[
             {
               field: 'joinedAt',
-              value: format(new Date(player.joinedAt), 'yyyy-MM-dd HH:mm'),
+              value: format(
+                new Date(player.joinedAt),
+                DATE_FORMAT.DAY_MONTH_AND_YEAR
+              ),
             },
             {
               field: 'points',
@@ -70,25 +78,34 @@ function IndexPage() {
             {
               field: 'deletedAt',
               value: player.deletedAt
-                ? format(new Date(player.deletedAt), 'yyyy-MM-dd HH:mm')
+                ? format(
+                    new Date(player.deletedAt),
+                    DATE_FORMAT.DAY_MONTH_AND_YEAR
+                  )
                 : '-',
             },
             {
               field: 'bestRank',
-              subtitle: format(new Date(player.bestRankAt), 'yyyy-MM-dd HH:mm'),
+              subtitle: format(
+                new Date(player.bestRankAt),
+                DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
+              ),
               value: `${player.bestRank.toString()}`,
             },
             {
               field: 'mostPoints',
               subtitle: format(
                 new Date(player.mostPointsAt),
-                'yyyy-MM-dd HH:mm'
+                DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
               value: `${player.mostPoints.toLocaleString()}`,
             },
             {
               field: 'mostVillages',
-              subtitle: format(new Date(player.bestRankAt), 'yyyy-MM-dd HH:mm'),
+              subtitle: format(
+                new Date(player.bestRankAt),
+                DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
+              ),
               value: `${player.mostVillages.toLocaleString()}`,
             },
           ].map(({ field, value, subtitle }) => {
@@ -100,7 +117,7 @@ function IndexPage() {
                       {t('fields.' + field)}
                       <br />
                       {subtitle && (
-                        <Typography variant="subtitle1" component="span">
+                        <Typography variant="subtitle2" component="span">
                           {subtitle}
                         </Typography>
                       )}
@@ -111,18 +128,55 @@ function IndexPage() {
               </Grid>
             );
           })}
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  {t('fields.servers')}
+                </Typography>
+                <div className={classes.serverContainer}>
+                  {[...player.servers].sort().map(server => {
+                    return (
+                      <Link
+                        key={server}
+                        to={ROUTES.SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE}
+                        params={{ key: server, id: player.id }}
+                      >
+                        <Chip
+                          className={classes.chip}
+                          color="secondary"
+                          label={server}
+                          clickable
+                        />
+                      </Link>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <NameChanges t={t} nameChanges={player.nameChanges} />
+          </Grid>
         </Grid>
       </Container>
     </PageLayout>
   );
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   card: {
     height: '100%',
   },
   cardContent: {
     height: '100%',
+  },
+  serverContainer: {
+    textAlign: 'justify',
+  },
+  chip: {
+    margin: theme.spacing(0.5),
+    cursor: 'pointer',
   },
 }));
 

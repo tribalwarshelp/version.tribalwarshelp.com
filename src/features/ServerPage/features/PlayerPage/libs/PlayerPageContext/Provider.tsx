@@ -24,7 +24,7 @@ function Provider({ children }: Props) {
     PlayerQueryResult,
     PlayerQueryVariables
   >(PLAYER, {
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'cache-and-network',
     variables: {
       id: parseInt(id, 10),
       server: key,

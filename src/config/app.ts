@@ -12,3 +12,10 @@ export const SERVER_STATUS = {
 export const TWHELP = process.env.TWHelp ?? 'https://tribalwarshelp.com';
 
 export const AUTHOR = 'Dawid Wysokiński';
+
+export const DATE_FORMAT = {
+  MONTH_AND_YEAR: 'yyyy-MM',
+  DAY_MONTH_AND_YEAR: 'yyyy-MM-dd',
+  HOUR_MINUTES_DAY_MONTH_AND_YEAR: 'yyyy-MM-dd HH:mm',
+  HOUR_MINUTES_SECONDS_DAY_MONTH_AND_YEAR: 'yyyy-MM-dd HH:mm',
+};

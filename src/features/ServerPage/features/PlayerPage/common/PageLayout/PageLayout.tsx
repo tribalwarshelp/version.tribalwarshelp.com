@@ -21,57 +21,6 @@ import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout'
 
 import background from './profile-background-dark.png';
 
-const useStyles = makeStyles(theme => ({
-  header: {
-    width: '100%',
-    minHeight: theme.spacing(30),
-    backgroundPosition: 'center',
-    backgroundImage: `url(${background})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    flexDirection: 'column',
-    boxShadow: theme.shadows[4],
-  },
-  playerNameContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    '& > *:not(:last-child)': {
-      marginRight: theme.spacing(2),
-    },
-    [theme.breakpoints.down('xs')]: {
-      flexDirection: 'column',
-      '& > *': {
-        marginRight: 0,
-        marginBottom: theme.spacing(1),
-      },
-    },
-  },
-  toolbar: {
-    [theme.breakpoints.down('xs')]: {
-      textAlign: 'center',
-    },
-  },
-  chipContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(0.5),
-    },
-  },
-  content: {
-    height: '100%',
-    padding: theme.spacing(3, 0),
-    '&.no-padding': {
-      padding: '0 0',
-    },
-  },
-}));
-
 export interface Props {
   children: React.ReactNode;
 }
@@ -209,5 +158,57 @@ function PageLayout({ children }: Props) {
     </ServerPageLayout>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  header: {
+    width: '100%',
+    minHeight: theme.spacing(30),
+    backgroundPosition: 'center',
+    backgroundImage: `url(${background})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexDirection: 'column',
+    boxShadow: theme.shadows[4],
+  },
+  playerNameContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(2),
+    },
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+      '& > *': {
+        marginRight: 0,
+        marginBottom: theme.spacing(1),
+      },
+    },
+  },
+  toolbar: {
+    [theme.breakpoints.down('xs')]: {
+      textAlign: 'center',
+    },
+  },
+  chipContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+    },
+  },
+  content: {
+    height: '100%',
+    padding: theme.spacing(3, 0),
+    '&.no-padding': {
+      padding: '0 0',
+    },
+  },
+}));
 
 export default PageLayout;
