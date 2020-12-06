@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { LINE_CHART } from '@config/namespaces';
 import { darkTheme } from './theme';
 
 import { ResponsiveLine, LineSvgProps } from '@nivo/line';
@@ -11,6 +13,8 @@ export interface Props extends LineSvgProps {
 }
 
 const LineChart = ({ data, loading, ...rest }: Props) => {
+  const { t } = useTranslation(LINE_CHART);
+
   if (loading) {
     return <Skeleton height="100%" variant="rect" />;
   }
@@ -24,7 +28,7 @@ const LineChart = ({ data, loading, ...rest }: Props) => {
         alignItems="center"
       >
         <Typography variant="h4" align="center">
-          No records to display
+          {t('emptyDataSourceMessage')}
         </Typography>
       </Box>
     );

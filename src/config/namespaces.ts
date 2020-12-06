@@ -1,5 +1,6 @@
 export const COMMON = 'common';
 export const TABLE = 'table';
+export const LINE_CHART = 'line-chart';
 export const INDEX_PAGE = 'index-page';
 export const NOT_FOUND_PAGE = 'not-found-page';
 export const SERVER_PAGE = {
