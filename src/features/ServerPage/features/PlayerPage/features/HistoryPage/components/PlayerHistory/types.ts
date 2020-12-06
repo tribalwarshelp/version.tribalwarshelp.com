@@ -1,6 +1,20 @@
-import { List } from '@libs/graphql/types';
+import {
+  DailyPlayerStatsFilter,
+  List,
+  PlayerHistoryFilter,
+} from '@libs/graphql/types';
 
-export type Item = {
+export type DailyPlayerStatsItem = {
+  points: number;
+  villages: number;
+  scoreAtt: number;
+  scoreDef: number;
+  scoreSup: number;
+  scoreTotal: number;
+  createDate: string | Date;
+};
+
+export type PlayerHistoryItem = {
   rank: number;
   points: number;
   totalVillages: number;
@@ -17,8 +31,20 @@ export type Item = {
     id: number;
     tag: string;
   };
+  stats?: DailyPlayerStatsItem;
 };
 
 export type PlayerHistory = {
-  playerHistory?: List<Item[]>;
+  playerHistory?: List<PlayerHistoryItem[]>;
+  dailyPlayerStats?: List<DailyPlayerStatsItem[]>;
+};
+
+export type Variables = {
+  server: string;
+  playerHistoryFilter?: PlayerHistoryFilter;
+  dailyPlayerStatsFilter?: DailyPlayerStatsFilter;
+  limit?: number;
+  sort?: string[];
+  playerHistoryOffset?: number;
+  dailyPlayerStatsOffset?: number;
 };

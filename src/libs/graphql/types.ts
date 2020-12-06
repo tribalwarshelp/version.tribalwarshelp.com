@@ -70,6 +70,7 @@ export type TribesQueryVariables = QueryVariablesWithServer<TribeFilter>;
 export type DailyPlayerStatsFilter = {
   createDateGT?: Date | 'string';
   player?: PlayerFilter;
+  playerID?: number[];
 };
 
 export type DailyPlayerStatsQueryVariables = QueryVariablesWithServer<

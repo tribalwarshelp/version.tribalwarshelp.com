@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { subDays, isEqual as isEqualDate } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
 import { SERVER_PAGE } from '@config/routes';
-import { PLAYER_HISTORY } from './queries';
+import { PLAYER_HISTORY_AND_DAILY_STATS } from './queries';
 import { LIMIT } from './constants';
 
-import { Paper } from '@material-ui/core';
+import { Paper, Tooltip } from '@material-ui/core';
 import Table from '@common/Table/Table';
 import Link from '@common/Link/Link';
 
 import { TFunction } from 'i18next';
-import { PlayerHistoryQueryVariables } from '@libs/graphql/types';
-import { PlayerHistory as PlayerHistoryT, Item } from './types';
+import {
+  PlayerHistory as PlayerHistoryT,
+  PlayerHistoryItem,
+  Variables,
+} from './types';
 
 export interface Props {
   server: string;
@@ -26,26 +30,78 @@ function PlayerHistory({ t, server, playerID }: Props) {
   });
   const { data: queryData, loading: queryLoading } = useQuery<
     PlayerHistoryT,
-    PlayerHistoryQueryVariables
-  >(PLAYER_HISTORY, {
+    Variables
+  >(PLAYER_HISTORY_AND_DAILY_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {
       limit: query.limit,
-      offset: query.page * query.limit,
+      playerHistoryOffset: query.page * query.limit,
+      dailyPlayerStatsOffset: query.page * query.limit + 1,
       sort: ['createDate DESC'],
-      filter: {
+      playerHistoryFilter: {
+        playerID: [playerID],
+      },
+      dailyPlayerStatsFilter: {
         playerID: [playerID],
       },
       server,
     },
   });
-  const records = queryData?.playerHistory?.items ?? [];
-  const loading = records.length === 0 && queryLoading;
+  const playerHistoryItems = useMemo(() => {
+    const dailyPlayerStatsItems = queryData?.dailyPlayerStats?.items ?? [];
+    return (queryData?.playerHistory?.items ?? []).map(phItem => {
+      const dateOfTheDayBeforeDate = subDays(new Date(phItem.createDate), 1);
+      return {
+        ...phItem,
+        stats: dailyPlayerStatsItems.find(dpsItem =>
+          isEqualDate(new Date(dpsItem.createDate), dateOfTheDayBeforeDate)
+        ),
+      };
+    });
+  }, [queryData]);
+  const loading = playerHistoryItems.length === 0 && queryLoading;
   const total = queryData?.playerHistory?.total ?? 0;
+
+  const formatColumn = (
+    v: PlayerHistoryItem,
+    valueKey:
+      | 'points'
+      | 'totalVillages'
+      | 'scoreAtt'
+      | 'scoreDef'
+      | 'scoreSup'
+      | 'scoreTotal',
+    statsKey:
+      | 'points'
+      | 'villages'
+      | 'scoreAtt'
+      | 'scoreDef'
+      | 'scoreSup'
+      | 'scoreTotal',
+    rankKey?: 'rank' | 'rankAtt' | 'rankDef' | 'rankSup' | 'rankTotal'
+  ) => {
+    return (
+      <Tooltip
+        arrow
+        placement="right"
+        title={
+          v.stats && typeof v.stats[statsKey] === 'number'
+            ? v.stats[statsKey].toLocaleString()
+            : ''
+        }
+      >
+        <span>
+          {v[valueKey].toLocaleString()}
+          {rankKey ? ` (#${v[rankKey]})` : ''}
+        </span>
+      </Tooltip>
+    );
+  };
 
   return (
     <Paper>
       <Table
+        idFieldName="createDate"
         columns={[
           {
             field: 'createDate',
@@ -57,7 +113,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
             field: 'tribe',
             label: t('playerHistory.columns.tribe'),
             sortable: false,
-            valueFormatter: (v: Item) => {
+            valueFormatter: (v: PlayerHistoryItem) => {
               return v.tribe ? (
                 <Link
                   to={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
@@ -74,53 +130,53 @@ function PlayerHistory({ t, server, playerID }: Props) {
             field: 'points',
             label: t('playerHistory.columns.points'),
             sortable: false,
-            valueFormatter: (v: Item) => {
-              return `${v.points.toLocaleString()} (#${v.rank})`;
+            valueFormatter: (v: PlayerHistoryItem) => {
+              return formatColumn(v, 'points', 'points', 'rank');
             },
           },
           {
             field: 'totalVillages',
             label: t('playerHistory.columns.totalVillages'),
             sortable: false,
-            valueFormatter: (v: Item) => {
-              return v.totalVillages.toLocaleString();
+            valueFormatter: (v: PlayerHistoryItem) => {
+              return formatColumn(v, 'totalVillages', 'villages');
             },
           },
           {
             field: 'scoreAtt',
             label: t('playerHistory.columns.scoreAtt'),
             sortable: false,
-            valueFormatter: (v: Item) => {
-              return `${v.scoreAtt.toLocaleString()} (#${v.rankAtt})`;
+            valueFormatter: (v: PlayerHistoryItem) => {
+              return formatColumn(v, 'scoreAtt', 'scoreAtt', 'rankAtt');
             },
           },
           {
             field: 'scoreDef',
             label: t('playerHistory.columns.scoreDef'),
-            valueFormatter: (v: Item) => {
-              return `${v.scoreDef.toLocaleString()} (#${v.rankDef})`;
+            valueFormatter: (v: PlayerHistoryItem) => {
+              return formatColumn(v, 'scoreDef', 'scoreDef', 'rankDef');
             },
             sortable: false,
           },
           {
             field: 'scoreSup',
             label: t('playerHistory.columns.scoreSup'),
-            valueFormatter: (v: Item) => {
-              return `${v.scoreSup.toLocaleString()} (#${v.rankSup})`;
+            valueFormatter: (v: PlayerHistoryItem) => {
+              return formatColumn(v, 'scoreSup', 'scoreSup', 'rankSup');
             },
             sortable: false,
           },
           {
             field: 'scoreTotal',
             label: t('playerHistory.columns.scoreTotal'),
-            valueFormatter: (v: Item) => {
-              return `${v.scoreTotal.toLocaleString()} (#${v.rankTotal})`;
+            valueFormatter: (v: PlayerHistoryItem) => {
+              return formatColumn(v, 'scoreTotal', 'scoreTotal', 'rankTotal');
             },
             sortable: false,
           },
         ]}
         loading={loading}
-        data={records}
+        data={playerHistoryItems}
         size="small"
         footerProps={{
           page: loading ? 0 : query.page,

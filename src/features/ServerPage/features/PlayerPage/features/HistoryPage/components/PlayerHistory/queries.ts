@@ -1,19 +1,21 @@
 import { gql } from '@apollo/client';
 
-export const PLAYER_HISTORY = gql`
-  query playerHistory(
+export const PLAYER_HISTORY_AND_DAILY_STATS = gql`
+  query playerHistoryAndDailyStats(
     $server: String!
-    $filter: PlayerHistoryFilter
+    $playerHistoryFilter: PlayerHistoryFilter
+    $dailyPlayerStatsFilter: DailyPlayerStatsFilter
     $sort: [String!]
     $limit: Int
-    $offset: Int
+    $playerHistoryOffset: Int
+    $dailyPlayerStatsOffset: Int
   ) {
     playerHistory(
       server: $server
-      filter: $filter
+      filter: $playerHistoryFilter
       sort: $sort
       limit: $limit
-      offset: $offset
+      offset: $playerHistoryOffset
     ) {
       items {
         tribe {
@@ -34,6 +36,23 @@ export const PLAYER_HISTORY = gql`
         createDate
       }
       total
+    }
+    dailyPlayerStats(
+      server: $server
+      filter: $dailyPlayerStatsFilter
+      sort: $sort
+      limit: $limit
+      offset: $dailyPlayerStatsOffset
+    ) {
+      items {
+        points
+        villages
+        scoreAtt
+        scoreDef
+        scoreSup
+        scoreTotal
+        createDate
+      }
     }
   }
 `;
