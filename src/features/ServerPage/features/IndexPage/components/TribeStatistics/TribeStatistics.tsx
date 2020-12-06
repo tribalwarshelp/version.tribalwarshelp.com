@@ -56,6 +56,7 @@ function TribeStatistics({ server, t }: Props) {
       <div style={{ height: '300px' }}>
         <LineChart
           data={data}
+          loading={loading}
           margin={{ top: 20, right: 100, bottom: 50, left: 45 }}
           xScale={{
             type: 'time',

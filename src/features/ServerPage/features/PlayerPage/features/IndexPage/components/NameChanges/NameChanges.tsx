@@ -13,7 +13,7 @@ export interface Props {
 
 function NameChanges({ t, nameChanges }: Props) {
   return (
-    <Card style={{ height: '100%' }}>
+    <Card>
       <CardContent>
         <Typography variant="h5">{t('nameChanges.title')}</Typography>
       </CardContent>

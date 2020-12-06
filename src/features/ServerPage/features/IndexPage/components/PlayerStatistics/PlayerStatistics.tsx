@@ -55,6 +55,7 @@ function PlayerStatistics({ server, t }: Props) {
       </TableToolbar>
       <div style={{ height: '300px' }}>
         <LineChart
+          loading={loading}
           data={data}
           margin={{ top: 20, right: 100, bottom: 50, left: 45 }}
           xScale={{
