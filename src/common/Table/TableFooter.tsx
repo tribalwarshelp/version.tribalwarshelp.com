@@ -58,7 +58,7 @@ function TableFooter({
           labelDisplayedRows={payload => t('labelDisplayedRows', payload)}
           labelRowsPerPage={t('labelRowsPerPage')}
           nextIconButtonText={t('next')}
-          backIconButtonText={t('prev')}
+          backIconButtonText={t('previous')}
         />
       </TableRow>
     </MUITableFooter>
