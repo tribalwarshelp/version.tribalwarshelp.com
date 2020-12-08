@@ -7,13 +7,13 @@ export const SERVER_PAGE = {
     INDEX_PAGE: '/server/:key/tribe/:id',
     HISTORY_PAGE: '/server/:key/tribe/:id/history',
     TRIBE_CHANGES_PAGE: '/server/:key/tribe/:id/tribe-changes',
-    CONQUERS_PAGE: '/server/:key/tribe/:id/conquers',
+    ENNOBLEMENTS_PAGE: '/server/:key/tribe/:id/ennoblements',
   },
   PLAYER_PAGE: {
     INDEX_PAGE: '/server/:key/player/:id',
     HISTORY_PAGE: '/server/:key/player/:id/history',
     TRIBE_CHANGES_PAGE: '/server/:key/player/:id/tribe-changes',
-    CONQUERS_PAGE: '/server/:key/player/:id/conquers',
+    ENNOBLEMENTS_PAGE: '/server/:key/player/:id/ennoblements',
   },
   VILLAGE_PAGE: {
     INDEX_PAGE: '/server/:key/village/:id',

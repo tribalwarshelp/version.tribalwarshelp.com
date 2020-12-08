@@ -5,6 +5,7 @@ import { Switch, Route, RouteProps } from 'react-router-dom';
 import PlayerProvider from './libs/PlayerPageContext/Provider';
 import IndexPage from './features/IndexPage/IndexPage';
 import HistoryPage from './features/HistoryPage/HistoryPage';
+import EnnoblementsPage from './features/EnnoblementsPage/EnnoblementsPage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const EnhancedRoute = ({ children, ...rest }: RouteProps) => {
@@ -23,6 +24,9 @@ function PlayerPage() {
       </EnhancedRoute>
       <EnhancedRoute exact path={SERVER_PAGE.PLAYER_PAGE.HISTORY_PAGE}>
         <HistoryPage />
+      </EnhancedRoute>
+      <EnhancedRoute exact path={SERVER_PAGE.PLAYER_PAGE.ENNOBLEMENTS_PAGE}>
+        <EnnoblementsPage />
       </EnhancedRoute>
       <Route path="*">
         <NotFoundPage />

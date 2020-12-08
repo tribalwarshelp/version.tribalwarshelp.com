@@ -46,8 +46,8 @@ function PageLayout({ children }: Props) {
         label: t('pageLayout.tabs.tribeChanges'),
       },
       {
-        to: ROUTES.SERVER_PAGE.PLAYER_PAGE.CONQUERS_PAGE,
-        label: t('pageLayout.tabs.conquersPage'),
+        to: ROUTES.SERVER_PAGE.PLAYER_PAGE.ENNOBLEMENTS_PAGE,
+        label: t('pageLayout.tabs.ennoblementsPage'),
       },
     ];
   }, [t]);

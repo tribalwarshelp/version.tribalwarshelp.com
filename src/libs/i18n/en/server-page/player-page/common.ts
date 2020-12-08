@@ -9,7 +9,7 @@ const translations = {
       indexPage: 'Profile',
       historyPage: 'History',
       tribeChanges: 'Tribe changes',
-      conquersPage: 'Conquers',
+      ennoblementsPage: 'Ennoblements',
     },
     achievements: {
       playerRank: '#{{rank}} points',

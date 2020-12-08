@@ -25,6 +25,7 @@ export interface Props<T> {
   orderDirection?: OrderDirection;
   selection?: boolean;
   idFieldName?: string;
+  getRowKey?: (row: T, index: number) => string | number | null | undefined;
   onRequestSort?: (
     property: string,
     orderDirection: OrderDirection
@@ -56,6 +57,7 @@ function Table<T extends object>({
   size,
   selected,
   onSelect,
+  getRowKey,
 }: Props<T>) {
   const { t } = useTranslation(TABLE);
 
@@ -100,7 +102,11 @@ function Table<T extends object>({
               return (
                 <TableRow
                   key={
-                    isObjKey(item, idFieldName) ? item[idFieldName] + '' : index
+                    getRowKey
+                      ? getRowKey(item, index)
+                      : isObjKey(item, idFieldName)
+                      ? item[idFieldName] + ''
+                      : index
                   }
                   row={item}
                   actions={actions}

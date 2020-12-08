@@ -67,6 +67,19 @@ export type TribeFilter = {
 
 export type TribesQueryVariables = QueryVariablesWithServer<TribeFilter>;
 
+export type EnnoblementFilter = {
+  or?: {
+    newOwnerID?: number[];
+    newOwnerTribeID?: number[];
+    oldOwnerID?: number[];
+    oldOwnerTribeID?: number[];
+  };
+};
+
+export type EnnoblementsQueryVariables = QueryVariablesWithServer<
+  EnnoblementFilter
+>;
+
 export type DailyPlayerStatsFilter = {
   createDateGT?: Date | 'string';
   player?: PlayerFilter;

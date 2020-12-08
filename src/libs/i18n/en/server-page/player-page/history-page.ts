@@ -1,5 +1,5 @@
 const translations = {
-  title: `{{key}} - {{name}}'s player history`,
+  title: `{{key}} - {{name}}'s history`,
   playerHistory: {
     columns: {
       createDate: 'Date',

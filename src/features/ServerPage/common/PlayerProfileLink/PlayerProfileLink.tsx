@@ -2,21 +2,25 @@ import React from 'react';
 import { SERVER_PAGE } from '@config/routes';
 import Link from '@common/Link/Link';
 
+export interface Tribe {
+  id: number;
+  tag: string;
+}
+
 export interface Player {
   id: number;
   name: string;
-  tribe?: {
-    id: number;
-    tag: string;
-  };
+  tribe?: Tribe;
 }
 
 export interface Props {
   player: Player;
   server: string;
+  tribe?: Tribe;
 }
 
-function PlayerProfileLink({ player, server }: Props) {
+function PlayerProfileLink({ player, server, tribe }: Props) {
+  const t = tribe ? tribe : player.tribe ? player.tribe : undefined;
   return (
     <span>
       <Link
@@ -25,14 +29,14 @@ function PlayerProfileLink({ player, server }: Props) {
       >
         {player.name}
       </Link>
-      {player.tribe && (
+      {t && (
         <span>
           {` (`}
           <Link
             to={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
-            params={{ key: server, id: player.tribe.id }}
+            params={{ key: server, id: t.id }}
           >
-            {player.tribe.tag}
+            {t.tag}
           </Link>
           )
         </span>
