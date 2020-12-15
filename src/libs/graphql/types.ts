@@ -67,6 +67,19 @@ export type TribeFilter = {
 
 export type TribesQueryVariables = QueryVariablesWithServer<TribeFilter>;
 
+export type TribeChangesFilter = {
+  playerID?: number[];
+  playerIDNEQ?: number[];
+  or?: {
+    oldTribeID?: number[];
+    newTribeID?: number[];
+  };
+};
+
+export type TribeChangesQueryVariables = QueryVariablesWithServer<
+  TribeChangesFilter
+>;
+
 export type EnnoblementFilter = {
   or?: {
     newOwnerID?: number[];

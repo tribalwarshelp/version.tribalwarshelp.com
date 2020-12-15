@@ -192,7 +192,9 @@ function PlayerHistory({ t, server, playerID }: Props) {
             if (window.scrollTo) {
               window.scrollTo({ top: 0, behavior: `smooth` });
             }
-            setQuery({ limit: rowsPerPage, page: 0 });
+            requestAnimationFrame(() => {
+              setQuery({ limit: rowsPerPage, page: 0 });
+            });
           },
         }}
       />
