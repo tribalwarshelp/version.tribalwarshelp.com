@@ -5,6 +5,7 @@ export const SERVER_PAGE = {
   INDEX_PAGE: '/server/:key',
   TRIBE_PAGE: {
     INDEX_PAGE: '/server/:key/tribe/:id',
+    MEMBERS_PAGE: '/server/:key/tribe/:id/members',
     HISTORY_PAGE: '/server/:key/tribe/:id/history',
     TRIBE_CHANGES_PAGE: '/server/:key/tribe/:id/tribe-changes',
     ENNOBLEMENTS_PAGE: '/server/:key/tribe/:id/ennoblements',

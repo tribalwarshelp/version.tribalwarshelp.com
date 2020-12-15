@@ -16,11 +16,11 @@ import { TribeChangesQuery, TribeChange } from './types';
 
 export interface Props {
   server: string;
-  playerID: number;
+  tribeID: number;
   t: TFunction;
 }
 
-function TribeChanges({ t, server, playerID }: Props) {
+function TribeChanges({ t, server, tribeID }: Props) {
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
@@ -36,7 +36,10 @@ function TribeChanges({ t, server, playerID }: Props) {
       offset: query.page * limit,
       sort: ['createdAt DESC'],
       filter: {
-        playerID: [playerID],
+        or: {
+          oldTribeID: [tribeID],
+          newTribeID: [tribeID],
+        },
       },
       server,
     },
@@ -54,6 +57,21 @@ function TribeChanges({ t, server, playerID }: Props) {
             label: t('tribeChanges.columns.createdAt'),
             sortable: false,
             type: 'datetime',
+          },
+          {
+            field: 'player',
+            label: t('tribeChanges.columns.player'),
+            sortable: false,
+            valueFormatter: (v: TribeChange) => {
+              return (
+                <Link
+                  to={SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE}
+                  params={{ id: v.player.id, key: server }}
+                >
+                  {v.player.name}
+                </Link>
+              );
+            },
           },
           {
             field: 'oldTribe',

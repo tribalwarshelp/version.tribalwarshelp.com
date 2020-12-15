@@ -1,21 +1,21 @@
 const translations = {
-  playerPageContextProvider: {
-    loadingPlayer: 'Ładowanie gracza...',
-    playerNotFound: 'Gracz nie został znaleziony',
+  tribePageContextProvider: {
+    loadingTribe: 'Ładowanie plemienia...',
+    tribeNotFound: 'Plemię nie został znaleziony',
   },
   pageLayout: {
     noLongerExists: 'Nie istnieje',
     tabs: {
       indexPage: 'Profil',
+      membersPage: 'Członkowie',
       historyPage: 'Historia',
       tribeChanges: 'Zmiany plemion',
       ennoblementsPage: 'Przejęcia',
     },
     achievements: {
-      playerRank: '#{{rank}} punkty',
+      tribeRank: '#{{rank}} punkty',
       odaRank: '#{{rank}} agresor',
       oddRank: '#{{rank}} obrońca',
-      odsRank: '#{{rank}} wspierający',
       odRank: '#{{rank}} pokonani',
     },
   },

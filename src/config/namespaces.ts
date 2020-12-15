@@ -13,4 +13,12 @@ export const SERVER_PAGE = {
     TRIBE_CHANGES_PAGE: '/server-page/player-page/tribe-changes-page',
     ENNOBLEMENTS_PAGE: '/server-page/player-page/ennoblements-page',
   },
+  TRIBE_PAGE: {
+    COMMON: 'server-page/tribe-page/common',
+    INDEX_PAGE: '/server-page/tribe-page/index-page',
+    MEMBERS_PAGE: '/server-page/tribe-page/members-page',
+    HISTORY_PAGE: '/server-page/tribe-page/history-page',
+    TRIBE_CHANGES_PAGE: '/server-page/tribe-page/tribe-changes-page',
+    ENNOBLEMENTS_PAGE: '/server-page/tribe-page/ennoblements-page',
+  },
 };

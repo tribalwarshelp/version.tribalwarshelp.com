@@ -55,6 +55,25 @@ export type PlayerQueryVariables = {
   id: number;
 };
 
+export type PlayerHistoryFilter = {
+  playerID?: number[];
+  createDateGT?: Date | 'string';
+};
+
+export type PlayerHistoryQueryVariables = QueryVariablesWithServer<
+  PlayerHistoryFilter
+>;
+
+export type DailyPlayerStatsFilter = {
+  createDateGT?: Date | 'string';
+  player?: PlayerFilter;
+  playerID?: number[];
+};
+
+export type DailyPlayerStatsQueryVariables = QueryVariablesWithServer<
+  DailyPlayerStatsFilter
+>;
+
 export type TribeFilter = {
   id?: number[];
   exists?: boolean;
@@ -66,6 +85,20 @@ export type TribeFilter = {
 };
 
 export type TribesQueryVariables = QueryVariablesWithServer<TribeFilter>;
+
+export type TribeQueryVariables = {
+  server: string;
+  id: number;
+};
+
+export type TribeHistoryFilter = {
+  tribeID?: number[];
+  createDateGT?: Date | 'string';
+};
+
+export type TribeHistoryQueryVariables = QueryVariablesWithServer<
+  TribeHistoryFilter
+>;
 
 export type TribeChangesFilter = {
   playerID?: number[];
@@ -93,29 +126,11 @@ export type EnnoblementsQueryVariables = QueryVariablesWithServer<
   EnnoblementFilter
 >;
 
-export type DailyPlayerStatsFilter = {
-  createDateGT?: Date | 'string';
-  player?: PlayerFilter;
-  playerID?: number[];
-};
-
-export type DailyPlayerStatsQueryVariables = QueryVariablesWithServer<
-  DailyPlayerStatsFilter
->;
-
 export type DailyTribeStatsFilter = {
   createDateGT?: Date | 'string';
+  tribeID?: number[];
 };
 
 export type DailyTribeStatsQueryVariables = QueryVariablesWithServer<
   DailyTribeStatsFilter
->;
-
-export type PlayerHistoryFilter = {
-  playerID?: number[];
-  createDateGT?: Date | 'string';
-};
-
-export type PlayerHistoryQueryVariables = QueryVariablesWithServer<
-  PlayerHistoryFilter
 >;
