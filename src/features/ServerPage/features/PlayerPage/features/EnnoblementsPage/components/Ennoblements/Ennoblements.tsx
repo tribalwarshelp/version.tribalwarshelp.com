@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
+import { validateRowsPerPage } from '@common/Table/helpers';
 import { SERVER_PAGE } from '@config/routes';
 import { ENNOBLEMENTS } from './queries';
 import { LIMIT } from './constants';
@@ -27,14 +28,15 @@ function Ennoblements({ t, server, playerID }: Props) {
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
   });
+  const limit = validateRowsPerPage(query.limit);
   const { data: queryData, loading: queryLoading } = useQuery<
     EnnoblementsT,
     EnnoblementsQueryVariables
   >(ENNOBLEMENTS, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      limit: query.limit,
-      offset: query.page * query.limit,
+      limit,
+      offset: query.page * limit,
       sort: ['ennobledAt DESC'],
       filter: {
         or: {

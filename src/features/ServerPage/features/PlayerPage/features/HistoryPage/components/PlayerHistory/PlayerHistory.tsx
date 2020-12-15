@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { subDays, isEqual as isEqualDate } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
+import { validateRowsPerPage } from '@common/Table/helpers';
 import { SERVER_PAGE } from '@config/routes';
 import { PLAYER_HISTORY_AND_DAILY_STATS } from './queries';
 import { LIMIT } from './constants';
@@ -28,15 +29,16 @@ function PlayerHistory({ t, server, playerID }: Props) {
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
   });
+  const limit = validateRowsPerPage(query.limit);
   const { data: queryData, loading: queryLoading } = useQuery<
     PlayerHistoryT,
     Variables
   >(PLAYER_HISTORY_AND_DAILY_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      limit: query.limit,
-      playerHistoryOffset: query.page * query.limit,
-      dailyPlayerStatsOffset: query.page * query.limit + 1,
+      limit,
+      playerHistoryOffset: query.page * limit,
+      dailyPlayerStatsOffset: query.page * limit + 1,
       sort: ['createDate DESC'],
       playerHistoryFilter: {
         playerID: [playerID],

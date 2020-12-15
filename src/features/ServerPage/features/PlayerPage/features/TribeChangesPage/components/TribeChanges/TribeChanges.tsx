@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
+import { validateRowsPerPage } from '@common/Table/helpers';
 import { SERVER_PAGE } from '@config/routes';
 import { TRIBE_CHANGES } from './queries';
 import { LIMIT } from './constants';
@@ -24,14 +25,15 @@ function TribeChanges({ t, server, playerID }: Props) {
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
   });
+  const limit = validateRowsPerPage(query.limit);
   const { data: queryData, loading: queryLoading } = useQuery<
     TribeChangesQuery,
     TribeChangesQueryVariables
   >(TRIBE_CHANGES, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      limit: query.limit,
-      offset: query.page * query.limit,
+      limit,
+      offset: query.page * limit,
       sort: ['createdAt DESC'],
       filter: {
         playerID: [playerID],

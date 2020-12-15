@@ -1,5 +1,5 @@
 import React from 'react';
-import { TFunction } from 'i18next';
+import { validateRowsPerPage } from './helpers';
 
 import {
   TablePagination,
@@ -7,6 +7,7 @@ import {
   TableFooter as MUITableFooter,
 } from '@material-ui/core';
 
+import { TFunction } from 'i18next';
 export interface Props {
   page?: number;
   count?: number;
@@ -51,7 +52,7 @@ function TableFooter({
           page={page}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
-          rowsPerPage={rowsPerPage}
+          rowsPerPage={validateRowsPerPage(rowsPerPage, rowsPerPageOptions)}
           rowsPerPageOptions={rowsPerPageOptions}
           size={size}
           colSpan={100}
