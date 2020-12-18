@@ -1,5 +1,5 @@
 const translations = {
-  title: '{{key}} -  Dashboard',
+  title: 'Dashboard - {{key}}',
   recentlyDeletedPlayers: {
     title: 'Recently deleted players',
     columns: {

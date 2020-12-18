@@ -1,5 +1,5 @@
 const translations = {
-  title: `{{key}} - zmiany plemienia przez gracza {{name}}`,
+  title: `{{name}} - Zmiany plemienia - {{key}}`,
   tribeChanges: {
     columns: {
       createdAt: 'Data',

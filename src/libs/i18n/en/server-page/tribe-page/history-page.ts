@@ -1,5 +1,5 @@
 const translations = {
-  title: `{{key}} - {{tag}}'s history`,
+  title: `{{tag}} - History - {{key}}`,
   tribeHistory: {
     columns: {
       createDate: 'Date',

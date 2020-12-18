@@ -1,5 +1,5 @@
 const translations = {
-  title: `{{key}} - {{tag}}'s tribe profile`,
+  title: `{{tag}} - Tribe profile - {{key}}`,
   statistics: {
     modes: {
       points: 'Points',

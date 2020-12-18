@@ -67,7 +67,9 @@ export type PlayerHistoryQueryVariables = QueryVariablesWithServer<
 
 export type DailyPlayerStatsFilter = {
   createDateGT?: Date | 'string';
-  player?: PlayerFilter;
+  createDateGTE?: Date | 'string';
+  createDateLTE?: Date | 'string';
+  playerFilter?: PlayerFilter;
   playerID?: number[];
 };
 

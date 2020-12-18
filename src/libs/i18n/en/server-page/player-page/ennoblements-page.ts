@@ -1,5 +1,5 @@
 const translations = {
-  title: `{{key}} - {{name}}'s ennoblements`,
+  title: `{{name}} - Ennoblements - {{key}}`,
   ennoblements: {
     columns: {
       ennobledAt: 'Date',

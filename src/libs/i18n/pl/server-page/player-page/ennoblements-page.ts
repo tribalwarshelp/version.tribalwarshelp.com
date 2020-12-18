@@ -1,5 +1,5 @@
 const translations = {
-  title: `{{key}} - przejęcia gracza {{name}}`,
+  title: `{{name}} - Przejęcia - {{key}}`,
   ennoblements: {
     columns: {
       ennobledAt: 'Data',

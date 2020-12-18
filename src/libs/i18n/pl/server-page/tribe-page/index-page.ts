@@ -1,5 +1,5 @@
 const translations = {
-  title: `{{key}} - profil gracza {{tag}}`,
+  title: `{{tag}} - Profil plemienia - {{key}}`,
   statistics: {
     modes: {
       points: 'Punkty',

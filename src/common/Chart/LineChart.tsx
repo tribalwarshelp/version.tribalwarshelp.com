@@ -19,7 +19,7 @@ const LineChart = ({ data, loading, ...rest }: Props) => {
     return <Skeleton height="100%" variant="rect" />;
   }
 
-  if (data.filter(({ data }) => data.length > 0).length === 0) {
+  if (data.filter(({ data }) => data.length > 1).length === 0) {
     return (
       <Box
         display="flex"

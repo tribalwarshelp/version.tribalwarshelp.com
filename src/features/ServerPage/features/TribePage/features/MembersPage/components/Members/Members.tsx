@@ -1,14 +1,18 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { PLAYERS } from './queries';
+import React, { useMemo, useState } from 'react';
+import { addDays, differenceInDays, format, isBefore } from 'date-fns';
+import useMembers from './useMembers';
+import { DATE_FORMAT } from '@config/app';
+import { HOW_MANY_DAYS_BACK } from './contants';
 
 import { Paper } from '@material-ui/core';
 import Table from '@common/Table/Table';
+import { Column } from '@common/Table/types';
 import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import ModeSelector from '@features/ServerPage/common/ModeSelector/ModeSelector';
+import ColouredNumber from './ColouredNumber';
 
 import { TFunction } from 'i18next';
-import { PlayersQueryVariables } from '@libs/graphql/types';
-import { PlayersQuery, Player } from './types';
+import { Player, Mode } from './types';
 
 export interface Props {
   server: string;
@@ -17,61 +21,155 @@ export interface Props {
 }
 
 function Members({ t, server, tribeID }: Props) {
-  const { data: queryData, loading: queryLoading } = useQuery<
-    PlayersQuery,
-    PlayersQueryVariables
-  >(PLAYERS, {
-    fetchPolicy: 'cache-and-network',
-    variables: {
-      sort: ['rank ASC'],
-      filter: {
-        tribeID: [tribeID],
+  const [mode, setMode] = useState<Mode>('points');
+  const { members, loading, dailyPlayerStats } = useMembers(
+    tribeID,
+    server,
+    HOW_MANY_DAYS_BACK
+  );
+  const columns = useMemo<Column<Player>[]>(() => {
+    const columns: Column<Player>[] = [
+      {
+        field: 'index',
+        label: '',
+        sortable: false,
+        valueFormatter: (_p: Player, i: number) => {
+          return i + 1 + '.';
+        },
       },
-      server,
-    },
-  });
-  const playersItems = queryData?.players?.items ?? [];
-  const loading = playersItems.length === 0 && queryLoading;
+      {
+        field: 'name',
+        label: t('members.columns.name'),
+        sortable: false,
+        valueFormatter: (p: Player) => {
+          return <PlayerProfileLink player={p} server={server} />;
+        },
+      },
+      {
+        field: 'points',
+        label: t('members.columns.points'),
+        sortable: false,
+        valueFormatter: (p: Player) => {
+          return `${p.points.toLocaleString()} (#${p.rank})`;
+        },
+      },
+      {
+        field: 'totalVillages',
+        label: t('members.columns.totalVillages'),
+        sortable: false,
+        valueFormatter: (p: Player) => {
+          return p.totalVillages.toLocaleString();
+        },
+      },
+    ];
+
+    const maxDate =
+      dailyPlayerStats.length > 0
+        ? new Date(dailyPlayerStats[0].createDate)
+        : null;
+    const minDate =
+      dailyPlayerStats.length > 0
+        ? new Date(dailyPlayerStats[dailyPlayerStats.length - 1].createDate)
+        : null;
+
+    if (maxDate && minDate && isBefore(minDate, maxDate)) {
+      let diff = differenceInDays(maxDate, minDate) + 1;
+      if (diff <= HOW_MANY_DAYS_BACK) {
+        for (let i = 1; i <= diff; i++) {
+          const date = addDays(minDate, i - 1);
+          const formatted = format(date, DATE_FORMAT.DAY_MONTH_AND_YEAR);
+          columns.push({
+            field: formatted,
+            label: formatted,
+            sortable: false,
+            valueFormatter: (p: Player) => {
+              const record = p.dailyPlayerStatsRecords
+                ? p.dailyPlayerStatsRecords.find(
+                    r => new Date(r.createDate).getTime() === date.getTime()
+                  )
+                : undefined;
+              return <ColouredNumber num={record ? record[mode] : 0} />;
+            },
+          });
+        }
+        columns.push({
+          field: 'total',
+          label: t('members.columns.total'),
+          sortable: false,
+          valueFormatter: (p: Player) => {
+            return (
+              <ColouredNumber
+                num={
+                  p.dailyPlayerStatsRecords
+                    ? p.dailyPlayerStatsRecords.reduce(function (a, b) {
+                        return a + b[mode];
+                      }, 0)
+                    : 0
+                }
+                bold
+              />
+            );
+          },
+        });
+      }
+    }
+
+    return columns;
+  }, [dailyPlayerStats, t, server, mode]);
 
   return (
     <Paper>
-      <Table
-        columns={[
+      <ModeSelector
+        onSelect={m => setMode(m.name as Mode)}
+        modes={[
           {
-            field: 'index',
-            label: '',
-            sortable: false,
-            valueFormatter: (_p: Player, i: number) => {
-              return i + 1 + '.';
+            name: 'points',
+            label: t('members.modes.points'),
+            get selected() {
+              return this.name === mode;
             },
           },
           {
-            field: 'name',
-            label: t('members.columns.name'),
-            sortable: false,
-            valueFormatter: (p: Player) => {
-              return <PlayerProfileLink player={p} server={server} />;
+            name: 'villages',
+            label: t('members.modes.villages'),
+            get selected() {
+              return this.name === mode;
             },
           },
           {
-            field: 'points',
-            label: t('members.columns.points'),
-            sortable: false,
-            valueFormatter: (p: Player) => {
-              return `${p.points.toLocaleString()} (#${p.rank})`;
+            name: 'scoreAtt',
+            label: t('members.modes.scoreAtt'),
+            get selected() {
+              return this.name === mode;
             },
           },
           {
-            field: 'totalVillages',
-            label: t('members.columns.totalVillages'),
-            sortable: false,
-            valueFormatter: (p: Player) => {
-              return p.totalVillages.toLocaleString();
+            name: 'scoreDef',
+            label: t('members.modes.scoreDef'),
+            get selected() {
+              return this.name === mode;
+            },
+          },
+          {
+            name: 'scoreSup',
+            label: t('members.modes.scoreSup'),
+            get selected() {
+              return this.name === mode;
+            },
+          },
+          {
+            name: 'scoreTotal',
+            label: t('members.modes.scoreTotal'),
+            get selected() {
+              return this.name === mode;
             },
           },
         ]}
+      />
+      <Table
+        columns={columns}
         loading={loading}
-        data={playersItems}
+        data={members}
         size="small"
         hideFooter
       />

@@ -1,17 +1,19 @@
 import { gql } from '@apollo/client';
 
-export const PLAYERS = gql`
+export const PLAYERS_AND_DAILY_PLAYER_STATS = gql`
   query players(
     $server: String!
-    $filter: PlayerFilter
-    $sort: [String!]
+    $playerFilter: PlayerFilter
+    $playersSort: [String!]
     $limit: Int
     $offset: Int
+    $dailyPlayerStatsFilter: DailyPlayerStatsFilter
+    $dailyPlayerStatsSort: [String!]
   ) {
     players(
       server: $server
-      filter: $filter
-      sort: $sort
+      filter: $playerFilter
+      sort: $playersSort
       limit: $limit
       offset: $offset
     ) {
@@ -23,6 +25,24 @@ export const PLAYERS = gql`
         totalVillages
       }
       total
+    }
+    dailyPlayerStats(
+      server: $server
+      sort: $dailyPlayerStatsSort
+      filter: $dailyPlayerStatsFilter
+    ) {
+      items {
+        points
+        scoreAtt
+        scoreDef
+        scoreSup
+        scoreTotal
+        villages
+        createDate
+        player {
+          id
+        }
+      }
     }
   }
 `;
