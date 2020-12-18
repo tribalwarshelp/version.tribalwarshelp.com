@@ -4,6 +4,7 @@ import { SERVER_PAGE } from '@config/routes';
 import { Switch, Route, RouteProps } from 'react-router-dom';
 import TribeProvider from './libs/TribePageContext/Provider';
 import IndexPage from './features/IndexPage/IndexPage';
+import MembersPage from './features/MembersPage/MembersPage';
 import HistoryPage from './features/HistoryPage/HistoryPage';
 import EnnoblementsPage from './features/EnnoblementsPage/EnnoblementsPage';
 import TribeChangesPage from './features/TribeChangesPage/TribeChangesPage';
@@ -22,6 +23,9 @@ function TribePage() {
     <Switch>
       <EnhancedRoute exact path={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}>
         <IndexPage />
+      </EnhancedRoute>
+      <EnhancedRoute exact path={SERVER_PAGE.TRIBE_PAGE.MEMBERS_PAGE}>
+        <MembersPage />
       </EnhancedRoute>
       <EnhancedRoute exact path={SERVER_PAGE.TRIBE_PAGE.HISTORY_PAGE}>
         <HistoryPage />

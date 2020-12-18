@@ -108,6 +108,7 @@ function Table<T extends object>({
                       ? item[idFieldName] + ''
                       : index
                   }
+                  index={index}
                   row={item}
                   actions={actions}
                   selected={isSelected(item)}

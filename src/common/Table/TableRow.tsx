@@ -14,6 +14,7 @@ export interface Props<T> {
   selection: boolean;
   selected: boolean;
   size?: 'small' | 'medium';
+  index: number;
   onSelect?: (row: T) => void;
 }
 
@@ -25,6 +26,7 @@ function EnhancedTableRow<T extends object>({
   selected = false,
   onSelect,
   size = 'medium',
+  index,
 }: Props<T>) {
   const handleSelect = () => {
     if (onSelect) {
@@ -65,7 +67,7 @@ function EnhancedTableRow<T extends object>({
             align={col.align ? col.align : 'left'}
           >
             {col.valueFormatter
-              ? col.valueFormatter(row)
+              ? col.valueFormatter(row, index)
               : col.type
               ? formatValue(val, col.type)
               : val}

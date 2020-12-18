@@ -39,6 +39,7 @@ export type ServerStatsQueryVariables = QueryVariablesWithServer<
 
 export type PlayerFilter = {
   id?: number[];
+  tribeID?: number[];
   exists?: boolean;
   tribeFilter?: TribeFilter;
   deletedAtGT?: Date | string;
@@ -100,7 +101,7 @@ export type TribeHistoryQueryVariables = QueryVariablesWithServer<
   TribeHistoryFilter
 >;
 
-export type TribeChangesFilter = {
+export type TribeChangeFilter = {
   playerID?: number[];
   playerIDNEQ?: number[];
   or?: {
@@ -110,7 +111,7 @@ export type TribeChangesFilter = {
 };
 
 export type TribeChangesQueryVariables = QueryVariablesWithServer<
-  TribeChangesFilter
+  TribeChangeFilter
 >;
 
 export type EnnoblementFilter = {

@@ -1,4 +1,4 @@
-export const DEFAULT_LANGUAGE = process.env.REACT_APP_DEFAULT_LANGUAGE ?? 'pl';
+export const DEFAULT_LANGUAGE = process.env.REACT_APP_DEFAULT_LANGUAGE ?? 'en';
 
 export const NAME = 'TWHelp';
 
@@ -9,7 +9,8 @@ export const SERVER_STATUS = {
   OPEN: 'open' as ServerStatus,
 };
 
-export const TWHELP = process.env.TWHelp ?? 'https://tribalwarshelp.com';
+export const TWHELP =
+  process.env.REACT_APP_TWHELP ?? 'https://tribalwarshelp.com';
 
 export const AUTHOR = 'Dawid Wysokiński';
 
