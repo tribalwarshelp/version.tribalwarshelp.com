@@ -1,11 +1,11 @@
 const translations = {
-  title: `{{key}} - {{tag}}'s ennoblements`,
+  title: `{{key}} - przejęcia plemienia {{tag}}`,
   ennoblements: {
     columns: {
-      ennobledAt: 'Date',
-      village: 'Village',
-      oldOwner: 'Old owner',
-      newOwner: 'New owner',
+      ennobledAt: 'Data',
+      village: 'Wioska',
+      oldOwner: 'Stary właściciel',
+      newOwner: 'Nowy właściciel',
     },
   },
 };

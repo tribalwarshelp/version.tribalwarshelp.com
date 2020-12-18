@@ -1,14 +1,14 @@
 const translations = {
-  title: `{{key}} - {{tag}}'s history`,
+  title: `{{key}} - historia plemienia {{tag}}`,
   tribeHistory: {
     columns: {
-      createDate: 'Date',
-      points: 'Points',
-      totalVillages: 'Villages',
-      dominance: 'Dominance',
-      scoreAtt: 'ODA',
-      scoreDef: 'ODD',
-      scoreTotal: 'OD',
+      createDate: 'Data',
+      points: 'Punkty',
+      totalVillages: 'Wioski',
+      dominance: 'Dominacja',
+      scoreAtt: 'Agresor',
+      scoreDef: 'Obrońca',
+      scoreTotal: 'Pokonani ogólnie',
     },
   },
 };

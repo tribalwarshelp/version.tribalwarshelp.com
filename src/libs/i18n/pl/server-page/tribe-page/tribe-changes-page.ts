@@ -1,11 +1,11 @@
 const translations = {
-  title: `{{key}} - {{tag}}'s tribe changes`,
+  title: `{{key}} - zmiany plemienia {{tag}}`,
   tribeChanges: {
     columns: {
-      createdAt: 'Date',
-      oldTribe: 'Old tribe',
-      newTribe: 'New tribe',
-      player: 'Player',
+      createdAt: 'Data',
+      oldTribe: 'Poprzednie plemię',
+      newTribe: 'Nowe plemię',
+      player: 'Gracz',
     },
   },
 };

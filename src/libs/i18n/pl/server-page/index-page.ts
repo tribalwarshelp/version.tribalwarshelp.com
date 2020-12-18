@@ -9,7 +9,7 @@ const translations = {
     },
   },
   recentlyDeletedTribes: {
-    title: 'Recently deleted tribes',
+    title: 'Ostatnio usunięte plemiona',
     columns: {
       name: 'Plemię',
       mostPoints: 'Najwięcej punktów',

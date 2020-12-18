@@ -1,3 +1,4 @@
+import 'typeface-roboto';
 import React, { Fragment } from 'react';
 import * as ROUTES from '@config/routes';
 
