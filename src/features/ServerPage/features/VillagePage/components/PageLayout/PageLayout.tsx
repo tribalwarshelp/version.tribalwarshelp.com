@@ -1,6 +1,4 @@
-import React, { useMemo } from 'react';
-import clsx from 'clsx';
-import randomInteger from '@utils/randomInteger';
+import React from 'react';
 import { TFunction } from 'i18next';
 import { Village } from '../../types';
 
@@ -10,9 +8,7 @@ import { Toolbar, Typography } from '@material-ui/core';
 import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
-import background1 from './backgrounds/bg-1-dark.jpg';
-import background2 from './backgrounds/bg-2-dark.jpg';
-import background3 from './backgrounds/bg-3-dark.jpg';
+import background from './backgrounds/bg-1-dark.jpg';
 
 export interface Props {
   children: React.ReactNode;
@@ -23,12 +19,9 @@ export interface Props {
 
 function PageLayout({ children, village, server, t }: Props) {
   const classes = useStyles();
-  const bg = useMemo(() => {
-    return randomInteger(1, 3);
-  }, []);
   return (
     <ServerPageLayout noPadding>
-      <header className={clsx(classes.header, 'bg-' + bg)}>
+      <header className={classes.header}>
         <Toolbar className={classes.toolbar}>
           <div>
             <Typography variant="h3">
@@ -61,16 +54,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'flex-end',
     flexDirection: 'column',
+    backgroundImage: `url(${background})`,
     boxShadow: theme.shadows[4],
-    '&.bg-1': {
-      backgroundImage: `url(${background1})`,
-    },
-    '&.bg-2': {
-      backgroundImage: `url(${background2})`,
-    },
-    '&.bg-3': {
-      backgroundImage: `url(${background3})`,
-    },
   },
   toolbar: {
     [theme.breakpoints.down('sm')]: {
