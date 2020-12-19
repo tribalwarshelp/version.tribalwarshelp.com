@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { useLocation, generatePath } from 'react-router-dom';
+import { useLocation, generatePath, matchPath } from 'react-router-dom';
 import { Route } from './types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,12 +25,8 @@ function ListItem({ route, nestedLevel }: Props) {
   const classes = useStyles();
   const { pathname } = useLocation();
   const hasNested = Array.isArray(route.nested) && route.nested.length > 0;
-  const generatedPath =
-    route.to && route.params
-      ? generatePath(route.to, route.params)
-      : route.to
-      ? route.to
-      : '';
+  const isActive =
+    route.to && matchPath(pathname, { path: route.to, exact: route.exact });
 
   const getItem = () => {
     return (
@@ -43,12 +39,17 @@ function ListItem({ route, nestedLevel }: Props) {
       >
         <ListItemIcon
           className={clsx({
-            [classes.activeLink]: generatedPath === pathname,
+            [classes.activeLink]: isActive,
           })}
         >
           {route.Icon}
         </ListItemIcon>
-        <ListItemText primary={route.name} />
+        <ListItemText
+          className={clsx({
+            [classes.activeLink]: isActive,
+          })}
+          primary={route.name}
+        />
         {hasNested && (
           <Fragment>{open ? <ExpandLess /> : <ExpandMore />}</Fragment>
         )}
@@ -59,14 +60,7 @@ function ListItem({ route, nestedLevel }: Props) {
   return (
     <Fragment>
       {!hasNested && route.to ? (
-        <Link
-          to={route.to}
-          params={route.params}
-          className={clsx(classes.link, {
-            [classes.activeLink]: generatedPath === pathname,
-          })}
-          color="inherit"
-        >
+        <Link to={route.to} params={route.params} color="inherit">
           {getItem()}
         </Link>
       ) : (

@@ -24,4 +24,7 @@ export const SERVER_PAGE = {
   VILLAGE_PAGE: {
     INDEX_PAGE: 'server-page/village-page/index-page',
   },
+  RANKING_PAGE: {
+    COMMON: 'server-page/ranking-page/common',
+  },
 };

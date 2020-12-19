@@ -20,6 +20,7 @@ export const SERVER_PAGE = {
     INDEX_PAGE: '/server/:key/village/:id',
   },
   RANKING_PAGE: {
+    BASE: '/server/:key/ranking',
     PLAYER_PAGE: {
       INDEX_PAGE: '/server/:key/ranking/player',
       OD_PAGE: '/server/:key/ranking/player/od',
