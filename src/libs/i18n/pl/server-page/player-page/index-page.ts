@@ -11,7 +11,7 @@ const translations = {
     },
   },
   fields: {
-    joinedAt: 'Dołączył o',
+    joinedAt: 'Dołączył',
     points: 'Punkty',
     totalVillages: 'Wioski',
     dailyGrowth: 'Dzienny przyrost',
@@ -19,7 +19,7 @@ const translations = {
     scoreDef: 'Obrońca',
     scoreSup: 'Wspierający',
     scoreTotal: 'Pokonani ogólnie',
-    deletedAt: 'Usunięty o',
+    deletedAt: 'Usunięty',
     bestRank: 'Najlepszy ranking',
     mostPoints: 'Najwięcej punktów',
     mostVillages: 'Najwięcej wiosek',

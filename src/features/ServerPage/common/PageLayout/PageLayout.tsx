@@ -15,26 +15,6 @@ export interface Props {
   noPadding?: boolean;
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    paddingTop: 56,
-    height: '100%',
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: 64,
-    },
-  },
-  shiftContent: {
-    paddingLeft: DRAWER_WIDTH,
-  },
-  content: {
-    height: '100%',
-    padding: theme.spacing(3, 0),
-    '&.no-padding': {
-      padding: '0 0',
-    },
-  },
-}));
-
 function PageLayout({ children, noPadding }: Props) {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
@@ -78,5 +58,25 @@ function PageLayout({ children, noPadding }: Props) {
     </div>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    paddingTop: 56,
+    height: '100%',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: 64,
+    },
+  },
+  shiftContent: {
+    paddingLeft: DRAWER_WIDTH,
+  },
+  content: {
+    height: '100%',
+    padding: theme.spacing(3, 0),
+    '&.no-padding': {
+      padding: '0 0',
+    },
+  },
+}));
 
 export default PageLayout;

@@ -15,10 +15,10 @@ export interface Props {
 }
 
 function Spinner({
-  size,
-  containerProps,
-  typographyProps,
-  description,
+  size = 200,
+  containerProps = {},
+  typographyProps = { variant: 'h3' },
+  description = '',
 }: Props) {
   return (
     <Box {...containerProps}>
@@ -31,14 +31,5 @@ function Spinner({
     </Box>
   );
 }
-
-Spinner.defaultProps = {
-  size: 200,
-  containerProps: {} as BoxProps,
-  typographyProps: {
-    variant: 'h3',
-  } as TypographyProps,
-  description: '',
-} as Props;
 
 export default Spinner;

@@ -11,7 +11,7 @@ const translations = {
     },
   },
   fields: {
-    joinedAt: 'Joined at',
+    joinedAt: 'Joined on',
     points: 'Points',
     totalVillages: 'Villages',
     dailyGrowth: 'Daily growth',
@@ -19,7 +19,7 @@ const translations = {
     scoreDef: 'ODD',
     scoreSup: 'ODS',
     scoreTotal: 'OD',
-    deletedAt: 'Deleted at',
+    deletedAt: 'Deleted on',
     bestRank: 'Best rank',
     mostPoints: 'Most points',
     mostVillages: 'Most villages',
@@ -28,7 +28,7 @@ const translations = {
   nameChanges: {
     title: 'Name changes',
     columns: {
-      changeDate: 'Date',
+      changeDate: 'Changed on',
       newName: 'New name',
       oldName: 'Old name',
     },

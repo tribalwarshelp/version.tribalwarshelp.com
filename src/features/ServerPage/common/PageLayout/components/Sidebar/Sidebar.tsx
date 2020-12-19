@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import { generatePath } from 'react-router';
 import { TFunction } from 'i18next';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import useStyles from './useStyles';
@@ -41,9 +40,8 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
   const routes: Route[] = [
     {
       name: t('pageLayout.sidebar.routes.dashboard'),
-      to: generatePath(ROUTES.SERVER_PAGE.INDEX_PAGE, {
-        key: key,
-      }),
+      to: ROUTES.SERVER_PAGE.INDEX_PAGE,
+      params: { key },
       Icon: <DashboardIcon color="inherit" />,
     },
     {
@@ -52,75 +50,52 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
       nested: [
         {
           name: t('pageLayout.sidebar.routes.rankings.player.index'),
-          to: generatePath(
-            ROUTES.SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.INDEX_PAGE,
-            {
-              key: key,
-            }
-          ),
+          to: ROUTES.SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.INDEX_PAGE,
+          params: { key },
           Icon: <GradeIcon color="inherit" />,
         },
         {
           name: t('pageLayout.sidebar.routes.rankings.player.od'),
-          to: generatePath(
-            ROUTES.SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.OD_PAGE,
-            {
-              key: key,
-            }
-          ),
+          to: ROUTES.SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.OD_PAGE,
+          params: { key },
           Icon: <GradeIcon color="inherit" />,
         },
         {
           name: t('pageLayout.sidebar.routes.rankings.player.archive'),
-          to: generatePath(
-            ROUTES.SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.ARCHIVE_PAGE,
-            {
-              key: key,
-            }
-          ),
+          to: ROUTES.SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.ARCHIVE_PAGE,
+          params: { key },
           Icon: <GradeIcon color="inherit" />,
         },
         {
           name: t('pageLayout.sidebar.routes.rankings.tribe.index'),
-          to: generatePath(
-            ROUTES.SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.INDEX_PAGE,
-            {
-              key: key,
-            }
-          ),
+          to: ROUTES.SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.INDEX_PAGE,
+          params: { key },
           Icon: <GradeIcon color="inherit" />,
         },
         {
           name: t('pageLayout.sidebar.routes.rankings.tribe.od'),
-          to: generatePath(ROUTES.SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.OD_PAGE, {
-            key: key,
-          }),
+          to: ROUTES.SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.OD_PAGE,
+          params: { key },
           Icon: <GradeIcon color="inherit" />,
         },
         {
           name: t('pageLayout.sidebar.routes.rankings.tribe.archive'),
-          to: generatePath(
-            ROUTES.SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.ARCHIVE_PAGE,
-            {
-              key: key,
-            }
-          ),
+          to: ROUTES.SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.ARCHIVE_PAGE,
+          params: { key },
           Icon: <GradeIcon color="inherit" />,
         },
       ],
     },
     {
       name: t('pageLayout.sidebar.routes.ennoblements'),
-      to: generatePath(ROUTES.SERVER_PAGE.ENNOBLEMENTS_PAGE, {
-        key: key,
-      }),
+      to: ROUTES.SERVER_PAGE.ENNOBLEMENTS_PAGE,
+      params: { key },
       Icon: <BeenhereIcon color="inherit" />,
     },
     {
       name: t('pageLayout.sidebar.routes.map'),
-      to: generatePath(ROUTES.SERVER_PAGE.MAP_PAGE, {
-        key: key,
-      }),
+      to: ROUTES.SERVER_PAGE.MAP_PAGE,
+      params: { key },
       Icon: <MapIcon color="inherit" />,
     },
   ];

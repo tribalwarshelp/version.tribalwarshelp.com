@@ -1,5 +1,4 @@
 import React from 'react';
-import { validateRowsPerPage } from './helpers';
 
 import {
   TablePagination,
@@ -18,13 +17,16 @@ export interface Props {
   size?: 'small' | 'medium';
 }
 
+export const ROWS_PER_PAGE_DEFAULT = 25;
+export const ROWS_PER_PAGE_OPTIONS_DEFAULT = [25, 50, 100];
+
 function TableFooter({
   onChangePage,
   page = 0,
   count = 0,
   onChangeRowsPerPage,
-  rowsPerPageOptions = [25, 50, 100],
-  rowsPerPage = 50,
+  rowsPerPageOptions = ROWS_PER_PAGE_OPTIONS_DEFAULT,
+  rowsPerPage = ROWS_PER_PAGE_DEFAULT,
   size = 'small',
   t,
 }: Props & { t: TFunction }) {
@@ -52,7 +54,7 @@ function TableFooter({
           page={page}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
-          rowsPerPage={validateRowsPerPage(rowsPerPage, rowsPerPageOptions)}
+          rowsPerPage={rowsPerPage}
           rowsPerPageOptions={rowsPerPageOptions}
           size={size}
           colSpan={100}

@@ -10,7 +10,7 @@ const translations = {
     },
   },
   fields: {
-    createdAt: 'Created at',
+    createdAt: 'Created on',
     points: 'Points',
     allPoints: 'All points',
     totalVillages: 'Villages',
@@ -19,7 +19,7 @@ const translations = {
     scoreAtt: 'ODA',
     scoreDef: 'ODD',
     scoreTotal: 'OD',
-    deletedAt: 'Deleted at',
+    deletedAt: 'Deleted on',
     bestRank: 'Best rank',
     mostPoints: 'Most points',
     mostVillages: 'Most villages',

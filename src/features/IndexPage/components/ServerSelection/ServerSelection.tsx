@@ -1,5 +1,4 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
 import {
   useQueryParams,
   StringParam,
@@ -7,29 +6,15 @@ import {
   withDefault,
 } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
-import { generatePath } from 'react-router';
-import * as ROUTES from '@config/routes';
+import useServers from './useServers';
 import * as NAMESPACES from '@config/namespaces';
-import { SERVER_STATUS } from '@config/app';
-import { ServersQueryVariables } from '@libs/graphql/types';
-import { ServerList } from './types';
-import { SERVERS } from './queries';
-import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
 
-import {
-  Grid,
-  Box,
-  Accordion,
-  Typography,
-  AccordionSummary,
-  AccordionDetails,
-} from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import Pagination, {
   Props as PaginationProps,
 } from '@common/Pagination/Pagination';
-import Link from '@common/Link/Link';
+import GridItem from './GridItem';
 
 const PER_PAGE = 48;
 const arr = new Array(PER_PAGE).fill(0);
@@ -40,24 +25,7 @@ export default function ServerSelection() {
     q: withDefault(StringParam, ''),
   });
   const { t } = useTranslation(NAMESPACES.INDEX_PAGE);
-  const { data, loading: loadingServers } = useQuery<
-    ServerList,
-    ServersQueryVariables
-  >(SERVERS, {
-    fetchPolicy: 'cache-and-network',
-    variables: {
-      sort: ['status DESC', 'key ASC'],
-      offset: (query.page - 1) * PER_PAGE,
-      limit: PER_PAGE,
-      filter: {
-        keyIEQ: '%' + query.q + '%',
-        versionCode: [extractVersionCodeFromHostname(window.location.hostname)],
-      },
-    },
-  });
-  const servers = data?.servers?.items ?? [];
-  const total = data?.servers?.total ?? 0;
-  const loading = loadingServers && servers.length === 0;
+  const { servers, loading, total } = useServers(query.page, PER_PAGE, query.q);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
     setQuery({ page });
@@ -93,59 +61,10 @@ export default function ServerSelection() {
       <Grid container spacing={2}>
         {loading
           ? arr.map((_, index) => {
-              return (
-                <Grid key={index} item xs={12} sm={6} md={4}>
-                  <Accordion>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                      <Skeleton variant="text" width="100%" />
-                    </AccordionSummary>
-                  </Accordion>
-                </Grid>
-              );
+              return <GridItem t={t} key={index} />;
             })
           : servers.map(server => {
-              return (
-                <Grid key={server.key} item xs={12} sm={6} md={4} lg={3}>
-                  <Accordion>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                      <Typography variant="h5">
-                        <Link
-                          to={generatePath(ROUTES.SERVER_PAGE.INDEX_PAGE, {
-                            key: server.key,
-                          })}
-                        >
-                          {server.key}{' '}
-                          {SERVER_STATUS.CLOSED === server.status
-                            ? `(${t(
-                                NAMESPACES.COMMON +
-                                  `:serverStatus.${server.status}`
-                              ).toLowerCase()})`
-                            : ''}
-                        </Link>
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                        {t('serverSelection.numberOfPlayers', {
-                          count: server.numberOfPlayers,
-                          num: server.numberOfPlayers.toLocaleString(),
-                        })}
-                        <br />
-                        {t('serverSelection.numberOfTribes', {
-                          count: server.numberOfTribes,
-                          num: server.numberOfTribes.toLocaleString(),
-                        })}
-                        <br />
-                        {t('serverSelection.numberOfVillages', {
-                          count: server.numberOfVillages,
-                          num: server.numberOfVillages.toLocaleString(),
-                        })}
-                        .
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                </Grid>
-              );
+              return <GridItem t={t} key={server.key} server={server} />;
             })}
       </Grid>
       {renderPagination(false)}

@@ -15,26 +15,6 @@ export interface Props {
   buttonProps?: ButtonProps;
 }
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    padding: theme.spacing(1, 0),
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    '& > *': {
-      padding: theme.spacing(0.5),
-    },
-    [theme.breakpoints.down('xs')]: {
-      flexDirection: 'column',
-      '& > *': {
-        width: '100%',
-      },
-    },
-  },
-}));
-
 function ModeSelector({ modes, onSelect, buttonProps = {} }: Props) {
   const classes = useStyles();
 
@@ -62,5 +42,25 @@ function ModeSelector({ modes, onSelect, buttonProps = {} }: Props) {
     </div>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    padding: theme.spacing(1, 0),
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    '& > *': {
+      padding: theme.spacing(0.5),
+    },
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+      '& > *': {
+        width: '100%',
+      },
+    },
+  },
+}));
 
 export default ModeSelector;

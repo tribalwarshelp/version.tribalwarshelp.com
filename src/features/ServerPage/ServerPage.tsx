@@ -2,7 +2,7 @@ import React from 'react';
 import { SERVER_PAGE } from '@config/routes';
 
 import { Switch, Route, RouteProps } from 'react-router-dom';
-import ServerProvider from '@features/ServerPage/libs/ServerContext/Provider';
+import ServerProvider from './libs/ServerContext/Provider';
 import IndexPage from './features/IndexPage/IndexPage';
 import PlayerPage from './features/PlayerPage/PlayerPage';
 import TribePage from './features/TribePage/TribePage';

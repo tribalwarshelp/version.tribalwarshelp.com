@@ -1,10 +1,13 @@
+import {
+  ROWS_PER_PAGE_DEFAULT,
+  ROWS_PER_PAGE_OPTIONS_DEFAULT,
+} from './TableFooter';
+
 export const validateRowsPerPage = (
-  rowsPerPage: number,
-  rowsPerPageOptions: Array<number | { value: number; label: string }> = [
-    25,
-    50,
-    100,
-  ]
+  rowsPerPage: number = ROWS_PER_PAGE_DEFAULT,
+  rowsPerPageOptions: Array<
+    number | { value: number; label: string }
+  > = ROWS_PER_PAGE_OPTIONS_DEFAULT
 ) => {
   const rpp =
     rowsPerPageOptions.find(opt =>

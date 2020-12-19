@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TABLE } from '@config/namespaces';
 import isObjKey from '@utils/isObjKey';
+import { validateRowsPerPage } from './helpers';
 import { Action, Column, OrderDirection } from './types';
 
 import {
@@ -60,6 +61,10 @@ function Table<T extends object>({
   getRowKey,
 }: Props<T>) {
   const { t } = useTranslation(TABLE);
+  const rowsPerPage = validateRowsPerPage(
+    footerProps?.rowsPerPage,
+    footerProps?.rowsPerPageOptions
+  );
 
   const isSelected = (row: T): boolean => {
     return (
@@ -95,7 +100,7 @@ function Table<T extends object>({
             <TableLoading
               columns={columns}
               size={size}
-              rowsPerPage={footerProps?.rowsPerPage ?? 50}
+              rowsPerPage={rowsPerPage}
             />
           ) : data.length > 0 ? (
             data.map((item, index) => {
@@ -133,6 +138,7 @@ function Table<T extends object>({
             count={footerProps?.count ?? data.length}
             size={size}
             {...footerProps}
+            rowsPerPage={rowsPerPage}
           />
         )}
       </MUITable>

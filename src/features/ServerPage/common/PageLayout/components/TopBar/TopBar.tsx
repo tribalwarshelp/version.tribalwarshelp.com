@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import { generatePath } from 'react-router';
 import { TFunction } from 'i18next';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import * as ROUTES from '@config/routes';
@@ -25,28 +24,6 @@ export interface Props {
   openSidebar?: () => void;
 }
 
-const useStyles = makeStyles(theme => ({
-  toolbar: {
-    justifyContent: 'space-between',
-  },
-  leftSideContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    '& > *': {
-      marginRight: theme.spacing(1),
-    },
-  },
-  rightSideContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    '& > *:not(:last-child)': {
-      marginRight: theme.spacing(1),
-    },
-  },
-}));
-
 const TopBar = ({ className, openSidebar, t }: Props) => {
   const { key } = useServer();
   const classes = useStyles();
@@ -63,7 +40,8 @@ const TopBar = ({ className, openSidebar, t }: Props) => {
           <Typography variant="h4">
             <Link
               color="inherit"
-              to={generatePath(ROUTES.SERVER_PAGE.INDEX_PAGE, { key })}
+              params={{ key }}
+              to={ROUTES.SERVER_PAGE.INDEX_PAGE}
             >
               {key}
             </Link>
@@ -94,5 +72,27 @@ const TopBar = ({ className, openSidebar, t }: Props) => {
     </AppBar>
   );
 };
+
+const useStyles = makeStyles(theme => ({
+  toolbar: {
+    justifyContent: 'space-between',
+  },
+  leftSideContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    '& > *': {
+      marginRight: theme.spacing(1),
+    },
+  },
+  rightSideContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(1),
+    },
+  },
+}));
 
 export default TopBar;

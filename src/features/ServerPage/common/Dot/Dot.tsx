@@ -3,20 +3,13 @@ import { Property } from 'csstype';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-interface UseStylesProps {
+interface Props {
   backgroundColor?: Property.BackgroundColor;
 }
 
-interface Props extends UseStylesProps {}
-
-function Dot({ backgroundColor }: Props) {
+function Dot({ backgroundColor = 'green' }: Props) {
   const classes = useStyles();
-  return (
-    <div
-      className={classes.dot}
-      style={{ backgroundColor: backgroundColor ?? 'green' }}
-    />
-  );
+  return <div className={classes.dot} style={{ backgroundColor }} />;
 }
 
 const useStyles = makeStyles(theme => ({

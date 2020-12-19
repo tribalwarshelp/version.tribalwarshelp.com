@@ -20,16 +20,6 @@ export interface Props {
   nestedLevel: number;
 }
 
-const useStyles = makeStyles(theme => ({
-  link: {
-    display: 'block',
-    width: '100%',
-  },
-  activeLink: {
-    color: theme.palette.secondary.main,
-  },
-}));
-
 function ListItem({ route, nestedLevel }: Props) {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
@@ -63,6 +53,7 @@ function ListItem({ route, nestedLevel }: Props) {
       {!hasNested && route.to ? (
         <Link
           to={route.to}
+          params={route.params}
           className={classes.link}
           color={pathname === route.to ? 'secondary' : 'inherit'}
         >
@@ -89,5 +80,15 @@ function ListItem({ route, nestedLevel }: Props) {
     </Fragment>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  link: {
+    display: 'block',
+    width: '100%',
+  },
+  activeLink: {
+    color: theme.palette.secondary.main,
+  },
+}));
 
 export default ListItem;

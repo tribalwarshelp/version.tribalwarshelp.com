@@ -10,7 +10,7 @@ const translations = {
     },
   },
   fields: {
-    createdAt: 'Utworzone o',
+    createdAt: 'Utworzone',
     points: 'Punkty',
     allPoints: 'Wszystkie punkty',
     totalVillages: 'Wioski',
@@ -18,7 +18,7 @@ const translations = {
     scoreAtt: 'Agresor',
     scoreDef: 'Obrońca',
     scoreTotal: 'Pokonani ogólnie',
-    deletedAt: 'Usunięte o',
+    deletedAt: 'Usunięte',
     bestRank: 'Najlepszy ranking',
     mostPoints: 'Najwięcej punktów',
     mostVillages: 'Najwięcej wiosek',
