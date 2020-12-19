@@ -1,9 +1,12 @@
 const translations = {
-  title: `{{tag}} - Ennoblements - {{key}}`,
+  title: '{{name}} - Village profile - {{key}}',
+  villageNotFound: 'Village not found',
+  pageLayout: {
+    points: '{{points}} pts',
+  },
   ennoblements: {
     columns: {
       ennobledAt: 'Date/time',
-      village: 'Village',
       oldOwner: 'Old owner',
       newOwner: 'New owner',
     },

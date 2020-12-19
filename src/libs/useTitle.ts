@@ -1,26 +1,21 @@
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import { NAME } from '@config/app';
 
 export interface UseTitleOptions {
-  restoreOnUnmount?: boolean;
+  skip?: boolean;
 }
 
 const DEFAULT_USE_TITLE_OPTIONS: UseTitleOptions = {
-  restoreOnUnmount: false,
+  skip: false,
 };
 
 function useTitle(
   title: string,
   options: UseTitleOptions = DEFAULT_USE_TITLE_OPTIONS
 ) {
-  const prevTitle = useRef(document.title);
   useEffect(() => {
+    if (options.skip) return;
     document.title = `${title} | ${NAME}`;
-    if (options && options.restoreOnUnmount) {
-      return () => {
-        document.title = prevTitle.current;
-      };
-    }
     return () => {
       document.title = NAME;
     };

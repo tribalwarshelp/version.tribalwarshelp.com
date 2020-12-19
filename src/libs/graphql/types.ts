@@ -123,6 +123,7 @@ export type EnnoblementFilter = {
     oldOwnerID?: number[];
     oldOwnerTribeID?: number[];
   };
+  villageID?: number[];
 };
 
 export type EnnoblementsQueryVariables = QueryVariablesWithServer<
@@ -137,3 +138,8 @@ export type DailyTribeStatsFilter = {
 export type DailyTribeStatsQueryVariables = QueryVariablesWithServer<
   DailyTribeStatsFilter
 >;
+
+export type VillageQueryVariables = {
+  server: string;
+  id: number;
+};

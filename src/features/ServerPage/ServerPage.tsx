@@ -6,6 +6,7 @@ import ServerProvider from './libs/ServerContext/Provider';
 import IndexPage from './features/IndexPage/IndexPage';
 import PlayerPage from './features/PlayerPage/PlayerPage';
 import TribePage from './features/TribePage/TribePage';
+import VillagePage from './features/VillagePage/VillagePage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const EnhancedRoute = ({ children, ...rest }: RouteProps) => {
@@ -27,6 +28,9 @@ function ServerPage() {
       </EnhancedRoute>
       <EnhancedRoute path={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}>
         <TribePage />
+      </EnhancedRoute>
+      <EnhancedRoute exact path={SERVER_PAGE.VILLAGE_PAGE.INDEX_PAGE}>
+        <VillagePage />
       </EnhancedRoute>
       <Route path="*">
         <NotFoundPage />
