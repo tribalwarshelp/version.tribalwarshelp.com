@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, generatePath } from 'react-router-dom';
 import { Route } from './types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,6 +25,12 @@ function ListItem({ route, nestedLevel }: Props) {
   const classes = useStyles();
   const { pathname } = useLocation();
   const hasNested = Array.isArray(route.nested) && route.nested.length > 0;
+  const generatedPath =
+    route.to && route.params
+      ? generatePath(route.to, route.params)
+      : route.to
+      ? route.to
+      : '';
 
   const getItem = () => {
     return (
@@ -36,7 +42,9 @@ function ListItem({ route, nestedLevel }: Props) {
         pl={nestedLevel}
       >
         <ListItemIcon
-          className={clsx({ [classes.activeLink]: route.to === pathname })}
+          className={clsx({
+            [classes.activeLink]: generatedPath === pathname,
+          })}
         >
           {route.Icon}
         </ListItemIcon>
@@ -54,8 +62,10 @@ function ListItem({ route, nestedLevel }: Props) {
         <Link
           to={route.to}
           params={route.params}
-          className={classes.link}
-          color={pathname === route.to ? 'secondary' : 'inherit'}
+          className={clsx(classes.link, {
+            [classes.activeLink]: generatedPath === pathname,
+          })}
+          color="inherit"
         >
           {getItem()}
         </Link>

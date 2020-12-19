@@ -5,14 +5,22 @@ import { PLAYERS_AND_DAILY_PLAYER_STATS } from './queries';
 import {
   PlayersAndDailyPlayerStatsQueryResult,
   PlayersAndDailyPlayerStatsQueryVariables,
+  Player,
+  DailyPlayerStatsRecord,
 } from './types';
 import { subDays } from 'date-fns';
+
+export type QueryResult = {
+  members: Player[];
+  dailyPlayerStats: DailyPlayerStatsRecord[];
+  loading: boolean;
+};
 
 const useMembers = (
   tribeID: number,
   server: string,
   howManyDaysBack: number
-) => {
+): QueryResult => {
   const createDateGTE = useRef(subDays(new Date(), howManyDaysBack));
   const { data: queryData, loading: queryLoading } = useQuery<
     PlayersAndDailyPlayerStatsQueryResult,

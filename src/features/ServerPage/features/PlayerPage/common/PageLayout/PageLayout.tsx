@@ -1,8 +1,10 @@
 import React, { Fragment, useMemo } from 'react';
-import { matchPath, useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import usePlayer from '../../libs/PlayerPageContext/usePlayer';
+import useTabs from './useTabs';
+import randomInteger from '@utils/randomInteger';
 import * as NAMESPACES from '@config/namespaces';
 import * as ROUTES from '@config/routes';
 
@@ -19,7 +21,9 @@ import {
 import Link from '@common/Link/Link';
 import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 
-import background from './profile-background-dark.png';
+import background1 from './backgrounds/bg-1-dark.png';
+import background2 from './backgrounds/bg-2-dark.jpg';
+import background3 from './backgrounds/bg-3-dark.jpg';
 
 export interface Props {
   children: React.ReactNode;
@@ -29,42 +33,18 @@ function PageLayout({ children }: Props) {
   const classes = useStyles();
   const player = usePlayer();
   const server = useServer();
-  const loc = useLocation();
   const { t } = useTranslation(NAMESPACES.SERVER_PAGE.PLAYER_PAGE.COMMON);
-  const tabs = useMemo(() => {
-    return [
-      {
-        to: ROUTES.SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE,
-        label: t('pageLayout.tabs.indexPage'),
-      },
-      {
-        to: ROUTES.SERVER_PAGE.PLAYER_PAGE.HISTORY_PAGE,
-        label: t('pageLayout.tabs.historyPage'),
-      },
-      {
-        to: ROUTES.SERVER_PAGE.PLAYER_PAGE.TRIBE_CHANGES_PAGE,
-        label: t('pageLayout.tabs.tribeChanges'),
-      },
-      {
-        to: ROUTES.SERVER_PAGE.PLAYER_PAGE.ENNOBLEMENTS_PAGE,
-        label: t('pageLayout.tabs.ennoblementsPage'),
-      },
-    ];
-  }, [t]);
-  const currentTab = useMemo(
-    () =>
-      tabs.findIndex(({ to }) => {
-        return matchPath(loc.pathname, { exact: true, path: to });
-      }),
-    [loc.pathname, tabs]
-  );
+  const { currentTab, tabs } = useTabs(t);
+  const bg = useMemo(() => {
+    return randomInteger(1, 3);
+  }, []);
   const chipProps: ChipProps = {
     color: 'secondary',
     size: 'small',
   };
   return (
     <ServerPageLayout noPadding>
-      <header className={classes.header}>
+      <header className={clsx(classes.header, 'bg-' + bg)}>
         <Toolbar className={classes.toolbar}>
           <div style={{ width: '100%' }}>
             <div className={classes.playerNameContainer}>
@@ -164,13 +144,22 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     minHeight: theme.spacing(30),
     backgroundPosition: 'center',
-    backgroundImage: `url(${background})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     display: 'flex',
     justifyContent: 'flex-end',
     flexDirection: 'column',
     boxShadow: theme.shadows[4],
+    '&.bg-1': {
+      backgroundImage: `url(${background1})`,
+    },
+    '&.bg-2': {
+      backgroundImage: `url(${background2})`,
+    },
+    '&.bg-3': {
+      backgroundPosition: '50% 80%',
+      backgroundImage: `url(${background3})`,
+    },
   },
   playerNameContainer: {
     display: 'flex',
