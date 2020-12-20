@@ -30,7 +30,7 @@ export type ServerFilter = {
 export type ServersQueryVariables = QueryVariables<ServerFilter>;
 
 export type ServerStatsFilter = {
-  createDateGT?: Date | 'string';
+  createDateGT?: Date | string;
 };
 
 export type ServerStatsQueryVariables = QueryVariablesWithServer<
@@ -59,7 +59,7 @@ export type PlayerQueryVariables = {
 
 export type PlayerHistoryFilter = {
   playerID?: number[];
-  createDateGT?: Date | 'string';
+  createDateGT?: Date | string;
 };
 
 export type PlayerHistoryQueryVariables = QueryVariablesWithServer<
@@ -67,9 +67,9 @@ export type PlayerHistoryQueryVariables = QueryVariablesWithServer<
 >;
 
 export type DailyPlayerStatsFilter = {
-  createDateGT?: Date | 'string';
-  createDateGTE?: Date | 'string';
-  createDateLTE?: Date | 'string';
+  createDateGT?: Date | string;
+  createDateGTE?: Date | string;
+  createDateLTE?: Date | string;
   playerFilter?: PlayerFilter;
   playerID?: number[];
 };
@@ -97,7 +97,7 @@ export type TribeQueryVariables = {
 
 export type TribeHistoryFilter = {
   tribeID?: number[];
-  createDateGT?: Date | 'string';
+  createDateGT?: Date | string;
 };
 
 export type TribeHistoryQueryVariables = QueryVariablesWithServer<
@@ -132,7 +132,7 @@ export type EnnoblementsQueryVariables = QueryVariablesWithServer<
 >;
 
 export type DailyTribeStatsFilter = {
-  createDateGT?: Date | 'string';
+  createDateGT?: Date | string;
   tribeID?: number[];
 };
 
