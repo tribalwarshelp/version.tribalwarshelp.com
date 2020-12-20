@@ -11,11 +11,13 @@ const translations = {
           player: {
             index: 'Players',
             od: 'Players OD',
+            daily: `Players - Today's stats`,
             archive: 'Past players',
           },
           tribe: {
             index: 'Tribes',
             od: 'Tribes OD',
+            daily: `Tribes - Today's stats`,
             archive: 'Past tribes',
           },
         },

@@ -30,6 +30,7 @@ export const SERVER_PAGE = {
       INDEX_PAGE: 'server-page/ranking-page/player-page/index-page',
       OD_PAGE: 'server-page/ranking-page/player-page/od-page',
       DAILY_PAGE: 'server-page/ranking-page/player-page/daily-page',
+      ARCHIVE_PAGE: 'server-page/ranking-page/player-page/archive-page',
     },
   },
 };

@@ -7,10 +7,9 @@ import {
 } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
 import useUpdateEffect from '@libs/useUpdateEffect';
-import SortParam from '@libs/serialize-query-params/SortParam';
 import usePlayers from './usePlayers';
 import { validateRowsPerPage } from '@common/Table/helpers';
-import { COLUMNS, LIMIT, DEFAULT_SORT } from './constants';
+import { COLUMNS, LIMIT } from './constants';
 
 import { Paper } from '@material-ui/core';
 import Table from '@common/Table/Table';
@@ -31,9 +30,7 @@ function Top5Players({ server, t }: Props) {
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
     q: withDefault(StringParam, ''),
-    sort: withDefault(SortParam, DEFAULT_SORT),
   });
-  const limit = validateRowsPerPage(query.limit);
   const [q, setQ] = useState(query.q);
   const debouncedSetQuery = useDebouncedCallback(
     value => setQuery({ q: value }),
@@ -42,12 +39,12 @@ function Top5Players({ server, t }: Props) {
   useUpdateEffect(() => {
     debouncedSetQuery.callback(q);
   }, [q]);
+  const limit = validateRowsPerPage(query.limit);
   const { players, total, loading } = usePlayers(
     query.page,
     limit,
     server,
-    query.q,
-    query.sort.toString()
+    query.q
   );
 
   return (
@@ -71,6 +68,11 @@ function Top5Players({ server, t }: Props) {
             label: column.label ? t<string>(column.label) : '',
           };
           if (index === 0) {
+            newCol.valueFormatter = (_player: Player, index: number) => {
+              return query.page * query.limit + (index + 1);
+            };
+          }
+          if (index === 1) {
             newCol.valueFormatter = (player: Player) => (
               <PlayerProfileLink player={player} server={server} />
             );
@@ -80,16 +82,8 @@ function Top5Players({ server, t }: Props) {
         loading={loading}
         data={players}
         size="small"
-        orderBy={query.sort.orderBy}
-        orderDirection={query.sort.orderDirection}
-        onRequestSort={(orderBy, orderDirection) => {
-          setQuery({
-            sort: SortParam.decode(orderBy + ' ' + orderDirection),
-            page: 0,
-          });
-        }}
         footerProps={{
-          page: query.page,
+          page: loading ? 0 : query.page,
           rowsPerPage: limit,
           count: total,
           onChangePage: page => {

@@ -65,6 +65,13 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
           exact: true,
         },
         {
+          name: t('pageLayout.sidebar.routes.rankings.player.daily'),
+          to: ROUTES.SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.DAILY_PAGE,
+          params: { key },
+          Icon: <GradeIcon color="inherit" />,
+          exact: true,
+        },
+        {
           name: t('pageLayout.sidebar.routes.rankings.player.archive'),
           to: ROUTES.SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.ARCHIVE_PAGE,
           params: { key },
@@ -81,6 +88,13 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
         {
           name: t('pageLayout.sidebar.routes.rankings.tribe.od'),
           to: ROUTES.SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.OD_PAGE,
+          params: { key },
+          Icon: <GradeIcon color="inherit" />,
+          exact: true,
+        },
+        {
+          name: t('pageLayout.sidebar.routes.rankings.tribe.daily'),
+          to: ROUTES.SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.DAILY_PAGE,
           params: { key },
           Icon: <GradeIcon color="inherit" />,
           exact: true,
