@@ -26,7 +26,7 @@ export interface Props {
   t: TFunction;
 }
 
-function Top5Players({ server, t }: Props) {
+function Ranking({ server, t }: Props) {
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
@@ -112,4 +112,4 @@ function Top5Players({ server, t }: Props) {
   );
 }
 
-export default Top5Players;
+export default Ranking;

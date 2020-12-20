@@ -32,5 +32,11 @@ export const SERVER_PAGE = {
       DAILY_PAGE: 'server-page/ranking-page/player-page/daily-page',
       ARCHIVE_PAGE: 'server-page/ranking-page/player-page/archive-page',
     },
+    TRIBE_PAGE: {
+      INDEX_PAGE: 'server-page/ranking-page/tribe-page/index-page',
+      OD_PAGE: 'server-page/ranking-page/tribe-page/od-page',
+      DAILY_PAGE: 'server-page/ranking-page/tribe-page/daily-page',
+      ARCHIVE_PAGE: 'server-page/ranking-page/tribe-page/archive-page',
+    },
   },
 };

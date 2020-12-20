@@ -81,6 +81,7 @@ export type DailyPlayerStatsQueryVariables = QueryVariablesWithServer<
 export type TribeFilter = {
   id?: number[];
   exists?: boolean;
+  tagIEQ?: string;
   deletedAtGT?: Date | string;
   rankAttGTE?: number;
   rankDefGTE?: number;
@@ -133,7 +134,9 @@ export type EnnoblementsQueryVariables = QueryVariablesWithServer<
 
 export type DailyTribeStatsFilter = {
   createDateGT?: Date | string;
+  createDateGTE?: Date | string;
   tribeID?: number[];
+  tribeFilter?: TribeFilter;
 };
 
 export type DailyTribeStatsQueryVariables = QueryVariablesWithServer<
