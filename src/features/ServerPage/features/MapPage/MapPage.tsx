@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
 import { useDebouncedCallback } from 'use-debounce';
+import useTitle from '@libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
 import useMarkers from './useMarkers';
 import { MAP_SERVICE } from '@config/app';
+import { SERVER_PAGE } from '@config/namespaces';
 import { PLAYERS, TRIBES } from './queries';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -66,6 +69,8 @@ function MapPage() {
   const { key } = useServer();
   const classes = useStyles();
   const client = useApolloClient();
+  const { t } = useTranslation(SERVER_PAGE.MAP_PAGE);
+  useTitle(t('title', { key }));
 
   const handleSettingsChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -178,11 +183,11 @@ function MapPage() {
                 align="center"
                 gutterBottom
               >
-                Settings
+                {t('sections.settings')}
               </Typography>
               <div className={classes.formGroup}>
                 <TextField
-                  label="Zoom level"
+                  label={t('inputLabels.zoomLevel')}
                   type="number"
                   name="scale"
                   value={settings.scale}
@@ -196,7 +201,7 @@ function MapPage() {
                   }}
                 />
                 <TextField
-                  label="Center X"
+                  label={t('inputLabels.centerX')}
                   type="number"
                   name="centerX"
                   value={settings.centerX}
@@ -210,7 +215,7 @@ function MapPage() {
                   }}
                 />
                 <TextField
-                  label="Center Y"
+                  label={t('inputLabels.centerY')}
                   type="number"
                   name="centerY"
                   value={settings.centerY}
@@ -224,7 +229,7 @@ function MapPage() {
                   }}
                 />
                 <TextField
-                  label="Background color"
+                  label={t('inputLabels.backgroundColor')}
                   name="backgroundColor"
                   onChange={callDebouncedHandleSettingsChange}
                   fullWidth
@@ -232,8 +237,8 @@ function MapPage() {
                   variant="standard"
                 />
                 <TextField
-                  label="Grid line color"
                   name="gridLineColor"
+                  label={t('inputLabels.gridLineColor')}
                   onChange={callDebouncedHandleSettingsChange}
                   defaultValue={settings.gridLineColor}
                   fullWidth
@@ -241,8 +246,8 @@ function MapPage() {
                   type="color"
                 />
                 <TextField
-                  label="Continent number color"
                   name="continentNumberColor"
+                  label={t('inputLabels.continentNumberColor')}
                   onChange={callDebouncedHandleSettingsChange}
                   defaultValue={settings.continentNumberColor}
                   fullWidth
@@ -250,7 +255,7 @@ function MapPage() {
                   type="color"
                 />
                 <FormControlLabel
-                  label="Markers only"
+                  label={t('inputLabels.markersOnly')}
                   control={
                     <Checkbox
                       name="markersOnly"
@@ -260,7 +265,7 @@ function MapPage() {
                   }
                 />
                 <FormControlLabel
-                  label="Show barbarian villages"
+                  label={t('inputLabels.showBarbarianVillages')}
                   control={
                     <Checkbox
                       name="showBarbarian"
@@ -270,7 +275,7 @@ function MapPage() {
                   }
                 />
                 <FormControlLabel
-                  label="Larger markers"
+                  label={t('inputLabels.largerMarkers')}
                   control={
                     <Checkbox
                       name="largerMarkers"
@@ -280,7 +285,7 @@ function MapPage() {
                   }
                 />
                 <FormControlLabel
-                  label="Continent grid"
+                  label={t('inputLabels.continentGrid')}
                   control={
                     <Checkbox
                       name="showGrid"
@@ -290,7 +295,7 @@ function MapPage() {
                   }
                 />
                 <FormControlLabel
-                  label="Continent numbers"
+                  label={t('inputLabels.continentNumbers')}
                   control={
                     <Checkbox
                       name="showContinentNumbers"
@@ -308,7 +313,7 @@ function MapPage() {
                 align="center"
                 gutterBottom
               >
-                Tribe markers
+                {t('sections.tribeMarkers')}
               </Typography>
               <div className={classes.formGroup}>
                 {tribeMarkers.map(marker => {
@@ -320,6 +325,7 @@ function MapPage() {
                       onChangeColor={createUpdateTribeMarkerColorHandler(
                         marker.id
                       )}
+                      loadingText={t('loading')}
                       loadSuggestions={searchTribes}
                       getOptionLabel={tribeGetOptionLabel}
                       getOptionSelected={tribeGetOptionSelected}
@@ -333,7 +339,7 @@ function MapPage() {
                   onClick={handleAddTribeMarker}
                   disabled={tribeMarkers.length >= 100}
                 >
-                  Add marker
+                  {t('buttons.addMarker')}
                 </Button>
               </div>
             </Grid>
@@ -344,7 +350,7 @@ function MapPage() {
                 align="center"
                 gutterBottom
               >
-                Player markers
+                {t('sections.playerMarkers')}
               </Typography>
               <div className={classes.formGroup}>
                 {playerMarkers.map(marker => {
@@ -369,7 +375,7 @@ function MapPage() {
                   onClick={handleAddPlayerMarker}
                   disabled={playerMarkers.length >= 100}
                 >
-                  Add marker
+                  {t('buttons.addMarker')}
                 </Button>
               </div>
             </Grid>
@@ -381,13 +387,15 @@ function MapPage() {
                   color="secondary"
                   variant="contained"
                 >
-                  Generate new map
+                  {t('buttons.generateNewMap')}
                 </Button>
               </Typography>
             </Grid>
           </Grid>
         </form>
-        {mapURL && <Map src={mapURL} alt={key} />}
+        {mapURL && (
+          <Map src={mapURL} alt={key} loadingInfo={t('infoWhileGenerating')} />
+        )}
       </Container>
     </ServerPageLayout>
   );

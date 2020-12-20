@@ -15,6 +15,7 @@ export interface Props<T> {
   getOptionLabel: (opt: T) => string;
   getOptionSelected: (opt: T, value: T) => boolean;
   loadSuggestions: (value: string) => Promise<T[]>;
+  loadingText?: string;
 }
 
 function MarkerField<T extends object>({
@@ -24,6 +25,7 @@ function MarkerField<T extends object>({
   onChangeColor,
   getOptionSelected,
   getOptionLabel,
+  loadingText,
 }: Props<T>) {
   const [searchValue, setSearchValue] = useState<string>('');
   const [suggestions, setSuggestions] = useState<T[]>([]);
@@ -59,6 +61,7 @@ function MarkerField<T extends object>({
         loading={loading}
         getOptionSelected={getOptionSelected}
         onChange={onChange}
+        loadingText={loadingText}
         renderInput={params => {
           return (
             <TextField

@@ -6,6 +6,7 @@ export const NOT_FOUND_PAGE = 'not-found-page';
 export const SERVER_PAGE = {
   COMMON: 'server-page/common',
   INDEX_PAGE: 'server-page/index-page',
+  MAP_PAGE: 'server-page/map-page',
   PLAYER_PAGE: {
     COMMON: 'server-page/player-page/common',
     INDEX_PAGE: 'server-page/player-page/index-page',

@@ -9,9 +9,15 @@ export interface Props {
   src: string;
   alt: string;
   maxWidth?: number;
+  loadingInfo?: string;
 }
 
-function Map({ src = '', alt = 'Map', maxWidth = 1000 }: Props) {
+function Map({
+  src = '',
+  alt = 'Map',
+  maxWidth = 1000,
+  loadingInfo = 'It may take a while to generate a map!',
+}: Props) {
   const [loading, setLoading] = useState(true);
   const classes = useStyles();
 
@@ -22,7 +28,7 @@ function Map({ src = '', alt = 'Map', maxWidth = 1000 }: Props) {
   return (
     <div className={classes.container}>
       {loading ? (
-        <Alert severity="warning">It may take a while to generate a map!</Alert>
+        <Alert severity="warning">{loadingInfo}</Alert>
       ) : (
         <Alert severity="info">
           URL:{' '}
