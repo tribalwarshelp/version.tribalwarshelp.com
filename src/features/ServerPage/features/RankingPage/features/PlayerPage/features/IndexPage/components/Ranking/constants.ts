@@ -32,4 +32,4 @@ export const COLUMNS: Column<Player>[] = [
   },
 ];
 
-export const LIMIT = 5;
+export const LIMIT = 25;

@@ -28,6 +28,7 @@ export const SERVER_PAGE = {
     COMMON: 'server-page/ranking-page/common',
     PLAYER_PAGE: {
       INDEX_PAGE: 'server-page/ranking-page/player-page/index-page',
+      OD_PAGE: 'server-page/ranking-page/player-page/od-page',
     },
   },
 };

@@ -28,7 +28,7 @@ export interface Props<T> {
   idFieldName?: string;
   getRowKey?: (row: T, index: number) => string | number | null | undefined;
   onRequestSort?: (
-    property: string,
+    orderBy: string,
     orderDirection: OrderDirection
   ) => void | Promise<void>;
   onSelect?: (rows: T[]) => void;
@@ -138,6 +138,7 @@ function Table<T extends object>({
             count={footerProps?.count ?? data.length}
             size={size}
             {...footerProps}
+            page={loading ? 0 : footerProps?.page ?? 0}
             rowsPerPage={rowsPerPage}
           />
         )}

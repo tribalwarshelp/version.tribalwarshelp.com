@@ -3,6 +3,7 @@ import { SERVER_PAGE } from '@config/routes';
 
 import { Switch, Route } from 'react-router-dom';
 import IndexPage from './features/IndexPage/IndexPage';
+import ODPage from './features/ODPage/ODPage';
 import NotFoundPage from '../../../NotFoundPage/NotFoundPage';
 
 function PlayerPage() {
@@ -10,6 +11,9 @@ function PlayerPage() {
     <Switch>
       <Route exact path={SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.INDEX_PAGE}>
         <IndexPage />
+      </Route>
+      <Route exact path={SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.OD_PAGE}>
+        <ODPage />
       </Route>
       <Route path="*">
         <NotFoundPage />
