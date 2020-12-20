@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useQueryParams, StringParam, withDefault } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
 import { useTranslation } from 'react-i18next';
@@ -10,19 +10,15 @@ import useStyles from './styles';
 import {
   AppBar,
   Toolbar,
-  TextField,
-  InputAdornment,
   Container,
   Button,
   Hidden,
   Link,
-  IconButton,
 } from '@material-ui/core';
-import { Search as SearchIcon, Close as CloseIcon } from '@material-ui/icons';
 import VersionSelector from '@common/VersionSelector/VersionSelector';
+import SearchInput from '@common/Form/SearchInput';
 
 export default function Header() {
-  const input = useRef<HTMLInputElement | null>(null);
   const [query, setQuery] = useQueryParams({
     q: withDefault(StringParam, ''),
   });
@@ -42,42 +38,16 @@ export default function Header() {
       <Container>
         <Toolbar disableGutters className={classes.toolbar}>
           <div className={classes.searchInputWrapper}>
-            <TextField
+            <SearchInput
               fullWidth
               variant="outlined"
               placeholder={t<string>('header.search')}
               value={q}
-              inputRef={input}
-              size="small"
               onChange={e => {
                 setQ(e.target.value);
               }}
-              style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment
-                    position="start"
-                    onClick={() => {
-                      if (input.current) {
-                        input.current.focus();
-                      }
-                    }}
-                  >
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      size="small"
-                      disabled={q === ''}
-                      onClick={() => setQ('')}
-                    >
-                      <CloseIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
+              onResetValue={() => setQ('')}
+              size="small"
             />
           </div>
           <div>

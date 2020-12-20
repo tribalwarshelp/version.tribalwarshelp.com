@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { useLocation, generatePath, matchPath } from 'react-router-dom';
+import { useLocation, matchPath } from 'react-router-dom';
 import { Route } from './types';
 
 import { makeStyles } from '@material-ui/core/styles';

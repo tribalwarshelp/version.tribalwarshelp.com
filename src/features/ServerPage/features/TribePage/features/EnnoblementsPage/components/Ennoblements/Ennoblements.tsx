@@ -130,7 +130,7 @@ function Ennoblements({ t, server, tribeID }: Props) {
         size="small"
         footerProps={{
           page: loading ? 0 : query.page,
-          rowsPerPage: query.limit,
+          rowsPerPage: limit,
           count: total,
           onChangePage: page => {
             if (window.scrollTo) {

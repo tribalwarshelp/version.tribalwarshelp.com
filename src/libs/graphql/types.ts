@@ -47,6 +47,7 @@ export type PlayerFilter = {
   rankDefGTE?: number;
   rankSupGTE?: number;
   rankTotalGTE?: number;
+  nameIEQ?: string;
 };
 
 export type PlayersQueryVariables = QueryVariablesWithServer<PlayerFilter>;

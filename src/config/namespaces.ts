@@ -26,5 +26,8 @@ export const SERVER_PAGE = {
   },
   RANKING_PAGE: {
     COMMON: 'server-page/ranking-page/common',
+    PLAYER_PAGE: {
+      INDEX_PAGE: 'server-page/ranking-page/player-page/index-page',
+    },
   },
 };
