@@ -12,6 +12,9 @@ export const SERVER_STATUS = {
 export const TWHELP =
   process.env.REACT_APP_TWHELP ?? 'https://tribalwarshelp.com';
 
+export const MAP_SERVICE =
+  process.env.REACT_APP_MAP_SERVICE ?? 'https://api.tribalwarshelp.com/map';
+
 export const AUTHOR = 'Dawid Wysokiński';
 
 export const DATE_FORMAT = {

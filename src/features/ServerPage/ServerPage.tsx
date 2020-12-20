@@ -8,6 +8,7 @@ import PlayerPage from './features/PlayerPage/PlayerPage';
 import TribePage from './features/TribePage/TribePage';
 import VillagePage from './features/VillagePage/VillagePage';
 import RankingPage from './features/RankingPage/RankingPage';
+import MapPage from './features/MapPage/MapPage';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const EnhancedRoute = ({ children, ...rest }: RouteProps) => {
@@ -35,6 +36,9 @@ function ServerPage() {
       </EnhancedRoute>
       <EnhancedRoute path={SERVER_PAGE.RANKING_PAGE.BASE}>
         <RankingPage />
+      </EnhancedRoute>
+      <EnhancedRoute path={SERVER_PAGE.MAP_PAGE}>
+        <MapPage />
       </EnhancedRoute>
       <Route path="*">
         <NotFoundPage />
