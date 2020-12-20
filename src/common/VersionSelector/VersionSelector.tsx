@@ -55,6 +55,7 @@ function VersionSelector() {
               component={Link}
               href={buildLink(v.code)}
               underline="none"
+              color="inherit"
               key={v.code}
               title={v.host}
             >
