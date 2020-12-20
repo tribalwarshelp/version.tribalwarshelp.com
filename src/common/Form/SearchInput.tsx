@@ -9,7 +9,7 @@ import {
 import { Search as SearchIcon, Close as CloseIcon } from '@material-ui/icons';
 
 export type Props = TextFieldProps & {
-  onResetValue: () => void;
+  onResetValue?: () => void;
 };
 
 function SearchInput({ value, onResetValue, style, ...rest }: Props) {
@@ -38,8 +38,14 @@ function SearchInput({ value, onResetValue, style, ...rest }: Props) {
           <InputAdornment position="end">
             <IconButton
               size="small"
-              disabled={value === ''}
-              onClick={onResetValue}
+              disabled={typeof value === 'string' && value === ''}
+              onClick={() => {
+                if (!value && input.current) {
+                  input.current.value = '';
+                } else if (onResetValue) {
+                  onResetValue();
+                }
+              }}
             >
               <CloseIcon />
             </IconButton>

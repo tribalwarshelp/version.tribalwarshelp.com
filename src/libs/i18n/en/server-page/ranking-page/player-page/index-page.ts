@@ -8,6 +8,7 @@ const translations = {
       totalVillages: 'Villages',
       dailyGrowth: 'Daily growth',
     },
+    searchInputPlaceholder: 'Search player',
   },
 };
 

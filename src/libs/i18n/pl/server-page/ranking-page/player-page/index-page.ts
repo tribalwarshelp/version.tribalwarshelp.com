@@ -8,6 +8,7 @@ const translations = {
       totalVillages: 'Wioski',
       dailyGrowth: 'Dzienny przyrost',
     },
+    searchInputPlaceholder: 'Wyszukaj gracza',
   },
 };
 
