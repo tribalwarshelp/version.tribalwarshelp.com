@@ -1,10 +1,19 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
+import {
+  useQueryParams,
+  NumberParam,
+  withDefault,
+  DateParam,
+} from 'use-query-params';
+import { format } from 'date-fns';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import { ENNOBLEMENTS } from './queries';
 import { LIMIT } from './constants';
 
+import { makeStyles } from '@material-ui/core/styles';
+import { TextField } from '@material-ui/core';
+import TableToolbar from '@common/Table/TableToolbar';
 import Table from '../Table/Table';
 
 import { TFunction } from 'i18next';
@@ -17,9 +26,12 @@ export interface Props {
 }
 
 function LatestSavedEnnoblements({ t, server }: Props) {
+  const classes = useStyles();
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
+    ennobledAtGTE: withDefault(DateParam, undefined),
+    ennobledAtLTE: withDefault(DateParam, undefined),
   });
   const limit = validateRowsPerPage(query.limit);
   const { data: queryData, loading: queryLoading } = useQuery<
@@ -31,6 +43,10 @@ function LatestSavedEnnoblements({ t, server }: Props) {
       limit,
       offset: query.page * limit,
       sort: ['ennobledAt DESC'],
+      filter: {
+        ennobledAtGTE: query.ennobledAtGTE,
+        ennobledAtLTE: query.ennobledAtLTE,
+      },
       server,
     },
   });
@@ -39,32 +55,76 @@ function LatestSavedEnnoblements({ t, server }: Props) {
   const total = queryData?.ennoblements?.total ?? 0;
 
   return (
-    <Table
-      t={t}
-      ennoblements={ennoblements}
-      loading={loading}
-      server={server}
-      footerProps={{
-        page: loading ? 0 : query.page,
-        rowsPerPage: limit,
-        count: total,
-        onChangePage: page => {
-          if (window.scrollTo) {
-            window.scrollTo({ top: 0, behavior: `smooth` });
-          }
-          setQuery({ page });
-        },
-        onChangeRowsPerPage: rowsPerPage => {
-          if (window.scrollTo) {
-            window.scrollTo({ top: 0, behavior: `smooth` });
-          }
-          requestAnimationFrame(() => {
-            setQuery({ limit: rowsPerPage, page: 0 });
-          });
-        },
-      }}
-    />
+    <div>
+      <TableToolbar className={classes.tableToolbar}>
+        {[
+          { id: 'ennobledAtGTE', defaultValue: query.ennobledAtGTE },
+          { id: 'ennobledAtLTE', defaultValue: query.ennobledAtLTE },
+        ].map(({ id, defaultValue }) => {
+          return (
+            <TextField
+              type="date"
+              key={id}
+              label={t('latestSavedEnnoblements.inputs.' + id)}
+              defaultValue={
+                defaultValue && defaultValue instanceof Date
+                  ? format(defaultValue, 'yyyy-MM-dd')
+                  : undefined
+              }
+              onChange={e => {
+                setQuery({ [id]: new Date(e.target.value) });
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              variant="standard"
+            />
+          );
+        })}
+      </TableToolbar>
+      <Table
+        t={t}
+        ennoblements={ennoblements}
+        loading={loading}
+        server={server}
+        footerProps={{
+          page: loading ? 0 : query.page,
+          rowsPerPage: limit,
+          count: total,
+          onChangePage: page => {
+            if (window.scrollTo) {
+              window.scrollTo({ top: 0, behavior: `smooth` });
+            }
+            setQuery({ page });
+          },
+          onChangeRowsPerPage: rowsPerPage => {
+            if (window.scrollTo) {
+              window.scrollTo({ top: 0, behavior: `smooth` });
+            }
+            requestAnimationFrame(() => {
+              setQuery({ limit: rowsPerPage, page: 0 });
+            });
+          },
+        }}
+      />
+    </div>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  tableToolbar: {
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+      [theme.breakpoints.down('xs')]: {
+        width: '100%',
+      },
+    },
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
+  },
+}));
 
 export default LatestSavedEnnoblements;

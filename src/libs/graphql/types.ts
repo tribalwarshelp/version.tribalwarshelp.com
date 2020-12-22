@@ -126,6 +126,8 @@ export type EnnoblementFilter = {
     oldOwnerTribeID?: number[];
   };
   villageID?: number[];
+  ennobledAtGTE?: Date | string;
+  ennobledAtLTE?: Date | string;
 };
 
 export type EnnoblementsQueryVariables = QueryVariablesWithServer<

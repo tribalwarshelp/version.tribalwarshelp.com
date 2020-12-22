@@ -1,5 +1,6 @@
 const translations = {
-  title: 'Przejęcia - {{key}}',
+  title_live: 'Przejęcia na żywo - {{key}}',
+  title_latest: 'Ostatnie przejęcia - {{key}}',
   modes: {
     live: 'Na żywo',
     latest: 'Ostatnie',
@@ -10,6 +11,12 @@ const translations = {
       village: 'Wioska',
       oldOwner: 'Stary właściciel',
       newOwner: 'Nowy właściciel',
+    },
+  },
+  latestSavedEnnoblements: {
+    inputs: {
+      ennobledAtGTE: 'Data początkowa',
+      ennobledAtLTE: 'Data końcowa',
     },
   },
 };

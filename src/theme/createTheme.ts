@@ -29,6 +29,13 @@ const createTheme = (): Theme => {
             overflow: 'auto',
           },
         },
+        MuiCssBaseline: {
+          '@global': {
+            '::-webkit-calendar-picker-indicator': {
+              filter: 'invert(1)',
+            },
+          },
+        },
       },
     })
   );

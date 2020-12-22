@@ -13,13 +13,14 @@ export interface Props {
   modes: Mode[];
   onSelect?: (m: Mode) => void;
   buttonProps?: ButtonProps;
+  style?: React.CSSProperties;
 }
 
-function ModeSelector({ modes, onSelect, buttonProps = {} }: Props) {
+function ModeSelector({ modes, onSelect, buttonProps = {}, style }: Props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} style={style}>
       {modes.map(m => {
         return (
           <div key={m.name}>

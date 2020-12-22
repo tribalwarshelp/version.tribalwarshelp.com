@@ -17,7 +17,9 @@ function EnnoblementsPage() {
   });
   const { key } = useServer();
   const { t } = useTranslation(SERVER_PAGE.ENNOBLEMENTS_PAGE);
-  useTitle(t('title', { key }));
+  useTitle(
+    t('title_' + (query.mode === 'latest' ? 'latest' : 'live'), { key })
+  );
 
   return (
     <ServerPageLayout>
@@ -41,11 +43,12 @@ function EnnoblementsPage() {
                 },
               },
             ]}
+            style={query.mode === 'latest' ? { paddingBottom: 0 } : {}}
           />
-          {query.mode === 'live' ? (
-            <LiveEnnoblements t={t} server={key} />
-          ) : (
+          {query.mode === 'latest' ? (
             <LatestSavedEnnoblements t={t} server={key} />
+          ) : (
+            <LiveEnnoblements t={t} server={key} />
           )}
         </Paper>
       </Container>

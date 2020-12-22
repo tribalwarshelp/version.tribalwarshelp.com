@@ -1,5 +1,6 @@
 const translations = {
-  title: 'Ennoblements - {{key}}',
+  title_live: 'Live ennoblements - {{key}}',
+  title_latest: 'Latest ennoblements - {{key}}',
   modes: {
     live: 'Live',
     latest: 'Latest',
@@ -10,6 +11,12 @@ const translations = {
       village: 'Village',
       oldOwner: 'Old owner',
       newOwner: 'New owner',
+    },
+  },
+  latestSavedEnnoblements: {
+    inputs: {
+      ennobledAtGTE: 'Start date',
+      ennobledAtLTE: 'End date',
     },
   },
 };
