@@ -7,6 +7,7 @@ export const SERVER_PAGE = {
   COMMON: 'server-page/common',
   INDEX_PAGE: 'server-page/index-page',
   MAP_PAGE: 'server-page/map-page',
+  ENNOBLEMENTS_PAGE: 'server-page/ennoblements-page',
   PLAYER_PAGE: {
     COMMON: 'server-page/player-page/common',
     INDEX_PAGE: 'server-page/player-page/index-page',

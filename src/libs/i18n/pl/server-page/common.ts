@@ -21,7 +21,7 @@ const translations = {
             archive: 'Byłe plemiona',
           },
         },
-        ennoblements: 'Ostatnie podbicia',
+        ennoblements: 'Przejęcia',
         map: 'Narzędzie mapy',
       },
       serverInfo: {

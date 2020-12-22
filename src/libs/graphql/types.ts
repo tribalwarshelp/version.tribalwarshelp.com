@@ -132,6 +132,10 @@ export type EnnoblementsQueryVariables = QueryVariablesWithServer<
   EnnoblementFilter
 >;
 
+export type LiveEnnoblementsQueryVariables = {
+  server: string;
+};
+
 export type DailyTribeStatsFilter = {
   createDateGT?: Date | string;
   createDateGTE?: Date | string;

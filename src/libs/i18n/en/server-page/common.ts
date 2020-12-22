@@ -21,7 +21,7 @@ const translations = {
             archive: 'Past tribes',
           },
         },
-        ennoblements: 'Latest ennoblements',
+        ennoblements: 'Ennoblements',
         map: 'Map tool',
       },
       serverInfo: {
