@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import useUpdateEffect from '@libs/useUpdateEffect';
 
 import { TextField, Box, IconButton } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
@@ -46,7 +45,7 @@ function MarkerField<T extends object>({
     },
     1000
   );
-  useUpdateEffect(() => {
+  useEffect(() => {
     debouncedLoadSuggestions.callback(searchValue);
   }, [searchValue, debouncedLoadSuggestions]);
 

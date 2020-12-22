@@ -22,6 +22,7 @@ import {
 import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 import Map from './components/Map/Map';
 import MarkerField from './components/MarkerField/MarkerField';
+import Card from './components/Card/Card';
 
 import {
   PlayersQueryVariables,
@@ -176,7 +177,7 @@ function MapPage() {
       <Container>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+            <Card>
               <Typography
                 variant="h4"
                 component="h3"
@@ -305,8 +306,8 @@ function MapPage() {
                   }
                 />
               </div>
-            </Grid>
-            <Grid item xs={12} md={4}>
+            </Card>
+            <Card>
               <Typography
                 variant="h4"
                 component="h3"
@@ -342,8 +343,8 @@ function MapPage() {
                   {t('buttons.addMarker')}
                 </Button>
               </div>
-            </Grid>
-            <Grid item xs={12} md={4}>
+            </Card>
+            <Card>
               <Typography
                 variant="h4"
                 component="h3"
@@ -378,7 +379,7 @@ function MapPage() {
                   {t('buttons.addMarker')}
                 </Button>
               </div>
-            </Grid>
+            </Card>
             <Grid item xs={12}>
               <Typography align="center" component="div">
                 <Button
