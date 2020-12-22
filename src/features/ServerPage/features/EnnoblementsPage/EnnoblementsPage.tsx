@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useQueryParams, StringParam, withDefault } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
 import useTitle from '@libs/useTitle';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
@@ -10,10 +11,10 @@ import ModeSelector from '@features/ServerPage/common/ModeSelector/ModeSelector'
 import LiveEnnoblements from './components/LiveEnnoblements/LiveEnnoblements';
 import LatestSavedEnnoblements from './components/LatestSavedEnnoblements/LatestSavedEnnoblements';
 
-import { Mode } from './types';
-
 function EnnoblementsPage() {
-  const [mode, setMode] = useState<Mode>('live');
+  const [query, setQuery] = useQueryParams({
+    mode: withDefault(StringParam, 'live'),
+  });
   const { key } = useServer();
   const { t } = useTranslation(SERVER_PAGE.ENNOBLEMENTS_PAGE);
   useTitle(t('title', { key }));
@@ -23,25 +24,25 @@ function EnnoblementsPage() {
       <Container>
         <Paper>
           <ModeSelector
-            onSelect={m => setMode(m.name as Mode)}
+            onSelect={m => setQuery({ mode: m.name })}
             modes={[
               {
                 name: 'live',
                 label: t('modes.live'),
                 get selected() {
-                  return this.name === mode;
+                  return this.name === query.mode;
                 },
               },
               {
                 name: 'latest',
                 label: t('modes.latest'),
                 get selected() {
-                  return this.name === mode;
+                  return this.name === query.mode;
                 },
               },
             ]}
           />
-          {mode === 'live' ? (
+          {query.mode === 'live' ? (
             <LiveEnnoblements t={t} server={key} />
           ) : (
             <LatestSavedEnnoblements t={t} server={key} />
