@@ -17,7 +17,7 @@ const translations = {
     },
   },
   todaysBestStatsPlayers: {
-    title: 'Gracze - Ranking dzienny',
+    title: 'Gracze - Dzisiejsze statystyki',
     modes: {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
@@ -33,7 +33,7 @@ const translations = {
     },
   },
   todaysBestStatsTribes: {
-    title: 'Plemiona - Ranking dzienny',
+    title: 'Plemiona - Dzisiejsze statystyki',
     modes: {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',

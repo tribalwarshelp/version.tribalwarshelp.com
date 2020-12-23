@@ -1,5 +1,5 @@
 const translations = {
-  title: `Ranking dzienny (plemiona) - {{key}}`,
+  title: `Dzisiejsze statystyki (plemiona) - {{key}}`,
   ranking: {
     columns: {
       tag: 'Skrót',

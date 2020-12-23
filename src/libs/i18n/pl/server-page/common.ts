@@ -11,13 +11,13 @@ const translations = {
           player: {
             index: 'Gracze',
             od: 'Gracze OD',
-            daily: 'Gracze - Ranking dzienny',
+            daily: 'Gracze - Dzisiejsze statystyki',
             archive: 'Byli gracze',
           },
           tribe: {
             index: 'Plemiona',
             od: 'Plemiona OD',
-            daily: 'Plemiona - Ranking dzienny',
+            daily: 'Plemiona - Dzisiejsze statystyki',
             archive: 'Byłe plemiona',
           },
         },

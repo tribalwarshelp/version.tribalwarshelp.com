@@ -1,5 +1,5 @@
 const translations = {
-  title: `Ranking dzienny (gracze) - {{key}}`,
+  title: `Dzisiejsze statystyki (gracze) - {{key}}`,
   ranking: {
     columns: {
       name: 'Nazwa',
