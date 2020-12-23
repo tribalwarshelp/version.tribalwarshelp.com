@@ -26,7 +26,6 @@ function ListItem({ route, nestedLevel }: Props) {
   const hasNested = Array.isArray(route.nested) && route.nested.length > 0;
   const isActive =
     route.to && matchPath(pathname, { path: route.to, exact: route.exact });
-  console.log(nestedLevel);
 
   const getItem = () => {
     return (
