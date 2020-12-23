@@ -1,9 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import { SERVERS } from './queries';
 import Context from './context';
+import { SERVER_PAGE } from '@config/namespaces';
 import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
+
 import { ServersQueryVariables } from '@libs/graphql/types';
 import { Params, ServerList } from './types';
 
@@ -16,6 +19,7 @@ export interface Props {
 
 function Provider({ children }: Props) {
   const { key } = useParams<Params>();
+  const { t } = useTranslation(SERVER_PAGE.COMMON);
   const { loading: loadingServers, data } = useQuery<
     ServerList,
     ServersQueryVariables
@@ -46,7 +50,7 @@ function Provider({ children }: Props) {
           alignItems: 'center',
           justifyContent: 'center',
         }}
-        description="Loading server..."
+        description={t('serverContextProvider.loading')}
       />
     );
   }

@@ -1,7 +1,7 @@
 const translations = {
   pageLayout: {
     topBar: {
-      home: 'Home',
+      home: 'Strona główna',
     },
     sidebar: {
       routes: {
@@ -11,13 +11,13 @@ const translations = {
           player: {
             index: 'Gracze',
             od: 'Gracze OD',
-            daily: 'Gracze - Dzisiejsze statystyki',
+            daily: 'Gracze - Dzienne statystyki',
             archive: 'Byli gracze',
           },
           tribe: {
             index: 'Plemiona',
             od: 'Plemiona OD',
-            daily: 'Plemiona - Dzisiejsze statystyki',
+            daily: 'Plemiona - Dzienne statystyki',
             archive: 'Byłe plemiona',
           },
         },
@@ -37,6 +37,9 @@ const translations = {
         dataUpdatedAt: 'Dane ostatnio zaktualizowane {{date}}',
       },
     },
+  },
+  serverContextProvider: {
+    loading: 'Ładowanie serwera...',
   },
 };
 

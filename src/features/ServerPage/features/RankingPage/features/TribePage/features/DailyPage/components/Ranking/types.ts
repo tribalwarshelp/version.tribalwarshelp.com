@@ -15,6 +15,6 @@ export type DailyTribeStatsRecord = {
   tribe: Tribe;
 };
 
-export type TodaysStats = {
+export type DailyStats = {
   dailyTribeStats?: List<DailyTribeStatsRecord[]>;
 };

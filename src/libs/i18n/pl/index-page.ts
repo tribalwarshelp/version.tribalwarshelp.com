@@ -1,5 +1,5 @@
 const translations = {
-  title: 'Home',
+  title: 'Strona główna',
   header: {
     search: 'Wyszukaj serwer',
   },

@@ -4,13 +4,13 @@ const translations = {
       playerPage: {
         indexPage: 'Players',
         odPage: 'Players OD',
-        dailyPage: `Players - today's stats`,
+        dailyPage: `Players - Daily stats`,
         archivePage: 'Past players',
       },
       tribePage: {
         indexPage: 'Tribes',
         odPage: 'Tribes OD',
-        dailyPage: `Tribes - today's stats`,
+        dailyPage: `Tribes - Daily stats`,
         archivePage: 'Past tribes',
       },
     },

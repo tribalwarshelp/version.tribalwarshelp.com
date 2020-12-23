@@ -4,10 +4,10 @@ import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import { DAILY_TRIBE_STATS } from './queries';
 
 import { DailyTribeStatsQueryVariables } from '@libs/graphql/types';
-import { DailyTribeStatsRecord, TodaysStats } from './types';
+import { DailyTribeStatsRecord, DailyStats } from './types';
 
 export type QueryResult = {
-  todaysStats: DailyTribeStatsRecord[];
+  dailyStats: DailyTribeStatsRecord[];
   loading: boolean;
   total: number;
 };
@@ -24,7 +24,7 @@ const useTribes = (
     return historyUpdatedAt.toString().split('T')[0] + 'T00:00:00Z';
   }, [historyUpdatedAt]);
   const { loading: loadingStats, data } = useQuery<
-    TodaysStats,
+    DailyStats,
     DailyTribeStatsQueryVariables
   >(DAILY_TRIBE_STATS, {
     fetchPolicy: 'cache-and-network',
@@ -42,12 +42,12 @@ const useTribes = (
       server,
     },
   });
-  const todaysStats = data?.dailyTribeStats?.items ?? [];
-  const loading = loadingStats && todaysStats.length === 0;
+  const dailyStats = data?.dailyTribeStats?.items ?? [];
+  const loading = loadingStats && dailyStats.length === 0;
   const total = data?.dailyTribeStats?.total ?? 0;
 
   return {
-    todaysStats,
+    dailyStats,
     loading,
     total,
   };

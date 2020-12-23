@@ -4,13 +4,13 @@ const translations = {
       playerPage: {
         indexPage: 'Gracze',
         odPage: 'Gracze OD',
-        dailyPage: 'Gracze - Dzisiejsze statystyki',
+        dailyPage: 'Gracze - Dzienne statystyki',
         archivePage: 'Byli gracze',
       },
       tribePage: {
         indexPage: 'Plemiona',
         odPage: 'Plemiona OD',
-        dailyPage: 'Plemiona - Dzisiejsze statystyki',
+        dailyPage: 'Plemiona - Dzienne statystyki',
         archivePage: 'Byłe plemiona',
       },
     },

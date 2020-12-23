@@ -20,6 +20,6 @@ export type DailyPlayerStatsRecord = {
   player: Player;
 };
 
-export type TodaysStats = {
+export type DailyStats = {
   dailyPlayerStats?: List<DailyPlayerStatsRecord[]>;
 };

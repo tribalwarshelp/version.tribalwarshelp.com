@@ -4,10 +4,10 @@ import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import { DAILY_PLAYER_STATS } from './queries';
 
 import { DailyPlayerStatsQueryVariables } from '@libs/graphql/types';
-import { DailyPlayerStatsRecord, TodaysStats } from './types';
+import { DailyPlayerStatsRecord, DailyStats } from './types';
 
 export type QueryResult = {
-  todaysStats: DailyPlayerStatsRecord[];
+  dailyStats: DailyPlayerStatsRecord[];
   loading: boolean;
   total: number;
 };
@@ -24,7 +24,7 @@ const usePlayers = (
     return historyUpdatedAt.toString().split('T')[0] + 'T00:00:00Z';
   }, [historyUpdatedAt]);
   const { loading: loadingStats, data } = useQuery<
-    TodaysStats,
+    DailyStats,
     DailyPlayerStatsQueryVariables
   >(DAILY_PLAYER_STATS, {
     fetchPolicy: 'cache-and-network',
@@ -42,12 +42,12 @@ const usePlayers = (
       server,
     },
   });
-  const todaysStats = data?.dailyPlayerStats?.items ?? [];
-  const loading = loadingStats && todaysStats.length === 0;
+  const dailyStats = data?.dailyPlayerStats?.items ?? [];
+  const loading = loadingStats && dailyStats.length === 0;
   const total = data?.dailyPlayerStats?.total ?? 0;
 
   return {
-    todaysStats,
+    dailyStats,
     loading,
     total,
   };

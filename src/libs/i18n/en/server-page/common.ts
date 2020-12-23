@@ -11,13 +11,13 @@ const translations = {
           player: {
             index: 'Players',
             od: 'Players OD',
-            daily: `Players - Today's stats`,
+            daily: `Players - Daily stats`,
             archive: 'Past players',
           },
           tribe: {
             index: 'Tribes',
             od: 'Tribes OD',
-            daily: `Tribes - Today's stats`,
+            daily: `Tribes - Daily stats`,
             archive: 'Past tribes',
           },
         },
@@ -34,6 +34,9 @@ const translations = {
         dataUpdatedAt: 'The server data was updated {{date}}',
       },
     },
+  },
+  serverContextProvider: {
+    loading: 'Loading server...',
   },
 };
 

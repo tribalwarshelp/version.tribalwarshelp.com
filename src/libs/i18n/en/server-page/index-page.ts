@@ -17,7 +17,7 @@ const translations = {
     },
   },
   todaysBestStatsPlayers: {
-    title: `Today's best stats - players`,
+    title: `Players - Daily stats`,
     modes: {
       scoreAtt: 'ODA',
       scoreDef: 'ODD',
@@ -33,7 +33,7 @@ const translations = {
     },
   },
   todaysBestStatsTribes: {
-    title: `Today's best stats - tribes`,
+    title: `Tribes - Daily stats`,
     modes: {
       scoreAtt: 'ODA',
       scoreDef: 'ODD',

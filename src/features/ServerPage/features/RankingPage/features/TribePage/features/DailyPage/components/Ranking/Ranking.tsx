@@ -43,7 +43,7 @@ function Ranking({ server, t }: Props) {
   useUpdateEffect(() => {
     debouncedSetQuery.callback(q);
   }, [q]);
-  const { todaysStats, total, loading } = useStats(
+  const { dailyStats, total, loading } = useStats(
     query.page,
     limit,
     server,
@@ -92,7 +92,7 @@ function Ranking({ server, t }: Props) {
           return newCol;
         })}
         loading={loading}
-        data={todaysStats}
+        data={dailyStats}
         getRowKey={(record: DailyTribeStatsRecord) => record.tribe.id}
         size="small"
         orderBy={query.sort.orderBy}
