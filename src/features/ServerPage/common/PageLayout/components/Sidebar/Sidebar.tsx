@@ -12,6 +12,7 @@ import {
   SwipeableDrawer,
   DrawerProps,
   Toolbar,
+  Box,
 } from '@material-ui/core';
 import {
   Dashboard as DashboardIcon,
@@ -19,7 +20,7 @@ import {
   Grade as GradeIcon,
   Beenhere as BeenhereIcon,
 } from '@material-ui/icons';
-
+import DevNote from '@common/DevNote/DevNote';
 import Nav from './components/Nav/Nav';
 import ServerInfo from './components/ServerInfo/ServerInfo';
 
@@ -139,6 +140,9 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
         <ServerInfo t={t} />
         <Divider />
         <Nav routes={routes} />
+        <Box paddingX={0.5}>
+          <DevNote />
+        </Box>
       </div>
     </SwipeableDrawer>
   );

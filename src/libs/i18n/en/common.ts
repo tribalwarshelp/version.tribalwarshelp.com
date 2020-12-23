@@ -13,6 +13,7 @@ const translations = {
     closed: 'Closed',
     open: 'Open',
   },
+  devNote: `This website is still under development and some things may be broken.`,
 };
 
 export default translations;

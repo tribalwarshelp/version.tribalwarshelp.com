@@ -13,6 +13,7 @@ const translations = {
     closed: 'Zamknięty',
     open: 'Otwarty',
   },
+  devNote: `Strona jest ciągle w procesie tworzenia i mogą występować błędy.`,
 };
 
 export default translations;

@@ -4,10 +4,11 @@ import useTitle from '@libs/useTitle';
 import useStyles from './styles';
 import { INDEX_PAGE } from '@config/namespaces';
 
-import { Container, Toolbar } from '@material-ui/core';
+import { Container, Toolbar, Box } from '@material-ui/core';
 import Header from './components/Header/Header';
 import ServerSelection from './components/ServerSelection/ServerSelection';
 import Footer from './components/Footer/Footer';
+import DevNote from '@common/DevNote/DevNote';
 
 export default function IndexPage() {
   const classes = useStyles();
@@ -19,6 +20,9 @@ export default function IndexPage() {
       <Toolbar />
       <main className={classes.main}>
         <Container>
+          <Box mb={3}>
+            <DevNote />
+          </Box>
           <ServerSelection />
         </Container>
       </main>

@@ -28,11 +28,18 @@ function Map({
   return (
     <div className={classes.container}>
       {loading ? (
-        <Alert severity="warning">{loadingInfo}</Alert>
+        <Alert variant="filled" severity="warning">
+          {loadingInfo}
+        </Alert>
       ) : (
-        <Alert severity="info">
+        <Alert variant="filled" severity="info">
           URL:{' '}
-          <Link className={classes.link} href={src}>
+          <Link
+            color="inherit"
+            underline="always"
+            className={classes.link}
+            href={src}
+          >
             {src}
           </Link>
         </Alert>
