@@ -1,4 +1,3 @@
-import 'fontsource-roboto/latin-ext.css';
 import React, { Fragment } from 'react';
 import * as ROUTES from '@config/routes';
 
