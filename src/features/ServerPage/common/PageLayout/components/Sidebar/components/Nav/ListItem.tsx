@@ -9,7 +9,6 @@ import {
   ListItemText,
   Collapse,
   List,
-  Box,
 } from '@material-ui/core';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import Link from '@common/Link/Link';
@@ -27,6 +26,7 @@ function ListItem({ route, nestedLevel }: Props) {
   const hasNested = Array.isArray(route.nested) && route.nested.length > 0;
   const isActive =
     route.to && matchPath(pathname, { path: route.to, exact: route.exact });
+  console.log(nestedLevel);
 
   const getItem = () => {
     return (
@@ -34,8 +34,7 @@ function ListItem({ route, nestedLevel }: Props) {
         onClick={hasNested ? () => setOpen(!open) : undefined}
         disableGutters
         button
-        component={Box}
-        pl={nestedLevel}
+        style={{ paddingLeft: `${nestedLevel * 8}px` }}
       >
         <ListItemIcon
           className={clsx({
