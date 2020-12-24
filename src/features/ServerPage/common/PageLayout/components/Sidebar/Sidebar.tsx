@@ -140,7 +140,8 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
         <ServerInfo t={t} />
         <Divider />
         <Nav routes={routes} />
-        <Box paddingX={0.5}>
+        <Divider />
+        <Box padding={1}>
           <DevNote />
         </Box>
       </div>
