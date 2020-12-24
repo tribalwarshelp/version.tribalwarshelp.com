@@ -25,7 +25,7 @@ function IndexPage() {
   return (
     <PageLayout>
       <Container>
-        <Grid container spacing={1}>
+        <Grid container spacing={2}>
           <Grid
             component={Hidden}
             xsDown
