@@ -15,8 +15,14 @@ export interface Props {
 }
 
 function Spinner({
-  size = 200,
-  containerProps = {},
+  size = 150,
+  containerProps = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
   typographyProps = { variant: 'h3' },
   description = '',
 }: Props) {

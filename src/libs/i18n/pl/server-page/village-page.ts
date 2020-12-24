@@ -1,6 +1,7 @@
 const translations = {
   title: '{{name}} - Profil wioski - {{key}}',
   villageNotFound: 'Wioska nie została znaleziona',
+  loadingVillage: 'Ładowanie wioski...',
   pageLayout: {
     points: '{{points}} pkt',
   },

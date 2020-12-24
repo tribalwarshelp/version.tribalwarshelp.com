@@ -21,16 +21,25 @@ function VillagePage() {
   });
 
   if (loading) {
+    const centerFlex = {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    };
     return (
-      <ServerPageLayout>
+      <ServerPageLayout
+        noPadding
+        contentStyle={centerFlex as React.CSSProperties}
+      >
         <Spinner
           containerProps={{
-            marginTop: 5,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
+            ...centerFlex,
+            textAlign: 'center',
+            height: '100%',
+            paddingY: 5,
           }}
+          description={t('loadingVillage')}
         />
       </ServerPageLayout>
     );

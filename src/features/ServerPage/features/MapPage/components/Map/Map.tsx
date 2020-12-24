@@ -50,7 +50,6 @@ function Map({
       >
         {loading && (
           <Spinner
-            size={150}
             containerProps={{
               alignItems: 'center',
               justifyContent: 'center',
