@@ -49,7 +49,7 @@ const translations = {
     },
   },
   top5Players: {
-    title: 'Top 5 players',
+    title: 'Player ranking',
     columns: {
       rank: 'Rank',
       name: 'Player',
@@ -58,7 +58,7 @@ const translations = {
     },
   },
   top5Tribes: {
-    title: 'Top 5 tribes',
+    title: 'Tribe ranking',
     columns: {
       rank: 'Rank',
       tag: 'Tribe',

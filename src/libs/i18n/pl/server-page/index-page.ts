@@ -49,7 +49,7 @@ const translations = {
     },
   },
   top5Players: {
-    title: '5 najlepszych graczy',
+    title: 'Ranking graczy',
     columns: {
       rank: 'Ranking',
       name: 'Gracz',
@@ -58,7 +58,7 @@ const translations = {
     },
   },
   top5Tribes: {
-    title: '5 najlepszych plemion',
+    title: 'Ranking plemion',
     columns: {
       rank: 'Ranking',
       tag: 'Plemię',
