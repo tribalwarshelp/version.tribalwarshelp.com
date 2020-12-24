@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
+import formatNumber from '@utils/formatNumber';
 import { TRIBE_HISTORY } from './queries';
 import { LIMIT } from './constants';
 
@@ -56,6 +57,10 @@ function Statistics({ t, server, tribeID }: Props) {
       },
     ];
   }, [items, loading, t, mode]);
+  const xyFormat = (v: string | number | Date) =>
+    typeof v === 'string' || typeof v === 'number'
+      ? formatNumber('commas', v)
+      : v.toLocaleString();
 
   return (
     <Paper>
@@ -128,7 +133,7 @@ function Statistics({ t, server, tribeID }: Props) {
             legendPosition: 'middle',
             tickSize: 0,
             tickPadding: 4,
-            format: (v: string | number | Date) => v.toLocaleString(),
+            format: xyFormat,
           }}
           pointSize={10}
           pointColor={{ theme: 'background' }}
@@ -137,7 +142,7 @@ function Statistics({ t, server, tribeID }: Props) {
           pointLabelYOffset={-12}
           useMesh={true}
           colors={{ scheme: 'nivo' }}
-          yFormat={(v: string | number | Date) => v.toLocaleString()}
+          yFormat={xyFormat}
           legends={[
             {
               anchor: 'bottom-right',

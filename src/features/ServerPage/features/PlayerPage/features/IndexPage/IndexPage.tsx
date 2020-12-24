@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import useTitle from '@libs/useTitle';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import usePlayer from '../../libs/PlayerPageContext/usePlayer';
+import formatNumber from '@utils/formatNumber';
 import { DATE_FORMAT } from '@config/app';
 import { SERVER_PAGE } from '@config/namespaces';
 import * as ROUTES from '@config/routes';
@@ -47,31 +48,39 @@ function IndexPage() {
             },
             {
               field: 'points',
-              value: `${player.points.toLocaleString()} (#${player.rank})`,
+              value: `${formatNumber('commas', player.points)} (#${
+                player.rank
+              })`,
             },
             {
               field: 'totalVillages',
-              value: player.totalVillages.toLocaleString(),
+              value: formatNumber('commas', player.totalVillages),
             },
             {
               field: 'dailyGrowth',
-              value: player.dailyGrowth.toLocaleString(),
+              value: formatNumber('commas', player.dailyGrowth),
             },
             {
               field: 'scoreAtt',
-              value: `${player.scoreAtt.toLocaleString()} (#${player.rankAtt})`,
+              value: `${formatNumber('commas', player.scoreAtt)} (#${
+                player.rankAtt
+              })`,
             },
             {
               field: 'scoreDef',
-              value: `${player.scoreDef.toLocaleString()} (#${player.rankDef})`,
+              value: `${formatNumber('commas', player.scoreDef)} (#${
+                player.rankDef
+              })`,
             },
             {
               field: 'scoreSup',
-              value: `${player.scoreSup.toLocaleString()} (#${player.rankSup})`,
+              value: `${formatNumber('commas', player.scoreSup)} (#${
+                player.rankSup
+              })`,
             },
             {
               field: 'scoreTotal',
-              value: `${player.scoreTotal.toLocaleString()} (#${
+              value: `${formatNumber('commas', player.scoreTotal)} (#${
                 player.rankTotal
               })`,
             },
@@ -90,7 +99,7 @@ function IndexPage() {
                 new Date(player.bestRankAt),
                 DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
-              value: `${player.bestRank.toString()}`,
+              value: player.bestRank,
             },
             {
               field: 'mostPoints',
@@ -98,7 +107,7 @@ function IndexPage() {
                 new Date(player.mostPointsAt),
                 DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
-              value: `${player.mostPoints.toLocaleString()}`,
+              value: formatNumber('commas', player.mostPoints),
             },
             {
               field: 'mostVillages',
@@ -106,7 +115,7 @@ function IndexPage() {
                 new Date(player.bestRankAt),
                 DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
-              value: `${player.mostVillages.toLocaleString()}`,
+              value: formatNumber('commas', player.mostVillages),
             },
           ].map(({ field, value, subtitle }) => {
             return (

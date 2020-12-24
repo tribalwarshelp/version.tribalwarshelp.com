@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { subHours } from 'date-fns';
 import { useQuery } from '@apollo/client';
+import formatNumber from '@utils/formatNumber';
 import { SERVER_PAGE } from '@config/routes';
 import { DAILY_TRIBE_STATS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
@@ -110,7 +111,8 @@ function TodaysBestStatsTribes({ server, t }: Props) {
                   </Link>
                 )
               : index === 1
-              ? (record: DailyTribeStatsRecord) => record[mode].toLocaleString()
+              ? (record: DailyTribeStatsRecord) =>
+                  formatNumber('commas', record[mode])
               : column.valueFormatter,
           label: column.label ? t<string>(column.label) : '',
         }))}

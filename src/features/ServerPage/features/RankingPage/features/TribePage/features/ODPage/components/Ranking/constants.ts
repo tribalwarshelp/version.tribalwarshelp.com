@@ -1,4 +1,5 @@
 import { decodeSort } from '@libs/serialize-query-params/SortParam';
+import formatNumber from '@utils/formatNumber';
 import { Column } from '@common/Table/types';
 import { Tribe } from './types';
 
@@ -13,21 +14,21 @@ export const COLUMNS: Column<Tribe>[] = [
     label: 'ranking.columns.scoreAtt',
     sortable: true,
     valueFormatter: (tribe: Tribe) =>
-      `${tribe.scoreAtt.toLocaleString()} (#${tribe.rankAtt})`,
+      `${formatNumber('commas', tribe.scoreAtt)} (#${tribe.rankAtt})`,
   },
   {
     field: 'scoreDef',
     label: 'ranking.columns.scoreDef',
     sortable: true,
     valueFormatter: (tribe: Tribe) =>
-      `${tribe.scoreDef.toLocaleString()} (#${tribe.rankDef})`,
+      `${formatNumber('commas', tribe.scoreDef)} (#${tribe.rankDef})`,
   },
   {
     field: 'scoreTotal',
     label: 'ranking.columns.scoreTotal',
     sortable: true,
     valueFormatter: (tribe: Tribe) =>
-      `${tribe.scoreTotal.toLocaleString()} (#${tribe.rankTotal})`,
+      `${formatNumber('commas', tribe.scoreTotal)} (#${tribe.rankTotal})`,
   },
 ];
 

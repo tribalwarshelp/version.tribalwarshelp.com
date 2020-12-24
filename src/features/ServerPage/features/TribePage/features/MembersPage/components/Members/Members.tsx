@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { addDays, differenceInDays, format, isBefore } from 'date-fns';
 import useMembers from './useMembers';
+import formatNumber from '@utils/formatNumber';
 import { DATE_FORMAT } from '@config/app';
 import { HOW_MANY_DAYS_BACK } from './contants';
 
@@ -50,7 +51,7 @@ function Members({ t, server, tribeID }: Props) {
         label: t('members.columns.points'),
         sortable: false,
         valueFormatter: (p: Player) => {
-          return `${p.points.toLocaleString()} (#${p.rank})`;
+          return `${formatNumber('commas', p.points)} (#${p.rank})`;
         },
       },
       {
@@ -58,7 +59,7 @@ function Members({ t, server, tribeID }: Props) {
         label: t('members.columns.totalVillages'),
         sortable: false,
         valueFormatter: (p: Player) => {
-          return p.totalVillages.toLocaleString();
+          return formatNumber('commas', p.totalVillages);
         },
       },
     ];

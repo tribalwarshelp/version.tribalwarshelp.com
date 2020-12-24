@@ -1,4 +1,5 @@
 import { decodeSort } from '@libs/serialize-query-params/SortParam';
+import formatNumber from '@utils/formatNumber';
 import { Column } from '@common/Table/types';
 import { Player } from './types';
 
@@ -13,28 +14,28 @@ export const COLUMNS: Column<Player>[] = [
     label: 'ranking.columns.scoreAtt',
     sortable: true,
     valueFormatter: (player: Player) =>
-      `${player.scoreAtt.toLocaleString()} (#${player.rankAtt})`,
+      `${formatNumber('commas', player.scoreAtt)} (#${player.rankAtt})`,
   },
   {
     field: 'scoreDef',
     label: 'ranking.columns.scoreDef',
     sortable: true,
     valueFormatter: (player: Player) =>
-      `${player.scoreDef.toLocaleString()} (#${player.rankDef})`,
+      `${formatNumber('commas', player.scoreDef)} (#${player.rankDef})`,
   },
   {
     field: 'scoreSup',
     label: 'ranking.columns.scoreSup',
     sortable: true,
     valueFormatter: (player: Player) =>
-      `${player.scoreSup.toLocaleString()} (#${player.rankSup})`,
+      `${formatNumber('commas', player.scoreSup)} (#${player.rankSup})`,
   },
   {
     field: 'scoreTotal',
     label: 'ranking.columns.scoreTotal',
     sortable: true,
     valueFormatter: (player: Player) =>
-      `${player.scoreTotal.toLocaleString()} (#${player.rankTotal})`,
+      `${formatNumber('commas', player.scoreTotal)} (#${player.rankTotal})`,
   },
 ];
 

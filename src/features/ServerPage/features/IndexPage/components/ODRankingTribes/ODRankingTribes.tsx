@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
+import formatNumber from '@utils/formatNumber';
 import { SERVER_PAGE } from '@config/routes';
 import { TRIBES } from './queries';
 import { COLUMNS, LIMIT } from './constants';
@@ -43,11 +44,11 @@ function ODRankingTribes({ server, t }: Props) {
   const formatScore = (p: Tribe): string => {
     switch (mode) {
       case 'rankAtt':
-        return p.scoreAtt.toLocaleString();
+        return formatNumber('commas', p.scoreAtt);
       case 'rankDef':
-        return p.scoreDef.toLocaleString();
+        return formatNumber('commas', p.scoreDef);
       case 'rankTotal':
-        return p.scoreTotal.toLocaleString();
+        return formatNumber('commas', p.scoreTotal);
     }
   };
 
@@ -106,7 +107,7 @@ function ODRankingTribes({ server, t }: Props) {
                   </Link>
                 )
               : index === 0
-              ? (tribe: Tribe) => tribe[mode].toLocaleString()
+              ? (tribe: Tribe) => formatNumber('commas', tribe[mode])
               : index === 2
               ? formatScore
               : column.valueFormatter,

@@ -1,12 +1,14 @@
 import React from 'react';
-import { TFunction } from 'i18next';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import useStyles from './useStyles';
 import formatDistanceToNow from '@libs/date/formatDistanceToNow';
-import { Locale } from '@libs/date/locales';
+import formatNumber from '@utils/formatNumber';
 import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
 
 import { Typography } from '@material-ui/core';
+
+import { Locale } from '@libs/date/locales';
+import { TFunction } from 'i18next';
 
 export interface Props {
   t: TFunction;
@@ -26,19 +28,19 @@ const ServerInfo = ({ t }: Props) => {
     <div className={classes.root}>
       <Typography>
         {t('pageLayout.sidebar.serverInfo.numberOfPlayers', {
-          num: numberOfPlayers.toLocaleString(),
+          num: formatNumber('commas', numberOfPlayers),
           count: numberOfPlayers,
         })}
       </Typography>
       <Typography>
         {t('pageLayout.sidebar.serverInfo.numberOfTribes', {
-          num: numberOfTribes.toLocaleString(),
+          num: formatNumber('commas', numberOfTribes),
           count: numberOfTribes,
         })}
       </Typography>
       <Typography>
         {t('pageLayout.sidebar.serverInfo.numberOfVillages', {
-          num: numberOfVillages.toLocaleString(),
+          num: formatNumber('commas', numberOfVillages),
           count: numberOfVillages,
         })}
       </Typography>

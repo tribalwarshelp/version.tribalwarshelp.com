@@ -3,6 +3,7 @@ import { subDays, isEqual as isEqualDate } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
 import { validateRowsPerPage } from '@common/Table/helpers';
+import formatNumber from '@utils/formatNumber';
 import { SERVER_PAGE } from '@config/routes';
 import { PLAYER_HISTORY_AND_DAILY_STATS } from './queries';
 import { LIMIT } from './constants';
@@ -88,12 +89,12 @@ function PlayerHistory({ t, server, playerID }: Props) {
         placement="right"
         title={
           v.stats && typeof v.stats[statsKey] === 'number'
-            ? v.stats[statsKey].toLocaleString()
+            ? formatNumber('commas', v.stats[statsKey])
             : ''
         }
       >
         <span>
-          {v[valueKey].toLocaleString()}
+          {formatNumber('commas', v[valueKey])}
           {rankKey ? ` (#${v[rankKey]})` : ''}
         </span>
       </Tooltip>

@@ -1,4 +1,5 @@
 import React from 'react';
+import formatNumber from '@utils/formatNumber';
 
 export interface Props {
   num: number;
@@ -13,7 +14,7 @@ function ColouredNumber({ num, bold }: Props) {
         fontWeight: bold ? 'bolder' : undefined,
       }}
     >
-      {num.toLocaleString()}
+      {formatNumber('commas', num)}
     </span>
   );
 }

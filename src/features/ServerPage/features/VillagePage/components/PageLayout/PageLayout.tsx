@@ -1,5 +1,6 @@
 import React from 'react';
 import { TFunction } from 'i18next';
+import formatNumber from '@utils/formatNumber';
 import { Village } from '../../types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,7 +28,7 @@ function PageLayout({ children, village, server, t }: Props) {
             <Typography variant="h3">
               {village.fullName} (
               {t('pageLayout.points', {
-                points: village.points.toLocaleString(),
+                points: formatNumber('commas', village.points),
               })}
               )
             </Typography>

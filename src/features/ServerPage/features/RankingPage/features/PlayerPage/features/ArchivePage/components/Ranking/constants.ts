@@ -1,3 +1,4 @@
+import formatNumber from '@utils/formatNumber';
 import { Column } from '@common/Table/types';
 import { Player } from './types';
 
@@ -21,13 +22,15 @@ export const COLUMNS: Column<Player>[] = [
     field: 'mostPoints',
     label: 'ranking.columns.mostPoints',
     sortable: false,
-    valueFormatter: (player: Player) => player.mostPoints.toLocaleString(),
+    valueFormatter: (player: Player) =>
+      formatNumber('commas', player.mostPoints),
   },
   {
     field: 'mostVillages',
     label: 'ranking.columns.mostVillages',
     sortable: false,
-    valueFormatter: (player: Player) => player.mostVillages.toLocaleString(),
+    valueFormatter: (player: Player) =>
+      formatNumber('commas', player.mostVillages),
   },
   {
     field: 'deletedAt',

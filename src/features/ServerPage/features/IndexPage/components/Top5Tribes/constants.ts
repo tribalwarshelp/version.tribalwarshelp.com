@@ -1,5 +1,4 @@
 import formatNumber from '@utils/formatNumber';
-
 import { Column } from '@common/Table/types';
 import { Tribe } from './types';
 
@@ -18,7 +17,7 @@ export const COLUMNS: Column<Tribe>[] = [
     field: 'points',
     label: 'top5Tribes.columns.points',
     sortable: false,
-    valueFormatter: (tribe: Tribe) => tribe.points.toLocaleString(),
+    valueFormatter: (tribe: Tribe) => formatNumber('commas', tribe.points),
   },
   {
     field: 'dominance',

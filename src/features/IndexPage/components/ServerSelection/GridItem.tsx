@@ -1,4 +1,5 @@
 import React from 'react';
+import formatNumber from '@utils/formatNumber';
 import * as ROUTES from '@config/routes';
 import * as NAMESPACES from '@config/namespaces';
 import { SERVER_STATUS } from '@config/app';
@@ -50,17 +51,17 @@ function GridItem({ t, server }: Props) {
             <Typography>
               {t('serverSelection.numberOfPlayers', {
                 count: server.numberOfPlayers,
-                num: server.numberOfPlayers.toLocaleString(),
+                num: formatNumber('commas', server.numberOfPlayers),
               })}
               <br />
               {t('serverSelection.numberOfTribes', {
                 count: server.numberOfTribes,
-                num: server.numberOfTribes.toLocaleString(),
+                num: formatNumber('commas', server.numberOfTribes),
               })}
               <br />
               {t('serverSelection.numberOfVillages', {
                 count: server.numberOfVillages,
-                num: server.numberOfVillages.toLocaleString(),
+                num: formatNumber('commas', server.numberOfVillages),
               })}
               .
             </Typography>

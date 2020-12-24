@@ -80,12 +80,12 @@ function TribeHistory({ t, server, tribeID }: Props) {
         placement="right"
         title={
           v.stats && typeof v.stats[statsKey] === 'number'
-            ? v.stats[statsKey].toLocaleString()
+            ? formatNumber('commas', v.stats[statsKey])
             : ''
         }
       >
         <span>
-          {v[valueKey].toLocaleString()}
+          {formatNumber('commas', v[valueKey])}
           {rankKey ? ` (#${v[rankKey]})` : ''}
         </span>
       </Tooltip>

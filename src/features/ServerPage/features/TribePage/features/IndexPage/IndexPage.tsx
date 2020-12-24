@@ -44,15 +44,15 @@ function IndexPage() {
             },
             {
               field: 'points',
-              value: `${tribe.points.toLocaleString()} (#${tribe.rank})`,
+              value: `${formatNumber('commas', tribe.points)} (#${tribe.rank})`,
             },
             {
               field: 'allPoints',
-              value: `${tribe.allPoints.toLocaleString()}`,
+              value: formatNumber('commas', tribe.allPoints),
             },
             {
               field: 'totalVillages',
-              value: tribe.totalVillages.toLocaleString(),
+              value: formatNumber('commas', tribe.totalVillages),
             },
             {
               field: 'dominance',
@@ -60,15 +60,19 @@ function IndexPage() {
             },
             {
               field: 'scoreAtt',
-              value: `${tribe.scoreAtt.toLocaleString()} (#${tribe.rankAtt})`,
+              value: `${formatNumber('commas', tribe.scoreAtt)} (#${
+                tribe.rankAtt
+              })`,
             },
             {
               field: 'scoreDef',
-              value: `${tribe.scoreDef.toLocaleString()} (#${tribe.rankDef})`,
+              value: `${formatNumber('commas', tribe.scoreDef)} (#${
+                tribe.rankDef
+              })`,
             },
             {
               field: 'scoreTotal',
-              value: `${tribe.scoreTotal.toLocaleString()} (#${
+              value: `${formatNumber('commas', tribe.scoreTotal)} (#${
                 tribe.rankTotal
               })`,
             },
@@ -87,7 +91,7 @@ function IndexPage() {
                 new Date(tribe.bestRankAt),
                 DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
-              value: `${tribe.bestRank.toString()}`,
+              value: tribe.bestRank,
             },
             {
               field: 'mostPoints',
@@ -95,7 +99,7 @@ function IndexPage() {
                 new Date(tribe.mostPointsAt),
                 DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
-              value: `${tribe.mostPoints.toLocaleString()}`,
+              value: formatNumber('commas', tribe.mostPoints),
             },
             {
               field: 'mostVillages',
@@ -103,7 +107,7 @@ function IndexPage() {
                 new Date(tribe.bestRankAt),
                 DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
-              value: `${tribe.mostVillages.toLocaleString()}`,
+              value: formatNumber('commas', tribe.mostVillages),
             },
           ].map(({ field, value, subtitle }) => {
             return (

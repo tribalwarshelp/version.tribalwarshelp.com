@@ -1,3 +1,4 @@
+import formatNumber from '@utils/formatNumber';
 import { Column } from '@common/Table/types';
 import { Tribe } from './types';
 
@@ -12,7 +13,7 @@ export const COLUMNS: Column<Tribe>[] = [
     field: 'mostPoints',
     label: 'recentlyDeletedTribes.columns.mostPoints',
     sortable: false,
-    valueFormatter: (tribe: Tribe) => tribe.mostPoints.toLocaleString(),
+    valueFormatter: (tribe: Tribe) => formatNumber('commas', tribe.mostPoints),
   },
   {
     field: 'deletedAt',

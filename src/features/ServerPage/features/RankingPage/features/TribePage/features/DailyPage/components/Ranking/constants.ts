@@ -1,4 +1,5 @@
 import { decodeSort } from '@libs/serialize-query-params/SortParam';
+import formatNumber from '@utils/formatNumber';
 import { Column } from '@common/Table/types';
 import { DailyTribeStatsRecord } from './types';
 
@@ -18,35 +19,35 @@ export const COLUMNS: Column<DailyTribeStatsRecord>[] = [
     label: 'ranking.columns.points',
     sortable: true,
     valueFormatter: (record: DailyTribeStatsRecord) =>
-      record.points.toLocaleString(),
+      formatNumber('commas', record.points),
   },
   {
     field: 'villages',
     label: 'ranking.columns.villages',
     sortable: true,
     valueFormatter: (record: DailyTribeStatsRecord) =>
-      record.villages.toLocaleString(),
+      formatNumber('commas', record.villages),
   },
   {
     field: 'scoreAtt',
     label: 'ranking.columns.scoreAtt',
     sortable: true,
     valueFormatter: (record: DailyTribeStatsRecord) =>
-      record.scoreAtt.toLocaleString(),
+      formatNumber('commas', record.scoreAtt),
   },
   {
     field: 'scoreDef',
     label: 'ranking.columns.scoreDef',
     sortable: true,
     valueFormatter: (record: DailyTribeStatsRecord) =>
-      record.scoreDef.toLocaleString(),
+      formatNumber('commas', record.scoreDef),
   },
   {
     field: 'scoreTotal',
     label: 'ranking.columns.scoreTotal',
     sortable: true,
     valueFormatter: (record: DailyTribeStatsRecord) =>
-      record.scoreTotal.toLocaleString(),
+      formatNumber('commas', record.scoreTotal),
   },
 ];
 

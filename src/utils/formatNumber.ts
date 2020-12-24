@@ -1,10 +1,15 @@
-const formatNumber = (type: 'dominance', v: number | string): string => {
-  switch (type) {
+const formatNumber = (
+  variant: 'dominance' | 'commas',
+  v: number | string
+): string => {
+  if (typeof v === 'string') {
+    v = parseFloat(v);
+  }
+  switch (variant) {
     case 'dominance':
-      if (typeof v === 'string') {
-        v = parseFloat(v);
-      }
       return v.toFixed(2) + '%';
+    case 'commas':
+      return v.toLocaleString('en');
     default:
       return v + '';
   }

@@ -1,4 +1,5 @@
 import { decodeSort } from '@libs/serialize-query-params/SortParam';
+import formatNumber from '@utils/formatNumber';
 import { Column } from '@common/Table/types';
 import { DailyPlayerStatsRecord } from './types';
 
@@ -18,42 +19,42 @@ export const COLUMNS: Column<DailyPlayerStatsRecord>[] = [
     label: 'ranking.columns.points',
     sortable: true,
     valueFormatter: (record: DailyPlayerStatsRecord) =>
-      record.points.toLocaleString(),
+      formatNumber('commas', record.points),
   },
   {
     field: 'villages',
     label: 'ranking.columns.villages',
     sortable: true,
     valueFormatter: (record: DailyPlayerStatsRecord) =>
-      record.villages.toLocaleString(),
+      formatNumber('commas', record.villages),
   },
   {
     field: 'scoreAtt',
     label: 'ranking.columns.scoreAtt',
     sortable: true,
     valueFormatter: (record: DailyPlayerStatsRecord) =>
-      record.scoreAtt.toLocaleString(),
+      formatNumber('commas', record.scoreAtt),
   },
   {
     field: 'scoreDef',
     label: 'ranking.columns.scoreDef',
     sortable: true,
     valueFormatter: (record: DailyPlayerStatsRecord) =>
-      record.scoreDef.toLocaleString(),
+      formatNumber('commas', record.scoreDef),
   },
   {
     field: 'scoreSup',
     label: 'ranking.columns.scoreSup',
     sortable: true,
     valueFormatter: (record: DailyPlayerStatsRecord) =>
-      record.scoreSup.toLocaleString(),
+      formatNumber('commas', record.scoreSup),
   },
   {
     field: 'scoreTotal',
     label: 'ranking.columns.scoreTotal',
     sortable: true,
     valueFormatter: (record: DailyPlayerStatsRecord) =>
-      record.scoreTotal.toLocaleString(),
+      formatNumber('commas', record.scoreTotal),
   },
 ];
 

@@ -1,3 +1,4 @@
+import formatNumber from '@utils/formatNumber';
 import { Column } from '@common/Table/types';
 import { Tribe } from './types';
 
@@ -21,13 +22,15 @@ export const COLUMNS: Column<Tribe>[] = [
     field: 'mostPoints',
     label: 'ranking.columns.mostPoints',
     sortable: false,
-    valueFormatter: (player: Tribe) => player.mostPoints.toLocaleString(),
+    valueFormatter: (player: Tribe) =>
+      formatNumber('commas', player.mostPoints),
   },
   {
     field: 'mostVillages',
     label: 'ranking.columns.mostVillages',
     sortable: false,
-    valueFormatter: (player: Tribe) => player.mostVillages.toLocaleString(),
+    valueFormatter: (player: Tribe) =>
+      formatNumber('commas', player.mostVillages),
   },
   {
     field: 'deletedAt',

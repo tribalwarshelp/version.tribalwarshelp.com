@@ -17,13 +17,14 @@ export const COLUMNS: Column<Tribe>[] = [
     field: 'points',
     label: 'ranking.columns.points',
     sortable: false,
-    valueFormatter: (tribe: Tribe) => tribe.points.toLocaleString(),
+    valueFormatter: (tribe: Tribe) => formatNumber('commas', tribe.points),
   },
   {
     field: 'totalVillages',
     label: 'ranking.columns.totalVillages',
     sortable: false,
-    valueFormatter: (tribe: Tribe) => tribe.totalVillages.toLocaleString(),
+    valueFormatter: (tribe: Tribe) =>
+      formatNumber('commas', tribe.totalVillages),
   },
   {
     field: 'dominance',
