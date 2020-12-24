@@ -17,7 +17,7 @@ const translations = {
     },
   },
   todaysBestStatsPlayers: {
-    title: `Players - Daily stats`,
+    title: `Daily stats (players)`,
     modes: {
       scoreAtt: 'ODA',
       scoreDef: 'ODD',
@@ -33,7 +33,7 @@ const translations = {
     },
   },
   todaysBestStatsTribes: {
-    title: `Tribes - Daily stats`,
+    title: `Daily stats (tribes)`,
     modes: {
       scoreAtt: 'ODA',
       scoreDef: 'ODD',
@@ -49,7 +49,7 @@ const translations = {
     },
   },
   top5Players: {
-    title: '5 best players',
+    title: 'Top 5 players',
     columns: {
       rank: 'Rank',
       name: 'Player',
@@ -58,7 +58,7 @@ const translations = {
     },
   },
   top5Tribes: {
-    title: '5 best tribes',
+    title: 'Top 5 tribes',
     columns: {
       rank: 'Rank',
       tag: 'Tribe',
@@ -67,7 +67,7 @@ const translations = {
     },
   },
   odRankingPlayers: {
-    title: 'OD ranking - players',
+    title: 'OD ranking (players)',
     modes: {
       rankAtt: 'ODA',
       rankDef: 'ODD',
@@ -81,7 +81,7 @@ const translations = {
     },
   },
   odRankingTribes: {
-    title: 'OD ranking - tribes',
+    title: 'OD ranking (tribes)',
     modes: {
       rankAtt: 'ODA',
       rankDef: 'ODD',

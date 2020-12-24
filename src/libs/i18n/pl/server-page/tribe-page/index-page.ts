@@ -6,7 +6,7 @@ const translations = {
       totalVillages: 'Wioski',
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
-      scoreTotal: 'Ogólnie',
+      scoreTotal: 'Pokonani ogólnie',
     },
   },
   fields: {

@@ -22,7 +22,7 @@ const translations = {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
       scoreSup: 'Wspierający',
-      scoreTotal: 'Ogólnie',
+      scoreTotal: 'Pokonani ogólnie',
       points: 'Punkty',
       villages: 'Wioski',
     },
@@ -37,7 +37,7 @@ const translations = {
     modes: {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
-      scoreTotal: 'Ogólnie',
+      scoreTotal: 'Pokonani ogólnie',
       points: 'Punkty',
       villages: 'Wioski',
       members: 'Członkowie',
@@ -72,7 +72,7 @@ const translations = {
       rankAtt: 'Agresor',
       rankDef: 'Obrońca',
       rankSup: 'Wspierający',
-      rankTotal: 'Ogólnie',
+      rankTotal: 'Pokonani ogólnie',
     },
     columns: {
       rank: 'Ranking',
@@ -86,7 +86,7 @@ const translations = {
       rankAtt: 'Agresor',
       rankDef: 'Obrońca',
       rankSup: 'Wspierający',
-      rankTotal: 'Ogólnie',
+      rankTotal: 'Pokonani ogólnie',
     },
     columns: {
       rank: 'Ranking',

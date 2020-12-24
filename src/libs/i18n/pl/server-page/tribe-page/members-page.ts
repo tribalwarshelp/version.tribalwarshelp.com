@@ -13,7 +13,7 @@ const translations = {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
       scoreSup: 'Wspierający',
-      scoreTotal: 'Ogólnie',
+      scoreTotal: 'Pokonani ogólnie',
     },
   },
 };
