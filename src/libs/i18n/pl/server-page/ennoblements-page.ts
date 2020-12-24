@@ -12,6 +12,9 @@ const translations = {
       oldOwner: 'Stary właściciel',
       newOwner: 'Nowy właściciel',
     },
+    actions: {
+      inGameProfile: 'Profil w grze',
+    },
   },
   latestSavedEnnoblements: {
     inputs: {

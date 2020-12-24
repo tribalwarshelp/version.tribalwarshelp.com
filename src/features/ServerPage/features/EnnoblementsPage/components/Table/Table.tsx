@@ -1,7 +1,11 @@
 import React from 'react';
+import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import { SERVER_PAGE } from '@config/routes';
 import buildVillageName from '@utils/buildVillageName';
+import { buildVillageURL } from '@utils/buildTribalwarsURL';
 
+import { IconButton, Link as MUILink } from '@material-ui/core';
+import { Visibility } from '@material-ui/icons';
 import Table from '@common/Table/Table';
 import Link from '@common/Link/Link';
 import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
@@ -11,7 +15,6 @@ import { Props as TableFooterProps } from '@common/Table/TableFooter';
 import { Ennoblement } from './types';
 
 export interface Props {
-  server: string;
   t: TFunction;
   ennoblements: Ennoblement[];
   loading?: boolean;
@@ -20,13 +23,13 @@ export interface Props {
 }
 
 function EnnoblementsTable({
-  server,
   t,
   ennoblements,
   loading,
   hideFooter,
   footerProps,
 }: Props) {
+  const { version, key: server } = useServer();
   return (
     <Table
       columns={[
@@ -88,6 +91,18 @@ function EnnoblementsTable({
       size="small"
       hideFooter={hideFooter}
       footerProps={footerProps}
+      actions={[
+        {
+          icon: (e: Ennoblement) => (
+            <MUILink href={buildVillageURL(version.host, server, e.village.id)}>
+              <IconButton>
+                <Visibility />
+              </IconButton>
+            </MUILink>
+          ),
+          tooltip: t('table.actions.inGameProfile'),
+        },
+      ]}
     />
   );
 }

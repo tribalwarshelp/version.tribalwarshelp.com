@@ -86,7 +86,6 @@ function LatestSavedEnnoblements({ t, server }: Props) {
         t={t}
         ennoblements={ennoblements}
         loading={loading}
-        server={server}
         footerProps={{
           page: loading ? 0 : query.page,
           rowsPerPage: limit,

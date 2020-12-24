@@ -20,7 +20,7 @@ import TableFooter, { Props as TableFooterProps } from './TableFooter';
 
 export interface Props<T> {
   columns: Column<T>[];
-  actions?: Action[];
+  actions?: Action<T>[];
   data: T[];
   orderBy?: string;
   orderDirection?: OrderDirection;
@@ -65,6 +65,10 @@ function Table<T extends object>({
     footerProps?.rowsPerPage,
     footerProps?.rowsPerPageOptions
   );
+  const headColumns =
+    actions.length > 0
+      ? [...columns, { field: 'action', label: t('actions') }]
+      : columns;
 
   const isSelected = (row: T): boolean => {
     return (
@@ -82,7 +86,7 @@ function Table<T extends object>({
     <TableContainer>
       <MUITable size={size} {...tableProps}>
         <TableHead
-          columns={columns}
+          columns={headColumns}
           selection={selection}
           orderBy={orderBy}
           orderDirection={orderDirection}
@@ -98,7 +102,7 @@ function Table<T extends object>({
         <TableBody {...tableBodyProps}>
           {loading ? (
             <TableLoading
-              columns={columns}
+              columns={headColumns}
               size={size}
               rowsPerPage={rowsPerPage}
             />

@@ -6,6 +6,7 @@ const translations = {
   last: 'Ostatnia strona',
   next: 'Następna strona',
   previous: 'Poprzednia strona',
+  actions: 'Akcje',
 };
 
 export default translations;

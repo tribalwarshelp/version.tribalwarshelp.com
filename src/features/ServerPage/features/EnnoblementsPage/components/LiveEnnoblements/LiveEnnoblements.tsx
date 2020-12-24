@@ -27,13 +27,7 @@ function LiveEnnoblements({ t, server }: Props) {
   const loading = ennoblements.length === 0 && queryLoading;
 
   return (
-    <Table
-      t={t}
-      ennoblements={ennoblements}
-      loading={loading}
-      server={server}
-      hideFooter
-    />
+    <Table t={t} ennoblements={ennoblements} loading={loading} hideFooter />
   );
 }
 

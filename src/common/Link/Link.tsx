@@ -47,9 +47,4 @@ const Link = forwardRef(
   }
 );
 
-Link.defaultProps = {
-  color: 'secondary',
-  underline: 'none',
-} as Props;
-
 export default Link;

@@ -1,5 +1,5 @@
-export type Action = {
-  icon: React.ReactNode;
+export type Action<T> = {
+  icon: React.ReactNode | ((row: T, i: number) => React.ReactNode);
   tooltip?: string;
 };
 

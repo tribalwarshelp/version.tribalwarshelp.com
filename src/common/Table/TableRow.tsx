@@ -8,7 +8,7 @@ import { TableRow, TableCell, Checkbox, Tooltip } from '@material-ui/core';
 import { Action, Column } from './types';
 
 export interface Props<T> {
-  actions: Action[];
+  actions: Action<T>[];
   columns: Column<T>[];
   row: T;
   selection: boolean;
@@ -76,15 +76,21 @@ function EnhancedTableRow<T extends object>({
       })}
       {actions.length > 0 && (
         <TableCell size={size}>
-          {actions.map((action, index) =>
-            action.tooltip ? (
-              <Tooltip key={index} title={action.tooltip}>
-                <div>{action.icon}</div>
-              </Tooltip>
+          {actions.map((action, index) => {
+            const icon =
+              typeof action.icon === 'function'
+                ? action.icon(row, index)
+                : action.icon;
+            return action.tooltip ? (
+              <div key={index}>
+                <Tooltip key={index} title={action.tooltip}>
+                  <span>{icon}</span>
+                </Tooltip>
+              </div>
             ) : (
-              <div key={index}>{action.icon}</div>
-            )
-          )}
+              <div key={index}>{icon}</div>
+            );
+          })}
         </TableCell>
       )}
     </TableRow>

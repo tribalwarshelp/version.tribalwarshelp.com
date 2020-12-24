@@ -10,6 +10,10 @@ export type Server = {
   dataUpdatedAt: string | Date;
   historyUpdatedAt: string | Date;
   statsUpdatedAt: string | Date;
+  version: {
+    code: string;
+    host: string;
+  };
 };
 
 export type ServerList = {

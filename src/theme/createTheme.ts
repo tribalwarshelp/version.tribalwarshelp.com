@@ -23,6 +23,10 @@ const createTheme = (): Theme => {
         MuiAppBar: {
           color: 'default',
         },
+        MuiLink: {
+          color: 'secondary',
+          underline: 'none',
+        },
       },
       overrides: {
         MuiTableContainer: {

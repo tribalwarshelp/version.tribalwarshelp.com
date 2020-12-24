@@ -17,7 +17,7 @@ const translations = {
     },
   },
   todaysBestStatsPlayers: {
-    title: 'Gracze - Dzienne statystyki',
+    title: 'Dzienne statystyki (gracze)',
     modes: {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
@@ -33,7 +33,7 @@ const translations = {
     },
   },
   todaysBestStatsTribes: {
-    title: 'Plemiona - Dzienne statystyki',
+    title: 'Dzienne statystyki (plemiona)',
     modes: {
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
@@ -67,7 +67,7 @@ const translations = {
     },
   },
   odRankingPlayers: {
-    title: 'Ranking pokonanych przeciwników - gracze',
+    title: 'Ranking pokonanych przeciwników (gracze)',
     modes: {
       rankAtt: 'Agresor',
       rankDef: 'Obrońca',
@@ -81,7 +81,7 @@ const translations = {
     },
   },
   odRankingTribes: {
-    title: 'Ranking pokonanych przeciwników - plemiona',
+    title: 'Ranking pokonanych przeciwników (plemiona)',
     modes: {
       rankAtt: 'Agresor',
       rankDef: 'Obrońca',
