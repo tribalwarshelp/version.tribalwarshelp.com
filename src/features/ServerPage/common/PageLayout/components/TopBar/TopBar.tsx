@@ -13,6 +13,7 @@ import {
   Typography,
   Button,
   Tooltip,
+  Container,
 } from '@material-ui/core';
 import { Menu as MenuIcon, Input as InputIcon } from '@material-ui/icons';
 import VersionSelector from '@common/VersionSelector/VersionSelector';
@@ -30,45 +31,47 @@ const TopBar = ({ className, openSidebar, t }: Props) => {
 
   return (
     <AppBar className={clsx(className)}>
-      <Toolbar className={classes.toolbar}>
-        <div className={classes.leftSideContainer}>
-          <Hidden lgUp>
-            <IconButton color="inherit" onClick={openSidebar}>
-              <MenuIcon />
-            </IconButton>
-          </Hidden>
-          <Typography variant="h4">
-            <Link
-              color="inherit"
-              params={{ key }}
-              to={ROUTES.SERVER_PAGE.INDEX_PAGE}
-            >
-              {key}
-            </Link>
-          </Typography>
-        </div>
-        <div className={classes.rightSideContainer}>
-          <Link to={ROUTES.INDEX_PAGE} color="inherit">
-            <Hidden xsDown>
-              <Button startIcon={<InputIcon />}>
-                {t('pageLayout.topBar.home')}
-              </Button>
+      <Container maxWidth={false}>
+        <Toolbar disableGutters className={classes.toolbar}>
+          <div className={classes.leftSideContainer}>
+            <Hidden lgUp>
+              <IconButton color="inherit" onClick={openSidebar}>
+                <MenuIcon />
+              </IconButton>
             </Hidden>
-            <Hidden smUp>
-              <Tooltip
-                placement="bottom"
-                arrow
-                title={t<string>('pageLayout.topBar.home')}
+            <Typography variant="h4">
+              <Link
+                color="inherit"
+                params={{ key }}
+                to={ROUTES.SERVER_PAGE.INDEX_PAGE}
               >
-                <IconButton color="inherit">
-                  <InputIcon />
-                </IconButton>
-              </Tooltip>
-            </Hidden>
-          </Link>
-          <VersionSelector />
-        </div>
-      </Toolbar>
+                {key}
+              </Link>
+            </Typography>
+          </div>
+          <div className={classes.rightSideContainer}>
+            <Link to={ROUTES.INDEX_PAGE} color="inherit">
+              <Hidden xsDown>
+                <Button startIcon={<InputIcon />}>
+                  {t('pageLayout.topBar.home')}
+                </Button>
+              </Hidden>
+              <Hidden smUp>
+                <Tooltip
+                  placement="bottom"
+                  arrow
+                  title={t<string>('pageLayout.topBar.home')}
+                >
+                  <IconButton color="inherit">
+                    <InputIcon />
+                  </IconButton>
+                </Tooltip>
+              </Hidden>
+            </Link>
+            <VersionSelector />
+          </div>
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 };
