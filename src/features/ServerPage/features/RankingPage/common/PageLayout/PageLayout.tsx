@@ -6,8 +6,8 @@ import * as NAMESPACES from '@config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Tabs, Tab } from '@material-ui/core';
-import Link from '@common/Link/Link';
+import { Tabs } from '@material-ui/core';
+import TabLink from '@common/Link/TabLink';
 import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 
 import background from './backgrounds/bg-1-dark.png';
@@ -31,18 +31,14 @@ function PageLayout({ children }: Props) {
         >
           {tabs.map(({ to, label }) => {
             return (
-              <Tab
+              <TabLink
                 key={to}
-                label={
-                  <Link
-                    to={to}
-                    color="inherit"
-                    params={{ key: server.key }}
-                    style={{ width: '100%', height: '100%' }}
-                  >
-                    {label}
-                  </Link>
-                }
+                linkProps={{
+                  to: to,
+                  color: 'inherit',
+                  params: { key: server.key },
+                }}
+                label={label}
               />
             );
           })}

@@ -9,15 +9,8 @@ import * as NAMESPACES from '@config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import {
-  Chip,
-  Toolbar,
-  Typography,
-  Tabs,
-  Tab,
-  ChipProps,
-} from '@material-ui/core';
-import Link from '@common/Link/Link';
+import { Chip, Toolbar, Typography, Tabs, ChipProps } from '@material-ui/core';
+import TabLink from '@common/Link/TabLink';
 import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 
 import background1 from './backgrounds/bg-1-dark.jpg';
@@ -98,18 +91,14 @@ function PageLayout({ children }: Props) {
         >
           {tabs.map(({ to, label }) => {
             return (
-              <Tab
+              <TabLink
                 key={to}
-                label={
-                  <Link
-                    to={to}
-                    color="inherit"
-                    params={{ key: server.key, id: tribe.id }}
-                    style={{ width: '100%', height: '100%' }}
-                  >
-                    {label}
-                  </Link>
-                }
+                linkProps={{
+                  to: to,
+                  color: 'inherit',
+                  params: { key: server.key, id: tribe.id },
+                }}
+                label={label}
               />
             );
           })}
