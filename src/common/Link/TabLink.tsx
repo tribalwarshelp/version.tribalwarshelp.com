@@ -7,10 +7,14 @@ export interface Props extends TabProps {
   linkProps: LinkProps;
 }
 
-function TabLink({ linkProps = { to: '' }, ...props }: Props) {
+function TabLink({ linkProps = { to: '' }, style = {}, ...props }: Props) {
   return (
     <Link {...linkProps}>
-      <Tab disableTouchRipple {...props} />
+      <Tab
+        disableTouchRipple
+        style={{ width: '100%', height: '100%', ...style }}
+        {...props}
+      />
     </Link>
   );
 }
