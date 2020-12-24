@@ -13,10 +13,10 @@ const translations = {
     gridLineColor: 'Grid line color',
     continentNumberColor: 'Continent number color',
     markersOnly: 'Markers only',
-    showBarbarianVillages: 'Show barbarian villages',
+    showBarbarian: 'Show barbarian villages',
     largerMarkers: 'Larger markers',
-    continentGrid: 'Continent grid',
-    continentNumbers: 'Continent numbers',
+    showGrid: 'Continent grid',
+    showContinentNumbers: 'Continent numbers',
   },
   buttons: {
     addMarker: 'Add marker',

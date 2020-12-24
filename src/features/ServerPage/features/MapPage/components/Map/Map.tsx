@@ -27,21 +27,9 @@ function Map({
 
   return (
     <div className={classes.container}>
-      {loading ? (
+      {loading && (
         <Alert variant="filled" severity="warning">
           {loadingInfo}
-        </Alert>
-      ) : (
-        <Alert variant="filled" severity="info">
-          URL:{' '}
-          <Link
-            color="inherit"
-            underline="always"
-            className={classes.link}
-            href={src}
-          >
-            {src}
-          </Link>
         </Alert>
       )}
       <div
@@ -85,7 +73,7 @@ const useStyles = makeStyles(theme => {
       marginTop: theme.spacing(2),
     },
     imageWrapper: {
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       margin: 'auto',
     },
   };

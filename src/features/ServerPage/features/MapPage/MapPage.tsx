@@ -255,56 +255,47 @@ function MapPage() {
                   variant="standard"
                   type="color"
                 />
-                <FormControlLabel
-                  label={t('inputLabels.markersOnly')}
-                  control={
-                    <Checkbox
-                      name="markersOnly"
-                      checked={settings.markersOnly}
-                      onChange={handleSettingsChange}
+                {[
+                  {
+                    name: 'markersOnly',
+                    checked: settings.markersOnly,
+                    onChange: handleSettingsChange,
+                  },
+                  {
+                    name: 'showBarbarian',
+                    checked: settings.showBarbarian,
+                    onChange: handleSettingsChange,
+                  },
+                  {
+                    name: 'largerMarkers',
+                    checked: settings.largerMarkers,
+                    onChange: handleSettingsChange,
+                  },
+                  {
+                    name: 'showGrid',
+                    checked: settings.showGrid,
+                    onChange: handleSettingsChange,
+                  },
+                  {
+                    name: 'showContinentNumbers',
+                    checked: settings.showContinentNumbers,
+                    onChange: handleSettingsChange,
+                  },
+                ].map(({ name, checked, onChange }) => {
+                  return (
+                    <FormControlLabel
+                      key={name}
+                      label={t('inputLabels.' + name)}
+                      control={
+                        <Checkbox
+                          name={name}
+                          checked={checked}
+                          onChange={onChange}
+                        />
+                      }
                     />
-                  }
-                />
-                <FormControlLabel
-                  label={t('inputLabels.showBarbarianVillages')}
-                  control={
-                    <Checkbox
-                      name="showBarbarian"
-                      checked={settings.showBarbarian}
-                      onChange={handleSettingsChange}
-                    />
-                  }
-                />
-                <FormControlLabel
-                  label={t('inputLabels.largerMarkers')}
-                  control={
-                    <Checkbox
-                      name="largerMarkers"
-                      checked={settings.largerMarkers}
-                      onChange={handleSettingsChange}
-                    />
-                  }
-                />
-                <FormControlLabel
-                  label={t('inputLabels.continentGrid')}
-                  control={
-                    <Checkbox
-                      name="showGrid"
-                      checked={settings.showGrid}
-                      onChange={handleSettingsChange}
-                    />
-                  }
-                />
-                <FormControlLabel
-                  label={t('inputLabels.continentNumbers')}
-                  control={
-                    <Checkbox
-                      name="showContinentNumbers"
-                      checked={settings.showContinentNumbers}
-                      onChange={handleSettingsChange}
-                    />
-                  }
-                />
+                  );
+                })}
               </div>
             </Card>
             <Card>

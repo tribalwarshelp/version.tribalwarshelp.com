@@ -13,10 +13,10 @@ const translations = {
     gridLineColor: 'Kolor linii',
     continentNumberColor: 'Kolor numeru kontynentu',
     markersOnly: 'Tylko oznaczenia',
-    showBarbarianVillages: 'Pokaż opuszczone',
+    showBarbarian: 'Pokaż opuszczone',
     largerMarkers: 'Większe znaczniki',
-    continentGrid: 'Granice kontynentów',
-    continentNumbers: 'Numery kontynentów',
+    showGrid: 'Granice kontynentów',
+    showContinentNumbers: 'Numery kontynentów',
   },
   buttons: {
     addMarker: 'Dodaj marker',
