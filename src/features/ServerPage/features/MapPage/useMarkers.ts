@@ -10,7 +10,10 @@ export type MarkerBag<T> = {
   ) => (e: React.ChangeEvent<{}>, value: T | null) => void;
   createUpdateMarkerColorHandler: (
     id: string
-  ) => (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  ) => (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    color: string
+  ) => void;
   createDeleteMarkerHandler: (id: string) => () => void;
 };
 
@@ -50,14 +53,15 @@ const useMarkers = <T>(): MarkerBag<T> => {
   };
 
   const createUpdateMarkerColorHandler = (id: string) => (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    color: string
   ): void => {
     setMarkers(
       markers.map(marker => {
         if (marker.id !== id) return marker;
         return {
           ...marker,
-          color: e.target.value,
+          color,
         };
       })
     );

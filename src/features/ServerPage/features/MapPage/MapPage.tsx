@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
-import { useDebouncedCallback } from 'use-debounce';
 import useTitle from '@libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
 import useMarkers from './useMarkers';
@@ -20,6 +19,7 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
+import ColorInput from '@common/Form/ColorInput';
 import Map from './components/Map/Map';
 import MarkerField from './components/MarkerField/MarkerField';
 import Card from './components/Card/Card';
@@ -73,27 +73,32 @@ function MapPage() {
   const { t } = useTranslation(SERVER_PAGE.MAP_PAGE);
   useTitle(t('title', { key }));
 
+  const createSettingsChangeHandler = (key: keyof Settings) => (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    colorOrChecked?: string | boolean
+  ) => {
+    setSettings({
+      ...settings,
+      [key]:
+        typeof colorOrChecked === 'boolean' ||
+        typeof colorOrChecked === 'string'
+          ? colorOrChecked
+          : e.target.value,
+    });
+  };
+
   const handleSettingsChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    colorOrChecked?: string | boolean
   ) => {
     setSettings({
       ...settings,
       [e.target.name]:
-        e.target.type === 'checkbox' && 'checked' in e.target
-          ? e.target.checked
+        typeof colorOrChecked === 'boolean' ||
+        typeof colorOrChecked === 'string'
+          ? colorOrChecked
           : e.target.value,
     });
-  };
-  const debouncedHandleSettingsChange = useDebouncedCallback(
-    handleSettingsChange,
-    500
-  );
-
-  const callDebouncedHandleSettingsChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
-    e.persist();
-    debouncedHandleSettingsChange.callback(e);
   };
 
   const searchPlayers = async (searchValue: string): Promise<Player[]> => {
@@ -192,7 +197,7 @@ function MapPage() {
                   type="number"
                   name="scale"
                   value={settings.scale}
-                  onChange={handleSettingsChange}
+                  onChange={createSettingsChangeHandler('scale')}
                   fullWidth
                   variant="standard"
                   inputProps={{
@@ -206,7 +211,7 @@ function MapPage() {
                   type="number"
                   name="centerX"
                   value={settings.centerX}
-                  onChange={handleSettingsChange}
+                  onChange={createSettingsChangeHandler('centerX')}
                   fullWidth
                   variant="standard"
                   inputProps={{
@@ -220,7 +225,7 @@ function MapPage() {
                   type="number"
                   name="centerY"
                   value={settings.centerY}
-                  onChange={handleSettingsChange}
+                  onChange={createSettingsChangeHandler('centerY')}
                   fullWidth
                   variant="standard"
                   inputProps={{
@@ -229,31 +234,29 @@ function MapPage() {
                     step: '.01',
                   }}
                 />
-                <TextField
-                  label={t('inputLabels.backgroundColor')}
-                  name="backgroundColor"
-                  onChange={callDebouncedHandleSettingsChange}
+                <ColorInput
+                  color={settings.backgroundColor}
+                  onChange={createSettingsChangeHandler('backgroundColor')}
                   fullWidth
-                  type="color"
                   variant="standard"
+                  name="backgroundColor"
+                  label={t('inputLabels.backgroundColor')}
                 />
-                <TextField
+                <ColorInput
+                  color={settings.gridLineColor}
+                  onChange={createSettingsChangeHandler('gridLineColor')}
+                  fullWidth
+                  variant="standard"
                   name="gridLineColor"
                   label={t('inputLabels.gridLineColor')}
-                  onChange={callDebouncedHandleSettingsChange}
-                  defaultValue={settings.gridLineColor}
+                />
+                <ColorInput
+                  color={settings.continentNumberColor}
+                  onChange={createSettingsChangeHandler('continentNumberColor')}
                   fullWidth
                   variant="standard"
-                  type="color"
-                />
-                <TextField
                   name="continentNumberColor"
                   label={t('inputLabels.continentNumberColor')}
-                  onChange={callDebouncedHandleSettingsChange}
-                  defaultValue={settings.continentNumberColor}
-                  fullWidth
-                  variant="standard"
-                  type="color"
                 />
                 {[
                   {
@@ -321,6 +324,7 @@ function MapPage() {
                       loadSuggestions={searchTribes}
                       getOptionLabel={tribeGetOptionLabel}
                       getOptionSelected={tribeGetOptionSelected}
+                      color={marker.color}
                     />
                   );
                 })}
@@ -357,6 +361,7 @@ function MapPage() {
                       loadSuggestions={searchPlayers}
                       getOptionLabel={playerGetOptionLabel}
                       getOptionSelected={playerGetOptionSelected}
+                      color={marker.color}
                     />
                   );
                 })}

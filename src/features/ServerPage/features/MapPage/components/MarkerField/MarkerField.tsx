@@ -4,17 +4,20 @@ import { useDebouncedCallback } from 'use-debounce';
 import { TextField, Box, IconButton } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { Delete as DeleteIcon } from '@material-ui/icons';
+import ColorInput from '@common/Form/ColorInput';
 
 export interface Props<T> {
   onDelete: () => void;
   onChange: (e: React.ChangeEvent<{}>, value: T | null) => void;
   onChangeColor: (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    color: string
   ) => void;
   getOptionLabel: (opt: T) => string;
   getOptionSelected: (opt: T, value: T) => boolean;
   loadSuggestions: (value: string) => Promise<T[]>;
   loadingText?: string;
+  color: string;
 }
 
 function MarkerField<T extends object>({
@@ -25,15 +28,11 @@ function MarkerField<T extends object>({
   getOptionSelected,
   getOptionLabel,
   loadingText,
+  color,
 }: Props<T>) {
   const [searchValue, setSearchValue] = useState<string>('');
   const [suggestions, setSuggestions] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
-  const debouncedOnChangeColor = useDebouncedCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
-      onChangeColor(e),
-    500
-  );
   const debouncedLoadSuggestions = useDebouncedCallback(
     (searchValue: string) => {
       setLoading(true);
@@ -81,15 +80,13 @@ function MarkerField<T extends object>({
           );
         }}
       />
-      <TextField
+      <ColorInput
         style={{ width: '40%' }}
-        type="color"
         name="color"
         variant="standard"
-        onChange={e => {
-          e.persist();
-          debouncedOnChangeColor.callback(e);
-        }}
+        fullWidth
+        color={color}
+        onChange={onChangeColor}
       />
     </Box>
   );
