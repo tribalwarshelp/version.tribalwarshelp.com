@@ -103,10 +103,12 @@ function ColorInput({
   );
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   popper: {
+    zIndex: theme.zIndex.appBar + 1,
     '& .block-picker': {
-      backgroundColor: '#ecd7ac !important',
+      backgroundColor: `${theme.palette.background.paper} !important`,
+      boxShadow: `${theme.shadows[4]} !important`,
     },
   },
 }));
