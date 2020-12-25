@@ -104,7 +104,7 @@ function IndexPage() {
             {
               field: 'mostVillages',
               subtitle: format(
-                new Date(tribe.bestRankAt),
+                new Date(tribe.mostVillagesAt),
                 DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
               value: formatNumber('commas', tribe.mostVillages),

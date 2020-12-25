@@ -112,7 +112,7 @@ function IndexPage() {
             {
               field: 'mostVillages',
               subtitle: format(
-                new Date(player.bestRankAt),
+                new Date(player.mostVillagesAt),
                 DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
               ),
               value: formatNumber('commas', player.mostVillages),
