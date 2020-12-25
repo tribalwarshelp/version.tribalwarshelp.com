@@ -94,7 +94,11 @@ function EnnoblementsTable({
       actions={[
         {
           icon: (e: Ennoblement) => (
-            <MUILink href={buildVillageURL(version.host, server, e.village.id)}>
+            <MUILink
+              target="_blank"
+              rel="noopener noreferrer"
+              href={buildVillageURL(version.host, server, e.village.id)}
+            >
               <IconButton>
                 <Visibility />
               </IconButton>
