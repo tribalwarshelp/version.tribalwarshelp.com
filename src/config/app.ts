@@ -1,4 +1,4 @@
-export const DEFAULT_LANGUAGE = process.env.REACT_APP_DEFAULT_LANGUAGE ?? 'pl';
+export const DEFAULT_LANGUAGE = process.env.REACT_APP_DEFAULT_LANGUAGE ?? 'en';
 
 export const NAME = 'TWHelp';
 
