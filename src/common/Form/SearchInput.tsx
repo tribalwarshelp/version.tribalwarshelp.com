@@ -38,6 +38,7 @@ function SearchInput({ value, onResetValue, style, ...rest }: Props) {
           <InputAdornment position="end">
             <IconButton
               size="small"
+              type="button"
               disabled={typeof value === 'string' && value === ''}
               onClick={() => {
                 if (!value && input.current) {
@@ -51,6 +52,7 @@ function SearchInput({ value, onResetValue, style, ...rest }: Props) {
             </IconButton>
           </InputAdornment>
         ),
+        ...(rest.InputProps ?? {}),
       }}
     />
   );

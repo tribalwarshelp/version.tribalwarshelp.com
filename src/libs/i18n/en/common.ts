@@ -14,6 +14,12 @@ const translations = {
     open: 'Open',
   },
   devNote: `This website is still under development and some things may be broken.`,
+  mainLayout: {
+    header: {
+      home: 'Home',
+      search: 'Search',
+    },
+  },
 };
 
 export default translations;

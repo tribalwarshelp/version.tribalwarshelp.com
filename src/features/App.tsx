@@ -7,6 +7,7 @@ import ScrollToTop from '@common/ScrollToTop/ScrollToTop';
 
 import IndexPage from './IndexPage/IndexPage';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
+import SearchPage from './SearchPage/SearchPage';
 import ServerPage from './ServerPage/ServerPage';
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
       <Switch>
         <Route path={ROUTES.INDEX_PAGE} exact>
           <IndexPage />
+        </Route>
+        <Route path={ROUTES.SEARCH_PAGE} exact>
+          <SearchPage />
         </Route>
         <Route path={ROUTES.SERVER_PAGE.BASE}>
           <ServerPage />

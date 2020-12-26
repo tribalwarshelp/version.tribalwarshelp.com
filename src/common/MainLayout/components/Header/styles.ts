@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  searchInputWrapper: {
+  form: {
     width: '40%',
     [theme.breakpoints.between('xs', 'sm')]: {
       width: '60%',

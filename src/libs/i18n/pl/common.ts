@@ -14,6 +14,12 @@ const translations = {
     open: 'Otwarty',
   },
   devNote: `Strona jest ciągle w procesie tworzenia i mogą występować błędy.`,
+  mainLayout: {
+    header: {
+      home: 'Strona główna',
+      search: 'Wyszukaj',
+    },
+  },
 };
 
 export default translations;

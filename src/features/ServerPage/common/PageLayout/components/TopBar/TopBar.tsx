@@ -12,7 +12,6 @@ import {
   IconButton,
   Typography,
   Button,
-  Tooltip,
   Container,
 } from '@material-ui/core';
 import { Menu as MenuIcon, Input as InputIcon } from '@material-ui/icons';
@@ -57,15 +56,9 @@ const TopBar = ({ className, openSidebar, t }: Props) => {
                 </Button>
               </Hidden>
               <Hidden smUp>
-                <Tooltip
-                  placement="bottom"
-                  arrow
-                  title={t<string>('pageLayout.topBar.home')}
-                >
-                  <IconButton color="inherit">
-                    <InputIcon />
-                  </IconButton>
-                </Tooltip>
+                <IconButton color="inherit">
+                  <InputIcon />
+                </IconButton>
               </Hidden>
             </Link>
             <VersionSelector />

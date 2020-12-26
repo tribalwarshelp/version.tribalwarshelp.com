@@ -10,7 +10,7 @@ export type QueryResult = {
   total: number;
 };
 
-const useServers = (page: number, perPage: number, q: string): QueryResult => {
+const useServers = (page: number, perPage: number): QueryResult => {
   const { data, loading: loadingServers } = useQuery<
     ServerList,
     ServersQueryVariables
@@ -21,7 +21,6 @@ const useServers = (page: number, perPage: number, q: string): QueryResult => {
       offset: (page - 1) * perPage,
       limit: perPage,
       filter: {
-        keyIEQ: '%' + q + '%',
         versionCode: [extractVersionCodeFromHostname(window.location.hostname)],
       },
     },

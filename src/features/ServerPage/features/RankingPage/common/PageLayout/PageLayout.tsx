@@ -24,11 +24,7 @@ function PageLayout({ children }: Props) {
   return (
     <ServerPageLayout noPadding>
       <header className={classes.header}>
-        <Tabs
-          variant="scrollable"
-          value={currentTab}
-          selectionFollowsFocus={false}
-        >
+        <Tabs variant="scrollable" value={currentTab}>
           {tabs.map(({ to, label }) => {
             return (
               <TabLink

@@ -1,8 +1,5 @@
 const translations = {
   title: 'Strona główna',
-  header: {
-    search: 'Wyszukaj serwer',
-  },
   serverSelection: {
     numberOfPlayers_0: '{{num}} gracz',
     numberOfPlayers_1: '{{num}} graczy',

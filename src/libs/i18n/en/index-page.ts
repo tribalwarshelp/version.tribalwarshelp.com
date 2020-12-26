@@ -1,8 +1,5 @@
 const translations = {
   title: 'Home',
-  header: {
-    search: 'Search server',
-  },
   serverSelection: {
     numberOfPlayers: '{{num}} player',
     numberOfPlayers_plural: '{{num}} players',

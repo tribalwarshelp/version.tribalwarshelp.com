@@ -6,6 +6,8 @@ import {
 } from '@material-ui/core/styles';
 
 const createTheme = (): Theme => {
+  const defaultTheme = createMuiTheme();
+
   return responsiveFontSizes(
     createMuiTheme({
       palette: {
@@ -29,6 +31,33 @@ const createTheme = (): Theme => {
         },
       },
       overrides: {
+        MuiTooltip: {
+          tooltipPlacementTop: {
+            [defaultTheme.breakpoints.down('xs')]: {
+              margin: defaultTheme.spacing(2, 0),
+            },
+          },
+          tooltipPlacementBottom: {
+            [defaultTheme.breakpoints.down('xs')]: {
+              margin: defaultTheme.spacing(2, 0),
+            },
+          },
+          tooltipPlacementLeft: {
+            [defaultTheme.breakpoints.down('xs')]: {
+              margin: defaultTheme.spacing(2, 0),
+            },
+          },
+          tooltipPlacementRight: {
+            [defaultTheme.breakpoints.down('xs')]: {
+              margin: defaultTheme.spacing(2, 0),
+            },
+          },
+        },
+        MuiTab: {
+          root: {
+            whiteSpace: 'nowrap',
+          },
+        },
         MuiTableContainer: {
           root: {
             overflow: 'auto',

@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  useQueryParams,
-  StringParam,
-  NumberParam,
-  withDefault,
-} from 'use-query-params';
+import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
 import useServers from './useServers';
 import * as NAMESPACES from '@config/namespaces';
@@ -22,10 +17,9 @@ const arr = new Array(PER_PAGE).fill(0);
 export default function ServerSelection() {
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 1),
-    q: withDefault(StringParam, ''),
   });
   const { t } = useTranslation(NAMESPACES.INDEX_PAGE);
-  const { servers, loading, total } = useServers(query.page, PER_PAGE, query.q);
+  const { servers, loading, total } = useServers(query.page, PER_PAGE);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
     setQuery({ page });
