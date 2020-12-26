@@ -3,7 +3,7 @@ export type List<T> = {
   items: T;
 };
 
-type QueryVariables<T> = {
+type QueryVariables<T = undefined> = {
   sort?: string[];
   limit?: number;
   offset?: number;
@@ -152,4 +152,15 @@ export type DailyTribeStatsQueryVariables = QueryVariablesWithServer<
 export type VillageQueryVariables = {
   server: string;
   id: number;
+};
+
+export type SearchPlayerQueryVariables = Omit<QueryVariables, 'filter'> & {
+  version: string;
+  name?: string;
+  id?: number;
+};
+
+export type SearchTribeQueryVariables = Omit<QueryVariables, 'filter'> & {
+  version: string;
+  query: string;
 };

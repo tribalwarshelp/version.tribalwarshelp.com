@@ -14,6 +14,7 @@ import {
   Link as MUILink,
   InputAdornment,
   IconButton,
+  AppBarProps,
 } from '@material-ui/core';
 import { Search as SearchIcon, Input as InputIcon } from '@material-ui/icons';
 import Link from '@common/Link/Link';
@@ -24,12 +25,14 @@ export interface Props {
   showLinkToHomePage?: boolean;
   hideVersionSelectorOnMobile?: boolean;
   defaultQ?: string;
+  appBarProps?: AppBarProps;
 }
 
 export default function Header({
   showLinkToHomePage = true,
   hideVersionSelectorOnMobile = false,
   defaultQ = '',
+  appBarProps = {},
 }: Props) {
   const [q, setQ] = useState<string>(defaultQ);
   const { t } = useTranslation(NAMESPACES.COMMON);
@@ -47,7 +50,7 @@ export default function Header({
     </div>
   );
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" {...appBarProps}>
       <Container>
         <Toolbar disableGutters className={classes.toolbar}>
           <form className={classes.form}>
