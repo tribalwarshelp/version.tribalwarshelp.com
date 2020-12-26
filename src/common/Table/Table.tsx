@@ -54,21 +54,27 @@ function Table<T extends object>({
   tableBodyProps = {},
   tableProps = {},
   hideFooter = false,
-  footerProps,
+  footerProps = {},
   size,
   selected,
   onSelect,
   getRowKey,
 }: Props<T>) {
   const { t } = useTranslation(TABLE);
-  const rowsPerPage = validateRowsPerPage(
-    footerProps?.rowsPerPage,
-    footerProps?.rowsPerPageOptions
-  );
   const headColumns =
     actions.length > 0
       ? [...columns, { field: 'action', label: t('actions') }]
       : columns;
+  const preparedFooterProps = {
+    page: 0,
+    rowsPerPage: validateRowsPerPage(
+      footerProps?.rowsPerPage,
+      footerProps?.rowsPerPageOptions
+    ),
+    count: data.length,
+    size: size,
+    ...footerProps,
+  };
 
   const isSelected = (row: T): boolean => {
     return (
@@ -104,7 +110,7 @@ function Table<T extends object>({
             <TableLoading
               columns={headColumns}
               size={size}
-              rowsPerPage={rowsPerPage}
+              rowsPerPage={preparedFooterProps.rowsPerPage}
             />
           ) : data.length > 0 ? (
             data.map((item, index) => {
@@ -139,11 +145,14 @@ function Table<T extends object>({
         {!hideFooter && (
           <TableFooter
             t={t}
-            count={footerProps?.count ?? data.length}
             size={size}
-            {...footerProps}
-            page={loading ? 0 : footerProps?.page ?? 0}
-            rowsPerPage={rowsPerPage}
+            {...preparedFooterProps}
+            count={
+              loading
+                ? preparedFooterProps.page *
+                  (preparedFooterProps.rowsPerPage + 1)
+                : preparedFooterProps.count
+            }
           />
         )}
       </MUITable>

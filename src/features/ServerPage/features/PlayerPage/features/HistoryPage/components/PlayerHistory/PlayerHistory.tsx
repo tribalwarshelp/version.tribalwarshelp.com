@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { subDays, isEqual as isEqualDate } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
+import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import formatNumber from '@utils/formatNumber';
 import { SERVER_PAGE } from '@config/routes';
@@ -31,6 +32,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
     limit: withDefault(NumberParam, LIMIT),
   });
   const limit = validateRowsPerPage(query.limit);
+  useScrollToElement(document.documentElement, [query.page, limit]);
   const { data: queryData, loading: queryLoading } = useQuery<
     PlayerHistoryT,
     Variables
@@ -182,22 +184,14 @@ function PlayerHistory({ t, server, playerID }: Props) {
         data={playerHistoryItems}
         size="small"
         footerProps={{
-          page: loading ? 0 : query.page,
+          page: query.page,
           rowsPerPage: limit,
           count: total,
           onChangePage: page => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
             setQuery({ page });
           },
           onChangeRowsPerPage: rowsPerPage => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
-            requestAnimationFrame(() => {
-              setQuery({ limit: rowsPerPage, page: 0 });
-            });
+            setQuery({ limit: rowsPerPage, page: 0 });
           },
         }}
       />

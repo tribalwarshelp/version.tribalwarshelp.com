@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
+import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import { SERVER_PAGE } from '@config/routes';
 import { ENNOBLEMENTS } from './queries';
@@ -29,6 +30,7 @@ function Ennoblements({ t, server, playerID }: Props) {
     limit: withDefault(NumberParam, LIMIT),
   });
   const limit = validateRowsPerPage(query.limit);
+  useScrollToElement(document.documentElement, [query.page, limit]);
   const { data: queryData, loading: queryLoading } = useQuery<
     EnnoblementsT,
     EnnoblementsQueryVariables
@@ -129,22 +131,14 @@ function Ennoblements({ t, server, playerID }: Props) {
         data={ennoblements}
         size="small"
         footerProps={{
-          page: loading ? 0 : query.page,
+          page: query.page,
           rowsPerPage: limit,
           count: total,
           onChangePage: page => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
             setQuery({ page });
           },
           onChangeRowsPerPage: rowsPerPage => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
-            requestAnimationFrame(() => {
-              setQuery({ limit: rowsPerPage, page: 0 });
-            });
+            setQuery({ limit: rowsPerPage, page: 0 });
           },
         }}
       />

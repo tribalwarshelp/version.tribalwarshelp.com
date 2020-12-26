@@ -7,8 +7,9 @@ import {
 } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
 import useUpdateEffect from '@libs/useUpdateEffect';
-import SortParam from '@libs/serialize-query-params/SortParam';
+import useScrollToElement from '@libs/useScrollToElement';
 import useStats from './useStats';
+import SortParam from '@libs/serialize-query-params/SortParam';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import * as ROUTES from '@config/routes';
 import { COLUMNS, LIMIT, DEFAULT_SORT } from './constants';
@@ -43,6 +44,7 @@ function Ranking({ server, t }: Props) {
   useUpdateEffect(() => {
     debouncedSetQuery.callback(q);
   }, [q]);
+  useScrollToElement(document.documentElement, [query.page, limit]);
   const { dailyStats, total, loading } = useStats(
     query.page,
     limit,
@@ -108,18 +110,10 @@ function Ranking({ server, t }: Props) {
           rowsPerPage: limit,
           count: total,
           onChangePage: page => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
             setQuery({ page });
           },
           onChangeRowsPerPage: rowsPerPage => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
-            requestAnimationFrame(() => {
-              setQuery({ limit: rowsPerPage, page: 0 });
-            });
+            setQuery({ limit: rowsPerPage, page: 0 });
           },
         }}
       />

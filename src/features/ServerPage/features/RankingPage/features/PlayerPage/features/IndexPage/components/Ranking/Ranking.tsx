@@ -7,6 +7,7 @@ import {
 } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
 import useUpdateEffect from '@libs/useUpdateEffect';
+import useScrollToElement from '@libs/useScrollToElement';
 import usePlayers from './usePlayers';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import { COLUMNS, LIMIT } from './constants';
@@ -40,6 +41,7 @@ function Ranking({ server, t }: Props) {
     debouncedSetQuery.callback(q);
   }, [q]);
   const limit = validateRowsPerPage(query.limit);
+  useScrollToElement(document.documentElement, [query.page, limit]);
   const { players, total, loading } = usePlayers(
     query.page,
     limit,
@@ -76,22 +78,14 @@ function Ranking({ server, t }: Props) {
         data={players}
         size="small"
         footerProps={{
-          page: loading ? 0 : query.page,
+          page: query.page,
           rowsPerPage: limit,
           count: total,
           onChangePage: page => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
             setQuery({ page });
           },
           onChangeRowsPerPage: rowsPerPage => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
-            requestAnimationFrame(() => {
-              setQuery({ limit: rowsPerPage, page: 0 });
-            });
+            setQuery({ limit: rowsPerPage, page: 0 });
           },
         }}
       />

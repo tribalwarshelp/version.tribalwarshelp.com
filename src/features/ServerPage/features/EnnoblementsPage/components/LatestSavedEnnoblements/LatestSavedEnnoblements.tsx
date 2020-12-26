@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import {
   useQueryParams,
@@ -6,7 +7,7 @@ import {
   withDefault,
   DateParam,
 } from 'use-query-params';
-import { format } from 'date-fns';
+import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import { ENNOBLEMENTS } from './queries';
 import { LIMIT } from './constants';
@@ -34,6 +35,7 @@ function LatestSavedEnnoblements({ t, server }: Props) {
     ennobledAtLTE: withDefault(DateParam, undefined),
   });
   const limit = validateRowsPerPage(query.limit);
+  useScrollToElement(document.documentElement, [query.page, limit]);
   const { data: queryData, loading: queryLoading } = useQuery<
     EnnoblementsT,
     EnnoblementsQueryVariables
@@ -87,22 +89,14 @@ function LatestSavedEnnoblements({ t, server }: Props) {
         ennoblements={ennoblements}
         loading={loading}
         footerProps={{
-          page: loading ? 0 : query.page,
+          page: query.page,
           rowsPerPage: limit,
           count: total,
           onChangePage: page => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
             setQuery({ page });
           },
           onChangeRowsPerPage: rowsPerPage => {
-            if (window.scrollTo) {
-              window.scrollTo({ top: 0, behavior: `smooth` });
-            }
-            requestAnimationFrame(() => {
-              setQuery({ limit: rowsPerPage, page: 0 });
-            });
+            setQuery({ limit: rowsPerPage, page: 0 });
           },
         }}
       />
