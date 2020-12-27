@@ -39,6 +39,7 @@ function PageLayout({ children }: Props) {
       <header className={clsx(classes.header, 'bg-' + bg)}>
         <Toolbar className={classes.toolbar}>
           <div style={{ width: '100%' }}>
+            <Typography variant="h3">{tribe.name}</Typography>
             <div className={classes.tribeTagContainer}>
               <Typography variant="h3">{tribe.tag}</Typography>
               <div className={classes.chipContainer}>
@@ -113,6 +114,7 @@ const useStyles = makeStyles(theme => ({
   header: {
     width: '100%',
     minHeight: theme.spacing(30),
+    paddingTop: theme.spacing(2),
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -134,15 +136,14 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    '& > *:not(:last-child)': {
-      marginRight: theme.spacing(2),
-    },
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
       '& > *': {
-        marginRight: 0,
-        marginBottom: theme.spacing(1),
+        marginRight: `0 !important`,
       },
+    },
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(2),
     },
   },
   toolbar: {

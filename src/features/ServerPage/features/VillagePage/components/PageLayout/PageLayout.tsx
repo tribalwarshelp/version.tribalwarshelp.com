@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
   header: {
     width: '100%',
     minHeight: theme.spacing(30),
+    paddingTop: theme.spacing(2),
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',

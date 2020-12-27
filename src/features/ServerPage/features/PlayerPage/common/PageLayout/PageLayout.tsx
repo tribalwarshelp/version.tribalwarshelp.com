@@ -132,6 +132,7 @@ function PageLayout({ children }: Props) {
 const useStyles = makeStyles(theme => ({
   header: {
     width: '100%',
+    paddingTop: theme.spacing(2),
     minHeight: theme.spacing(30),
     backgroundPosition: 'center',
     backgroundSize: 'cover',
@@ -161,8 +162,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
       '& > *': {
-        marginRight: 0,
-        marginBottom: theme.spacing(1),
+        marginRight: `0 !important`,
       },
     },
   },
