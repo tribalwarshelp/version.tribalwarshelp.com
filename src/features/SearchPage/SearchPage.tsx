@@ -61,9 +61,7 @@ function SearchPage() {
       <Container>
         <Paper>
           <ModeSelector
-            buttonProps={{
-              variant: 'outlined',
-            }}
+            buttonProps={{ size: 'medium' }}
             onSelect={m => setQuery({ mode: m.name, page: 0, limit: LIMIT })}
             modes={[
               {

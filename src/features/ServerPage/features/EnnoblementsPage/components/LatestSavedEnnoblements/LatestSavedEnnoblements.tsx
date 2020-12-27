@@ -110,6 +110,8 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       margin: theme.spacing(0.5),
       [theme.breakpoints.down('xs')]: {
+        marginLeft: 0,
+        marginRight: 0,
         width: '100%',
       },
     },

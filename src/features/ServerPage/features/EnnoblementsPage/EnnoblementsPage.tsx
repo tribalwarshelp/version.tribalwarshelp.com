@@ -27,6 +27,7 @@ function EnnoblementsPage() {
         <Paper>
           <ModeSelector
             onSelect={m => setQuery({ mode: m.name })}
+            buttonProps={{ size: 'medium' }}
             modes={[
               {
                 name: 'live',

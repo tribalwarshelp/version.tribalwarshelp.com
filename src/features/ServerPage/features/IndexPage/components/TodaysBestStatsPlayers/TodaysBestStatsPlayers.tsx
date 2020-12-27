@@ -56,9 +56,6 @@ function TodaysBestStatsPlayers({ server, t }: Props) {
         </Typography>
       </TableToolbar>
       <ModeSelector
-        buttonProps={{
-          variant: 'outlined',
-        }}
         onSelect={m => setMode(m.name as Mode)}
         modes={[
           {

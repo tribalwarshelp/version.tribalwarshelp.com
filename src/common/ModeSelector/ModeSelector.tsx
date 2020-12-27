@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, ButtonProps } from '@material-ui/core';
+import { Button, ButtonProps, Toolbar } from '@material-ui/core';
 
 export type Mode = {
   name: string;
@@ -20,11 +20,13 @@ function ModeSelector({ modes, onSelect, buttonProps = {}, style }: Props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.container} style={style}>
+    <Toolbar className={classes.container} style={style}>
       {modes.map(m => {
         return (
           <div key={m.name}>
             <Button
+              size="small"
+              fullWidth
               {...buttonProps}
               variant={m.selected ? 'contained' : 'outlined'}
               onClick={() => {
@@ -32,21 +34,21 @@ function ModeSelector({ modes, onSelect, buttonProps = {}, style }: Props) {
                   onSelect(m);
                 }
               }}
-              size="small"
-              fullWidth
             >
               {m.label ?? m.name}
             </Button>
           </div>
         );
       })}
-    </div>
+    </Toolbar>
   );
 }
 
 const useStyles = makeStyles(theme => ({
   container: {
-    padding: theme.spacing(1, 0),
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    minHeight: 'auto',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -58,6 +60,8 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
       '& > *': {
+        paddingLeft: 0,
+        paddingRight: 0,
         width: '100%',
       },
     },
