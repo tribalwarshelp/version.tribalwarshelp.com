@@ -87,7 +87,7 @@ const useMarkers = <T extends HasID, VariablesT>(
         });
     } else {
       setLoading(false);
-    }
+    } // eslint-disable-next-line
   }, []);
 
   const getNewMarker = (

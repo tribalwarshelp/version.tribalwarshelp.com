@@ -79,7 +79,6 @@ function LatestSavedEnnoblements({ t, server }: Props) {
               InputLabelProps={{
                 shrink: true,
               }}
-              variant="standard"
             />
           );
         })}

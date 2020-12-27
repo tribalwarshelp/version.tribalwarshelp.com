@@ -7,7 +7,7 @@ const useUpdateEffect: typeof useEffect = (effect, deps) => {
   useEffect(() => {
     if (!isFirstMount) {
       return effect();
-    }
+    } // eslint-disable-next-line
   }, deps);
 };
 
