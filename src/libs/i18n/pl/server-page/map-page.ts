@@ -22,8 +22,11 @@ const translations = {
     addMarker: 'Dodaj marker',
     generateNewMap: 'Wygeneruj mapę',
   },
-  loading: 'Ładowanie',
-  infoWhileGenerating: 'To może zająć chwilę!',
+  loading: 'Ładowanie...',
+  noOptions: 'Brak opcji',
+  infoWhileGenerating: 'To może potrwać chwilę!',
+  infoAfterGenerating:
+    'Możesz użyć tego linka by prowadzić edycję mapy w przyszłości, lub by przesłać ją do innych graczy:',
 };
 
 export default translations;

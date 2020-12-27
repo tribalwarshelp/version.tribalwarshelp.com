@@ -1,41 +1,35 @@
 import React, { memo, useState, useEffect } from 'react';
+import { TFunction } from 'i18next';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Alert } from '@material-ui/lab';
 import Spinner from '@common/Spinner/Spinner';
+import InfoWhileGenerating from './InfoWhileGenerating';
+import InfoAfterGenerating from './InfoAfterGenerating';
 
 export interface Props {
   src: string;
   alt: string;
   maxWidth?: number;
-  loadingInfo?: string;
+  t: TFunction;
 }
 
-function Map({
-  src = '',
-  alt = 'Map',
-  maxWidth = 1000,
-  loadingInfo = 'It may take a while to generate a map!',
-}: Props) {
-  const [loading, setLoading] = useState(true);
+function Map({ src = '', alt = 'Map', maxWidth = 1000, t }: Props) {
+  const [isGenerating, setIsGenerating] = useState(true);
   const classes = useStyles();
 
   useEffect(() => {
-    setLoading(true);
+    setIsGenerating(true);
   }, [src]);
 
   return (
     <div className={classes.container}>
-      {loading && (
-        <Alert variant="filled" severity="warning">
-          {loadingInfo}
-        </Alert>
-      )}
+      {isGenerating && <InfoWhileGenerating t={t} />}
+      {!isGenerating && <InfoAfterGenerating t={t} />}
       <div
         className={classes.imageWrapper}
         style={{ maxWidth: `${maxWidth}px` }}
       >
-        {loading && (
+        {isGenerating && (
           <Spinner
             containerProps={{
               alignItems: 'center',
@@ -48,9 +42,9 @@ function Map({
           src={src}
           alt={alt}
           style={{
-            display: loading ? 'none' : 'block',
+            display: isGenerating ? 'none' : 'block',
           }}
-          onLoad={() => setLoading(false)}
+          onLoad={() => setIsGenerating(false)}
           className={classes.img}
         />
       </div>

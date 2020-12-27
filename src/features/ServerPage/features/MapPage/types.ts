@@ -17,11 +17,9 @@ export type PlayerList = {
 
 export type Marker<T = undefined> = {
   id: string;
-  item?: T | null;
+  item: T | null;
   color: string;
 };
-export type PlayerMarker = Marker<Player>;
-export type TribeMarker = Marker<Tribe>;
 
 export type Settings = Object & {
   showBarbarian: boolean;

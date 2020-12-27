@@ -12,7 +12,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import TopBar from './components/TopBar/TopBar';
 
 export interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   noPadding?: boolean;
   contentClassName?: string;
   contentStyle?: ContentProps['style'];

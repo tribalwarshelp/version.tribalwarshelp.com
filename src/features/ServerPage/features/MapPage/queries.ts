@@ -4,8 +4,8 @@ export const PLAYERS = gql`
   query players(
     $server: String!
     $filter: PlayerFilter!
-    $limit: Int!
-    $offset: Int!
+    $limit: Int
+    $offset: Int
     $sort: [String!]
   ) {
     players(
@@ -27,8 +27,8 @@ export const TRIBES = gql`
   query tribes(
     $server: String!
     $filter: TribeFilter!
-    $limit: Int!
-    $offset: Int!
+    $limit: Int
+    $offset: Int
     $sort: [String!]
   ) {
     tribes(

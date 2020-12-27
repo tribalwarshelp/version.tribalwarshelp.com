@@ -22,8 +22,11 @@ const translations = {
     addMarker: 'Add marker',
     generateNewMap: 'Generate new map',
   },
-  loading: 'Loading',
+  loading: 'Loading...',
+  noOptions: 'No options',
   infoWhileGenerating: 'It may take a while to generate a map!',
+  infoAfterGenerating:
+    'You can use the following URL to carry on editing your map at a later date, or distribute it to others',
 };
 
 export default translations;

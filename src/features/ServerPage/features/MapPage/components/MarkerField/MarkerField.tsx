@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
+import useUpdateEffect from '@libs/useUpdateEffect';
 
 import { TextField, Box, IconButton } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
@@ -17,7 +18,9 @@ export interface Props<T> {
   getOptionSelected: (opt: T, value: T) => boolean;
   loadSuggestions: (value: string) => Promise<T[]>;
   loadingText?: string;
+  noOptionsText?: string;
   color: string;
+  value: T | null;
 }
 
 function MarkerField<T extends object>({
@@ -28,11 +31,13 @@ function MarkerField<T extends object>({
   getOptionSelected,
   getOptionLabel,
   loadingText,
+  noOptionsText,
   color,
+  value,
 }: Props<T>) {
   const [searchValue, setSearchValue] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<T[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [suggestions, setSuggestions] = useState<T[]>(value ? [value] : []);
+  const [loading, setLoading] = useState(false);
   const debouncedLoadSuggestions = useDebouncedCallback(
     (searchValue: string) => {
       setLoading(true);
@@ -44,7 +49,7 @@ function MarkerField<T extends object>({
     },
     1000
   );
-  useEffect(() => {
+  useUpdateEffect(() => {
     debouncedLoadSuggestions.callback(searchValue);
   }, [searchValue, debouncedLoadSuggestions]);
 
@@ -58,8 +63,10 @@ function MarkerField<T extends object>({
         autoHighlight
         loading={loading}
         getOptionSelected={getOptionSelected}
+        value={value}
         onChange={onChange}
         loadingText={loadingText}
+        noOptionsText={noOptionsText}
         renderInput={params => {
           return (
             <TextField
