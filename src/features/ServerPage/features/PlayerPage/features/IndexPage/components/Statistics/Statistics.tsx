@@ -7,7 +7,7 @@ import { LIMIT } from './constants';
 import { useTheme } from '@material-ui/core/styles';
 import { Paper, useMediaQuery } from '@material-ui/core';
 import LineChart from '@common/Chart/LineChart';
-import ModeSelector from '@features/ServerPage/common/ModeSelector/ModeSelector';
+import ModeSelector from '@common/ModeSelector/ModeSelector';
 
 import { TFunction } from 'i18next';
 import { Serie } from '@nivo/line';

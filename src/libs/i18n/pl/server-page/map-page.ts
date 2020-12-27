@@ -26,7 +26,7 @@ const translations = {
   noOptions: 'Brak opcji',
   infoWhileGenerating: 'To może potrwać chwilę!',
   infoAfterGenerating:
-    'Możesz użyć tego linka by prowadzić edycję mapy w przyszłości, lub by przesłać ją do innych graczy:',
+    'Możesz użyć tego linka by prowadzić edycję mapy w przyszłości, lub by przesłać ją do innych graczy',
 };
 
 export default translations;

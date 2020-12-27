@@ -13,8 +13,9 @@ import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostnam
 import { SEARCH_PAGE } from '@config/namespaces';
 import { MODES, LIMIT } from './constants';
 
-import { Container, Paper, Tabs, Tab } from '@material-ui/core';
+import { Container, Paper } from '@material-ui/core';
 import MainLayout from '@common/MainLayout/MainLayout';
+import ModeSelector from '@common/ModeSelector/ModeSelector';
 import PlayerTable from './components/PlayerTable/PlayerTable';
 import TribeTable from './components/TribeTable/TribeTable';
 
@@ -34,14 +35,6 @@ function SearchPage() {
     [query.q, query.mode, query.page, limit],
     { behavior: 'auto', block: 'start' }
   );
-  const currentTab = Object.values(MODES).findIndex(m => query.mode === m);
-
-  const handleTabChange = (_e: React.ChangeEvent<{}>, newTab: number) => {
-    const newMode = Object.values(MODES)[newTab];
-    if (newMode !== query.mode) {
-      setQuery({ mode: Object.values(MODES)[newTab], page: 0, limit: LIMIT });
-    }
-  };
 
   const handlePageChange = (page: number) => {
     setQuery({ page });
@@ -67,10 +60,28 @@ function SearchPage() {
     >
       <Container>
         <Paper>
-          <Tabs centered value={currentTab} onChange={handleTabChange}>
-            <Tab label={t('modes.player')} />
-            <Tab label={t('modes.tribe')} />
-          </Tabs>
+          <ModeSelector
+            buttonProps={{
+              variant: 'outlined',
+            }}
+            onSelect={m => setQuery({ mode: m.name, page: 0, limit: LIMIT })}
+            modes={[
+              {
+                name: 'player',
+                label: t('modes.player'),
+                get selected() {
+                  return this.name === query.mode;
+                },
+              },
+              {
+                name: 'tribe',
+                label: t('modes.tribe'),
+                get selected() {
+                  return this.name === query.mode;
+                },
+              },
+            ]}
+          />
           {query.mode === MODES.TRIBE ? (
             <TribeTable {...tableProps} />
           ) : (

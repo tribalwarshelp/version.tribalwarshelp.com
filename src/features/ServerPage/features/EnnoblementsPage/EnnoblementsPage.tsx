@@ -7,7 +7,7 @@ import { SERVER_PAGE } from '@config/namespaces';
 
 import { Container, Paper } from '@material-ui/core';
 import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
-import ModeSelector from '@features/ServerPage/common/ModeSelector/ModeSelector';
+import ModeSelector from '@common/ModeSelector/ModeSelector';
 import LiveEnnoblements from './components/LiveEnnoblements/LiveEnnoblements';
 import LatestSavedEnnoblements from './components/LatestSavedEnnoblements/LatestSavedEnnoblements';
 

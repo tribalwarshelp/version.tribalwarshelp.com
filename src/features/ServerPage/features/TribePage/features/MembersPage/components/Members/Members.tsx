@@ -9,7 +9,7 @@ import { Paper } from '@material-ui/core';
 import Table from '@common/Table/Table';
 import { Column } from '@common/Table/types';
 import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
-import ModeSelector from '@features/ServerPage/common/ModeSelector/ModeSelector';
+import ModeSelector from '@common/ModeSelector/ModeSelector';
 import ColouredNumber from './ColouredNumber';
 
 import { TFunction } from 'i18next';
