@@ -10,6 +10,7 @@ const translations = {
       scoreTotal: 'OD',
     },
     searchInputPlaceholder: 'Search tribe',
+    createDateInputLabel: 'Date',
   },
 };
 

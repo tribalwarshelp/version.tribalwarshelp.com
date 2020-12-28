@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
+import { format, isValid } from 'date-fns';
 import {
   useQueryParams,
   NumberParam,
   withDefault,
   StringParam,
+  DateTimeParam,
 } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
 import useUpdateEffect from '@libs/useUpdateEffect';
 import useScrollToElement from '@libs/useScrollToElement';
+import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import useStats from './useStats';
 import SortParam from '@libs/serialize-query-params/SortParam';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import * as ROUTES from '@config/routes';
 import { COLUMNS, LIMIT, DEFAULT_SORT } from './constants';
 
-import { Paper } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Paper, TextField } from '@material-ui/core';
 import Table from '@common/Table/Table';
 import TableToolbar from '@common/Table/TableToolbar';
 import SearchInput from '@common/Form/SearchInput';
@@ -24,16 +28,19 @@ import { TFunction } from 'i18next';
 import { DailyTribeStatsRecord } from './types';
 
 export interface Props {
-  server: string;
   t: TFunction;
 }
 
-function Ranking({ server, t }: Props) {
+function Ranking({ t }: Props) {
+  const classes = useStyles();
+  const server = useServer();
+  const defaultDate = new Date(server.historyUpdatedAt);
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
     q: withDefault(StringParam, ''),
     sort: withDefault(SortParam, DEFAULT_SORT),
+    createDate: withDefault(DateTimeParam, defaultDate),
   });
   const limit = validateRowsPerPage(query.limit);
   const [q, setQ] = useState(query.q);
@@ -48,14 +55,32 @@ function Ranking({ server, t }: Props) {
   const { dailyStats, total, loading } = useStats(
     query.page,
     limit,
-    server,
+    server.key,
     query.q,
-    query.sort.toString()
+    query.sort.toString(),
+    query.createDate
   );
 
   return (
     <Paper>
-      <TableToolbar style={{ justifyContent: 'flex-end' }}>
+      <TableToolbar className={classes.tableToolbar}>
+        <TextField
+          type="date"
+          size="small"
+          label={t('ranking.createDateInputLabel')}
+          defaultValue={
+            query.createDate && query.createDate instanceof Date
+              ? format(query.createDate, 'yyyy-MM-dd')
+              : undefined
+          }
+          onChange={e => {
+            const date = new Date(e.target.value);
+            setQuery({ createDate: isValid(date) ? date : undefined });
+          }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
         <SearchInput
           variant="outlined"
           size="small"
@@ -85,7 +110,7 @@ function Ranking({ server, t }: Props) {
             newCol.valueFormatter = (record: DailyTribeStatsRecord) => (
               <Link
                 to={ROUTES.SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
-                params={{ id: record.tribe.id, key: server }}
+                params={{ id: record.tribe.id, key: server.key }}
               >
                 {record.tribe.tag}
               </Link>
@@ -120,5 +145,23 @@ function Ranking({ server, t }: Props) {
     </Paper>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  tableToolbar: {
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+      [theme.breakpoints.down(700)]: {
+        marginLeft: 0,
+        marginRight: 0,
+        width: '100%',
+      },
+    },
+    [theme.breakpoints.down(700)]: {
+      flexDirection: 'column',
+    },
+  },
+}));
 
 export default Ranking;

@@ -13,7 +13,7 @@ function DailyPage() {
   useTitle(t('title', { key }));
   return (
     <Container>
-      <Ranking t={t} server={key} />
+      <Ranking t={t} />
     </Container>
   );
 }

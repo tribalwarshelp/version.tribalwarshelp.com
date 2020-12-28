@@ -10,6 +10,7 @@ const translations = {
       scoreTotal: 'Pokonani ogólnie',
     },
     searchInputPlaceholder: 'Wyszukaj plemię',
+    createDateInputLabel: 'Data',
   },
 };
 

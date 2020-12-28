@@ -10,10 +10,6 @@ export type QueryResult = {
   total: number;
 };
 
-export type Options = {
-  addTimezoneOffsetToCreateDate?: boolean;
-};
-
 const usePlayers = (
   page: number,
   limit: number,

@@ -5,7 +5,7 @@ import {
   useQueryParams,
   NumberParam,
   withDefault,
-  DateParam,
+  DateTimeParam,
 } from 'use-query-params';
 import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
@@ -31,8 +31,8 @@ function LatestSavedEnnoblements({ t, server }: Props) {
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
-    ennobledAtGTE: withDefault(DateParam, undefined),
-    ennobledAtLTE: withDefault(DateParam, undefined),
+    ennobledAtGTE: withDefault(DateTimeParam, undefined),
+    ennobledAtLTE: withDefault(DateTimeParam, undefined),
   });
   const limit = validateRowsPerPage(query.limit);
   useScrollToElement(document.documentElement, [query.page, limit]);
