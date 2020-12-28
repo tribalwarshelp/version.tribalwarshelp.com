@@ -11,6 +11,7 @@ const translations = {
       scoreTotal: 'OD',
     },
     searchInputPlaceholder: 'Search player',
+    createDateInputLabel: 'Date',
   },
 };
 

@@ -12,7 +12,7 @@ export type Props = TextFieldProps & {
   onResetValue?: () => void;
 };
 
-function SearchInput({ value, onResetValue, style, ...rest }: Props) {
+function SearchInput({ value, onResetValue, ...rest }: Props) {
   const input = useRef<HTMLInputElement | null>(null);
 
   return (
@@ -20,7 +20,6 @@ function SearchInput({ value, onResetValue, style, ...rest }: Props) {
       {...rest}
       value={value}
       inputRef={input}
-      style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)', ...(style ? style : {}) }}
       InputProps={{
         startAdornment: (
           <InputAdornment

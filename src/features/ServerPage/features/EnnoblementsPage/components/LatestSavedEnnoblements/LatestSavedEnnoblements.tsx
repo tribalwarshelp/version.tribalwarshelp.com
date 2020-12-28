@@ -1,5 +1,5 @@
 import React from 'react';
-import { format } from 'date-fns';
+import { format, isValid } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import {
   useQueryParams,
@@ -66,6 +66,7 @@ function LatestSavedEnnoblements({ t, server }: Props) {
           return (
             <TextField
               type="date"
+              size="small"
               key={id}
               label={t('latestSavedEnnoblements.inputs.' + id)}
               defaultValue={
@@ -74,7 +75,8 @@ function LatestSavedEnnoblements({ t, server }: Props) {
                   : undefined
               }
               onChange={e => {
-                setQuery({ [id]: new Date(e.target.value) });
+                const date = new Date(e.target.value);
+                setQuery({ [id]: isValid(date) ? date : undefined });
               }}
               InputLabelProps={{
                 shrink: true,

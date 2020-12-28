@@ -59,10 +59,10 @@ function IndexPage() {
             <ODRankingTribes server={key} t={t} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TodaysBestStatsPlayers server={key} t={t} />
+            <TodaysBestStatsPlayers t={t} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TodaysBestStatsTribes server={key} t={t} />
+            <TodaysBestStatsTribes t={t} />
           </Grid>
           <Grid item xs={12} md={6}>
             <RecentlyDeletedPlayers server={key} t={t} />

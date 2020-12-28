@@ -11,6 +11,7 @@ const translations = {
       scoreTotal: 'Pokonani ogólnie',
     },
     searchInputPlaceholder: 'Wyszukaj gracza',
+    createDateInputLabel: 'Data',
   },
 };
 

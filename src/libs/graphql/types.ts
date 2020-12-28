@@ -70,6 +70,7 @@ export type DailyPlayerStatsFilter = {
   createDateGT?: Date | string;
   createDateGTE?: Date | string;
   createDateLTE?: Date | string;
+  createDate?: Date | string;
   playerFilter?: PlayerFilter;
   playerID?: number[];
 };
@@ -141,6 +142,7 @@ export type LiveEnnoblementsQueryVariables = {
 export type DailyTribeStatsFilter = {
   createDateGT?: Date | string;
   createDateGTE?: Date | string;
+  createDate?: Date | string;
   tribeID?: number[];
   tribeFilter?: TribeFilter;
 };

@@ -7,9 +7,9 @@ export type Server = {
   numberOfPlayers: number;
   numberOfTribes: number;
   numberOfVillages: number;
-  dataUpdatedAt: string | Date;
-  historyUpdatedAt: string | Date;
-  statsUpdatedAt: string | Date;
+  dataUpdatedAt: string;
+  historyUpdatedAt: string;
+  statsUpdatedAt: string;
   version: {
     code: string;
     host: string;

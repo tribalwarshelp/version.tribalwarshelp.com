@@ -1,6 +1,4 @@
-import { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import { DAILY_PLAYER_STATS } from './queries';
 
 import { DailyPlayerStatsQueryVariables } from '@libs/graphql/types';
@@ -12,17 +10,18 @@ export type QueryResult = {
   total: number;
 };
 
+export type Options = {
+  addTimezoneOffsetToCreateDate?: boolean;
+};
+
 const usePlayers = (
   page: number,
   limit: number,
   server: string,
   q: string,
-  sort: string
+  sort: string,
+  createDate: Date
 ): QueryResult => {
-  const { historyUpdatedAt } = useServer();
-  const createDateGTE = useMemo<string>(() => {
-    return historyUpdatedAt.toString().split('T')[0] + 'T00:00:00Z';
-  }, [historyUpdatedAt]);
   const { loading: loadingStats, data } = useQuery<
     DailyStats,
     DailyPlayerStatsQueryVariables
@@ -37,7 +36,7 @@ const usePlayers = (
           exists: true,
           nameIEQ: '%' + q + '%',
         },
-        createDateGTE,
+        createDate,
       },
       server,
     },

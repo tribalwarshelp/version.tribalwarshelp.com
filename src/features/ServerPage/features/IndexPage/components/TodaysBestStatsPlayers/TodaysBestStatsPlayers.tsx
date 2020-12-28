@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { subHours } from 'date-fns';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
+import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import formatNumber from '@utils/formatNumber';
 import { SERVER_PAGE } from '@config/routes';
 import { DAILY_PLAYER_STATS } from './queries';
@@ -19,12 +19,11 @@ import { DailyPlayerStatsQueryVariables } from '@libs/graphql/types';
 import { DailyPlayerStatsList, DailyPlayerStatsRecord, Mode } from './types';
 
 export interface Props {
-  server: string;
   t: TFunction;
 }
 
-function TodaysBestStatsPlayers({ server, t }: Props) {
-  const createDateGT = useRef(subHours(new Date(), 30));
+function TodaysBestStatsPlayers({ t }: Props) {
+  const server = useServer();
   const [mode, setMode] = useState<Mode>('scoreAtt');
   const { loading: loadingData, data } = useQuery<
     DailyPlayerStatsList,
@@ -35,9 +34,9 @@ function TodaysBestStatsPlayers({ server, t }: Props) {
       limit: LIMIT,
       sort: [mode + ' DESC'],
       filter: {
-        createDateGT: createDateGT.current,
+        createDate: server.historyUpdatedAt,
       },
-      server,
+      server: server.key,
     },
   });
   const records = data?.dailyPlayerStats?.items ?? [];
@@ -49,7 +48,7 @@ function TodaysBestStatsPlayers({ server, t }: Props) {
         <Typography variant="h4">
           <Link
             to={SERVER_PAGE.RANKING_PAGE.PLAYER_PAGE.DAILY_PAGE}
-            params={{ key: server }}
+            params={{ key: server.key }}
           >
             {t('todaysBestStatsPlayers.title')}
           </Link>
@@ -108,7 +107,10 @@ function TodaysBestStatsPlayers({ server, t }: Props) {
           valueFormatter:
             index === 0
               ? (record: DailyPlayerStatsRecord) => (
-                  <PlayerProfileLink player={record.player} server={server} />
+                  <PlayerProfileLink
+                    player={record.player}
+                    server={server.key}
+                  />
                 )
               : index === 1
               ? (record: DailyPlayerStatsRecord) =>

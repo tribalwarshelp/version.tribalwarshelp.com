@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { subHours } from 'date-fns';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
+import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import formatNumber from '@utils/formatNumber';
 import { SERVER_PAGE } from '@config/routes';
 import { DAILY_TRIBE_STATS } from './queries';
@@ -18,12 +18,11 @@ import { DailyTribeStatsQueryVariables } from '@libs/graphql/types';
 import { DailyTribeStatsList, DailyTribeStatsRecord, Mode } from './types';
 
 export interface Props {
-  server: string;
   t: TFunction;
 }
 
-function TodaysBestStatsTribes({ server, t }: Props) {
-  const createDateGT = useRef(subHours(new Date(), 30));
+function TodaysBestStatsTribes({ t }: Props) {
+  const server = useServer();
   const [mode, setMode] = useState<Mode>('scoreAtt');
   const { loading: loadingData, data } = useQuery<
     DailyTribeStatsList,
@@ -34,9 +33,9 @@ function TodaysBestStatsTribes({ server, t }: Props) {
       limit: LIMIT,
       sort: [mode + ' DESC'],
       filter: {
-        createDateGT: createDateGT.current,
+        createDate: server.historyUpdatedAt,
       },
-      server,
+      server: server.key,
     },
   });
   const records = data?.dailyTribeStats?.items ?? [];
@@ -48,7 +47,7 @@ function TodaysBestStatsTribes({ server, t }: Props) {
         <Typography variant="h4">
           <Link
             to={SERVER_PAGE.RANKING_PAGE.TRIBE_PAGE.DAILY_PAGE}
-            params={{ key: server }}
+            params={{ key: server.key }}
           >
             {t('todaysBestStatsTribes.title')}
           </Link>
@@ -105,7 +104,7 @@ function TodaysBestStatsTribes({ server, t }: Props) {
               ? (record: DailyTribeStatsRecord) => (
                   <Link
                     to={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
-                    params={{ key: server, id: record.tribe.id }}
+                    params={{ key: server.key, id: record.tribe.id }}
                   >
                     {record.tribe.tag}
                   </Link>
