@@ -59,11 +59,13 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[4],
   },
   content: {
-    height: '100%',
     padding: theme.spacing(3, 0),
     '&.no-padding': {
       padding: '0 0',
     },
+  },
+  tabs: {
+    overflowX: 'auto',
   },
 }));
 

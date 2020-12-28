@@ -3,7 +3,6 @@ export const INDEX_PAGE = '/';
 export const SEARCH_PAGE = '/search';
 
 export const SERVER_PAGE = {
-  BASE: '/server',
   INDEX_PAGE: '/server/:key',
   TRIBE_PAGE: {
     INDEX_PAGE: '/server/:key/tribe/:id',

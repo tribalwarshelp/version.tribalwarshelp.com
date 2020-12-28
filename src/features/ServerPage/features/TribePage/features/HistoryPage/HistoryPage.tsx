@@ -6,7 +6,6 @@ import useTribe from '../../libs/TribePageContext/useTribe';
 import { SERVER_PAGE } from '@config/namespaces';
 
 import { Container } from '@material-ui/core';
-import PageLayout from '../../common/PageLayout/PageLayout';
 import TribeHistory from './components/TribeHistory/TribeHistory';
 
 function HistoryPage() {
@@ -15,11 +14,9 @@ function HistoryPage() {
   const { t } = useTranslation(SERVER_PAGE.TRIBE_PAGE.HISTORY_PAGE);
   useTitle(t('title', { key, tag: tribe.tag }));
   return (
-    <PageLayout>
-      <Container>
-        <TribeHistory t={t} server={key} tribeID={tribe.id} />
-      </Container>
-    </PageLayout>
+    <Container>
+      <TribeHistory t={t} server={key} tribeID={tribe.id} />
+    </Container>
   );
 }
 

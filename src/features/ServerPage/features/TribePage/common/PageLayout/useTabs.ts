@@ -30,13 +30,16 @@ const useTabs = (t: TFunction) => {
       },
     ];
   }, [t]);
-  const currentTab = useMemo(
-    () =>
-      tabs.findIndex(({ to }) => {
-        return matchPath(loc.pathname, { exact: true, path: to });
-      }),
-    [loc.pathname, tabs]
-  );
+  const currentTab = useMemo(() => {
+    const currentTab = tabs.findIndex(({ to }) => {
+      return matchPath(loc.pathname, { exact: true, path: to });
+    });
+    return currentTab === -1
+      ? process.env.NODE_ENV === 'production'
+        ? -1
+        : 0
+      : currentTab;
+  }, [loc.pathname, tabs]);
   return {
     tabs,
     currentTab,

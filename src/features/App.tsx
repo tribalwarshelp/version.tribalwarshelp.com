@@ -20,7 +20,7 @@ function App() {
         <Route path={ROUTES.SEARCH_PAGE} exact>
           <SearchPage />
         </Route>
-        <Route path={ROUTES.SERVER_PAGE.BASE}>
+        <Route path={ROUTES.SERVER_PAGE.INDEX_PAGE}>
           <ServerPage />
         </Route>
         <Route path="*">

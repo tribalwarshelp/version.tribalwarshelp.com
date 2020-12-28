@@ -6,7 +6,6 @@ import usePlayer from '../../libs/PlayerPageContext/usePlayer';
 import { SERVER_PAGE } from '@config/namespaces';
 
 import { Container } from '@material-ui/core';
-import PageLayout from '../../common/PageLayout/PageLayout';
 import TribeChanges from './components/TribeChanges/TribeChanges';
 
 function TribeChangesPage() {
@@ -15,11 +14,9 @@ function TribeChangesPage() {
   const { t } = useTranslation(SERVER_PAGE.PLAYER_PAGE.TRIBE_CHANGES_PAGE);
   useTitle(t('title', { key, name: player.name }));
   return (
-    <PageLayout>
-      <Container>
-        <TribeChanges t={t} server={key} playerID={player.id} />
-      </Container>
-    </PageLayout>
+    <Container>
+      <TribeChanges t={t} server={key} playerID={player.id} />
+    </Container>
   );
 }
 

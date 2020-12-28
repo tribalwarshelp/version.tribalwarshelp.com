@@ -66,6 +66,7 @@ function Statistics({ t, server, tribeID }: Props) {
     <Paper>
       <ModeSelector
         onSelect={m => setMode(m.name as Mode)}
+        buttonProps={{ size: 'medium' }}
         modes={[
           {
             name: 'points',
