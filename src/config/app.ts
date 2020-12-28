@@ -21,6 +21,7 @@ export const TRACKING_CODE = process.env.REACT_APP_TRACKING_CODE ?? '';
 
 export const DATE_FORMAT = {
   MONTH_AND_YEAR: 'yyyy-MM',
+  HOUR_AND_SECOND: 'HH:mm',
   DAY_MONTH_AND_YEAR: 'yyyy-MM-dd',
   HOUR_MINUTES_DAY_MONTH_AND_YEAR: 'yyyy-MM-dd HH:mm',
   HOUR_MINUTES_SECONDS_DAY_MONTH_AND_YEAR: 'yyyy-MM-dd HH:mm:ss',

@@ -11,7 +11,6 @@ import useTitle from '@libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
 import useMarkers from './useMarkers';
 import ColorParam from '@libs/serialize-query-params/ColorParam';
-import { encodeMarker } from './helpers';
 import { MAP_SERVICE } from '@config/app';
 import { SERVER_PAGE } from '@config/namespaces';
 import { PLAYERS, TRIBES } from './queries';
@@ -88,18 +87,6 @@ function MapPage() {
   const { t } = useTranslation(SERVER_PAGE.MAP_PAGE);
   useTitle(t('title', { key }));
   const loading = loadingTribeMarkers || loadingPlayerMarkers;
-  const centerFlex = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  };
-  let serverPageLayoutProps: ServerPageLayoutProps = loading
-    ? {
-        noPadding: true,
-        contentStyle: centerFlex as React.CSSProperties,
-      }
-    : {};
 
   const createSettingsChangeHandler = (key: keyof Settings) => (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
@@ -158,6 +145,10 @@ function MapPage() {
     }
   };
 
+  const encodeMarker = (id: number, color: string): string => {
+    return encodeURIComponent(id + ',' + color);
+  };
+
   const handleSubmit = (e: React.FormEvent<{}>) => {
     e.preventDefault();
 
@@ -189,11 +180,14 @@ function MapPage() {
     option && value ? option.name === value.name : false;
 
   return (
-    <ServerPageLayout {...serverPageLayoutProps}>
+    <ServerPageLayout>
       {loading && (
         <Spinner
           containerProps={{
-            ...centerFlex,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
             textAlign: 'center',
             height: '100%',
             paddingY: 5,

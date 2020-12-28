@@ -37,4 +37,5 @@ export const SERVER_PAGE = {
   },
   ENNOBLEMENTS_PAGE: '/server/:key/ennoblements',
   MAP_PAGE: '/server/:key/map',
+  WAR_STATS_PAGE: '/server/:key/war-stats'
 };

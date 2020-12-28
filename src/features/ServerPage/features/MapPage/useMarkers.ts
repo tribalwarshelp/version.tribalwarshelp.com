@@ -45,7 +45,7 @@ const useMarkers = <T extends HasID, VariablesT>(
   const [markers, setMarkers] = useState<Marker<T>[]>([]);
 
   useEffect(() => {
-    const markers: { [key: number]: string } = {};
+    const colorByID: { [key: number]: string } = {};
     query[opts.paramName].forEach((rawStr: string | null) => {
       if (!rawStr) {
         return;
@@ -62,33 +62,37 @@ const useMarkers = <T extends HasID, VariablesT>(
         return;
       }
 
-      markers[idInt] = color;
+      colorByID[idInt] = color;
     });
 
-    const ids = Object.keys(markers).map(id => parseInt(id, 10));
+    const ids = Object.keys(colorByID).map(id => parseInt(id, 10));
     if (ids.length > 0) {
-      client
-        .query<Record<string, List<T[]>>, VariablesT>({
-          query: opts.query,
-          variables: opts.getVariables(ids),
-          fetchPolicy: 'network-only',
-        })
-        .then(res => {
-          if (opts.dataKey in res.data && res.data[opts.dataKey]) {
-            setMarkers(
-              res.data[opts.dataKey].items.map(item => {
-                return getNewMarker(item, markers[item.id]);
-              })
-            );
-          }
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      loadMarkers(ids, colorByID);
     } else {
       setLoading(false);
     } // eslint-disable-next-line
   }, []);
+
+  const loadMarkers = (ids: number[], colorByID: { [key: number]: string }) => {
+    return client
+      .query<Record<string, List<T[]>>, VariablesT>({
+        query: opts.query,
+        variables: opts.getVariables(ids),
+        fetchPolicy: 'network-only',
+      })
+      .then(res => {
+        if (opts.dataKey in res.data && res.data[opts.dataKey]) {
+          setMarkers(
+            res.data[opts.dataKey].items.map(item => {
+              return getNewMarker(item, colorByID[item.id]);
+            })
+          );
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   const getNewMarker = (
     item: T | null = null,

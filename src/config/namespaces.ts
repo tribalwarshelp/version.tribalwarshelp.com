@@ -9,6 +9,7 @@ export const SERVER_PAGE = {
   INDEX_PAGE: 'server-page/index-page',
   MAP_PAGE: 'server-page/map-page',
   ENNOBLEMENTS_PAGE: 'server-page/ennoblements-page',
+  WAR_STATS_PAGE: 'server-page/war-stats-page',
   PLAYER_PAGE: {
     COMMON: 'server-page/player-page/common',
     INDEX_PAGE: 'server-page/player-page/index-page',
