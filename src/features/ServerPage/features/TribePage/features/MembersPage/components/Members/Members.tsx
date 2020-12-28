@@ -76,8 +76,8 @@ function Members({ t, server, tribeID }: Props) {
     if (maxDate && minDate && isBefore(minDate, maxDate)) {
       let diff = differenceInDays(maxDate, minDate) + 1;
       if (diff <= HOW_MANY_DAYS_BACK) {
-        for (let i = 1; i <= diff; i++) {
-          const date = addDays(minDate, i - 1);
+        for (let i = 0; i < diff; i++) {
+          const date = addDays(minDate, i);
           const formatted = format(date, DATE_FORMAT.DAY_MONTH_AND_YEAR);
           columns.push({
             field: formatted,
