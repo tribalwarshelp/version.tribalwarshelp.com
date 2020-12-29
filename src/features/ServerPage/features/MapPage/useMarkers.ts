@@ -57,7 +57,7 @@ const useMarkers = <T extends HasID, VariablesT>(
       if (!id || !color || isNil(index)) {
         return;
       }
-      let indexInt = parseInt(id, 10);
+      let indexInt = parseInt(index, 10);
       if (isNaN(indexInt)) {
         indexInt = 0;
       }
@@ -86,6 +86,7 @@ const useMarkers = <T extends HasID, VariablesT>(
     colorByID: { [key: number]: string },
     indexByID: { [key: number]: number }
   ) => {
+    console.log(indexByID);
     return client
       .query<Record<string, List<T[]>>, VariablesT>({
         query: opts.query,
