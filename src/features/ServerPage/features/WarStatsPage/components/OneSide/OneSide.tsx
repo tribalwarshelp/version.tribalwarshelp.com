@@ -30,6 +30,7 @@ export interface Props {
   server: string;
   playerIDNEQ: number[];
   tribeIDNEQ: number[];
+  disabled?: boolean;
   className?: string;
 }
 
@@ -43,6 +44,7 @@ function OneSide({
   tribeIDNEQ,
   playerIDNEQ,
   className,
+  disabled,
 }: Props) {
   const client = useApolloClient();
   const { t } = useTranslation(SERVER_PAGE.WAR_STATS_PAGE);
@@ -171,6 +173,7 @@ function OneSide({
           getOptionLabel={opt => {
             return opt ? opt.name : '';
           }}
+          disabled={disabled}
           getOptionDisabled={opt => isDisabled(opt.id, playerIDNEQ)}
           onChange={handleChangePlayers}
           renderInput={params => (
@@ -196,6 +199,7 @@ function OneSide({
           getOptionLabel={opt => {
             return opt ? opt.tag : '';
           }}
+          disabled={disabled}
           onChange={handleChangeTribes}
           renderInput={params => (
             <TextField

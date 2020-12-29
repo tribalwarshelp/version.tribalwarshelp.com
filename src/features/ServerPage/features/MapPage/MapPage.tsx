@@ -409,7 +409,7 @@ function MapPage() {
                     color="secondary"
                     variant="contained"
                   >
-                    {t('buttons.generateNewMap')}
+                    {t('buttons.generateMap')}
                   </Button>
                 </Typography>
               </Grid>

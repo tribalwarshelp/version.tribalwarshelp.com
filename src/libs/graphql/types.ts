@@ -128,6 +128,14 @@ export type EnnoblementFilter = {
     oldOwnerID?: number[];
     oldOwnerTribeID?: number[];
   };
+  newOwnerID?: number[];
+  newOwnerIDNEQ?: number[];
+  newOwnerTribeID?: number[];
+  newOwnerTribeIDNEQ?: number[];
+  oldOwnerID?: number[];
+  oldOwnerIDNEQ?: number[];
+  oldOwnerTribeID?: number[];
+  oldOwnerTribeIDNEQ?: number[];
   villageID?: number[];
   ennobledAtGTE?: Date | string;
   ennobledAtLTE?: Date | string;

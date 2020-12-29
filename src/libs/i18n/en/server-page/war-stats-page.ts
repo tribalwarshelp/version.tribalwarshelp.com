@@ -8,6 +8,7 @@ const translations = {
     settings: 'Settings',
     sideOne: 'Side one',
     sideTwo: 'Side two',
+    result: 'Result',
   },
   oneSide: {
     players: 'Players',
@@ -15,6 +16,9 @@ const translations = {
   },
   loading: 'Loading...',
   noOptions: 'No options',
+  buttons: {
+    generateStats: 'Generate stats',
+  },
 };
 
 export default translations;

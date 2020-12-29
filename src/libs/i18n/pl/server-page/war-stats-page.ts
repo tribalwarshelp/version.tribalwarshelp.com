@@ -8,6 +8,7 @@ const translations = {
     settings: 'Opcje',
     sideOne: 'Strona pierwsza',
     sideTwo: 'Strona druga',
+    result: 'Wynik',
   },
   oneSide: {
     players: 'Gracze',
@@ -15,6 +16,9 @@ const translations = {
   },
   loading: 'Ładowanie...',
   noOptions: 'Brak opcji',
+  buttons: {
+    generateStats: 'Wygeneruj statystyki',
+  },
 };
 
 export default translations;

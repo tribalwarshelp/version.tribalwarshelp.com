@@ -20,7 +20,7 @@ const translations = {
   },
   buttons: {
     addMarker: 'Add marker',
-    generateNewMap: 'Generate new map',
+    generateMap: 'Generate map',
   },
   loading: 'Loading...',
   noOptions: 'No options',

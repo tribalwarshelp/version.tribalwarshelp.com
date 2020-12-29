@@ -45,3 +45,66 @@ export const TRIBES = gql`
     }
   }
 `;
+
+export const ENNOBLEMENTS = gql`
+  query ennoblements(
+    $server: String!
+    $sideOneTotalGainedFilter: EnnoblementFilter
+    $sideOneTotalLostFilter: EnnoblementFilter
+    $sideOnePlayersFilter: EnnoblementFilter
+    $sideOneTribesFilter: EnnoblementFilter
+    $sideTwoTotalGainedFilter: EnnoblementFilter
+    $sideTwoTotalLostFilter: EnnoblementFilter
+    $sideTwoPlayersFilter: EnnoblementFilter
+    $sideTwoTribesFilter: EnnoblementFilter
+    $skipSideOnePlayers: Boolean!
+    $skipSideOneTribes: Boolean!
+    $skipSideTwoPlayers: Boolean!
+    $skipSideTwoTribes: Boolean!
+  ) {
+    sideOneTotalGained: ennoblements(
+      server: $server
+      filter: $sideOneTotalGainedFilter
+    ) {
+      total
+    }
+    sideOneTotalLost: ennoblements(
+      server: $server
+      filter: $sideOneTotalLostFilter
+    ) {
+      total
+    }
+    sideOnePlayers: ennoblements(
+      server: $server
+      filter: $sideOnePlayersFilter
+    ) @skip(if: $skipSideOnePlayers) {
+      total
+    }
+    sideOneTribes: ennoblements(server: $server, filter: $sideOneTribesFilter)
+      @skip(if: $skipSideOneTribes) {
+      total
+    }
+    sideTwoTotalGained: ennoblements(
+      server: $server
+      filter: $sideTwoTotalGainedFilter
+    ) {
+      total
+    }
+    sideTwoTotalLost: ennoblements(
+      server: $server
+      filter: $sideTwoTotalLostFilter
+    ) {
+      total
+    }
+    sideTwoPlayers: ennoblements(
+      server: $server
+      filter: $sideTwoPlayersFilter
+    ) @skip(if: $skipSideTwoPlayers) {
+      total
+    }
+    sideTwoTribes: ennoblements(server: $server, filter: $sideTwoTribesFilter)
+      @skip(if: $skipSideTwoTribes) {
+      total
+    }
+  }
+`;
