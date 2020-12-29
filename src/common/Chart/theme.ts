@@ -12,6 +12,12 @@ export const darkTheme: Theme = {
       strokeWidth: 1,
     },
   },
+  textColor: '#fff',
+  tooltip: {
+    container: {
+      backgroundColor: '#000',
+    },
+  },
   axis: {
     legend: {
       text: {

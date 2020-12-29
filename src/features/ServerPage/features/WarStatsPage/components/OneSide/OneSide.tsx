@@ -164,7 +164,7 @@ function OneSide({
       </Typography>
       <div>
         <Typography variant="h5" align="center" gutterBottom>
-          {t('oneSide.players')}
+          {t('players')}
         </Typography>
         <Autocomplete
           {...autocompleteProps}
@@ -189,7 +189,7 @@ function OneSide({
       </div>
       <div>
         <Typography variant="h5" align="center" gutterBottom>
-          {t('oneSide.tribes')}
+          {t('tribes')}
         </Typography>
         <Autocomplete
           {...autocompleteProps}

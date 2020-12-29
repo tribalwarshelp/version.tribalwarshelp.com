@@ -23,6 +23,7 @@ const translations = {
         },
         ennoblements: 'Ennoblements',
         map: 'Map tool',
+        warStats: 'War stats',
       },
       serverInfo: {
         numberOfPlayers: '{{num}} player',

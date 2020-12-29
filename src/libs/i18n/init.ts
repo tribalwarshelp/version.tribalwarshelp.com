@@ -16,6 +16,7 @@ const init = (): i18nT => {
       load: 'languageOnly',
       detection: {
         order: ['subdomain'],
+        lookupFromSubdomainIndex: 0,
       },
       resources: {
         en,

@@ -66,9 +66,11 @@ export type SideResult = {
   lost: number;
   difference: number;
   againstOppositeSide: number;
+  players: Player[];
+  tribes: Tribe[];
 };
 
-export type Result = {
+export type Results = {
   sideOne: SideResult;
   sideTwo: SideResult;
   difference: number;

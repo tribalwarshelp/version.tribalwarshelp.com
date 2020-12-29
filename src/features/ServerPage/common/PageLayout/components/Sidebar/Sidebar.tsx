@@ -19,6 +19,7 @@ import {
   Map as MapIcon,
   Grade as GradeIcon,
   Beenhere as BeenhereIcon,
+  Fireplace as FireplaceIcon,
 } from '@material-ui/icons';
 import DevNote from '@common/DevNote/DevNote';
 import Nav from './components/Nav/Nav';
@@ -121,6 +122,13 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
       to: ROUTES.SERVER_PAGE.MAP_PAGE,
       params: { key },
       Icon: <MapIcon color="inherit" />,
+      exact: true,
+    },
+    {
+      name: t('pageLayout.sidebar.routes.warStats'),
+      to: ROUTES.SERVER_PAGE.WAR_STATS_PAGE,
+      params: { key },
+      Icon: <FireplaceIcon color="inherit" />,
       exact: true,
     },
   ];

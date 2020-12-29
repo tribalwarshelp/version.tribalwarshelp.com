@@ -23,6 +23,7 @@ const translations = {
         },
         ennoblements: 'Przejęcia',
         map: 'Narzędzie mapy',
+        warStats: 'Statystyki wojenne',
       },
       serverInfo: {
         numberOfPlayers_0: '{{num}} gracz',

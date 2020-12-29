@@ -8,16 +8,28 @@ const translations = {
     settings: 'Opcje',
     sideOne: 'Strona pierwsza',
     sideTwo: 'Strona druga',
-    result: 'Wynik',
+    results: 'Wyniki',
   },
-  oneSide: {
-    players: 'Gracze',
-    tribes: 'Plemiona',
-  },
+  players: 'Gracze',
+  tribes: 'Plemiona',
   loading: 'Ładowanie...',
   noOptions: 'Brak opcji',
   buttons: {
     generateStats: 'Wygeneruj statystyki',
+  },
+  results: {
+    sideOne: 'Strona pierwsza',
+    sideTwo: 'Strona druga',
+    lost: 'Stracone',
+    gained: 'Zdobyte',
+    difference: 'Różnica',
+    ennoblementsAgainstOppositeSide: 'Przejęcia przeciwnej strony',
+    chart: {
+      sideOneGained: 'Strona pierwsza - zdobyte',
+      sideOneLost: 'Strona pierwsza - stracone',
+      sideTwoGained: 'Strona druga - zdobyte',
+      sideTwoLost: 'Strona druga - stracone',
+    },
   },
 };
 

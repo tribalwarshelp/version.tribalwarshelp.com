@@ -22,19 +22,21 @@ import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout'
 import Spinner from '@common/Spinner/Spinner';
 import Card from './components/Card/Card';
 import OneSide from './components/OneSide/OneSide';
-import Result from './components/Result/Result';
+import Results from './components/Results/Results';
 
 import {
   EnnoblementsQueryResult,
   EnnoblementsQueryVariables,
-  Result as ResultT,
+  Results as ResultsT,
   SideResult,
+  Player,
+  Tribe,
 } from './types';
 
 function WarStatsPage() {
   const now = useRef(new Date());
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [result, setResult] = useState<ResultT | null>(null);
+  const [results, setResults] = useState<ResultsT | null>(null);
   const [query, setQuery] = useQueryParams({
     ennobledAtGTE: withDefault(DateTimeParam, subDays(now.current, 1)),
     ennobledAtLTE: withDefault(DateTimeParam, now.current),
@@ -70,13 +72,17 @@ function WarStatsPage() {
     totalGained = 0,
     totalLost = 0,
     tribesGained = 0,
-    playersGained = 0
+    playersGained = 0,
+    players: Player[] = [],
+    tribes: Tribe[] = []
   ): SideResult => {
     return {
       gained: totalGained,
       lost: totalLost,
       againstOppositeSide: tribesGained + playersGained,
-      difference: Math.abs(totalGained - totalLost),
+      difference: totalGained - totalLost,
+      players,
+      tribes,
     };
   };
 
@@ -171,15 +177,19 @@ function WarStatsPage() {
         data.sideOneTotalGained?.total,
         data.sideOneTotalLost?.total,
         data.sideOneTribes?.total,
-        data.sideOnePlayers?.total
+        data.sideOnePlayers?.total,
+        sideOnePlayers,
+        sideOneTribes
       );
       const computedSideTwoResult: SideResult = getSideResult(
         data.sideTwoTotalGained?.total,
         data.sideTwoTotalLost?.total,
         data.sideTwoTribes?.total,
-        data.sideTwoPlayers?.total
+        data.sideTwoPlayers?.total,
+        sideTwoPlayers,
+        sideTwoTribes
       );
-      setResult({
+      setResults({
         sideOne: computedSideOneResult,
         sideTwo: computedSideTwoResult,
         difference: Math.abs(
@@ -303,9 +313,9 @@ function WarStatsPage() {
                   </Button>
                 </Typography>
               </Grid>
-              {result && (
+              {results && (
                 <Grid item xs={12}>
-                  <Result data={result} />
+                  <Results data={results} server={server.key} />
                 </Grid>
               )}
             </Grid>

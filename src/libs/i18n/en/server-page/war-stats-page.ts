@@ -8,16 +8,28 @@ const translations = {
     settings: 'Settings',
     sideOne: 'Side one',
     sideTwo: 'Side two',
-    result: 'Result',
+    results: 'Results',
   },
-  oneSide: {
-    players: 'Players',
-    tribes: 'Tribes',
-  },
+  players: 'Players',
+  tribes: 'Tribes',
   loading: 'Loading...',
   noOptions: 'No options',
   buttons: {
     generateStats: 'Generate stats',
+  },
+  results: {
+    sideOne: 'Side one',
+    sideTwo: 'Side two',
+    lost: 'Lost',
+    gained: 'Gained',
+    difference: 'Difference',
+    ennoblementsAgainstOppositeSide: 'Ennoblements against opposite side',
+    chart: {
+      sideOneGained: 'Side one - gained',
+      sideOneLost: 'Side one - lost',
+      sideTwoGained: 'Side two - gained',
+      sideTwoLost: 'Side two - lost',
+    },
   },
 };
 

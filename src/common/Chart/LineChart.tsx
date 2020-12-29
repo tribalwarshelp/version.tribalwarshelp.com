@@ -6,7 +6,6 @@ import { darkTheme } from './theme';
 import { ResponsiveLine, LineSvgProps } from '@nivo/line';
 import { Box, Typography } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import PointTooltip from './PointTooltip';
 
 export interface Props extends LineSvgProps {
   loading?: boolean;
@@ -35,7 +34,7 @@ const LineChart = ({ data, loading, ...rest }: Props) => {
   }
   return (
     <ResponsiveLine
-      tooltip={PointTooltip}
+      // tooltip={PointTooltip}
       data={data}
       {...rest}
       theme={darkTheme}
