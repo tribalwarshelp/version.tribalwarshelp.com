@@ -60,7 +60,6 @@ function TribeStatistics({ server, t }: Props) {
           margin={{ top: 20, right: 100, bottom: 50, left: 45 }}
           xScale={{
             type: 'time',
-            precision: 'day',
           }}
           yScale={{
             type: 'linear',
@@ -71,8 +70,7 @@ function TribeStatistics({ server, t }: Props) {
           }}
           xFormat="time:%Y-%m-%d"
           axisBottom={{
-            tickSize: 5,
-            tickValues: 5,
+            tickValues: 'every 6 days',
             tickPadding: 5,
             tickRotation: 0,
             format: '%Y-%m-%d',
