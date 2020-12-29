@@ -78,13 +78,16 @@ function Ennoblements({ t, server, villageID }: Props) {
             label: t('ennoblements.columns.newOwner'),
             sortable: false,
             valueFormatter: (e: Ennoblement) => {
-              return (
-                <PlayerProfileLink
-                  server={server}
-                  player={e.newOwner}
-                  tribe={e.newOwnerTribe}
-                />
-              );
+              if (e.newOwner) {
+                return (
+                  <PlayerProfileLink
+                    server={server}
+                    player={e.newOwner}
+                    tribe={e.newOwnerTribe}
+                  />
+                );
+              }
+              return '-';
             },
           },
         ]}

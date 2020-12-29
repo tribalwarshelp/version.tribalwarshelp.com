@@ -19,7 +19,7 @@ const createTheme = (): Theme => {
       props: {
         MuiTextField: {
           variant: 'outlined',
-          color: 'secondary',
+          color: 'primary',
         },
         MuiAppBar: {
           color: 'default',
