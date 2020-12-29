@@ -33,8 +33,14 @@ export type Bag = {
   players: Player[];
   tribes: Tribe[];
   loading: boolean;
-  handleChangePlayers: (_e: React.ChangeEvent<{}>, players: Player[]) => void;
-  handleChangeTribes: (_e: React.ChangeEvent<{}>, tribes: Tribe[]) => void;
+  handleChangePlayers: (
+    _e: React.ChangeEvent<{}>,
+    players: Player[] | null
+  ) => void;
+  handleChangeTribes: (
+    _e: React.ChangeEvent<{}>,
+    tribes: Tribe[] | null
+  ) => void;
 };
 
 const useSide = (server: string, opts: Options): Bag => {
@@ -112,15 +118,20 @@ const useSide = (server: string, opts: Options): Bag => {
 
   const handleChangePlayers = (
     _e: React.ChangeEvent<{}>,
-    players: Player[]
+    players: Player[] | null
   ) => {
-    setPlayers(players);
-    updateQueryParams(paramNamePlayer, getIDs(players));
+    const p = players ?? [];
+    setPlayers(p);
+    updateQueryParams(paramNamePlayer, getIDs(p));
   };
 
-  const handleChangeTribes = (_e: React.ChangeEvent<{}>, tribes: Tribe[]) => {
-    setTribes(tribes);
-    updateQueryParams(paramNameTribe, getIDs(tribes));
+  const handleChangeTribes = (
+    _e: React.ChangeEvent<{}>,
+    tribes: Tribe[] | null
+  ) => {
+    const t = tribes ?? [];
+    setTribes(t);
+    updateQueryParams(paramNameTribe, getIDs(t));
   };
 
   return {

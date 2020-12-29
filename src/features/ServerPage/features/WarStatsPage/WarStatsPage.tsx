@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { subDays } from 'date-fns';
 import { useQueryParams, DateTimeParam, withDefault } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +13,7 @@ import DateTimePicker from '@common/Picker/DateTimePicker';
 import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 import Spinner from '@common/Spinner/Spinner';
 import Card from './components/Card/Card';
+import OneSide from './components/OneSide/OneSide';
 
 function WarStatsPage() {
   const now = useRef(new Date());
@@ -38,7 +39,13 @@ function WarStatsPage() {
     handleChangePlayers: sideTwoHandleChangePlayers,
     handleChangeTribes: sideTwoHandleChangeTribes,
   } = useSide(server.key, { paramNamePrefix: 'sideTwo' });
-  const loading = true;
+  const selectedPlayersIDs = useMemo(() => {
+    return [...sideOnePlayers.map(p => p.id), ...sideTwoPlayers.map(p => p.id)];
+  }, [sideOnePlayers, sideTwoPlayers]);
+  const selectedTribesIDs = useMemo(() => {
+    return [...sideOneTribes.map(p => p.id), ...sideTwoTribes.map(p => p.id)];
+  }, [sideOneTribes, sideTwoTribes]);
+  const loading = sideTwoLoading || sideOneLoading;
 
   return (
     <ServerPageLayout>
@@ -105,14 +112,30 @@ function WarStatsPage() {
                 </div>
               </Card>
               <Card>
-                <Typography variant="h4" align="center" gutterBottom>
-                  {t('sections.sideOne')}
-                </Typography>
+                <OneSide
+                  title={t('sections.sideOne')}
+                  players={sideOnePlayers}
+                  tribes={sideOneTribes}
+                  onChangePlayers={sideOneHandleChangePlayers}
+                  onChangeTribes={sideOneHandleChangeTribes}
+                  server={server.key}
+                  tribeIDNEQ={selectedTribesIDs}
+                  playerIDNEQ={selectedPlayersIDs}
+                  className={classes.formGroup}
+                />
               </Card>
               <Card>
-                <Typography variant="h4" align="center" gutterBottom>
-                  {t('sections.sideTwo')}
-                </Typography>
+                <OneSide
+                  title={t('sections.sideTwo')}
+                  players={sideTwoPlayers}
+                  tribes={sideTwoTribes}
+                  onChangePlayers={sideTwoHandleChangePlayers}
+                  onChangeTribes={sideTwoHandleChangeTribes}
+                  server={server.key}
+                  tribeIDNEQ={selectedTribesIDs}
+                  playerIDNEQ={selectedPlayersIDs}
+                  className={classes.formGroup}
+                />
               </Card>
             </Grid>
           </form>
@@ -124,7 +147,7 @@ function WarStatsPage() {
 
 const useStyles = makeStyles(theme => ({
   formGroup: {
-    '& > *': {
+    '& > *:not(:last-child)': {
       marginBottom: theme.spacing(1),
     },
   },

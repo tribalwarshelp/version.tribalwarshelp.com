@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
     },
-    '& .MuiPickersDay-current': {
+    '& .MuiPickersDay-current:not(.MuiPickersDay-daySelected)': {
       color: theme.palette.secondary.main,
     },
     '& .MuiDialogActions-root .MuiButton-root': {

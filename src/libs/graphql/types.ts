@@ -39,6 +39,7 @@ export type ServerStatsQueryVariables = QueryVariablesWithServer<
 
 export type PlayerFilter = {
   id?: number[];
+  idNEQ?: number[];
   tribeID?: number[];
   exists?: boolean;
   tribeFilter?: TribeFilter;
@@ -81,6 +82,7 @@ export type DailyPlayerStatsQueryVariables = QueryVariablesWithServer<
 
 export type TribeFilter = {
   id?: number[];
+  idNEQ?: number[];
   exists?: boolean;
   tagIEQ?: string;
   deletedAtGT?: Date | string;

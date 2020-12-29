@@ -25,9 +25,7 @@ import {
   Checkbox,
   FormControlLabel,
 } from '@material-ui/core';
-import ServerPageLayout, {
-  Props as ServerPageLayoutProps,
-} from '@features/ServerPage/common/PageLayout/PageLayout';
+import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 import ColorInput from '@common/Form/ColorInput';
 import Spinner from '@common/Spinner/Spinner';
 import Map from './components/Map/Map';

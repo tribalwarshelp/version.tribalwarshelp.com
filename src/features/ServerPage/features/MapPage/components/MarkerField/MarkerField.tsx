@@ -47,7 +47,7 @@ function MarkerField<T extends object>({
         })
         .finally(() => setLoading(false));
     },
-    1000
+    500
   );
   useUpdateEffect(() => {
     debouncedLoadSuggestions.callback(searchValue);
