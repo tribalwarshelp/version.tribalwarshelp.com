@@ -22,7 +22,7 @@ function Map({ src = '', alt = 'Map', maxWidth = 1000, t }: Props) {
   }, [src]);
 
   return (
-    <div className={classes.container}>
+    <div>
       {isGenerating && <InfoWhileGenerating t={t} />}
       {!isGenerating && <InfoAfterGenerating t={t} />}
       <div
@@ -61,9 +61,6 @@ const useStyles = makeStyles(theme => {
     },
     link: {
       wordBreak: 'break-all',
-    },
-    container: {
-      marginTop: theme.spacing(2),
     },
     imageWrapper: {
       marginTop: theme.spacing(2),

@@ -10,13 +10,13 @@ const translations = {
           name: 'Rankingi',
           player: {
             index: 'Gracze',
-            od: 'Gracze OD',
+            od: 'Pokonani przeciwnicy (gracze)',
             daily: 'Gracze - Dzienne statystyki',
             archive: 'Byli gracze',
           },
           tribe: {
             index: 'Plemiona',
-            od: 'Plemiona OD',
+            od: 'Pokonani przeciwnicy (plemiona)',
             daily: 'Plemiona - Dzienne statystyki',
             archive: 'Byłe plemiona',
           },

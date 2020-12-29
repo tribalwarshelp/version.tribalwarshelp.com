@@ -11,13 +11,11 @@ import App from './features/App';
 import createTheme from './theme/createTheme';
 import createGraphQLClient from './libs/graphql/createClient';
 import initI18N from './libs/i18n/init';
-import locales, { Locale } from './libs/date/locales';
+import { getLocale } from './libs/date/locales';
 import extractVersionCodeFromHostname from './utils/extractVersionCodeFromHostname';
 import { URI as API_URI } from './config/api';
-import { DEFAULT_LANGUAGE } from './config/app';
 import reportWebVitals from './reportWebVitals';
 
-const version = extractVersionCodeFromHostname();
 const jsx = (
   <BrowserRouter>
     <ThemeProvider theme={createTheme()}>
@@ -25,11 +23,9 @@ const jsx = (
         <ApolloProvider client={createGraphQLClient(API_URI)}>
           <MuiPickersUtilsProvider
             utils={DateFnsUtils}
-            locale={
-              version in locales
-                ? locales[version as Locale]
-                : locales[DEFAULT_LANGUAGE as Locale]
-            }
+            locale={getLocale(
+              extractVersionCodeFromHostname(window.location.hostname)
+            )}
           >
             <QueryParamProvider ReactRouterRoute={Route}>
               <App />
