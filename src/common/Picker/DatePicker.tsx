@@ -1,23 +1,18 @@
 import React from 'react';
 import clsx from 'clsx';
 import {
-  DateTimePicker as MUIDateTimePicker,
-  DateTimePickerProps,
+  DatePicker as MUIDatePicker,
+  DatePickerProps,
 } from '@material-ui/pickers';
 import useI18N from './useI18N';
 import useDialogStyles from './useDialogStyles';
 
-function DateTimePicker({
-  className,
-  ampm = false,
-  ...props
-}: DateTimePickerProps) {
+function DatePicker({ className, ...props }: DatePickerProps) {
   const classes = useDialogStyles();
   const translations = useI18N();
   return (
-    <MUIDateTimePicker
+    <MUIDatePicker
       {...props}
-      ampm={ampm}
       DialogProps={{ className: clsx(className, classes.dialog) }}
       okLabel={translations.okLabel}
       cancelLabel={translations.cancelLabel}
@@ -25,4 +20,4 @@ function DateTimePicker({
   );
 }
 
-export default DateTimePicker;
+export default DatePicker;
