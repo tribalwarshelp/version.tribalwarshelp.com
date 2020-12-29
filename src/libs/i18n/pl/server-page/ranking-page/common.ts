@@ -3,13 +3,13 @@ const translations = {
     tabs: {
       playerPage: {
         indexPage: 'Gracze',
-        odPage: 'Pokonani przeciwnicy (gracze)',
+        odPage: 'Gracze - Pokonani przeciwnicy',
         dailyPage: 'Gracze - Dzienne statystyki',
         archivePage: 'Byli gracze',
       },
       tribePage: {
         indexPage: 'Plemiona',
-        odPage: 'Pokonani przeciwnicy (plemiona)',
+        odPage: 'Plemiona - Pokonani przeciwnicy',
         dailyPage: 'Plemiona - Dzienne statystyki',
         archivePage: 'Byłe plemiona',
       },
