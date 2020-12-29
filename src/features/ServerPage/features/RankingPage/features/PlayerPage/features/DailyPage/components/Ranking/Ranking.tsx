@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { format, isValid } from 'date-fns';
 import {
   useQueryParams,
   NumberParam,
@@ -17,10 +16,11 @@ import { validateRowsPerPage } from '@common/Table/helpers';
 import { COLUMNS, LIMIT, DEFAULT_SORT } from './constants';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, TextField } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import Table from '@common/Table/Table';
 import TableToolbar from '@common/Table/TableToolbar';
 import SearchInput from '@common/Form/SearchInput';
+import DatePicker from '@common/Picker/DatePicker';
 import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import { TFunction } from 'i18next';
@@ -44,8 +44,9 @@ function Ranking({ t }: Props) {
   const limit = validateRowsPerPage(query.limit);
   const [q, setQ] = useState(query.q);
   const debouncedSetQuery = useDebouncedCallback(
-    value => setQuery({ q: value }),
-    1000
+    value => setQuery({ q: value, page: 0 }),
+    500,
+    { maxWait: 1000 }
   );
   useUpdateEffect(() => {
     debouncedSetQuery.callback(q);
@@ -63,18 +64,14 @@ function Ranking({ t }: Props) {
   return (
     <Paper>
       <TableToolbar className={classes.tableToolbar}>
-        <TextField
-          type="date"
+        <DatePicker
           size="small"
           label={t('ranking.createDateInputLabel')}
-          defaultValue={
-            query.createDate && query.createDate instanceof Date
-              ? format(query.createDate, 'yyyy-MM-dd')
-              : undefined
-          }
-          onChange={e => {
-            const date = new Date(e.target.value);
-            setQuery({ createDate: isValid(date) ? date : undefined });
+          value={query.createDate}
+          disableFuture
+          variant="dialog"
+          onChange={d => {
+            setQuery({ createDate: d ? d : undefined, page: 0 });
           }}
           InputLabelProps={{
             shrink: true,

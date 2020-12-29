@@ -4,6 +4,7 @@ import { DATE_PICKER } from '@config/namespaces';
 type Translations = {
   cancelLabel: string;
   okLabel: string;
+  todayLabel: string;
 };
 
 const useI18N = (): Translations => {
@@ -12,6 +13,7 @@ const useI18N = (): Translations => {
   return {
     cancelLabel: t('cancelLabel'),
     okLabel: t('okLabel'),
+    todayLabel: t('todayLabel'),
   };
 };
 

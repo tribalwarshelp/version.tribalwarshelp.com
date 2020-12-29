@@ -10,6 +10,7 @@ import useDialogStyles from './useDialogStyles';
 function DateTimePicker({
   className,
   ampm = false,
+  format = 'yyyy/MM/dd HH:mm',
   ...props
 }: DateTimePickerProps) {
   const classes = useDialogStyles();
@@ -18,9 +19,9 @@ function DateTimePicker({
     <MUIDateTimePicker
       {...props}
       ampm={ampm}
+      format={format}
       DialogProps={{ className: clsx(className, classes.dialog) }}
-      okLabel={translations.okLabel}
-      cancelLabel={translations.cancelLabel}
+      {...translations}
     />
   );
 }

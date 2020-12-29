@@ -7,6 +7,7 @@ import {
 const createClient = (uri: string): ApolloClient<NormalizedCacheObject> => {
   return new ApolloClient({
     uri: uri,
+    queryDeduplication: true,
     cache: new InMemoryCache({
       typePolicies: {
         FoundPlayer: {

@@ -19,6 +19,7 @@ const createTheme = (): Theme => {
       props: {
         MuiTextField: {
           variant: 'outlined',
+          color: 'secondary',
         },
         MuiAppBar: {
           color: 'default',
@@ -26,12 +27,6 @@ const createTheme = (): Theme => {
         MuiLink: {
           color: 'secondary',
           underline: 'none',
-        },
-        MuiInput: {
-          color: 'secondary',
-        },
-        MuiInputLabel: {
-          color: 'secondary',
         },
       },
       overrides: {

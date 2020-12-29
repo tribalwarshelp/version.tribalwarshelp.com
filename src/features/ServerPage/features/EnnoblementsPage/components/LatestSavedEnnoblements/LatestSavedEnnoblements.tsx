@@ -1,11 +1,10 @@
-import React from 'react';
-import { format, isValid } from 'date-fns';
+import React, { useRef } from 'react';
 import { useQuery } from '@apollo/client';
 import {
   useQueryParams,
   NumberParam,
   withDefault,
-  DateParam,
+  DateTimeParam,
 } from 'use-query-params';
 import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
@@ -13,8 +12,8 @@ import { ENNOBLEMENTS } from './queries';
 import { LIMIT } from './constants';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField } from '@material-ui/core';
 import TableToolbar from '@common/Table/TableToolbar';
+import DateTimePicker from '@common/Picker/DateTimePicker';
 import Table from '../Table/Table';
 
 import { TFunction } from 'i18next';
@@ -28,11 +27,12 @@ export interface Props {
 
 function LatestSavedEnnoblements({ t, server }: Props) {
   const classes = useStyles();
+  const now = useRef(new Date());
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
-    ennobledAtGTE: withDefault(DateParam, undefined),
-    ennobledAtLTE: withDefault(DateParam, undefined),
+    ennobledAtGTE: withDefault(DateTimeParam, new Date(0)),
+    ennobledAtLTE: withDefault(DateTimeParam, now.current),
   });
   const limit = validateRowsPerPage(query.limit);
   useScrollToElement(document.documentElement, [query.page, limit]);
@@ -60,23 +60,30 @@ function LatestSavedEnnoblements({ t, server }: Props) {
     <div>
       <TableToolbar className={classes.tableToolbar}>
         {[
-          { id: 'ennobledAtGTE', defaultValue: query.ennobledAtGTE },
-          { id: 'ennobledAtLTE', defaultValue: query.ennobledAtLTE },
-        ].map(({ id, defaultValue }) => {
+          {
+            id: 'ennobledAtGTE',
+            value: query.ennobledAtGTE,
+            maxDate: query.ennobledAtLTE,
+          },
+          {
+            id: 'ennobledAtLTE',
+            value: query.ennobledAtLTE,
+            minDate: query.ennobledAtGTE,
+          },
+        ].map(({ id, value, maxDate, minDate }) => {
           return (
-            <TextField
-              type="date"
+            <DateTimePicker
               size="small"
               key={id}
               label={t('latestSavedEnnoblements.inputs.' + id)}
-              defaultValue={
-                defaultValue && defaultValue instanceof Date
-                  ? format(defaultValue, 'yyyy-MM-dd')
-                  : undefined
-              }
-              onChange={e => {
-                const date = new Date(e.target.value);
-                setQuery({ [id]: isValid(date) ? date : undefined });
+              value={value}
+              disableFuture
+              variant="dialog"
+              maxDate={maxDate}
+              minDate={minDate}
+              showTodayButton
+              onChange={d => {
+                setQuery({ [id]: d ? d : undefined, page: 0 });
               }}
               InputLabelProps={{
                 shrink: true,

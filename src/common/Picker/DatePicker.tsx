@@ -7,15 +7,19 @@ import {
 import useI18N from './useI18N';
 import useDialogStyles from './useDialogStyles';
 
-function DatePicker({ className, ...props }: DatePickerProps) {
+function DatePicker({
+  className,
+  format = 'yyyy/MM/dd',
+  ...props
+}: DatePickerProps) {
   const classes = useDialogStyles();
   const translations = useI18N();
   return (
     <MUIDatePicker
       {...props}
+      format={format}
       DialogProps={{ className: clsx(className, classes.dialog) }}
-      okLabel={translations.okLabel}
-      cancelLabel={translations.cancelLabel}
+      {...translations}
     />
   );
 }

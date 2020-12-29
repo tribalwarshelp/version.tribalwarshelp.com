@@ -34,8 +34,9 @@ function Ranking({ server, t }: Props) {
   });
   const [q, setQ] = useState(query.q);
   const debouncedSetQuery = useDebouncedCallback(
-    value => setQuery({ q: value }),
-    1000
+    value => setQuery({ q: value, page: 0 }),
+    500,
+    { maxWait: 1000 }
   );
   useUpdateEffect(() => {
     debouncedSetQuery.callback(q);

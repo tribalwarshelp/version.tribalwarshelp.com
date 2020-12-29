@@ -41,4 +41,4 @@ export const COLUMNS: Column<Player>[] = [
 
 export const LIMIT = 25;
 
-export const DEFAULT_SORT = decodeSort('scoreAtt DESC');
+export const DEFAULT_SORT = decodeSort('scoreTotal DESC');

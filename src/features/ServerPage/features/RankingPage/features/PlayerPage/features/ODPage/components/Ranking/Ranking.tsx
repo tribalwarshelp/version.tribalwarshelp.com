@@ -37,8 +37,9 @@ function Ranking({ server, t }: Props) {
   const limit = validateRowsPerPage(query.limit);
   const [q, setQ] = useState(query.q);
   const debouncedSetQuery = useDebouncedCallback(
-    value => setQuery({ q: value }),
-    1000
+    value => setQuery({ q: value, page: 0 }),
+    500,
+    { maxWait: 1000 }
   );
   useScrollToElement(document.documentElement, [query.page, limit]);
   useUpdateEffect(() => {
