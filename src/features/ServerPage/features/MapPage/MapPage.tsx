@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   useQueryParams,
   NumberParam,
@@ -36,7 +36,7 @@ import {
   PlayersQueryVariables,
   TribesQueryVariables,
 } from '@libs/graphql/types';
-import { Tribe, Player, PlayerList, TribeList, Settings } from './types';
+import { Tribe, Player, PlayerList, TribeList, Settings, HasID } from './types';
 
 function MapPage() {
   const [mapURL, setMapURL] = useState<string>('');
@@ -68,6 +68,9 @@ function MapPage() {
     dataKey: 'tribes',
     getVariables: ids => ({ server: key, filter: { id: ids, exists: true } }),
   });
+  const selectedTribeIDs = useMemo(() => {
+    return tribeMarkers.filter(m => m.item).map(m => m.item?.id ?? 0);
+  }, [tribeMarkers]);
   const {
     markers: playerMarkers,
     createDeleteMarkerHandler: createDeletePlayerMarkerHandler,
@@ -81,6 +84,9 @@ function MapPage() {
     dataKey: 'players',
     getVariables: ids => ({ server: key, filter: { id: ids, exists: true } }),
   });
+  const selectedPlayerIDs = useMemo(() => {
+    return playerMarkers.filter(m => m.item).map(m => m.item?.id ?? 0);
+  }, [playerMarkers]);
   const classes = useStyles();
   const { t } = useTranslation(SERVER_PAGE.MAP_PAGE);
   useTitle(t('title', { key }));
@@ -108,6 +114,7 @@ function MapPage() {
           filter: {
             exists: true,
             nameIEQ: searchValue + '%',
+            idNEQ: selectedPlayerIDs,
           },
           server: key,
           offset: 0,
@@ -130,6 +137,7 @@ function MapPage() {
           filter: {
             exists: true,
             tagIEQ: searchValue + '%',
+            idNEQ: selectedTribeIDs,
           },
           server: key,
           offset: 0,
@@ -170,12 +178,13 @@ function MapPage() {
     setMapURL(MAP_SERVICE + '/' + key + '?' + queryString);
   };
 
+  const getOptionSelected = (option: HasID, value: HasID) =>
+    option && value ? option.id === value.id : false;
   const tribeGetOptionLabel = (tribe: Tribe) => (tribe ? tribe.tag : '');
-  const tribeGetOptionSelected = (option: Tribe, value: Tribe) =>
-    option && value ? option.tag === value.tag : false;
   const playerGetOptionLabel = (player: Player) => (player ? player.name : '');
-  const playerGetOptionSelected = (option: Player, value: Player) =>
-    option && value ? option.name === value.name : false;
+  const isDisabled = (id: number, blacklist: number[]) => {
+    return blacklist.some(id2 => id === id2);
+  };
 
   return (
     <ServerPageLayout>
@@ -187,7 +196,7 @@ function MapPage() {
             justifyContent: 'center',
             alignItems: 'center',
             textAlign: 'center',
-            height: '100%',
+            minHeight: 'inherit',
             paddingY: 5,
           }}
           description={t('loading')}
@@ -218,7 +227,7 @@ function MapPage() {
                     inputProps={{
                       min: 1,
                       max: 5,
-                      step: '.01',
+                      step: '.1',
                     }}
                   />
                   <TextField
@@ -232,7 +241,7 @@ function MapPage() {
                     inputProps={{
                       min: 0,
                       max: 1000,
-                      step: '.01',
+                      step: '1',
                     }}
                   />
                   <TextField
@@ -246,7 +255,7 @@ function MapPage() {
                     inputProps={{
                       min: 0,
                       max: 1000,
-                      step: '.01',
+                      step: '1',
                     }}
                   />
                   <ColorInput
@@ -343,7 +352,10 @@ function MapPage() {
                         noOptionsText={t('noOptions')}
                         loadSuggestions={searchTribes}
                         getOptionLabel={tribeGetOptionLabel}
-                        getOptionSelected={tribeGetOptionSelected}
+                        getOptionSelected={getOptionSelected}
+                        getOptionDisabled={opt =>
+                          isDisabled(opt.id, selectedTribeIDs)
+                        }
                         color={marker.color}
                         value={marker.item}
                       />
@@ -354,7 +366,7 @@ function MapPage() {
                     fullWidth
                     color="secondary"
                     onClick={handleAddTribeMarker}
-                    disabled={tribeMarkers.length >= 100}
+                    disabled={tribeMarkers.length >= 25}
                   >
                     {t('buttons.addMarker')}
                   </Button>
@@ -384,7 +396,10 @@ function MapPage() {
                         noOptionsText={t('noOptions')}
                         loadSuggestions={searchPlayers}
                         getOptionLabel={playerGetOptionLabel}
-                        getOptionSelected={playerGetOptionSelected}
+                        getOptionSelected={getOptionSelected}
+                        getOptionDisabled={opt =>
+                          isDisabled(opt.id, selectedPlayerIDs)
+                        }
                         color={marker.color}
                         value={marker.item}
                       />
@@ -395,7 +410,7 @@ function MapPage() {
                     fullWidth
                     color="secondary"
                     onClick={handleAddPlayerMarker}
-                    disabled={playerMarkers.length >= 100}
+                    disabled={playerMarkers.length >= 25}
                   >
                     {t('buttons.addMarker')}
                   </Button>
@@ -413,9 +428,13 @@ function MapPage() {
                   </Button>
                 </Typography>
               </Grid>
+              {mapURL && (
+                <Grid item xs={12}>
+                  <Map src={mapURL} alt={key} t={t} />
+                </Grid>
+              )}
             </Grid>
           </form>
-          {mapURL && <Map src={mapURL} alt={key} t={t} />}
         </Container>
       )}
     </ServerPageLayout>

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useQueryParams, withDefault, ArrayParam } from 'use-query-params';
 import { v4 as uuidv4 } from 'uuid';
+import { isNil } from 'lodash';
 import { isValidColor } from '@libs/serialize-query-params/ColorParam';
 
 import { ApolloClient, DocumentNode } from '@apollo/client';
 import { List } from '@libs/graphql/types';
-import { Marker } from './types';
+import { Marker, HasID } from './types';
 
 export type MarkerBag<T> = {
   markers: Marker<T>[];
@@ -22,10 +23,6 @@ export type MarkerBag<T> = {
   createDeleteMarkerHandler: (id: string) => () => void;
   loading: boolean;
 };
-
-interface HasID {
-  id: number;
-}
 
 export interface Options<VariablesT> {
   paramName: string;
@@ -46,13 +43,23 @@ const useMarkers = <T extends HasID, VariablesT>(
 
   useEffect(() => {
     const colorByID: { [key: number]: string } = {};
+    const indexByID: { [key: number]: number } = {};
     query[opts.paramName].forEach((rawStr: string | null) => {
       if (!rawStr) {
         return;
       }
-      const [id, color] = rawStr.split(',');
-      if (!id || !color) {
+      let [index, id, color] = rawStr.split(',');
+      if (!color) {
+        color = id;
+        id = index;
+        index = '0';
+      }
+      if (!id || !color || isNil(index)) {
         return;
+      }
+      let indexInt = parseInt(id, 10);
+      if (isNaN(indexInt)) {
+        indexInt = 0;
       }
       const idInt = parseInt(id, 10);
       if (isNaN(idInt) && idInt >= 1) {
@@ -63,17 +70,22 @@ const useMarkers = <T extends HasID, VariablesT>(
       }
 
       colorByID[idInt] = color;
+      indexByID[idInt] = indexInt;
     });
 
     const ids = Object.keys(colorByID).map(id => parseInt(id, 10));
     if (ids.length > 0) {
-      loadMarkers(ids, colorByID);
+      loadMarkers(ids, colorByID, indexByID);
     } else {
       setLoading(false);
     } // eslint-disable-next-line
   }, []);
 
-  const loadMarkers = (ids: number[], colorByID: { [key: number]: string }) => {
+  const loadMarkers = (
+    ids: number[],
+    colorByID: { [key: number]: string },
+    indexByID: { [key: number]: number }
+  ) => {
     return client
       .query<Record<string, List<T[]>>, VariablesT>({
         query: opts.query,
@@ -83,9 +95,16 @@ const useMarkers = <T extends HasID, VariablesT>(
       .then(res => {
         if (opts.dataKey in res.data && res.data[opts.dataKey]) {
           setMarkers(
-            res.data[opts.dataKey].items.map(item => {
-              return getNewMarker(item, colorByID[item.id]);
-            })
+            res.data[opts.dataKey].items
+              .map(item => {
+                return getNewMarker(item, colorByID[item.id]);
+              })
+              .sort((a, b) => {
+                if (a.item && b.item) {
+                  return indexByID[a.item.id] - indexByID[b.item.id];
+                }
+                return 0;
+              })
           );
         }
       })
@@ -107,7 +126,7 @@ const useMarkers = <T extends HasID, VariablesT>(
     setQuery({
       [opts.paramName]: markers
         .filter(m => !!m.item)
-        .map(m => `${m.item?.id},${m.color}`),
+        .map((m, index) => `${index},${m.item?.id},${m.color}`),
     });
   };
 

@@ -37,3 +37,7 @@ export type Settings = Object & {
   gridLineColor: string;
   continentNumberColor: string;
 };
+
+export interface HasID {
+  id: number;
+}

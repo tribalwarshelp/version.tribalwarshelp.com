@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import useUpdateEffect from '@libs/useUpdateEffect';
 
 import { TextField, Box, IconButton } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
@@ -21,6 +20,7 @@ export interface Props<T> {
   noOptionsText?: string;
   color: string;
   value: T | null;
+  getOptionDisabled?: (opt: T) => boolean;
 }
 
 function MarkerField<T extends object>({
@@ -34,35 +34,37 @@ function MarkerField<T extends object>({
   noOptionsText,
   color,
   value,
+  getOptionDisabled,
 }: Props<T>) {
-  const [searchValue, setSearchValue] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<T[]>(value ? [value] : []);
+  const [suggestions, setSuggestions] = useState<T[]>([]);
   const [loading, setLoading] = useState(false);
-  const debouncedLoadSuggestions = useDebouncedCallback(
-    (searchValue: string) => {
-      setLoading(true);
-      loadSuggestions(searchValue)
-        .then(data => {
-          setSuggestions(data);
-        })
-        .finally(() => setLoading(false));
-    },
-    500
-  );
-  useUpdateEffect(() => {
-    debouncedLoadSuggestions.callback(searchValue);
-  }, [searchValue, debouncedLoadSuggestions]);
+  useEffect(() => {
+    _loadSuggestions(''); // eslint-disable-next-line
+  }, []);
+
+  const _loadSuggestions = (searchValue: string) => {
+    setLoading(true);
+    loadSuggestions(searchValue)
+      .then(data => {
+        setSuggestions(data);
+      })
+      .finally(() => setLoading(false));
+  };
+  const debouncedLoadSuggestions = useDebouncedCallback(_loadSuggestions, 500, {
+    maxWait: 1000,
+  });
 
   return (
     <Box display="flex" justifyContent="space-between" alignItems="flex-end">
       <Autocomplete
-        options={suggestions}
+        options={value ? [...suggestions, value] : suggestions}
         getOptionLabel={getOptionLabel}
         fullWidth
         autoSelect
         autoHighlight
         loading={loading}
         getOptionSelected={getOptionSelected}
+        getOptionDisabled={getOptionDisabled}
         value={value}
         onChange={onChange}
         loadingText={loadingText}
@@ -82,7 +84,9 @@ function MarkerField<T extends object>({
               }}
               type="text"
               name="value"
-              onChange={e => setSearchValue(e.target.value)}
+              onChange={e => {
+                debouncedLoadSuggestions.callback(e.target.value);
+              }}
             />
           );
         }}
