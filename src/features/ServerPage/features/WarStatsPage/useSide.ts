@@ -44,7 +44,6 @@ export type Bag = {
 };
 
 const useSide = (server: string, opts: Options): Bag => {
-  const [loading, setLoading] = useState<boolean>(true);
   const [players, setPlayers] = useState<Player[]>([]);
   const [tribes, setTribes] = useState<Tribe[]>([]);
   const paramNamePlayer = getParamName('player', opts.paramNamePrefix);
@@ -53,6 +52,9 @@ const useSide = (server: string, opts: Options): Bag => {
     [paramNamePlayer]: withDefault(NumericArrayParam, []),
     [paramNameTribe]: withDefault(NumericArrayParam, []),
   });
+  const [loading, setLoading] = useState<boolean>(
+    query[paramNamePlayer].length > 0 || query[paramNameTribe].length > 0
+  );
   const client = useApolloClient();
 
   useEffect(() => {

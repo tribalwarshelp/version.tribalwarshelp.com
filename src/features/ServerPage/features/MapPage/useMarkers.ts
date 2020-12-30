@@ -35,10 +35,10 @@ const useMarkers = <T extends HasID, VariablesT>(
   client: ApolloClient<object>,
   opts: Options<VariablesT>
 ): MarkerBag<T> => {
-  const [loading, setLoading] = useState(true);
   const [query, setQuery] = useQueryParams({
     [opts.paramName]: withDefault(ArrayParam, []),
   });
+  const [loading, setLoading] = useState(query[opts.paramName].length > 0);
   const [markers, setMarkers] = useState<Marker<T>[]>([]);
 
   useEffect(() => {

@@ -5,14 +5,12 @@ import * as NAMESPACES from '@config/namespaces';
 import { SERVER_STATUS } from '@config/app';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
 import {
   Grid,
   Accordion,
   Typography,
   AccordionSummary,
   AccordionDetails,
-  useMediaQuery,
   Tooltip,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
@@ -28,14 +26,11 @@ import { Server } from './types';
 export interface Props {
   server?: Server;
   t: TFunction;
+  hideTooltip?: boolean;
 }
 
-function GridItem({ t, server }: Props) {
+function GridItem({ t, server, hideTooltip = true }: Props) {
   const classes = useStyles();
-  const theme = useTheme();
-  const isDownSM = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTouchDevice = useMediaQuery('(hover: none)');
-  const hideTooltip = isDownSM || isTouchDevice;
   const [expanded, setExpanded] = React.useState<boolean>(false);
   const accordion = useRef<HTMLDivElement | null>(null);
 
