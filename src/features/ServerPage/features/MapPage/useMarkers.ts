@@ -86,7 +86,6 @@ const useMarkers = <T extends HasID, VariablesT>(
     colorByID: { [key: number]: string },
     indexByID: { [key: number]: number }
   ) => {
-    console.log(indexByID);
     return client
       .query<Record<string, List<T[]>>, VariablesT>({
         query: opts.query,

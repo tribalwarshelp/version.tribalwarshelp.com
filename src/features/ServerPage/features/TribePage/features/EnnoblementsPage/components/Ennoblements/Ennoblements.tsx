@@ -63,6 +63,7 @@ function Ennoblements({ t, server, tribeID }: Props) {
             sortable: false,
             valueFormatter: (e: Ennoblement) => {
               if (
+                e.newOwner &&
                 e.newOwner.id === tribeID &&
                 e.oldOwner &&
                 e.oldOwner.id === tribeID
@@ -117,13 +118,16 @@ function Ennoblements({ t, server, tribeID }: Props) {
             label: t('ennoblements.columns.newOwner'),
             sortable: false,
             valueFormatter: (e: Ennoblement) => {
-              return (
-                <PlayerProfileLink
-                  server={server}
-                  player={e.newOwner}
-                  tribe={e.newOwnerTribe}
-                />
-              );
+              if (e.newOwner) {
+                return (
+                  <PlayerProfileLink
+                    server={server}
+                    player={e.newOwner}
+                    tribe={e.newOwnerTribe}
+                  />
+                );
+              }
+              return '-';
             },
           },
         ]}

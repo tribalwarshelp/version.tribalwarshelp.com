@@ -7,7 +7,7 @@ export type Ennoblement = {
     x: number;
     y: number;
   };
-  newOwner: {
+  newOwner?: {
     id: number;
     name: string;
   };

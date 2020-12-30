@@ -16,7 +16,7 @@ export interface Ennoblement {
     x: number;
     y: number;
   };
-  newOwner: Player;
+  newOwner?: Player;
   newOwnerTribe?: Tribe;
   oldOwner?: Player;
   oldOwnerTribe?: Tribe;
