@@ -7,7 +7,7 @@ const translations = {
   playerTable: {
     columns: {
       server: 'Server',
-      name: 'Name',
+      player: 'Player',
       bestRank: 'Best rank',
       mostPoints: 'Most points',
       mostVillages: 'Most villages',
@@ -16,7 +16,7 @@ const translations = {
   tribeTable: {
     columns: {
       server: 'Server',
-      name: 'Name',
+      tribe: 'Tribe',
       bestRank: 'Best rank',
       mostPoints: 'Most points',
       mostVillages: 'Most villages',

@@ -6,7 +6,7 @@ import { Player } from './types';
 export const COLUMNS: Column<Player>[] = [
   {
     field: 'name',
-    label: 'ranking.columns.name',
+    label: 'ranking.columns.player',
     sortable: false,
   },
   {

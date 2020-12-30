@@ -3,7 +3,7 @@ const translations = {
   ranking: {
     columns: {
       rank: 'Rank',
-      name: 'Name',
+      player: 'Player',
       points: 'Points',
       totalVillages: 'Villages',
       dailyGrowth: 'Daily growth',

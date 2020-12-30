@@ -40,7 +40,7 @@ function Members({ t, server, tribeID }: Props) {
       },
       {
         field: 'name',
-        label: t('members.columns.name'),
+        label: t('members.columns.player'),
         sortable: false,
         valueFormatter: (p: Player) => {
           return <PlayerProfileLink player={p} server={server} />;

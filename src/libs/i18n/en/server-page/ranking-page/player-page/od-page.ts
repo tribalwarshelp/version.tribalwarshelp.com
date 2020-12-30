@@ -3,7 +3,7 @@ const translations = {
   ranking: {
     columns: {
       rank: 'Rank',
-      name: 'Name',
+      player: 'Player',
       scoreAtt: 'ODA',
       scoreDef: 'ODD',
       scoreSup: 'ODS',

@@ -2,7 +2,7 @@ const translations = {
   title: 'Past tribes - {{key}}',
   ranking: {
     columns: {
-      tag: 'Tag',
+      tribe: 'Tribe',
       bestRank: 'Best rank',
       mostPoints: 'Most points',
       mostVillages: 'Most villages',

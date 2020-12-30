@@ -10,7 +10,7 @@ const translations = {
       scoreTotal: 'OD',
     },
     columns: {
-      name: 'Name',
+      player: 'Player',
       points: 'Points',
       totalVillages: 'Villages',
       total: 'Total',

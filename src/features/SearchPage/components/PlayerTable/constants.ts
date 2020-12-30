@@ -10,7 +10,7 @@ export const COLUMNS: Column<Player>[] = [
   },
   {
     field: 'name',
-    label: 'playerTable.columns.name',
+    label: 'playerTable.columns.player',
     sortable: false,
   },
   {

@@ -3,7 +3,7 @@ const translations = {
   ranking: {
     columns: {
       rank: 'Ranking',
-      tag: 'Skrót',
+      tribe: 'Plemię',
       scoreAtt: 'Agresor',
       scoreDef: 'Obrońca',
       scoreTotal: 'Pokonani ogólnie',

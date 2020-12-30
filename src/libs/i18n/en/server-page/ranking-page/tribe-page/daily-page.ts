@@ -2,7 +2,7 @@ const translations = {
   title: `Daily stats (tribes) - {{key}}`,
   ranking: {
     columns: {
-      tag: 'Tag',
+      tribe: 'Tribe',
       points: 'Points',
       villages: 'Villages',
       scoreAtt: 'ODA',

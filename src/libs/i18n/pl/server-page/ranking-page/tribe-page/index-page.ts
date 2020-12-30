@@ -3,7 +3,7 @@ const translations = {
   ranking: {
     columns: {
       rank: 'Ranking',
-      tag: 'Skrót',
+      tribe: 'Plemię',
       points: 'Punkty',
       totalVillages: 'Wioski',
       dominance: 'Dominacja',

@@ -2,7 +2,7 @@ const translations = {
   title: 'Past players - {{key}}',
   ranking: {
     columns: {
-      name: 'Name',
+      player: 'Player',
       bestRank: 'Best rank',
       mostPoints: 'Most points',
       mostVillages: 'Most villages',

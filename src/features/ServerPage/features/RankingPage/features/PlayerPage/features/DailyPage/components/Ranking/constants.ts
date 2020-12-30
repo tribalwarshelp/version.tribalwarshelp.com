@@ -11,7 +11,7 @@ export const COLUMNS: Column<DailyPlayerStatsRecord>[] = [
   },
   {
     field: 'name',
-    label: 'ranking.columns.name',
+    label: 'ranking.columns.player',
     sortable: false,
   },
   {

@@ -2,7 +2,7 @@ const translations = {
   title: `Dzienne statystyki (gracze) - {{key}}`,
   ranking: {
     columns: {
-      name: 'Nazwa',
+      player: 'Gracz',
       points: 'Punkty',
       villages: 'Wioski',
       scoreAtt: 'Agresor',

@@ -10,7 +10,7 @@ export const COLUMNS: Column<Tribe>[] = [
   },
   {
     field: 'tag',
-    label: 'ranking.columns.tag',
+    label: 'ranking.columns.tribe',
     sortable: false,
   },
   {

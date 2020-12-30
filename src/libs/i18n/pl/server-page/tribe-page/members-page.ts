@@ -2,7 +2,7 @@ const translations = {
   title: `{{tag}} - Członkowie - {{key}}`,
   members: {
     columns: {
-      name: 'Nazwa',
+      player: 'Gracz',
       points: 'Punkty',
       totalVillages: 'Wioski',
       total: 'Razem',

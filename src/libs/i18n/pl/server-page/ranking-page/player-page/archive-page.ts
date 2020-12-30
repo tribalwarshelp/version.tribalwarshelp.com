@@ -2,7 +2,7 @@ const translations = {
   title: 'Byli gracze - {{key}}',
   ranking: {
     columns: {
-      name: 'Nazwa',
+      player: 'Gracz',
       bestRank: 'Najlepszy ranking',
       mostPoints: 'Najwięcej punktów',
       mostVillages: 'Najwięcej wiosek',

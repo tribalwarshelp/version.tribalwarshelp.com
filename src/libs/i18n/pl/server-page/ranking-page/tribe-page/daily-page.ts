@@ -2,7 +2,7 @@ const translations = {
   title: `Dzienne statystyki (plemiona) - {{key}}`,
   ranking: {
     columns: {
-      tag: 'Skrót',
+      tribe: 'Plemię',
       points: 'Punkty',
       villages: 'Wioski',
       scoreAtt: 'Agresor',

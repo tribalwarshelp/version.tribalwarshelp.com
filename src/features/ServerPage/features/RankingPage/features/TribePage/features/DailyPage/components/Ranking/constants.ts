@@ -11,7 +11,7 @@ export const COLUMNS: Column<DailyTribeStatsRecord>[] = [
   },
   {
     field: 'tag',
-    label: 'ranking.columns.tag',
+    label: 'ranking.columns.tribe',
     sortable: false,
   },
   {

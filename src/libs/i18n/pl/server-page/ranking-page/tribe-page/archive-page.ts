@@ -2,7 +2,7 @@ const translations = {
   title: 'Byłe plemiona - {{key}}',
   ranking: {
     columns: {
-      tag: 'Skrót',
+      tribe: 'Plemię',
       bestRank: 'Najlepszy ranking',
       mostPoints: 'Najwięcej punktów',
       mostVillages: 'Najwięcej wiosek',
