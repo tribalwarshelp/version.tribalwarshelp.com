@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import formatNumber from '@utils/formatNumber';
 import * as ROUTES from '@config/routes';
 import * as NAMESPACES from '@config/namespaces';
 import { SERVER_STATUS } from '@config/app';
 
+import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import {
   Grid,
   Accordion,
   Typography,
   AccordionSummary,
   AccordionDetails,
+  useMediaQuery,
+  Tooltip,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
+import {
+  ExpandMore as ExpandMoreIcon,
+  InfoOutlined as InfoIcon,
+} from '@material-ui/icons';
 import Link from '@common/Link/Link';
 
 import { TFunction } from 'i18next';
@@ -24,10 +31,65 @@ export interface Props {
 }
 
 function GridItem({ t, server }: Props) {
+  const classes = useStyles();
+  const theme = useTheme();
+  const isDownSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTouchDevice = useMediaQuery('(hover: none)');
+  const hideTooltip = isDownSM || isTouchDevice;
+  const [expanded, setExpanded] = React.useState<boolean>(false);
+  const accordion = useRef<HTMLDivElement | null>(null);
+
+  const handleClick = (e: React.ChangeEvent<{}>, expanded: boolean) => {
+    setExpanded(expanded);
+  };
+
+  const serverInfo = server ? (
+    <Typography>
+      {t('serverSelection.numberOfPlayers', {
+        count: server.numberOfPlayers,
+        num: formatNumber('commas', server.numberOfPlayers),
+      })}
+      <br />
+      {t('serverSelection.numberOfTribes', {
+        count: server.numberOfTribes,
+        num: formatNumber('commas', server.numberOfTribes),
+      })}
+      <br />
+      {t('serverSelection.numberOfVillages', {
+        count: server.numberOfVillages,
+        num: formatNumber('commas', server.numberOfVillages),
+      })}
+    </Typography>
+  ) : (
+    ''
+  );
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <Accordion
+        expanded={expanded && hideTooltip}
+        ref={accordion}
+        onChange={hideTooltip ? handleClick : undefined}
+        className={classes.accordion}
+      >
+        <AccordionSummary
+          expandIcon={
+            server ? (
+              hideTooltip ? (
+                <ExpandMoreIcon />
+              ) : (
+                <Tooltip
+                  classes={{
+                    tooltip: classes.tooltip,
+                  }}
+                  arrow
+                  title={serverInfo}
+                >
+                  <InfoIcon color="inherit" />
+                </Tooltip>
+              )
+            ) : undefined
+          }
+        >
           {server ? (
             <Typography variant="h5">
               <Link
@@ -46,30 +108,24 @@ function GridItem({ t, server }: Props) {
             <Skeleton variant="text" width="100%" />
           )}
         </AccordionSummary>
-        {server && (
-          <AccordionDetails>
-            <Typography>
-              {t('serverSelection.numberOfPlayers', {
-                count: server.numberOfPlayers,
-                num: formatNumber('commas', server.numberOfPlayers),
-              })}
-              <br />
-              {t('serverSelection.numberOfTribes', {
-                count: server.numberOfTribes,
-                num: formatNumber('commas', server.numberOfTribes),
-              })}
-              <br />
-              {t('serverSelection.numberOfVillages', {
-                count: server.numberOfVillages,
-                num: formatNumber('commas', server.numberOfVillages),
-              })}
-              .
-            </Typography>
-          </AccordionDetails>
+        {server && hideTooltip && (
+          <AccordionDetails>{serverInfo}</AccordionDetails>
         )}
       </Accordion>
     </Grid>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+  accordion: {
+    [theme.breakpoints.up('xs')]: {
+      pointer: 'normal',
+    },
+  },
+  tooltip: {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[4],
+  },
+}));
 
 export default GridItem;
