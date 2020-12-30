@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TWHELP, NAME } from '@config/app';
 import * as ROUTES from '@config/routes';
@@ -12,14 +12,13 @@ import {
   Button,
   Hidden,
   Link as MUILink,
-  InputAdornment,
   IconButton,
   AppBarProps,
 } from '@material-ui/core';
-import { Search as SearchIcon, Input as InputIcon } from '@material-ui/icons';
+import { Input as InputIcon } from '@material-ui/icons';
 import Link from '@common/Link/Link';
 import VersionSelector from '@common/VersionSelector/VersionSelector';
-import SearchInput from '@common/Form/SearchInput';
+import SearchInput from './SearchInput';
 
 export interface Props {
   showLinkToHomePage?: boolean;
@@ -34,16 +33,9 @@ export default function Header({
   defaultQ = '',
   appBarProps = {},
 }: Props) {
-  const [q, setQ] = useState<string>(defaultQ);
   const { t } = useTranslation(NAMESPACES.COMMON);
   const classes = useStyles();
-  const trimmedQLength = q.trim().length;
 
-  const iconButton = (
-    <IconButton size="small" type="submit" disabled={trimmedQLength === 0}>
-      <SearchIcon />
-    </IconButton>
-  );
   const versionSelector = (
     <div>
       <VersionSelector />
@@ -54,32 +46,7 @@ export default function Header({
       <Container>
         <Toolbar disableGutters className={classes.toolbar}>
           <form className={classes.form}>
-            <SearchInput
-              fullWidth
-              variant="outlined"
-              placeholder={t<string>('mainLayout.header.search')}
-              value={q}
-              onChange={e => {
-                setQ(e.target.value);
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    {trimmedQLength ? (
-                      <Link
-                        to={ROUTES.SEARCH_PAGE + `?q=${encodeURIComponent(q)}`}
-                      >
-                        {iconButton}
-                      </Link>
-                    ) : (
-                      iconButton
-                    )}
-                  </InputAdornment>
-                ),
-              }}
-              onResetValue={() => setQ('')}
-              size="small"
-            />
+            <SearchInput defaultQ={defaultQ} />
           </form>
           {showLinkToHomePage && (
             <Link to={ROUTES.INDEX_PAGE}>

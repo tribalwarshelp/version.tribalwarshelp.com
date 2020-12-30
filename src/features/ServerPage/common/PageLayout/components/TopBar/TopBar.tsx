@@ -17,6 +17,7 @@ import {
 import { Menu as MenuIcon, Input as InputIcon } from '@material-ui/icons';
 import VersionSelector from '@common/VersionSelector/VersionSelector';
 import Link from '@common/Link/Link';
+import SearchInput from '@common/MainLayout/components/Header/SearchInput';
 
 export interface Props {
   className?: string;
@@ -49,13 +50,18 @@ const TopBar = ({ className, openSidebar, t }: Props) => {
             </Typography>
           </div>
           <div className={classes.rightSideContainer}>
+            <Hidden smDown implementation="css">
+              <form>
+                <SearchInput />
+              </form>
+            </Hidden>
             <Link to={ROUTES.INDEX_PAGE} color="inherit">
-              <Hidden xsDown>
+              <Hidden xsDown implementation="css">
                 <Button startIcon={<InputIcon />}>
                   {t('pageLayout.topBar.home')}
                 </Button>
               </Hidden>
-              <Hidden smUp>
+              <Hidden smUp implementation="css">
                 <IconButton color="inherit">
                   <InputIcon />
                 </IconButton>

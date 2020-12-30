@@ -2,11 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   form: {
-    width: '40%',
-    [theme.breakpoints.between('xs', 'sm')]: {
-      width: '60%',
-    },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down(750)]: {
       width: '100%',
     },
   },

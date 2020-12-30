@@ -13,6 +13,7 @@ import {
   DrawerProps,
   Toolbar,
   Box,
+  Hidden,
 } from '@material-ui/core';
 import {
   Dashboard as DashboardIcon,
@@ -22,6 +23,7 @@ import {
   Fireplace as FireplaceIcon,
 } from '@material-ui/icons';
 import DevNote from '@common/DevNote/DevNote';
+import SearchInput from '@common/MainLayout/components/Header/SearchInput';
 import Nav from './components/Nav/Nav';
 import ServerInfo from './components/ServerInfo/ServerInfo';
 
@@ -145,6 +147,11 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
     >
       <Toolbar />
       <div className={clsx(classes.root, className)}>
+        <Hidden mdUp implementation="css">
+          <Box padding={1} paddingBottom={0} component="form">
+            <SearchInput />
+          </Box>
+        </Hidden>
         <ServerInfo t={t} />
         <Divider />
         <Nav routes={routes} />
