@@ -17,6 +17,8 @@ const translations = {
     largerMarkers: 'Większe znaczniki',
     showGrid: 'Granice kontynentów',
     showContinentNumbers: 'Numery kontynentów',
+    playerVillageColor: 'Kolor wioski gracza',
+    barbarianVillageColor: 'Kolor wioski barbarzyńskiej',
   },
   buttons: {
     addMarker: 'Dodaj marker',

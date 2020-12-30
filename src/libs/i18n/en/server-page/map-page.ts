@@ -17,6 +17,8 @@ const translations = {
     largerMarkers: 'Larger markers',
     showGrid: 'Continent grid',
     showContinentNumbers: 'Continent numbers',
+    playerVillageColor: 'Player village color',
+    barbarianVillageColor: 'Barbarian village color',
   },
   buttons: {
     addMarker: 'Add marker',

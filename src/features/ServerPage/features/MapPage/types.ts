@@ -36,6 +36,8 @@ export type Settings = Object & {
   backgroundColor: string;
   gridLineColor: string;
   continentNumberColor: string;
+  playerVillageColor: string;
+  barbarianVillageColor: string;
 };
 
 export interface HasID {

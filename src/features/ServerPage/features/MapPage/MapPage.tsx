@@ -52,6 +52,8 @@ function MapPage() {
     backgroundColor: withDefault(ColorParam, '#000000'),
     gridLineColor: withDefault(ColorParam, '#ffffff'),
     continentNumberColor: withDefault(ColorParam, '#ffffff'),
+    playerVillageColor: withDefault(ColorParam, '#FF0000'),
+    barbarianVillageColor: withDefault(ColorParam, '#808080'),
   });
   const client = useApolloClient();
   const { key } = useServer();
@@ -258,32 +260,49 @@ function MapPage() {
                       step: '1',
                     }}
                   />
-                  <ColorInput
-                    color={query.backgroundColor}
-                    onChange={createSettingsChangeHandler('backgroundColor')}
-                    fullWidth
-                    variant="standard"
-                    name="backgroundColor"
-                    label={t('inputLabels.backgroundColor')}
-                  />
-                  <ColorInput
-                    color={query.gridLineColor}
-                    onChange={createSettingsChangeHandler('gridLineColor')}
-                    fullWidth
-                    variant="standard"
-                    name="gridLineColor"
-                    label={t('inputLabels.gridLineColor')}
-                  />
-                  <ColorInput
-                    color={query.continentNumberColor}
-                    onChange={createSettingsChangeHandler(
-                      'continentNumberColor'
-                    )}
-                    fullWidth
-                    variant="standard"
-                    name="continentNumberColor"
-                    label={t('inputLabels.continentNumberColor')}
-                  />
+                  {[
+                    {
+                      name: 'backgroundColor',
+                      color: query.backgroundColor,
+                      onChange: createSettingsChangeHandler('backgroundColor'),
+                    },
+                    {
+                      name: 'playerVillageColor',
+                      color: query.playerVillageColor,
+                      onChange: createSettingsChangeHandler(
+                        'playerVillageColor'
+                      ),
+                    },
+                    {
+                      name: 'barbarianVillageColor',
+                      color: query.barbarianVillageColor,
+                      onChange: createSettingsChangeHandler(
+                        'barbarianVillageColor'
+                      ),
+                    },
+                    {
+                      name: 'gridLineColor',
+                      color: query.gridLineColor,
+                      onChange: createSettingsChangeHandler('gridLineColor'),
+                    },
+                    {
+                      name: 'continentNumberColor',
+                      color: query.continentNumberColor,
+                      onChange: createSettingsChangeHandler(
+                        'continentNumberColor'
+                      ),
+                    },
+                  ].map(({ color, name, onChange }) => (
+                    <ColorInput
+                      key={name}
+                      color={color}
+                      onChange={onChange}
+                      fullWidth
+                      variant="standard"
+                      name={name}
+                      label={t('inputLabels.' + name)}
+                    />
+                  ))}
                   {[
                     {
                       name: 'markersOnly',
