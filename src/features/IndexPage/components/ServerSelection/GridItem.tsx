@@ -64,9 +64,9 @@ function GridItem({ t, server, hideTooltip = true }: Props) {
         expanded={expanded && hideTooltip}
         ref={accordion}
         onChange={hideTooltip ? handleClick : undefined}
-        className={classes.accordion}
       >
         <AccordionSummary
+          className={classes.accordionSummary}
           expandIcon={
             server ? (
               hideTooltip ? (
@@ -112,9 +112,12 @@ function GridItem({ t, server, hideTooltip = true }: Props) {
 }
 
 const useStyles = makeStyles(theme => ({
-  accordion: {
-    [theme.breakpoints.up('xs')]: {
-      pointer: 'normal',
+  accordionSummary: {
+    [theme.breakpoints.up('md')]: {
+      cursor: 'default !important',
+    },
+    '@media (hover: none)': {
+      cursor: 'pointer !important',
     },
   },
   tooltip: {
