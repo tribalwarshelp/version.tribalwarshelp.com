@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useDateUtils from '@libs/date/useDateUtils';
 import formatNumber from '@utils/formatNumber';
 import { SERVER_PAGE } from '@config/routes';
 import { DAILY_PLAYER_STATS } from './queries';
@@ -24,6 +25,7 @@ export interface Props {
 
 function TodaysBestStatsPlayers({ t }: Props) {
   const server = useServer();
+  const dateUtils = useDateUtils();
   const [mode, setMode] = useState<Mode>('scoreAtt');
   const { loading: loadingData, data } = useQuery<
     DailyPlayerStatsList,
@@ -34,7 +36,7 @@ function TodaysBestStatsPlayers({ t }: Props) {
       limit: LIMIT,
       sort: [mode + ' DESC'],
       filter: {
-        createDate: server.historyUpdatedAt,
+        createDate: dateUtils.toJSON(dateUtils.date(server.historyUpdatedAt)),
       },
       server: server.key,
     },

@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
+import useDateUtils from '@libs/date/useDateUtils';
 import formatNumber from '@utils/formatNumber';
 import { TRIBE_HISTORY } from './queries';
 import { LIMIT } from './constants';
@@ -23,6 +24,7 @@ export interface Props {
 function Statistics({ t, server, tribeID }: Props) {
   const [mode, setMode] = useState<Mode>('points');
   const theme = useTheme();
+  const dateUtils = useDateUtils();
   const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
   const { data: queryRes, loading } = useQuery<
     TribeHistory,
@@ -51,12 +53,12 @@ function Statistics({ t, server, tribeID }: Props) {
       {
         id: t<string>('statistics.modes.' + mode),
         data: items.map(item => ({
-          x: new Date(item.createDate),
+          x: dateUtils.dateInTZ(item.createDate, 'UTC'),
           y: item[mode],
         })),
       },
     ];
-  }, [items, loading, t, mode]);
+  }, [items, loading, t, mode, dateUtils]);
   const xyFormat = (v: string | number | Date) =>
     typeof v === 'string' || typeof v === 'number'
       ? formatNumber('commas', v)

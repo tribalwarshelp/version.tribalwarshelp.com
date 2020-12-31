@@ -1,8 +1,8 @@
 import React, { useRef, useMemo, useState } from 'react';
-import { subDays } from 'date-fns';
 import { useQueryParams, DateTimeParam, withDefault } from 'use-query-params';
 import { useApolloClient } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
+import useDateUtils from '@libs/date/useDateUtils';
 import useTitle from '@libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
 import useSide from './useSide';
@@ -34,11 +34,15 @@ import {
 } from './types';
 
 function WarStatsPage() {
-  const now = useRef(new Date());
+  const dateUtils = useDateUtils();
+  const now = useRef(dateUtils.date());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [results, setResults] = useState<ResultsT | null>(null);
   const [query, setQuery] = useQueryParams({
-    ennobledAtGTE: withDefault(DateTimeParam, subDays(now.current, 1)),
+    ennobledAtGTE: withDefault(
+      DateTimeParam,
+      dateUtils.subDays(now.current, 1)
+    ),
     ennobledAtLTE: withDefault(DateTimeParam, now.current),
   });
   const client = useApolloClient();
@@ -96,8 +100,8 @@ function WarStatsPage() {
       const sideTwoPlayerIDs = sideTwoPlayers.map(player => player.id);
       const sideTwoTribeIDs = sideTwoTribes.map(tribe => tribe.id);
       const defFilter = {
-        ennobledAtGTE: query.ennobledAtGTE,
-        ennobledAtLTE: query.ennobledAtLTE,
+        ennobledAtGTE: dateUtils.zonedTimeToUTC(query.ennobledAtGTE),
+        ennobledAtLTE: dateUtils.zonedTimeToUTC(query.ennobledAtLTE),
       };
       const { data } = await client.query<
         EnnoblementsQueryResult,

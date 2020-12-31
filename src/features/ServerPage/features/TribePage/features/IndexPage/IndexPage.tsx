@@ -1,6 +1,6 @@
 import React from 'react';
-import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import useDateUtils from '@libs/date/useDateUtils';
 import useTitle from '@libs/useTitle';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import useTribe from '../../libs/TribePageContext/useTribe';
@@ -20,6 +20,7 @@ import {
 import Statistics from './components/Statistics/Statistics';
 
 function IndexPage() {
+  const dateUtils = useDateUtils();
   const classes = useStyles();
   const { key } = useServer();
   const tribe = useTribe();
@@ -35,8 +36,8 @@ function IndexPage() {
         {[
           {
             field: 'createdAt',
-            value: format(
-              new Date(tribe.createdAt),
+            value: dateUtils.format(
+              dateUtils.date(tribe.createdAt),
               DATE_FORMAT.DAY_MONTH_AND_YEAR
             ),
           },
@@ -77,32 +78,32 @@ function IndexPage() {
           {
             field: 'deletedAt',
             value: tribe.deletedAt
-              ? format(
-                  new Date(tribe.deletedAt),
+              ? dateUtils.format(
+                  dateUtils.date(tribe.deletedAt),
                   DATE_FORMAT.DAY_MONTH_AND_YEAR
                 )
               : '-',
           },
           {
             field: 'bestRank',
-            subtitle: format(
-              new Date(tribe.bestRankAt),
+            subtitle: dateUtils.format(
+              dateUtils.date(tribe.bestRankAt),
               DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
             ),
             value: tribe.bestRank,
           },
           {
             field: 'mostPoints',
-            subtitle: format(
-              new Date(tribe.mostPointsAt),
+            subtitle: dateUtils.format(
+              dateUtils.date(tribe.mostPointsAt),
               DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
             ),
             value: formatNumber('commas', tribe.mostPoints),
           },
           {
             field: 'mostVillages',
-            subtitle: format(
-              new Date(tribe.mostVillagesAt),
+            subtitle: dateUtils.format(
+              dateUtils.date(tribe.mostVillagesAt),
               DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
             ),
             value: formatNumber('commas', tribe.mostVillages),

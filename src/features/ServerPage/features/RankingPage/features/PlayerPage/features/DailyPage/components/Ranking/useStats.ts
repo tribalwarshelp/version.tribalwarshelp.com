@@ -16,7 +16,7 @@ const usePlayers = (
   server: string,
   q: string,
   sort: string,
-  createDate: Date
+  createDate: Date | string
 ): QueryResult => {
   const { loading: loadingStats, data } = useQuery<
     DailyStats,

@@ -8,7 +8,6 @@ function PointTooltip(props: PointTooltipProps | BarTooltipDatum) {
     'point' in props
       ? `X: ${props.point.data.xFormatted}, Y: ${props.point.data.yFormatted}`
       : `${props.indexValue} - ${props.value}`;
-  console.log(props);
   return (
     <Tooltip open placement="top" arrow title={title}>
       <div></div>

@@ -13,6 +13,9 @@ const translations = {
     closed: 'Zamknięty',
     open: 'Otwarty',
   },
+  versionContextProvider: {
+    loading: 'Ładowanie...',
+  },
   devNote: `Strona jest ciągle w procesie tworzenia i mogą występować błędy.`,
   mainLayout: {
     header: {

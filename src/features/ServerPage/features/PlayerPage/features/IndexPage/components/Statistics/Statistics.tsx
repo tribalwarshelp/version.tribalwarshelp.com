@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
+import useDateUtils from '@libs/date/useDateUtils';
 import formatNumber from '@utils/formatNumber';
 import { PLAYER_HISTORY } from './queries';
 import { LIMIT } from './constants';
@@ -24,6 +25,7 @@ function Statistics({ t, server, playerID }: Props) {
   const [mode, setMode] = useState<Mode>('points');
   const theme = useTheme();
   const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
+  const dateUtils = useDateUtils();
   const { data: queryRes, loading } = useQuery<
     PlayerHistory,
     PlayerHistoryQueryVariables
@@ -51,12 +53,12 @@ function Statistics({ t, server, playerID }: Props) {
       {
         id: t<string>('statistics.modes.' + mode),
         data: items.map(item => ({
-          x: new Date(item.createDate),
+          x: dateUtils.dateInTZ(item.createDate, 'UTC'),
           y: item[mode],
         })),
       },
     ];
-  }, [items, loading, t, mode]);
+  }, [items, loading, t, mode, dateUtils]);
   const xyFormat = (v: string | number | Date) =>
     typeof v === 'string' || typeof v === 'number'
       ? formatNumber('commas', v)

@@ -16,7 +16,7 @@ export const COLUMNS: Column<DailyPlayerStatsRecord>[] = [
     field: 'createDate',
     label: 'todaysBestStatsPlayers.columns.createDate',
     sortable: false,
-    type: 'date',
+    type: 'dateutc',
   },
 ];
 

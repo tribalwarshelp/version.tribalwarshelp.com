@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   useQueryParams,
   NumberParam,
   withDefault,
   StringParam,
-  DateTimeParam,
+  DateParam,
 } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
+import useDateUtils from '@libs/date/useDateUtils';
 import useUpdateEffect from '@libs/useUpdateEffect';
 import useScrollToElement from '@libs/useScrollToElement';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
@@ -34,13 +35,14 @@ export interface Props {
 function Ranking({ t }: Props) {
   const classes = useStyles();
   const server = useServer();
-  const defaultDate = new Date(server.historyUpdatedAt);
+  const dateUtils = useDateUtils();
+  const defaultDate = useRef(dateUtils.date(server.historyUpdatedAt));
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
     q: withDefault(StringParam, ''),
     sort: withDefault(SortParam, DEFAULT_SORT),
-    createDate: withDefault(DateTimeParam, defaultDate),
+    createDate: withDefault(DateParam, defaultDate.current),
   });
   const limit = validateRowsPerPage(query.limit);
   const [q, setQ] = useState(query.q);
@@ -59,7 +61,7 @@ function Ranking({ t }: Props) {
     server.key,
     query.q,
     query.sort.toString(),
-    query.createDate
+    dateUtils.toJSON(query.createDate)
   );
 
   return (

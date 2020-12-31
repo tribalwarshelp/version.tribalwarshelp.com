@@ -1,13 +1,11 @@
 import React from 'react';
+import useDateUtils from '@libs/date/useDateUtils';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import useStyles from './useStyles';
-import formatDistanceToNow from '@libs/date/formatDistanceToNow';
 import formatNumber from '@utils/formatNumber';
-import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
 
 import { Typography } from '@material-ui/core';
 
-import { Locale } from '@libs/date/locales';
 import { TFunction } from 'i18next';
 
 export interface Props {
@@ -21,6 +19,7 @@ const ServerInfo = ({ t }: Props) => {
     dataUpdatedAt,
     numberOfVillages,
   } = useServer();
+  const dateUtils = useDateUtils();
 
   const classes = useStyles();
 
@@ -46,10 +45,7 @@ const ServerInfo = ({ t }: Props) => {
       </Typography>
       <Typography>
         {t('pageLayout.sidebar.serverInfo.dataUpdatedAt', {
-          date: formatDistanceToNow(new Date(dataUpdatedAt), {
-            locale: extractVersionCodeFromHostname(
-              window.location.hostname
-            ) as Locale,
+          date: dateUtils.formatDistanceToNow(new Date(dataUpdatedAt), {
             addSuffix: true,
           }),
         })}

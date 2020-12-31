@@ -16,7 +16,7 @@ export const COLUMNS: Column<DailyTribeStatsRecord>[] = [
     field: 'createDate',
     label: 'todaysBestStatsTribes.columns.createDate',
     sortable: false,
-    type: 'date',
+    type: 'dateutc',
   },
 ];
 

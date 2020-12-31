@@ -9,7 +9,7 @@ export type Column<T = any> = {
   sortable?: boolean;
   valueFormatter?: (v: T, i: number) => React.ReactNode;
   disablePadding?: boolean;
-  type?: 'normal' | 'datetime' | 'date';
+  type?: 'normal' | 'dateutc' | 'datetime' | 'date';
   align?: 'left' | 'right' | 'center';
 };
 

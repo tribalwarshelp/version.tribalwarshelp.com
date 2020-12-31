@@ -1,5 +1,5 @@
 import React from 'react';
-import { format } from 'date-fns';
+import useDateUtils from '@libs/date/useDateUtils';
 import { useTranslation } from 'react-i18next';
 import useTitle from '@libs/useTitle';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
@@ -28,6 +28,7 @@ function IndexPage() {
   const { key } = useServer();
   const player = usePlayer();
   const { t } = useTranslation(SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE);
+  const dateUtils = useDateUtils();
   useTitle(t('title', { key, name: player.name }));
 
   return (
@@ -39,8 +40,8 @@ function IndexPage() {
         {[
           {
             field: 'joinedAt',
-            value: format(
-              new Date(player.joinedAt),
+            value: dateUtils.format(
+              dateUtils.date(player.joinedAt),
               DATE_FORMAT.DAY_MONTH_AND_YEAR
             ),
           },
@@ -83,32 +84,32 @@ function IndexPage() {
           {
             field: 'deletedAt',
             value: player.deletedAt
-              ? format(
-                  new Date(player.deletedAt),
+              ? dateUtils.format(
+                  dateUtils.date(player.deletedAt),
                   DATE_FORMAT.DAY_MONTH_AND_YEAR
                 )
               : '-',
           },
           {
             field: 'bestRank',
-            subtitle: format(
-              new Date(player.bestRankAt),
+            subtitle: dateUtils.format(
+              dateUtils.date(player.bestRankAt),
               DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
             ),
             value: player.bestRank,
           },
           {
             field: 'mostPoints',
-            subtitle: format(
-              new Date(player.mostPointsAt),
+            subtitle: dateUtils.format(
+              dateUtils.date(player.mostPointsAt),
               DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
             ),
             value: formatNumber('commas', player.mostPoints),
           },
           {
             field: 'mostVillages',
-            subtitle: format(
-              new Date(player.mostVillagesAt),
+            subtitle: dateUtils.format(
+              dateUtils.date(player.mostVillagesAt),
               DATE_FORMAT.HOUR_MINUTES_DAY_MONTH_AND_YEAR
             ),
             value: formatNumber('commas', player.mostVillages),

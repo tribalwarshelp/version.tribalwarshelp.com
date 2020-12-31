@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { subDays, isEqual as isEqualDate } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
+import useDateUtils from '@libs/date/useDateUtils';
 import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import formatNumber from '@utils/formatNumber';
@@ -25,6 +25,7 @@ export interface Props {
 }
 
 function TribeHistory({ t, server, tribeID }: Props) {
+  const dateUtils = useDateUtils();
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
@@ -53,15 +54,21 @@ function TribeHistory({ t, server, tribeID }: Props) {
   const tribeHistoryItems = useMemo(() => {
     const dailyTribeStatsItems = queryData?.dailyTribeStats?.items ?? [];
     return (queryData?.tribeHistory?.items ?? []).map(phItem => {
-      const dateOfTheDayBeforeDate = subDays(new Date(phItem.createDate), 1);
+      const dateOfTheDayBeforeDate = dateUtils.subDays(
+        dateUtils.date(phItem.createDate),
+        1
+      );
       return {
         ...phItem,
         stats: dailyTribeStatsItems.find(dpsItem =>
-          isEqualDate(new Date(dpsItem.createDate), dateOfTheDayBeforeDate)
+          dateUtils.isEqual(
+            dateUtils.date(dpsItem.createDate),
+            dateOfTheDayBeforeDate
+          )
         ),
       };
     });
-  }, [queryData]);
+  }, [queryData, dateUtils]);
   const loading = tribeHistoryItems.length === 0 && queryLoading;
   const total = queryData?.tribeHistory?.total ?? 0;
 

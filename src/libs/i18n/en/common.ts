@@ -13,6 +13,9 @@ const translations = {
     closed: 'Closed',
     open: 'Open',
   },
+  versionContextProvider: {
+    loading: 'Loading...',
+  },
   devNote: `This website is still under development and some things may be broken.`,
   mainLayout: {
     header: {

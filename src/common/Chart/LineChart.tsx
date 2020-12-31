@@ -11,7 +11,7 @@ export interface Props extends LineSvgProps {
   loading?: boolean;
 }
 
-const LineChart = ({ data, loading, ...rest }: Props) => {
+const LineChart = ({ data, loading, yScale, xScale, ...rest }: Props) => {
   const { t } = useTranslation(LINE_CHART);
 
   if (loading) {
@@ -37,6 +37,8 @@ const LineChart = ({ data, loading, ...rest }: Props) => {
       // tooltip={PointTooltip}
       data={data}
       {...rest}
+      xScale={xScale?.type === 'time' ? { useUTC: false, ...xScale } : xScale}
+      yScale={yScale?.type === 'time' ? { useUTC: false, ...yScale } : yScale}
       theme={darkTheme}
     />
   );

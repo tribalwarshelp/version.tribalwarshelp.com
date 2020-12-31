@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
+import useDateUtils from '@libs/date/useDateUtils';
 import { STATISTICS } from './queries';
 import { LIMIT } from './constants';
 
@@ -19,6 +20,7 @@ export interface Props {
 }
 
 function TribeStatistics({ server, t }: Props) {
+  const dateUtils = useDateUtils();
   const { loading: loadingData, data: queryRes } = useQuery<
     ServerStats,
     ServerStatsQueryVariables
@@ -40,16 +42,18 @@ function TribeStatistics({ server, t }: Props) {
     return [
       {
         id: t<string>('tribeStatistics.tribes'),
-        data: items.map(item => ({
-          x: new Date(item.createDate),
-          y: item.activeTribes,
-        })),
+        data: items.map(item => {
+          return {
+            x: dateUtils.dateInTZ(item.createDate, 'UTC'),
+            y: item.activeTribes,
+          };
+        }),
       },
     ];
-  }, [items, loading, t]);
+  }, [items, loading, t, dateUtils]);
 
   return (
-    <Paper size="large" style={{ overflow: 'hidden' }}>
+    <Paper size="large" style={{ overflow: 'visible' }}>
       <TableToolbar>
         <Typography variant="h4">{t('tribeStatistics.title')}</Typography>
       </TableToolbar>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { get, isString, isNumber } from 'lodash';
-import { format } from 'date-fns';
+import useDateUtils from '@libs/date/useDateUtils';
 import { DATE_FORMAT } from '@config/app';
 
 import { TableRow, TableCell, Checkbox, Tooltip } from '@material-ui/core';
@@ -28,6 +28,8 @@ function EnhancedTableRow<T extends object>({
   size = 'medium',
   index,
 }: Props<T>) {
+  const dateUtils = useDateUtils();
+
   const handleSelect = () => {
     if (onSelect) {
       onSelect(row);
@@ -35,15 +37,30 @@ function EnhancedTableRow<T extends object>({
   };
 
   const formatValue = (
-    v: string | number,
-    type: 'datetime' | 'date' | 'normal'
+    v: string | number | Date,
+    type: 'datetime' | 'dateutc' | 'date' | 'normal'
   ) => {
-    if ((isString(v) || isNumber(v)) && type === 'date') {
-      return format(new Date(v), DATE_FORMAT.DAY_MONTH_AND_YEAR);
+    if ((isString(v) || isNumber(v) || v instanceof Date) && type === 'date') {
+      return dateUtils.format(
+        dateUtils.date(v),
+        DATE_FORMAT.DAY_MONTH_AND_YEAR
+      );
     }
-    if ((isString(v) || isNumber(v)) && type === 'datetime') {
-      return format(
-        new Date(v),
+    if (
+      (isString(v) || isNumber(v) || v instanceof Date) &&
+      type === 'dateutc'
+    ) {
+      return dateUtils.format(
+        dateUtils.dateInTZ(v, 'UTC'),
+        DATE_FORMAT.DAY_MONTH_AND_YEAR
+      );
+    }
+    if (
+      (isString(v) || isNumber(v) || v instanceof Date) &&
+      type === 'datetime'
+    ) {
+      return dateUtils.format(
+        dateUtils.date(v),
         DATE_FORMAT.HOUR_MINUTES_SECONDS_DAY_MONTH_AND_YEAR
       );
     }

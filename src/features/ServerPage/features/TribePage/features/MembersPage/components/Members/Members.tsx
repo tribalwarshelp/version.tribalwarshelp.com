@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { addDays, differenceInDays, format, isBefore } from 'date-fns';
+import useDateUtils from '@libs/date/useDateUtils';
 import useMembers from './useMembers';
 import formatNumber from '@utils/formatNumber';
 import { DATE_FORMAT } from '@config/app';
@@ -28,6 +28,7 @@ function Members({ t, server, tribeID }: Props) {
     server,
     HOW_MANY_DAYS_BACK
   );
+  const dateUtils = useDateUtils();
   const columns = useMemo<Column<Player>[]>(() => {
     const columns: Column<Player>[] = [
       {
@@ -66,19 +67,24 @@ function Members({ t, server, tribeID }: Props) {
 
     const maxDate =
       dailyPlayerStats.length > 0
-        ? new Date(dailyPlayerStats[0].createDate)
+        ? dateUtils.date(dailyPlayerStats[0].createDate)
         : null;
     const minDate =
       dailyPlayerStats.length > 0
-        ? new Date(dailyPlayerStats[dailyPlayerStats.length - 1].createDate)
+        ? dateUtils.date(
+            dailyPlayerStats[dailyPlayerStats.length - 1].createDate
+          )
         : null;
 
-    if (maxDate && minDate && isBefore(minDate, maxDate)) {
-      let diff = differenceInDays(maxDate, minDate) + 1;
+    if (maxDate && minDate && dateUtils.isBefore(minDate, maxDate)) {
+      let diff = dateUtils.differenceInDays(maxDate, minDate) + 1;
       if (diff <= HOW_MANY_DAYS_BACK) {
         for (let i = 0; i < diff; i++) {
-          const date = addDays(minDate, i);
-          const formatted = format(date, DATE_FORMAT.DAY_MONTH_AND_YEAR);
+          const date = dateUtils.addDays(minDate, i);
+          const formatted = dateUtils.format(
+            date,
+            DATE_FORMAT.DAY_MONTH_AND_YEAR
+          );
           columns.push({
             field: formatted,
             label: formatted,
@@ -86,7 +92,8 @@ function Members({ t, server, tribeID }: Props) {
             valueFormatter: (p: Player) => {
               const record = p.dailyPlayerStatsRecords
                 ? p.dailyPlayerStatsRecords.find(
-                    r => new Date(r.createDate).getTime() === date.getTime()
+                    r =>
+                      dateUtils.date(r.createDate).getTime() === date.getTime()
                   )
                 : undefined;
               return <ColouredNumber num={record ? record[mode] : 0} />;
@@ -116,7 +123,7 @@ function Members({ t, server, tribeID }: Props) {
     }
 
     return columns;
-  }, [dailyPlayerStats, t, server, mode]);
+  }, [dailyPlayerStats, t, server, mode, dateUtils]);
 
   return (
     <Paper>

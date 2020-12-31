@@ -111,7 +111,6 @@ function Results({ data, server }: Props) {
             axisTop={null}
             axisRight={null}
             axisBottom={{
-              tickSize: 0,
               tickPadding: 5,
               tickRotation: 0,
               format: isWidthDown750 ? () => '' : undefined,

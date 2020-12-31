@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { subDays, isEqual as isEqualDate } from 'date-fns';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
+import useDateUtils from '@libs/date/useDateUtils';
 import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import formatNumber from '@utils/formatNumber';
@@ -27,6 +27,7 @@ export interface Props {
 }
 
 function PlayerHistory({ t, server, playerID }: Props) {
+  const dateUtils = useDateUtils();
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
@@ -55,15 +56,21 @@ function PlayerHistory({ t, server, playerID }: Props) {
   const playerHistoryItems = useMemo(() => {
     const dailyPlayerStatsItems = queryData?.dailyPlayerStats?.items ?? [];
     return (queryData?.playerHistory?.items ?? []).map(phItem => {
-      const dateOfTheDayBeforeDate = subDays(new Date(phItem.createDate), 1);
+      const dateOfTheDayBeforeDate = dateUtils.subDays(
+        dateUtils.date(phItem.createDate),
+        1
+      );
       return {
         ...phItem,
         stats: dailyPlayerStatsItems.find(dpsItem =>
-          isEqualDate(new Date(dpsItem.createDate), dateOfTheDayBeforeDate)
+          dateUtils.isEqual(
+            dateUtils.date(dpsItem.createDate),
+            dateOfTheDayBeforeDate
+          )
         ),
       };
     });
-  }, [queryData]);
+  }, [queryData, dateUtils]);
   const loading = playerHistoryItems.length === 0 && queryLoading;
   const total = queryData?.playerHistory?.total ?? 0;
 

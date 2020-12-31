@@ -76,7 +76,6 @@ function GridItem({ t, server, hideTooltip = true }: Props) {
                   classes={{
                     tooltip: classes.tooltip,
                   }}
-                  arrow
                   title={serverInfo}
                 >
                   <InfoIcon color="inherit" />

@@ -6,6 +6,7 @@ import {
   withDefault,
   DateTimeParam,
 } from 'use-query-params';
+import useDateUtils from '@libs/date/useDateUtils';
 import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import { ENNOBLEMENTS } from './queries';
@@ -27,11 +28,12 @@ export interface Props {
 
 function LatestSavedEnnoblements({ t, server }: Props) {
   const classes = useStyles();
-  const now = useRef(new Date());
+  const dateUtils = useDateUtils();
+  const now = useRef(dateUtils.date());
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
-    ennobledAtGTE: withDefault(DateTimeParam, new Date(0)),
+    ennobledAtGTE: withDefault(DateTimeParam, dateUtils.date(0)),
     ennobledAtLTE: withDefault(DateTimeParam, now.current),
   });
   const limit = validateRowsPerPage(query.limit);
@@ -46,8 +48,8 @@ function LatestSavedEnnoblements({ t, server }: Props) {
       offset: query.page * limit,
       sort: ['ennobledAt DESC'],
       filter: {
-        ennobledAtGTE: query.ennobledAtGTE,
-        ennobledAtLTE: query.ennobledAtLTE,
+        ennobledAtGTE: dateUtils.zonedTimeToUTC(query.ennobledAtGTE),
+        ennobledAtLTE: dateUtils.zonedTimeToUTC(query.ennobledAtLTE),
       },
       server,
     },

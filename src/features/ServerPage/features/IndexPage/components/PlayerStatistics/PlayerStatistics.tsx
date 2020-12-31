@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
+import useDateUtils from '@libs/date/useDateUtils';
 import { STATISTICS } from './queries';
 import { LIMIT } from './constants';
 
@@ -19,6 +20,7 @@ export interface Props {
 }
 
 function PlayerStatistics({ server, t }: Props) {
+  const dateUtils = useDateUtils();
   const { loading: loadingData, data: queryRes } = useQuery<
     ServerStats,
     ServerStatsQueryVariables
@@ -40,16 +42,18 @@ function PlayerStatistics({ server, t }: Props) {
     return [
       {
         id: t<string>('playerStatistics.players'),
-        data: items.map(item => ({
-          x: new Date(item.createDate),
-          y: item.activePlayers,
-        })),
+        data: items.map(item => {
+          return {
+            x: dateUtils.dateInTZ(item.createDate, 'UTC'),
+            y: item.activePlayers,
+          };
+        }),
       },
     ];
-  }, [items, loading, t]);
+  }, [items, loading, t, dateUtils]);
 
   return (
-    <Paper size="large" style={{ overflow: 'hidden' }}>
+    <Paper size="large" style={{ overflow: 'visible' }}>
       <TableToolbar>
         <Typography variant="h4">{t('playerStatistics.title')}</Typography>
       </TableToolbar>
@@ -70,7 +74,6 @@ function PlayerStatistics({ server, t }: Props) {
           }}
           xFormat="time:%Y-%m-%d"
           axisBottom={{
-            tickSize: 0,
             tickValues: 'every 6 days',
             tickPadding: 5,
             tickRotation: 0,
