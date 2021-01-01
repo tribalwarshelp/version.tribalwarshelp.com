@@ -1,13 +1,9 @@
 import React, { useRef } from 'react';
 import { useQuery } from '@apollo/client';
-import {
-  useQueryParams,
-  NumberParam,
-  withDefault,
-  DateTimeParam,
-} from 'use-query-params';
+import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
 import useDateUtils from '@libs/date/useDateUtils';
 import useScrollToElement from '@libs/useScrollToElement';
+import DateTimeParam from '@libs/serialize-query-params/DateTimeParam';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import { ENNOBLEMENTS } from './queries';
 import { LIMIT } from './constants';
@@ -29,12 +25,13 @@ export interface Props {
 function LatestSavedEnnoblements({ t, server }: Props) {
   const classes = useStyles();
   const dateUtils = useDateUtils();
-  const now = useRef(new Date());
+  const dateTimeParam = new DateTimeParam({ dateUtils });
+  const now = useRef(dateTimeParam.newDecodedDate(new Date().getTime()));
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
-    ennobledAtGTE: withDefault(DateTimeParam, new Date(0)),
-    ennobledAtLTE: withDefault(DateTimeParam, now.current),
+    ennobledAtGTE: withDefault(dateTimeParam, dateTimeParam.newDecodedDate(0)),
+    ennobledAtLTE: withDefault(dateTimeParam, now.current),
   });
   const limit = validateRowsPerPage(query.limit);
   useScrollToElement(document.documentElement, [query.page, limit]);
@@ -48,8 +45,8 @@ function LatestSavedEnnoblements({ t, server }: Props) {
       offset: query.page * limit,
       sort: ['ennobledAt DESC'],
       filter: {
-        ennobledAtGTE: query.ennobledAtGTE,
-        ennobledAtLTE: query.ennobledAtLTE,
+        ennobledAtGTE: query.ennobledAtGTE.server,
+        ennobledAtLTE: query.ennobledAtLTE.server,
       },
       server,
     },
@@ -64,13 +61,13 @@ function LatestSavedEnnoblements({ t, server }: Props) {
         {[
           {
             id: 'ennobledAtGTE',
-            value: dateUtils.date(query.ennobledAtGTE.getTime()),
-            maxDate: dateUtils.date(query.ennobledAtLTE.getTime()),
+            value: query.ennobledAtGTE.display,
+            maxDate: query.ennobledAtLTE.display,
           },
           {
             id: 'ennobledAtLTE',
-            value: dateUtils.date(query.ennobledAtLTE.getTime()),
-            minDate: dateUtils.date(query.ennobledAtGTE.getTime()),
+            value: query.ennobledAtLTE.display,
+            minDate: query.ennobledAtGTE.display,
           },
         ].map(({ id, value, maxDate, minDate }) => {
           return (
@@ -86,7 +83,7 @@ function LatestSavedEnnoblements({ t, server }: Props) {
               showTodayButton
               onChange={d => {
                 setQuery({
-                  [id]: d ? dateUtils.zonedTimeToUTC(d) : undefined,
+                  [id]: d ? d : undefined,
                   page: 0,
                 });
               }}

@@ -139,6 +139,8 @@ export type EnnoblementFilter = {
   villageID?: number[];
   ennobledAtGTE?: Date | string;
   ennobledAtLTE?: Date | string;
+  ennobledAtGT?: Date | string;
+  ennobledAtLT?: Date | string;
 };
 
 export type EnnoblementsQueryVariables = QueryVariablesWithServer<
