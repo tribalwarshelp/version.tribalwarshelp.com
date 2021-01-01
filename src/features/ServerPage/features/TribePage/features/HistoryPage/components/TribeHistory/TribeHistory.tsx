@@ -110,7 +110,7 @@ function TribeHistory({ t, server, tribeID }: Props) {
             field: 'createDate',
             label: t('tribeHistory.columns.createDate'),
             sortable: false,
-            type: 'date',
+            type: 'dateutc',
           },
           {
             field: 'points',

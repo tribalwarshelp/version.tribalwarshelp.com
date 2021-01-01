@@ -119,7 +119,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
             field: 'createDate',
             label: t('playerHistory.columns.createDate'),
             sortable: false,
-            type: 'date',
+            type: 'dateutc',
           },
           {
             field: 'tribe',
