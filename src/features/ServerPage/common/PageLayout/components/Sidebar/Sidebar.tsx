@@ -53,6 +53,7 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
       name: t('pageLayout.sidebar.routes.rankings.name'),
       Icon: <GradeIcon color="inherit" />,
       to: ROUTES.SERVER_PAGE.RANKING_PAGE.BASE,
+      isExpandable: true,
       nested: [
         {
           name: t('pageLayout.sidebar.routes.rankings.player.index'),

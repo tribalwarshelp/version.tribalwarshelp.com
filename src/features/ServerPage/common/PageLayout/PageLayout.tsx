@@ -7,23 +7,15 @@ import { DRAWER_WIDTH } from './components/Sidebar/contants';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery, Toolbar } from '@material-ui/core';
 
-import Content, { Props as ContentProps } from '@common/Content/Content';
+import Content from '@common/Content/Content';
 import Sidebar from './components/Sidebar/Sidebar';
 import TopBar from './components/TopBar/TopBar';
 
 export interface Props {
   children?: React.ReactNode;
-  noPadding?: boolean;
-  contentClassName?: string;
-  contentStyle?: ContentProps['style'];
 }
 
-function PageLayout({
-  children,
-  noPadding,
-  contentClassName,
-  contentStyle,
-}: Props) {
+function PageLayout({ children }: Props) {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const theme = useTheme();
@@ -56,14 +48,7 @@ function PageLayout({
         t={t}
         onOpen={openSidebar}
       />
-      <Content
-        className={clsx(classes.content, contentClassName, {
-          'no-padding': noPadding,
-        })}
-        style={contentStyle}
-      >
-        {children}
-      </Content>
+      <Content className={classes.content}>{children}</Content>
     </div>
   );
 }
@@ -81,10 +66,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     height: '100%',
-    padding: theme.spacing(3, 0),
-    '&.no-padding': {
-      padding: '0 0',
-    },
+    padding: 0,
   },
 }));
 

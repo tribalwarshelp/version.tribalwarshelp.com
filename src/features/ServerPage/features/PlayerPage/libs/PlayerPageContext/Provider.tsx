@@ -10,7 +10,6 @@ import { PlayerQueryVariables } from '@libs/graphql/types';
 import { Params, PlayerQueryResult } from './types';
 
 import NotFoundPage from '@features/ServerPage/features/NotFoundPage/NotFoundPage';
-import PageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 import Spinner from '@common/Spinner/Spinner';
 
 export interface Props {
@@ -41,17 +40,15 @@ function Provider({ children }: Props) {
       alignItems: 'center',
     };
     return (
-      <PageLayout noPadding contentStyle={centerFlex as React.CSSProperties}>
-        <Spinner
-          containerProps={{
-            ...centerFlex,
-            textAlign: 'center',
-            height: '100%',
-            paddingY: 5,
-          }}
-          description={t('playerPageContextProvider.loadingPlayer')}
-        />
-      </PageLayout>
+      <Spinner
+        containerProps={{
+          ...centerFlex,
+          textAlign: 'center',
+          minHeight: 'inherit',
+          paddingY: 5,
+        }}
+        description={t('playerPageContextProvider.loadingPlayer')}
+      />
     );
   }
 

@@ -18,7 +18,7 @@ import {
   Button,
 } from '@material-ui/core';
 import DateTimePicker from '@common/Picker/DateTimePicker';
-import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
+import Content from '@common/Content/Content';
 import Spinner from '@common/Spinner/Spinner';
 import Card from './components/Card/Card';
 import OneSide from './components/OneSide/OneSide';
@@ -205,127 +205,127 @@ function WarStatsPage() {
     setIsSubmitting(false);
   };
 
+  if (loading) {
+    return (
+      <Spinner
+        containerProps={{
+          minHeight: 'inherit',
+          textAlign: 'center',
+          paddingY: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        description={t('loading')}
+      />
+    );
+  }
+
   return (
-    <ServerPageLayout>
-      {loading && (
-        <Spinner
-          containerProps={{
-            minHeight: 'inherit',
-            textAlign: 'center',
-            paddingY: 5,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          description={t('loading')}
-        />
-      )}
-      {!loading && (
-        <Container>
-          <form onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Card>
-                <Typography variant="h4" align="center" gutterBottom>
-                  {t('sections.settings')}
-                </Typography>
-                <div className={classes.formGroup}>
-                  {[
-                    {
-                      name: 'ennobledAtGTE',
-                      val: query.ennobledAtGTE,
-                      maxDate: query.ennobledAtLTE,
-                    },
-                    {
-                      name: 'ennobledAtLTE',
-                      val: query.ennobledAtLTE,
-                      minDate: query.ennobledAtGTE,
-                    },
-                  ].map(({ name, val, maxDate, minDate }) => {
-                    return (
-                      <DateTimePicker
-                        key={name}
-                        maxDate={maxDate}
-                        minDate={minDate}
-                        disableFuture
-                        disabled={isSubmitting}
-                        TextFieldComponent={props => {
-                          return (
-                            <TextField
-                              {...props}
-                              helperText=""
-                              fullWidth
-                              variant="standard"
-                            />
-                          );
-                        }}
-                        label={t('inputLabels.' + name)}
-                        value={val}
-                        onChange={d => {
-                          setQuery({ [name]: d ? d : undefined });
-                        }}
-                      />
-                    );
-                  })}
-                </div>
-              </Card>
-              <Card>
-                <OneSide
-                  title={t('sections.sideOne')}
-                  players={sideOnePlayers}
-                  tribes={sideOneTribes}
-                  onChangePlayers={sideOneHandleChangePlayers}
-                  onChangeTribes={sideOneHandleChangeTribes}
-                  server={server.key}
-                  tribeIDNEQ={selectedTribesIDs}
-                  playerIDNEQ={selectedPlayersIDs}
-                  className={classes.formGroup}
-                  disabled={isSubmitting}
-                />
-              </Card>
-              <Card>
-                <OneSide
-                  title={t('sections.sideTwo')}
-                  players={sideTwoPlayers}
-                  tribes={sideTwoTribes}
-                  onChangePlayers={sideTwoHandleChangePlayers}
-                  onChangeTribes={sideTwoHandleChangeTribes}
-                  server={server.key}
-                  tribeIDNEQ={selectedTribesIDs}
-                  playerIDNEQ={selectedPlayersIDs}
-                  className={classes.formGroup}
-                  disabled={isSubmitting}
-                />
-              </Card>
-              <Grid item xs={12}>
-                <Typography align="center" component="div">
-                  <Button
-                    type="submit"
-                    size="large"
-                    color="secondary"
-                    variant="contained"
-                    disabled={
-                      isSubmitting ||
-                      (sideOnePlayers.length === 0 &&
-                        sideOneTribes.length === 0) ||
-                      (sideTwoPlayers.length === 0 &&
-                        sideTwoTribes.length === 0)
-                    }
-                  >
-                    {t('buttons.generateStats')}
-                  </Button>
-                </Typography>
-              </Grid>
-              {results && (
-                <Grid item xs={12}>
-                  <Results data={results} server={server.key} />
-                </Grid>
-              )}
+    <Content component="div" minHeight={false}>
+      <Container>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Card>
+              <Typography variant="h4" align="center" gutterBottom>
+                {t('sections.settings')}
+              </Typography>
+              <div className={classes.formGroup}>
+                {[
+                  {
+                    name: 'ennobledAtGTE',
+                    val: query.ennobledAtGTE,
+                    maxDate: query.ennobledAtLTE,
+                  },
+                  {
+                    name: 'ennobledAtLTE',
+                    val: query.ennobledAtLTE,
+                    minDate: query.ennobledAtGTE,
+                  },
+                ].map(({ name, val, maxDate, minDate }) => {
+                  return (
+                    <DateTimePicker
+                      key={name}
+                      maxDate={maxDate}
+                      minDate={minDate}
+                      disableFuture
+                      disabled={isSubmitting}
+                      TextFieldComponent={props => {
+                        return (
+                          <TextField
+                            {...props}
+                            helperText=""
+                            fullWidth
+                            variant="standard"
+                          />
+                        );
+                      }}
+                      label={t('inputLabels.' + name)}
+                      value={val}
+                      onChange={d => {
+                        setQuery({ [name]: d ? d : undefined });
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            </Card>
+            <Card>
+              <OneSide
+                title={t('sections.sideOne')}
+                players={sideOnePlayers}
+                tribes={sideOneTribes}
+                onChangePlayers={sideOneHandleChangePlayers}
+                onChangeTribes={sideOneHandleChangeTribes}
+                server={server.key}
+                tribeIDNEQ={selectedTribesIDs}
+                playerIDNEQ={selectedPlayersIDs}
+                className={classes.formGroup}
+                disabled={isSubmitting}
+              />
+            </Card>
+            <Card>
+              <OneSide
+                title={t('sections.sideTwo')}
+                players={sideTwoPlayers}
+                tribes={sideTwoTribes}
+                onChangePlayers={sideTwoHandleChangePlayers}
+                onChangeTribes={sideTwoHandleChangeTribes}
+                server={server.key}
+                tribeIDNEQ={selectedTribesIDs}
+                playerIDNEQ={selectedPlayersIDs}
+                className={classes.formGroup}
+                disabled={isSubmitting}
+              />
+            </Card>
+            <Grid item xs={12}>
+              <Typography align="center" component="div">
+                <Button
+                  type="submit"
+                  size="large"
+                  color="secondary"
+                  variant="contained"
+                  disabled={
+                    isSubmitting ||
+                    (sideOnePlayers.length === 0 &&
+                      sideOneTribes.length === 0) ||
+                    (sideTwoPlayers.length === 0 && sideTwoTribes.length === 0)
+                  }
+                >
+                  {t('buttons.generateStats')}
+                </Button>
+              </Typography>
             </Grid>
-          </form>
-        </Container>
-      )}
-    </ServerPageLayout>
+            {results && (
+              <Grid item xs={12}>
+                <Results data={results} server={server.key} />
+              </Grid>
+            )}
+          </Grid>
+        </form>
+      </Container>
+    </Content>
   );
 }
 

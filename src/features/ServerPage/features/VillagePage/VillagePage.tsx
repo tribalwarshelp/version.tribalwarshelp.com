@@ -7,7 +7,6 @@ import { SERVER_PAGE } from '@config/namespaces';
 
 import { Container } from '@material-ui/core';
 import NotFoundPage from '@features/ServerPage/features/NotFoundPage/NotFoundPage';
-import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 import Spinner from '@common/Spinner/Spinner';
 import PageLayout from './components/PageLayout/PageLayout';
 import Ennoblements from './components/Ennoblements/Ennoblements';
@@ -28,20 +27,15 @@ function VillagePage() {
       alignItems: 'center',
     };
     return (
-      <ServerPageLayout
-        noPadding
-        contentStyle={centerFlex as React.CSSProperties}
-      >
-        <Spinner
-          containerProps={{
-            ...centerFlex,
-            textAlign: 'center',
-            height: '100%',
-            paddingY: 5,
-          }}
-          description={t('loadingVillage')}
-        />
-      </ServerPageLayout>
+      <Spinner
+        containerProps={{
+          ...centerFlex,
+          textAlign: 'center',
+          minHeight: 'inherit',
+          paddingY: 5,
+        }}
+        description={t('loadingVillage')}
+      />
     );
   }
 

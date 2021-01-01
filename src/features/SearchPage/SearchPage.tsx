@@ -14,7 +14,6 @@ import { SEARCH_PAGE } from '@config/namespaces';
 import { MODES, LIMIT } from './constants';
 
 import { Container, Paper } from '@material-ui/core';
-import MainLayout from '@common/MainLayout/MainLayout';
 import ModeSelector from '@common/ModeSelector/ModeSelector';
 import PlayerTable from './components/PlayerTable/PlayerTable';
 import TribeTable from './components/TribeTable/TribeTable';
@@ -55,39 +54,35 @@ function SearchPage() {
   };
 
   return (
-    <MainLayout
-      headerProps={{ hideVersionSelectorOnMobile: true, defaultQ: query.q }}
-    >
-      <Container>
-        <Paper>
-          <ModeSelector
-            buttonProps={{ size: 'medium' }}
-            onSelect={m => setQuery({ mode: m.name, page: 0, limit: LIMIT })}
-            modes={[
-              {
-                name: 'player',
-                label: t('modes.player'),
-                get selected() {
-                  return this.name === query.mode;
-                },
+    <Container>
+      <Paper>
+        <ModeSelector
+          buttonProps={{ size: 'medium' }}
+          onSelect={m => setQuery({ mode: m.name, page: 0, limit: LIMIT })}
+          modes={[
+            {
+              name: 'player',
+              label: t('modes.player'),
+              get selected() {
+                return this.name === query.mode;
               },
-              {
-                name: 'tribe',
-                label: t('modes.tribe'),
-                get selected() {
-                  return this.name === query.mode;
-                },
+            },
+            {
+              name: 'tribe',
+              label: t('modes.tribe'),
+              get selected() {
+                return this.name === query.mode;
               },
-            ]}
-          />
-          {query.mode === MODES.TRIBE ? (
-            <TribeTable {...tableProps} />
-          ) : (
-            <PlayerTable {...tableProps} />
-          )}
-        </Paper>
-      </Container>
-    </MainLayout>
+            },
+          ]}
+        />
+        {query.mode === MODES.TRIBE ? (
+          <TribeTable {...tableProps} />
+        ) : (
+          <PlayerTable {...tableProps} />
+        )}
+      </Paper>
+    </Container>
   );
 }
 

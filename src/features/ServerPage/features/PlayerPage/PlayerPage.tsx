@@ -28,7 +28,7 @@ function PlayerPage() {
             <EnnoblementsPage />
           </Route>
           <Route path="*">
-            <NotFoundPage wrapIntoServerPageLayout={false} />
+            <NotFoundPage />
           </Route>
         </Switch>
       </PageLayout>

@@ -6,7 +6,7 @@ import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import { SERVER_PAGE } from '@config/namespaces';
 
 import { Container, Paper } from '@material-ui/core';
-import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
+import Content from '@common/Content/Content';
 import ModeSelector from '@common/ModeSelector/ModeSelector';
 import LiveEnnoblements from './components/LiveEnnoblements/LiveEnnoblements';
 import LatestSavedEnnoblements from './components/LatestSavedEnnoblements/LatestSavedEnnoblements';
@@ -22,7 +22,7 @@ function EnnoblementsPage() {
   );
 
   return (
-    <ServerPageLayout>
+    <Content component="div" minHeight={false}>
       <Container>
         <Paper>
           <ModeSelector
@@ -53,7 +53,7 @@ function EnnoblementsPage() {
           )}
         </Paper>
       </Container>
-    </ServerPageLayout>
+    </Content>
   );
 }
 

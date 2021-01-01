@@ -10,8 +10,8 @@ import * as NAMESPACES from '@config/namespaces';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Chip, Toolbar, Typography, Tabs, ChipProps } from '@material-ui/core';
+import Content from '@common/Content/Content';
 import TabLink from '@common/Link/TabLink';
-import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
 
 import background1 from './backgrounds/bg-1-dark.jpg';
 import background2 from './backgrounds/bg-2-dark.jpg';
@@ -35,7 +35,7 @@ function PageLayout({ children }: Props) {
     size: 'small',
   };
   return (
-    <ServerPageLayout noPadding>
+    <div>
       <header className={clsx(classes.header, 'bg-' + bg)}>
         <Toolbar className={classes.toolbar}>
           <div style={{ width: '100%' }}>
@@ -105,8 +105,10 @@ function PageLayout({ children }: Props) {
           })}
         </Tabs>
       </header>
-      <div className={classes.content}>{children}</div>
-    </ServerPageLayout>
+      <Content minHeight={false} component="div">
+        {children}
+      </Content>
+    </div>
   );
 }
 
@@ -159,13 +161,6 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     '& > *': {
       margin: theme.spacing(0.5),
-    },
-  },
-  content: {
-    height: '100%',
-    padding: theme.spacing(3, 0),
-    '&.no-padding': {
-      padding: '0 0',
     },
   },
 }));

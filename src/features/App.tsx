@@ -7,6 +7,7 @@ import ScrollToTop from '@common/ScrollToTop/ScrollToTop';
 
 import VersionProvider from '../libs/VersionContext/Provider';
 import DateUtilsProvider from '../libs/date/DateUtilsProvider';
+import MainLayout from '../common/MainLayout/MainLayout';
 import IndexPage from './IndexPage/IndexPage';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import SearchPage from './SearchPage/SearchPage';
@@ -18,11 +19,17 @@ function App() {
       <VersionProvider>
         <DateUtilsProvider>
           <Switch>
-            <Route path={ROUTES.INDEX_PAGE} exact>
-              <IndexPage />
-            </Route>
-            <Route path={ROUTES.SEARCH_PAGE} exact>
-              <SearchPage />
+            <Route path={[ROUTES.INDEX_PAGE, ROUTES.SEARCH_PAGE]} exact>
+              <MainLayout>
+                <Switch>
+                  <Route path={ROUTES.INDEX_PAGE} exact>
+                    <IndexPage />
+                  </Route>
+                  <Route path={ROUTES.SEARCH_PAGE} exact>
+                    <SearchPage />
+                  </Route>
+                </Switch>
+              </MainLayout>
             </Route>
             <Route path={ROUTES.SERVER_PAGE.INDEX_PAGE}>
               <ServerPage />

@@ -6,7 +6,7 @@ import { Village } from '../../types';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Toolbar, Typography } from '@material-ui/core';
-import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
+import Content from '@common/Content/Content';
 import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import background from './backgrounds/bg-1-dark.jpg';
@@ -21,7 +21,7 @@ export interface Props {
 function PageLayout({ children, village, server, t }: Props) {
   const classes = useStyles();
   return (
-    <ServerPageLayout noPadding>
+    <div>
       <header className={classes.header}>
         <Toolbar className={classes.toolbar}>
           <div>
@@ -40,8 +40,10 @@ function PageLayout({ children, village, server, t }: Props) {
           </div>
         </Toolbar>
       </header>
-      <div className={classes.content}>{children}</div>
-    </ServerPageLayout>
+      <Content minHeight={false} component="div">
+        {children}
+      </Content>
+    </div>
   );
 }
 
@@ -66,13 +68,6 @@ const useStyles = makeStyles(theme => ({
     '& > div': {
       width: '100%',
       marginBottom: theme.spacing(1),
-    },
-  },
-  content: {
-    height: '100%',
-    padding: theme.spacing(3, 0),
-    '&.no-padding': {
-      padding: '0 0',
     },
   },
 }));

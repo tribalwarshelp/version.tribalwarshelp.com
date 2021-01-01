@@ -24,7 +24,7 @@ function TribePage() {
         <ArchivePage />
       </Route>
       <Route path="*">
-        <NotFoundPage wrapIntoServerPageLayout={false} />
+        <NotFoundPage />
       </Route>
     </Switch>
   );

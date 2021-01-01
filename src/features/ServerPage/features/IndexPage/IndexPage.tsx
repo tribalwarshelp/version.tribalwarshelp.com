@@ -5,7 +5,7 @@ import useServer from '../../libs/ServerContext/useServer';
 import { SERVER_PAGE } from '@config/namespaces';
 
 import { Container, Grid, Hidden } from '@material-ui/core';
-import PageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
+import Content from '@common/Content/Content';
 import PlayerStatistics from './components/PlayerStatistics/PlayerStatistics';
 import TribeStatistics from './components/TribeStatistics/TribeStatistics';
 import Top5Players from './components/Top5Players/Top5Players';
@@ -23,7 +23,7 @@ function IndexPage() {
   useTitle(t('title', { key }));
 
   return (
-    <PageLayout>
+    <Content component="div" minHeight={false}>
       <Container>
         <Grid container spacing={2}>
           <Grid
@@ -72,7 +72,7 @@ function IndexPage() {
           </Grid>
         </Grid>
       </Container>
-    </PageLayout>
+    </Content>
   );
 }
 

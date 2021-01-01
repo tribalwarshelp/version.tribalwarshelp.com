@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, memo } from 'react';
 import { useLocation, matchPath } from 'react-router-dom';
 import { Route } from './types';
 
@@ -26,7 +26,7 @@ function ListItem({ route, nestedLevel }: Props) {
   const isActive =
     !!route.to && !!matchPath(pathname, { path: route.to, exact: route.exact });
   const [open, setOpen] = useState(
-    (hasNested && isActive) || !route.isExpandable
+    (hasNested && !route.isExpandable) || isActive
   );
 
   const getItem = () => {
@@ -97,4 +97,4 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default ListItem;
+export default memo(ListItem);

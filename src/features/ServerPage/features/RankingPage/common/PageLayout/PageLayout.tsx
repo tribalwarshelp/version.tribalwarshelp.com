@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Tabs } from '@material-ui/core';
 import TabLink from '@common/Link/TabLink';
-import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
+import Content from '@common/Content/Content';
 
 import background from './backgrounds/bg-1-dark.png';
 
@@ -22,7 +22,7 @@ function PageLayout({ children }: Props) {
   const { t } = useTranslation(NAMESPACES.SERVER_PAGE.RANKING_PAGE.COMMON);
   const { currentTab, tabs } = useTabs(t);
   return (
-    <ServerPageLayout noPadding>
+    <div>
       <header className={classes.header}>
         <Tabs variant="scrollable" value={currentTab}>
           {tabs.map(({ to, label }) => {
@@ -40,8 +40,10 @@ function PageLayout({ children }: Props) {
           })}
         </Tabs>
       </header>
-      <div className={classes.content}>{children}</div>
-    </ServerPageLayout>
+      <Content minHeight={false} component="div">
+        {children}
+      </Content>
+    </div>
   );
 }
 
@@ -60,15 +62,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       minHeight: theme.spacing(10),
     },
-  },
-  content: {
-    padding: theme.spacing(3, 0),
-    '&.no-padding': {
-      padding: '0 0',
-    },
-  },
-  tabs: {
-    overflowX: 'auto',
   },
 }));
 

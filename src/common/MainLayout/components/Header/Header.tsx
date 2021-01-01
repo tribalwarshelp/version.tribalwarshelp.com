@@ -1,5 +1,7 @@
 import React from 'react';
+import { StringParam, useQueryParam, withDefault } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { TWHELP, NAME } from '@config/app';
 import * as ROUTES from '@config/routes';
 import * as NAMESPACES from '@config/namespaces';
@@ -21,20 +23,14 @@ import VersionSelector from '@common/VersionSelector/VersionSelector';
 import SearchInput from './SearchInput';
 
 export interface Props {
-  showLinkToHomePage?: boolean;
-  hideVersionSelectorOnMobile?: boolean;
-  defaultQ?: string;
   appBarProps?: AppBarProps;
 }
 
-export default function Header({
-  showLinkToHomePage = true,
-  hideVersionSelectorOnMobile = false,
-  defaultQ = '',
-  appBarProps = {},
-}: Props) {
+export default function Header({ appBarProps = {} }: Props) {
   const { t } = useTranslation(NAMESPACES.COMMON);
+  const location = useLocation();
   const classes = useStyles();
+  const [q] = useQueryParam('q', withDefault(StringParam, ''));
 
   const versionSelector = (
     <div>
@@ -46,9 +42,11 @@ export default function Header({
       <Container>
         <Toolbar disableGutters className={classes.toolbar}>
           <form className={classes.form}>
-            <SearchInput defaultQ={defaultQ} />
+            <SearchInput
+              defaultQ={location.pathname === ROUTES.SEARCH_PAGE ? q : ''}
+            />
           </form>
-          {showLinkToHomePage && (
+          {location.pathname !== ROUTES.INDEX_PAGE && (
             <Link to={ROUTES.INDEX_PAGE}>
               <Hidden xsDown implementation="css">
                 <Button startIcon={<InputIcon />}>
@@ -62,7 +60,7 @@ export default function Header({
               </Hidden>
             </Link>
           )}
-          {hideVersionSelectorOnMobile ? (
+          {location.pathname !== ROUTES.INDEX_PAGE ? (
             <Hidden xsDown implementation="css">
               {versionSelector}
             </Hidden>

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import formatNumber from '@utils/formatNumber';
 import * as ROUTES from '@config/routes';
 import * as NAMESPACES from '@config/namespaces';
@@ -31,7 +31,7 @@ export interface Props {
 
 function GridItem({ t, server, hideTooltip = true }: Props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState<boolean>(false);
+  const [expanded, setExpanded] = useState<boolean>(false);
   const accordion = useRef<HTMLDivElement | null>(null);
 
   const handleClick = (e: React.ChangeEvent<{}>, expanded: boolean) => {

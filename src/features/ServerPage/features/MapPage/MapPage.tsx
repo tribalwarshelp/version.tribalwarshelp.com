@@ -25,7 +25,7 @@ import {
   Checkbox,
   FormControlLabel,
 } from '@material-ui/core';
-import ServerPageLayout from '@features/ServerPage/common/PageLayout/PageLayout';
+import Content from '@common/Content/Content';
 import ColorInput from '@common/Form/ColorInput';
 import Spinner from '@common/Spinner/Spinner';
 import Map from './components/Map/Map';
@@ -188,275 +188,272 @@ function MapPage() {
     return blacklist.some(id2 => id === id2);
   };
 
+  if (loading) {
+    return (
+      <Spinner
+        containerProps={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          minHeight: 'inherit',
+          paddingY: 5,
+        }}
+        description={t('loading')}
+      />
+    );
+  }
+
   return (
-    <ServerPageLayout>
-      {loading && (
-        <Spinner
-          containerProps={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-            minHeight: 'inherit',
-            paddingY: 5,
-          }}
-          description={t('loading')}
-        />
-      )}
-      {!loading && (
-        <Container>
-          <form onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Card>
-                <Typography
-                  variant="h4"
-                  component="h3"
-                  align="center"
-                  gutterBottom
-                >
-                  {t('sections.settings')}
-                </Typography>
-                <div className={classes.formGroup}>
-                  <TextField
-                    label={t('inputLabels.zoomLevel')}
-                    type="number"
-                    name="scale"
-                    value={query.scale}
-                    onChange={createSettingsChangeHandler('scale')}
+    <Content component="div" minHeight={false}>
+      <Container>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Card>
+              <Typography
+                variant="h4"
+                component="h3"
+                align="center"
+                gutterBottom
+              >
+                {t('sections.settings')}
+              </Typography>
+              <div className={classes.formGroup}>
+                <TextField
+                  label={t('inputLabels.zoomLevel')}
+                  type="number"
+                  name="scale"
+                  value={query.scale}
+                  onChange={createSettingsChangeHandler('scale')}
+                  fullWidth
+                  variant="standard"
+                  inputProps={{
+                    min: 1,
+                    max: 5,
+                    step: '.1',
+                  }}
+                />
+                <TextField
+                  label={t('inputLabels.centerX')}
+                  type="number"
+                  name="centerX"
+                  value={query.centerX}
+                  onChange={createSettingsChangeHandler('centerX')}
+                  fullWidth
+                  variant="standard"
+                  inputProps={{
+                    min: 0,
+                    max: 1000,
+                    step: '1',
+                  }}
+                />
+                <TextField
+                  label={t('inputLabels.centerY')}
+                  type="number"
+                  name="centerY"
+                  value={query.centerY}
+                  onChange={createSettingsChangeHandler('centerY')}
+                  fullWidth
+                  variant="standard"
+                  inputProps={{
+                    min: 0,
+                    max: 1000,
+                    step: '1',
+                  }}
+                />
+                {[
+                  {
+                    name: 'backgroundColor',
+                    color: query.backgroundColor,
+                    onChange: createSettingsChangeHandler('backgroundColor'),
+                  },
+                  {
+                    name: 'playerVillageColor',
+                    color: query.playerVillageColor,
+                    onChange: createSettingsChangeHandler('playerVillageColor'),
+                  },
+                  {
+                    name: 'barbarianVillageColor',
+                    color: query.barbarianVillageColor,
+                    onChange: createSettingsChangeHandler(
+                      'barbarianVillageColor'
+                    ),
+                  },
+                  {
+                    name: 'gridLineColor',
+                    color: query.gridLineColor,
+                    onChange: createSettingsChangeHandler('gridLineColor'),
+                  },
+                  {
+                    name: 'continentNumberColor',
+                    color: query.continentNumberColor,
+                    onChange: createSettingsChangeHandler(
+                      'continentNumberColor'
+                    ),
+                  },
+                ].map(({ color, name, onChange }) => (
+                  <ColorInput
+                    key={name}
+                    color={color}
+                    onChange={onChange}
                     fullWidth
                     variant="standard"
-                    inputProps={{
-                      min: 1,
-                      max: 5,
-                      step: '.1',
-                    }}
+                    name={name}
+                    label={t('inputLabels.' + name)}
                   />
-                  <TextField
-                    label={t('inputLabels.centerX')}
-                    type="number"
-                    name="centerX"
-                    value={query.centerX}
-                    onChange={createSettingsChangeHandler('centerX')}
-                    fullWidth
-                    variant="standard"
-                    inputProps={{
-                      min: 0,
-                      max: 1000,
-                      step: '1',
-                    }}
-                  />
-                  <TextField
-                    label={t('inputLabels.centerY')}
-                    type="number"
-                    name="centerY"
-                    value={query.centerY}
-                    onChange={createSettingsChangeHandler('centerY')}
-                    fullWidth
-                    variant="standard"
-                    inputProps={{
-                      min: 0,
-                      max: 1000,
-                      step: '1',
-                    }}
-                  />
-                  {[
-                    {
-                      name: 'backgroundColor',
-                      color: query.backgroundColor,
-                      onChange: createSettingsChangeHandler('backgroundColor'),
-                    },
-                    {
-                      name: 'playerVillageColor',
-                      color: query.playerVillageColor,
-                      onChange: createSettingsChangeHandler(
-                        'playerVillageColor'
-                      ),
-                    },
-                    {
-                      name: 'barbarianVillageColor',
-                      color: query.barbarianVillageColor,
-                      onChange: createSettingsChangeHandler(
-                        'barbarianVillageColor'
-                      ),
-                    },
-                    {
-                      name: 'gridLineColor',
-                      color: query.gridLineColor,
-                      onChange: createSettingsChangeHandler('gridLineColor'),
-                    },
-                    {
-                      name: 'continentNumberColor',
-                      color: query.continentNumberColor,
-                      onChange: createSettingsChangeHandler(
-                        'continentNumberColor'
-                      ),
-                    },
-                  ].map(({ color, name, onChange }) => (
-                    <ColorInput
+                ))}
+                {[
+                  {
+                    name: 'markersOnly',
+                    checked: query.markersOnly,
+                    onChange: createSettingsChangeHandler('markersOnly'),
+                  },
+                  {
+                    name: 'showBarbarian',
+                    checked: query.showBarbarian,
+                    onChange: createSettingsChangeHandler('showBarbarian'),
+                  },
+                  {
+                    name: 'largerMarkers',
+                    checked: query.largerMarkers,
+                    onChange: createSettingsChangeHandler('largerMarkers'),
+                  },
+                  {
+                    name: 'showGrid',
+                    checked: query.showGrid,
+                    onChange: createSettingsChangeHandler('showGrid'),
+                  },
+                  {
+                    name: 'showContinentNumbers',
+                    checked: query.showContinentNumbers,
+                    onChange: createSettingsChangeHandler(
+                      'showContinentNumbers'
+                    ),
+                  },
+                ].map(({ name, checked, onChange }) => {
+                  return (
+                    <FormControlLabel
                       key={name}
-                      color={color}
-                      onChange={onChange}
-                      fullWidth
-                      variant="standard"
-                      name={name}
                       label={t('inputLabels.' + name)}
+                      control={
+                        <Checkbox
+                          name={name}
+                          checked={checked}
+                          onChange={onChange}
+                        />
+                      }
                     />
-                  ))}
-                  {[
-                    {
-                      name: 'markersOnly',
-                      checked: query.markersOnly,
-                      onChange: createSettingsChangeHandler('markersOnly'),
-                    },
-                    {
-                      name: 'showBarbarian',
-                      checked: query.showBarbarian,
-                      onChange: createSettingsChangeHandler('showBarbarian'),
-                    },
-                    {
-                      name: 'largerMarkers',
-                      checked: query.largerMarkers,
-                      onChange: createSettingsChangeHandler('largerMarkers'),
-                    },
-                    {
-                      name: 'showGrid',
-                      checked: query.showGrid,
-                      onChange: createSettingsChangeHandler('showGrid'),
-                    },
-                    {
-                      name: 'showContinentNumbers',
-                      checked: query.showContinentNumbers,
-                      onChange: createSettingsChangeHandler(
-                        'showContinentNumbers'
-                      ),
-                    },
-                  ].map(({ name, checked, onChange }) => {
-                    return (
-                      <FormControlLabel
-                        key={name}
-                        label={t('inputLabels.' + name)}
-                        control={
-                          <Checkbox
-                            name={name}
-                            checked={checked}
-                            onChange={onChange}
-                          />
-                        }
-                      />
-                    );
-                  })}
-                </div>
-              </Card>
-              <Card>
-                <Typography
-                  variant="h4"
-                  component="h3"
-                  align="center"
-                  gutterBottom
+                  );
+                })}
+              </div>
+            </Card>
+            <Card>
+              <Typography
+                variant="h4"
+                component="h3"
+                align="center"
+                gutterBottom
+              >
+                {t('sections.tribeMarkers')}
+              </Typography>
+              <div className={classes.formGroup}>
+                {tribeMarkers.map(marker => {
+                  return (
+                    <MarkerField
+                      key={marker.id}
+                      onDelete={createDeleteTribeMarkerHandler(marker.id)}
+                      onChange={createUpdateTribeMarkerItemHandler(marker.id)}
+                      onChangeColor={createUpdateTribeMarkerColorHandler(
+                        marker.id
+                      )}
+                      loadingText={t('loading')}
+                      noOptionsText={t('noOptions')}
+                      loadSuggestions={searchTribes}
+                      getOptionLabel={tribeGetOptionLabel}
+                      getOptionSelected={getOptionSelected}
+                      getOptionDisabled={opt =>
+                        isDisabled(opt.id, selectedTribeIDs)
+                      }
+                      color={marker.color}
+                      value={marker.item}
+                    />
+                  );
+                })}
+                <Button
+                  variant="contained"
+                  fullWidth
+                  color="secondary"
+                  onClick={handleAddTribeMarker}
+                  disabled={tribeMarkers.length >= 25}
                 >
-                  {t('sections.tribeMarkers')}
-                </Typography>
-                <div className={classes.formGroup}>
-                  {tribeMarkers.map(marker => {
-                    return (
-                      <MarkerField
-                        key={marker.id}
-                        onDelete={createDeleteTribeMarkerHandler(marker.id)}
-                        onChange={createUpdateTribeMarkerItemHandler(marker.id)}
-                        onChangeColor={createUpdateTribeMarkerColorHandler(
-                          marker.id
-                        )}
-                        loadingText={t('loading')}
-                        noOptionsText={t('noOptions')}
-                        loadSuggestions={searchTribes}
-                        getOptionLabel={tribeGetOptionLabel}
-                        getOptionSelected={getOptionSelected}
-                        getOptionDisabled={opt =>
-                          isDisabled(opt.id, selectedTribeIDs)
-                        }
-                        color={marker.color}
-                        value={marker.item}
-                      />
-                    );
-                  })}
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    color="secondary"
-                    onClick={handleAddTribeMarker}
-                    disabled={tribeMarkers.length >= 25}
-                  >
-                    {t('buttons.addMarker')}
-                  </Button>
-                </div>
-              </Card>
-              <Card>
-                <Typography
-                  variant="h4"
-                  component="h3"
-                  align="center"
-                  gutterBottom
+                  {t('buttons.addMarker')}
+                </Button>
+              </div>
+            </Card>
+            <Card>
+              <Typography
+                variant="h4"
+                component="h3"
+                align="center"
+                gutterBottom
+              >
+                {t('sections.playerMarkers')}
+              </Typography>
+              <div className={classes.formGroup}>
+                {playerMarkers.map(marker => {
+                  return (
+                    <MarkerField
+                      key={marker.id}
+                      onDelete={createDeletePlayerMarkerHandler(marker.id)}
+                      onChange={createUpdatePlayerMarkerItemHandler(marker.id)}
+                      onChangeColor={createUpdatePlayerMarkerColorHandler(
+                        marker.id
+                      )}
+                      noOptionsText={t('noOptions')}
+                      loadSuggestions={searchPlayers}
+                      getOptionLabel={playerGetOptionLabel}
+                      getOptionSelected={getOptionSelected}
+                      getOptionDisabled={opt =>
+                        isDisabled(opt.id, selectedPlayerIDs)
+                      }
+                      color={marker.color}
+                      value={marker.item}
+                    />
+                  );
+                })}
+                <Button
+                  variant="contained"
+                  fullWidth
+                  color="secondary"
+                  onClick={handleAddPlayerMarker}
+                  disabled={playerMarkers.length >= 25}
                 >
-                  {t('sections.playerMarkers')}
-                </Typography>
-                <div className={classes.formGroup}>
-                  {playerMarkers.map(marker => {
-                    return (
-                      <MarkerField
-                        key={marker.id}
-                        onDelete={createDeletePlayerMarkerHandler(marker.id)}
-                        onChange={createUpdatePlayerMarkerItemHandler(
-                          marker.id
-                        )}
-                        onChangeColor={createUpdatePlayerMarkerColorHandler(
-                          marker.id
-                        )}
-                        noOptionsText={t('noOptions')}
-                        loadSuggestions={searchPlayers}
-                        getOptionLabel={playerGetOptionLabel}
-                        getOptionSelected={getOptionSelected}
-                        getOptionDisabled={opt =>
-                          isDisabled(opt.id, selectedPlayerIDs)
-                        }
-                        color={marker.color}
-                        value={marker.item}
-                      />
-                    );
-                  })}
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    color="secondary"
-                    onClick={handleAddPlayerMarker}
-                    disabled={playerMarkers.length >= 25}
-                  >
-                    {t('buttons.addMarker')}
-                  </Button>
-                </div>
-              </Card>
-              <Grid item xs={12}>
-                <Typography align="center" component="div">
-                  <Button
-                    type="submit"
-                    size="large"
-                    color="secondary"
-                    variant="contained"
-                  >
-                    {t('buttons.generateMap')}
-                  </Button>
-                </Typography>
-              </Grid>
-              {mapURL && (
-                <Grid item xs={12}>
-                  <Map src={mapURL} alt={key} t={t} />
-                </Grid>
-              )}
+                  {t('buttons.addMarker')}
+                </Button>
+              </div>
+            </Card>
+            <Grid item xs={12}>
+              <Typography align="center" component="div">
+                <Button
+                  type="submit"
+                  size="large"
+                  color="secondary"
+                  variant="contained"
+                >
+                  {t('buttons.generateMap')}
+                </Button>
+              </Typography>
             </Grid>
-          </form>
-        </Container>
-      )}
-    </ServerPageLayout>
+            {mapURL && (
+              <Grid item xs={12}>
+                <Map src={mapURL} alt={key} t={t} />
+              </Grid>
+            )}
+          </Grid>
+        </form>
+      </Container>
+    </Content>
   );
 }
 
