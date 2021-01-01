@@ -7,4 +7,5 @@ export interface Route {
   params?: Props['params'];
   Icon: React.ReactElement;
   nested?: Route[];
+  isExpandable?: boolean;
 }

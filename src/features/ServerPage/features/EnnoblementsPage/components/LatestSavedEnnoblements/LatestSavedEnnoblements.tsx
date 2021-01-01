@@ -29,11 +29,11 @@ export interface Props {
 function LatestSavedEnnoblements({ t, server }: Props) {
   const classes = useStyles();
   const dateUtils = useDateUtils();
-  const now = useRef(dateUtils.date());
+  const now = useRef(new Date());
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
-    ennobledAtGTE: withDefault(DateTimeParam, dateUtils.date(0)),
+    ennobledAtGTE: withDefault(DateTimeParam, new Date(0)),
     ennobledAtLTE: withDefault(DateTimeParam, now.current),
   });
   const limit = validateRowsPerPage(query.limit);
@@ -48,8 +48,8 @@ function LatestSavedEnnoblements({ t, server }: Props) {
       offset: query.page * limit,
       sort: ['ennobledAt DESC'],
       filter: {
-        ennobledAtGTE: dateUtils.zonedTimeToUTC(query.ennobledAtGTE),
-        ennobledAtLTE: dateUtils.zonedTimeToUTC(query.ennobledAtLTE),
+        ennobledAtGTE: query.ennobledAtGTE,
+        ennobledAtLTE: query.ennobledAtLTE,
       },
       server,
     },
@@ -64,13 +64,13 @@ function LatestSavedEnnoblements({ t, server }: Props) {
         {[
           {
             id: 'ennobledAtGTE',
-            value: query.ennobledAtGTE,
-            maxDate: query.ennobledAtLTE,
+            value: dateUtils.date(query.ennobledAtGTE.getTime()),
+            maxDate: dateUtils.date(query.ennobledAtLTE.getTime()),
           },
           {
             id: 'ennobledAtLTE',
-            value: query.ennobledAtLTE,
-            minDate: query.ennobledAtGTE,
+            value: dateUtils.date(query.ennobledAtLTE.getTime()),
+            minDate: dateUtils.date(query.ennobledAtGTE.getTime()),
           },
         ].map(({ id, value, maxDate, minDate }) => {
           return (
@@ -85,7 +85,10 @@ function LatestSavedEnnoblements({ t, server }: Props) {
               minDate={minDate}
               showTodayButton
               onChange={d => {
-                setQuery({ [id]: d ? d : undefined, page: 0 });
+                setQuery({
+                  [id]: d ? dateUtils.zonedTimeToUTC(d) : undefined,
+                  page: 0,
+                });
               }}
               InputLabelProps={{
                 shrink: true,

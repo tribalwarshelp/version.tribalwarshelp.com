@@ -4,12 +4,13 @@ import {
   DatePicker as MUIDatePicker,
   DatePickerProps,
 } from '@material-ui/pickers';
+import { DATE_FORMAT } from '@config/app';
 import useI18N from './useI18N';
 import useDialogStyles from './useDialogStyles';
 
 function DatePicker({
   className,
-  format = 'yyyy/MM/dd',
+  format = DATE_FORMAT.DAY_MONTH_AND_YEAR,
   ...props
 }: DatePickerProps) {
   const classes = useDialogStyles();

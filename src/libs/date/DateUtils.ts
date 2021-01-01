@@ -149,8 +149,7 @@ export default class DateUtils implements IUtils<Date> {
   }
 
   public dateInTZ(value: any, timezone: string): Date {
-    const date = new Date(value);
-    return new Date(date.toLocaleString('en-US', { timeZone: timezone }));
+    return utcToZonedTime(value, timezone);
   }
 
   public date(value?: any) {
@@ -310,7 +309,7 @@ export default class DateUtils implements IUtils<Date> {
     return years;
   }
 
-  // displaying methpds
+  // displaying methods
   public getCalendarHeaderText(date: Date) {
     return this.format(date, this.yearMonthFormat);
   }
@@ -358,13 +357,6 @@ export default class DateUtils implements IUtils<Date> {
       ...opts,
       locale: this.locale,
     });
-  }
-
-  public UTCToZonedTime(date: Date): Date {
-    if (!DateUtils.timezone) {
-      return date;
-    }
-    return utcToZonedTime(date, DateUtils.timezone);
   }
 
   public zonedTimeToUTC(date: Date): Date {

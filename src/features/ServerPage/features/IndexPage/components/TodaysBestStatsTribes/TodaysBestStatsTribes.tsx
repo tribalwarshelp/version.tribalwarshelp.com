@@ -40,7 +40,6 @@ function TodaysBestStatsTribes({ t }: Props) {
       server: server.key,
     },
   });
-  console.log(dateUtils.toJSON(dateUtils.date(server.historyUpdatedAt)));
   const records = data?.dailyTribeStats?.items ?? [];
   const loading = loadingData && records.length === 0;
 

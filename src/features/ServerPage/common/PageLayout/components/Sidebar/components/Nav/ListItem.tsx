@@ -20,17 +20,21 @@ export interface Props {
 }
 
 function ListItem({ route, nestedLevel }: Props) {
-  const [open, setOpen] = useState(false);
   const classes = useStyles();
   const { pathname } = useLocation();
   const hasNested = Array.isArray(route.nested) && route.nested.length > 0;
   const isActive =
-    route.to && matchPath(pathname, { path: route.to, exact: route.exact });
+    !!route.to && !!matchPath(pathname, { path: route.to, exact: route.exact });
+  const [open, setOpen] = useState(
+    (hasNested && isActive) || !route.isExpandable
+  );
 
   const getItem = () => {
     return (
       <MUIListItem
-        onClick={hasNested ? () => setOpen(!open) : undefined}
+        onClick={
+          hasNested && route.isExpandable ? () => setOpen(!open) : undefined
+        }
         disableGutters
         button
         style={{ paddingLeft: `${nestedLevel * 8}px` }}
@@ -48,7 +52,7 @@ function ListItem({ route, nestedLevel }: Props) {
           })}
           primary={route.name}
         />
-        {hasNested && (
+        {hasNested && !!route.isExpandable && (
           <Fragment>{open ? <ExpandLess /> : <ExpandMore />}</Fragment>
         )}
       </MUIListItem>

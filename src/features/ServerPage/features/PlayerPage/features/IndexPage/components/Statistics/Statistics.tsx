@@ -118,7 +118,7 @@ function Statistics({ t, server, playerID }: Props) {
         <LineChart
           loading={loading}
           data={data}
-          margin={{ top: 20, right: 90, bottom: 50, left: 85 }}
+          margin={{ top: 20, right: 45, bottom: 50, left: 85 }}
           xScale={{
             type: 'time',
           }}
@@ -131,7 +131,7 @@ function Statistics({ t, server, playerID }: Props) {
           }}
           xFormat="time:%Y-%m-%d"
           axisBottom={{
-            tickValues: 'every 6 days',
+            tickValues: 'every 8 days',
             tickPadding: 5,
             tickRotation: 0,
             format: '%Y-%m-%d',
@@ -140,34 +140,15 @@ function Statistics({ t, server, playerID }: Props) {
             legendOffset: -42,
             legendPosition: 'middle',
             tickSize: 0,
-            tickPadding: 4,
+            tickPadding: 7,
             format: xyFormat,
           }}
-          pointSize={10}
-          pointColor={{ theme: 'background' }}
-          pointBorderWidth={2}
+          pointSize={8}
           pointBorderColor={{ from: 'serieColor' }}
-          pointLabelYOffset={-12}
+          pointLabelYOffset={-6}
           useMesh={true}
           colors={{ scheme: 'nivo' }}
           yFormat={xyFormat}
-          legends={[
-            {
-              anchor: 'bottom-right',
-              direction: 'column',
-              justify: false,
-              translateX: 90,
-              translateY: 0,
-              itemsSpacing: 0,
-              itemDirection: 'left-to-right',
-              itemWidth: 80,
-              itemHeight: 20,
-              itemOpacity: 0.75,
-              symbolSize: 12,
-              symbolShape: 'circle',
-              symbolBorderColor: 'rgba(0, 0, 0, .5)',
-            },
-          ]}
         />
       </div>
     </Paper>

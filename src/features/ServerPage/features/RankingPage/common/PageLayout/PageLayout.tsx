@@ -57,6 +57,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     backgroundImage: `url(${background})`,
     boxShadow: theme.shadows[4],
+    [theme.breakpoints.down('sm')]: {
+      minHeight: theme.spacing(10),
+    },
   },
   content: {
     padding: theme.spacing(3, 0),

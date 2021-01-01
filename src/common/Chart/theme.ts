@@ -6,6 +6,7 @@ export const darkTheme: Theme = {
       stroke: '#fff',
     },
   },
+  fontSize: 10,
   grid: {
     line: {
       stroke: '#fff',

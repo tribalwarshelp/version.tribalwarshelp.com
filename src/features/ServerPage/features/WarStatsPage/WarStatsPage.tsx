@@ -261,7 +261,6 @@ function WarStatsPage() {
                         }}
                         label={t('inputLabels.' + name)}
                         value={val}
-                        format="yyyy/MM/dd HH:mm"
                         onChange={d => {
                           setQuery({ [name]: d ? d : undefined });
                         }}

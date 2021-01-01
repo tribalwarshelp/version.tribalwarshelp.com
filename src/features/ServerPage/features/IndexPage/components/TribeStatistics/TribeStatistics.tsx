@@ -61,7 +61,7 @@ function TribeStatistics({ server, t }: Props) {
         <LineChart
           data={data}
           loading={loading}
-          margin={{ top: 20, right: 100, bottom: 50, left: 45 }}
+          margin={{ top: 20, right: 45, bottom: 50, left: 45 }}
           xScale={{
             type: 'time',
           }}
@@ -74,7 +74,7 @@ function TribeStatistics({ server, t }: Props) {
           }}
           xFormat="time:%Y-%m-%d"
           axisBottom={{
-            tickValues: 'every 6 days',
+            tickValues: 'every 8 days',
             tickPadding: 5,
             tickRotation: 0,
             format: '%Y-%m-%d',
@@ -83,32 +83,13 @@ function TribeStatistics({ server, t }: Props) {
             legendOffset: -42,
             legendPosition: 'middle',
             tickSize: 0,
-            tickPadding: 4,
+            tickPadding: 7,
           }}
-          pointSize={10}
-          pointColor={{ theme: 'background' }}
-          pointBorderWidth={2}
+          pointSize={8}
           pointBorderColor={{ from: 'serieColor' }}
-          pointLabelYOffset={-12}
+          pointLabelYOffset={-6}
           useMesh={true}
           colors={{ scheme: 'nivo' }}
-          legends={[
-            {
-              anchor: 'bottom-right',
-              direction: 'column',
-              justify: false,
-              translateX: 100,
-              translateY: 0,
-              itemsSpacing: 0,
-              itemDirection: 'left-to-right',
-              itemWidth: 80,
-              itemHeight: 20,
-              itemOpacity: 0.75,
-              symbolSize: 12,
-              symbolShape: 'circle',
-              symbolBorderColor: 'rgba(0, 0, 0, .5)',
-            },
-          ]}
         />
       </div>
     </Paper>
