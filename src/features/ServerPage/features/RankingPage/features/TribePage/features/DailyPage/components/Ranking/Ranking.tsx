@@ -4,7 +4,6 @@ import {
   NumberParam,
   withDefault,
   StringParam,
-  DateParam,
 } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
 import useDateUtils from '@libs/date/useDateUtils';
@@ -13,6 +12,7 @@ import useScrollToElement from '@libs/useScrollToElement';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
 import useStats from './useStats';
 import SortParam from '@libs/serialize-query-params/SortParam';
+import DateParam from '@libs/serialize-query-params/DateParam';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import * as ROUTES from '@config/routes';
 import { COLUMNS, LIMIT, DEFAULT_SORT } from './constants';
@@ -36,13 +36,16 @@ function Ranking({ t }: Props) {
   const classes = useStyles();
   const server = useServer();
   const dateUtils = useDateUtils();
-  const defaultDate = useRef(dateUtils.date(server.historyUpdatedAt));
+  const dateParam = new DateParam({ dateUtils });
+  const defaultDate = useRef(
+    dateParam.newDecodedDate(dateUtils.date(server.historyUpdatedAt))
+  );
   const [query, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
     q: withDefault(StringParam, ''),
     sort: withDefault(SortParam, DEFAULT_SORT),
-    createDate: withDefault(DateParam, defaultDate.current),
+    createDate: withDefault(dateParam, defaultDate.current),
   });
   const limit = validateRowsPerPage(query.limit);
   const [q, setQ] = useState(query.q);
@@ -61,7 +64,7 @@ function Ranking({ t }: Props) {
     server.key,
     query.q,
     query.sort.toString(),
-    dateUtils.toJSON(query.createDate)
+    query.createDate.server
   );
 
   return (
@@ -70,7 +73,7 @@ function Ranking({ t }: Props) {
         <DatePicker
           size="small"
           label={t('ranking.createDateInputLabel')}
-          value={query.createDate}
+          value={query.createDate.display}
           disableFuture
           variant="dialog"
           onChange={d => {
