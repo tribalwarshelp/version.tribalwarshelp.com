@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { TFunction } from 'i18next';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
@@ -31,8 +32,8 @@ export interface Props {
   t: TFunction;
   className?: string;
   open: boolean;
-  onClose: React.ReactEventHandler<{}>;
-  onOpen: React.ReactEventHandler<{}>;
+  onClose: () => void;
+  onOpen: () => void;
   variant?: DrawerProps['variant'];
 }
 
@@ -40,7 +41,7 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
   const classes = useStyles();
   const { key } = useServer();
   const theme = useTheme();
-
+  const { pathname } = useLocation();
   const routes: Route[] = [
     {
       name: t('pageLayout.sidebar.routes.dashboard'),
@@ -135,6 +136,10 @@ const Sidebar = ({ t, className, open, variant, onClose, onOpen }: Props) => {
       exact: true,
     },
   ];
+
+  useEffect(() => {
+    onClose(); // eslint-disable-next-line
+  }, [pathname]);
 
   return (
     <SwipeableDrawer

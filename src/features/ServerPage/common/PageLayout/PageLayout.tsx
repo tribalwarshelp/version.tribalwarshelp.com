@@ -26,11 +26,15 @@ function PageLayout({ children }: Props) {
   const shouldOpenSidebar = isDesktop ? true : open;
 
   const openSidebar = () => {
-    setOpen(true);
+    if (!isDesktop) {
+      setOpen(true);
+    }
   };
 
   const closeSidebar = () => {
-    setOpen(false);
+    if (!isDesktop) {
+      setOpen(false);
+    }
   };
 
   return (
