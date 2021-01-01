@@ -6,10 +6,10 @@ import {
   NumberParam,
 } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
+import useVersion from '@libs/VersionContext/useVersion';
 import useTitle from '@libs/useTitle';
 import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
-import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
 import { SEARCH_PAGE } from '@config/namespaces';
 import { MODES, LIMIT } from './constants';
 
@@ -26,7 +26,7 @@ function SearchPage() {
     limit: withDefault(NumberParam, LIMIT),
   });
   const limit = validateRowsPerPage(query.limit);
-  const version = extractVersionCodeFromHostname(window.location.hostname);
+  const version = useVersion();
   const { t } = useTranslation(SEARCH_PAGE);
   useTitle(t('title', { query: query.q }));
   useScrollToElement(
@@ -48,7 +48,7 @@ function SearchPage() {
     q: query.q,
     limit: limit,
     page: query.page,
-    version: version,
+    version: version.code,
     onChangePage: handlePageChange,
     onChangeRowsPerPage: handleRowsPerPageChange,
   };

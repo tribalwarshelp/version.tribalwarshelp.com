@@ -1,5 +1,6 @@
 import React from 'react';
 import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useVersion from '@libs/VersionContext/useVersion';
 import { SERVER_PAGE } from '@config/routes';
 import buildVillageName from '@utils/buildVillageName';
 import { buildVillageURL } from '@utils/buildTribalwarsURL';
@@ -29,7 +30,8 @@ function EnnoblementsTable({
   hideFooter,
   footerProps,
 }: Props) {
-  const { version, key: server } = useServer();
+  const version = useVersion();
+  const { key: server } = useServer();
   return (
     <Table
       columns={[

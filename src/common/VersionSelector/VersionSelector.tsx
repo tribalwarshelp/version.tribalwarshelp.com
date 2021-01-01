@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useVersion from '@libs/VersionContext/useVersion';
 import useVersions from './useVersions';
 import { COMMON } from '@config/namespaces';
-import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
 
 import { Button, Menu, MenuItem, Link, Tooltip } from '@material-ui/core';
 import { Language as LanguageIcon } from '@material-ui/icons';
@@ -10,8 +10,8 @@ import { Language as LanguageIcon } from '@material-ui/icons';
 function VersionSelector() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const { t } = useTranslation(COMMON);
-  const versionCode = extractVersionCodeFromHostname(window.location.hostname);
-  const { versions, loading } = useVersions(versionCode);
+  const version = useVersion();
+  const { versions, loading } = useVersions(version.code);
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -25,7 +25,7 @@ function VersionSelector() {
 
   const buildLink = (tag: string) => {
     return `${window.location.protocol}//${window.location.host.replace(
-      versionCode,
+      version.code,
       tag
     )}`;
   };
@@ -40,7 +40,7 @@ function VersionSelector() {
           startIcon={<LanguageIcon />}
           onClick={loading ? undefined : handleClick}
         >
-          {versionCode}
+          {version.code}
         </Button>
       </Tooltip>
       <Menu

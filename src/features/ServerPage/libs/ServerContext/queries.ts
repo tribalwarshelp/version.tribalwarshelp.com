@@ -12,10 +12,6 @@ export const SERVERS = gql`
         dataUpdatedAt
         historyUpdatedAt
         statsUpdatedAt
-        version {
-          code
-          host
-        }
       }
     }
   }

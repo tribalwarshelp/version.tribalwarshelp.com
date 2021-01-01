@@ -14,7 +14,7 @@ const translations = {
     open: 'Otwarty',
   },
   versionContextProvider: {
-    loading: 'Ładowanie...',
+    loading: 'Ładowanie wersji...',
   },
   devNote: `Strona jest ciągle w procesie tworzenia i mogą występować błędy.`,
   mainLayout: {

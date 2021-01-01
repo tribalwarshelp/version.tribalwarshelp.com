@@ -14,7 +14,7 @@ const translations = {
     open: 'Open',
   },
   versionContextProvider: {
-    loading: 'Loading...',
+    loading: 'Loading version...',
   },
   devNote: `This website is still under development and some things may be broken.`,
   mainLayout: {

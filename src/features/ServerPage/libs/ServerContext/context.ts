@@ -11,10 +11,6 @@ const ctx = createContext<Server>({
   historyUpdatedAt: new Date(0).toJSON(),
   statsUpdatedAt: new Date(0).toJSON(),
   status: SERVER_STATUS.OPEN,
-  version: {
-    code: '',
-    host: '',
-  },
 });
 
 export default ctx;
