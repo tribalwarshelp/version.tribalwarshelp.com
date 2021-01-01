@@ -37,8 +37,8 @@ export type Variables = {
   server: string;
   tribeHistoryFilter?: TribeHistoryFilter;
   dailyTribeStatsFilter?: DailyTribeStatsFilter;
-  limit?: number;
+  offset?: number;
   sort?: string[];
-  tribeHistoryOffset?: number;
-  dailyTribeStatsOffset?: number;
+  tribeHistoryLimit?: number;
+  dailyTribeStatsLimit?: number;
 };

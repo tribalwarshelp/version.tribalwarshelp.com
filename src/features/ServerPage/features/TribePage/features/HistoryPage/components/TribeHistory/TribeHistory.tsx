@@ -38,9 +38,9 @@ function TribeHistory({ t, server, tribeID }: Props) {
   >(TRIBE_HISTORY_AND_DAILY_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      limit,
-      tribeHistoryOffset: query.page * limit,
-      dailyTribeStatsOffset: query.page * limit + 1,
+      offset: query.page * query.limit,
+      tribeHistoryLimit: limit,
+      dailyTribeStatsLimit: limit + 1,
       sort: ['createDate DESC'],
       tribeHistoryFilter: {
         tribeID: [tribeID],

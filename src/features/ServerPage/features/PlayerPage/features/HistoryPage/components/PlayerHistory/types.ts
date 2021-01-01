@@ -43,8 +43,8 @@ export type Variables = {
   server: string;
   playerHistoryFilter?: PlayerHistoryFilter;
   dailyPlayerStatsFilter?: DailyPlayerStatsFilter;
-  limit?: number;
+  offset?: number;
   sort?: string[];
-  playerHistoryOffset?: number;
-  dailyPlayerStatsOffset?: number;
+  playerHistoryLimit?: number;
+  dailyPlayerStatsLimit?: number;
 };

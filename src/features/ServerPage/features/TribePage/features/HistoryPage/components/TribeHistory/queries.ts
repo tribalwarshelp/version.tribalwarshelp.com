@@ -6,16 +6,16 @@ export const TRIBE_HISTORY_AND_DAILY_STATS = gql`
     $tribeHistoryFilter: TribeHistoryFilter
     $dailyTribeStatsFilter: DailyTribeStatsFilter
     $sort: [String!]
-    $limit: Int
-    $tribeHistoryOffset: Int
-    $dailyTribeStatsOffset: Int
+    $offset: Int
+    $tribeHistoryLimit: Int
+    $dailyTribeStatsLimit: Int
   ) {
     tribeHistory(
       server: $server
       filter: $tribeHistoryFilter
       sort: $sort
-      limit: $limit
-      offset: $tribeHistoryOffset
+      offset: $offset
+      limit: $tribeHistoryLimit
     ) {
       items {
         tribe {
@@ -40,8 +40,8 @@ export const TRIBE_HISTORY_AND_DAILY_STATS = gql`
       server: $server
       filter: $dailyTribeStatsFilter
       sort: $sort
-      limit: $limit
-      offset: $dailyTribeStatsOffset
+      offset: $offset
+      limit: $dailyTribeStatsLimit
     ) {
       items {
         points

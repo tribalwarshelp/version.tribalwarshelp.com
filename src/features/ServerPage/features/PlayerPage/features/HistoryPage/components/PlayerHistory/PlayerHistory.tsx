@@ -40,10 +40,10 @@ function PlayerHistory({ t, server, playerID }: Props) {
   >(PLAYER_HISTORY_AND_DAILY_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      limit,
-      playerHistoryOffset: query.page * limit,
-      dailyPlayerStatsOffset: query.page * limit + 1,
+      offset: query.page * limit,
       sort: ['createDate DESC'],
+      playerHistoryLimit: limit,
+      dailyPlayerStatsLimit: limit + 1,
       playerHistoryFilter: {
         playerID: [playerID],
       },
