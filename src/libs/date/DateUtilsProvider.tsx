@@ -21,7 +21,7 @@ function DateUtilsProvider({ children }: Props) {
   }, [version.timezone, locale]);
 
   return (
-    <MuiPickersUtilsProvider utils={DateUtils}>
+    <MuiPickersUtilsProvider utils={DateUtils} locale={locale}>
       <Context.Provider value={dateUtils}>{children}</Context.Provider>
     </MuiPickersUtilsProvider>
   );
