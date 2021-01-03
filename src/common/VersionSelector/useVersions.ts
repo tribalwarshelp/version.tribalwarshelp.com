@@ -14,7 +14,7 @@ const useVersions = (versionCode: string): QueryResult => {
     {
       fetchPolicy: 'cache-first',
       variables: {
-        sort: ['code ASC'],
+        sort: ['host ASC'],
         filter: {
           codeNEQ: [versionCode],
         },

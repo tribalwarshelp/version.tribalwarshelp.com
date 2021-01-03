@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import pl from './pl';
 import en from './en';
+import pt_br from './pt_br';
 import { DEFAULT_LANGUAGE } from '@config/app';
 import { COMMON } from '@config/namespaces';
 
@@ -21,6 +22,7 @@ const init = (): i18nT => {
       resources: {
         en,
         pl,
+        br: pt_br,
       },
       defaultNS: COMMON,
       react: {
