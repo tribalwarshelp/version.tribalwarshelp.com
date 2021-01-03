@@ -1,17 +1,20 @@
 import { Locale as DFLocale } from 'date-fns';
 import pl from 'date-fns/locale/pl';
 import enGB from 'date-fns/locale/en-GB';
+import ptBR from 'date-fns/locale/pt-BR';
 import { DEFAULT_LANGUAGE } from '@config/app';
 
 export type Locales = {
   pl: DFLocale;
   en: DFLocale;
+  br: DFLocale;
 };
 export type Locale = keyof Locales;
 
 const locales: Locales = {
   pl,
   en: enGB,
+  br: ptBR,
 };
 
 export const getLocale = (lang: string): DFLocale => {
