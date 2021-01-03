@@ -4,6 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import pl from './pl';
 import en from './en';
 import pt_br from './pt_br';
+import pt from './pt';
 import { DEFAULT_LANGUAGE } from '@config/app';
 import { COMMON } from '@config/namespaces';
 
@@ -22,6 +23,7 @@ const init = (): i18nT => {
       resources: {
         en,
         pl,
+        pt,
         br: pt_br,
       },
       defaultNS: COMMON,

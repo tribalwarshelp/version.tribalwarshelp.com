@@ -3,7 +3,6 @@ export const DEFAULT_LANGUAGE = process.env.REACT_APP_DEFAULT_LANGUAGE ?? 'en';
 export const NAME = 'TWHelp';
 
 export type ServerStatus = 'open' | 'closed';
-
 export const SERVER_STATUS = {
   CLOSED: 'closed' as ServerStatus,
   OPEN: 'open' as ServerStatus,

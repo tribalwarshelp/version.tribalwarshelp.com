@@ -1,13 +1,13 @@
 const translations = {
   versionSelector: {
-    changeVersion: 'Mudar versão',
+    changeVersion: 'Alterar versão',
   },
   pagination: {
     page: 'Página',
-    first: 'Ir para a primeira página',
-    last: 'Ir para a última página',
-    next: 'Ir para a próxima página',
-    previous: 'Ir para a página anterior',
+    first: 'Primeira página',
+    last: 'Última página',
+    next: 'Página seguinte',
+    previous: 'Página anterior',
   },
   serverStatus: {
     closed: 'Fechado',
@@ -16,10 +16,10 @@ const translations = {
   versionContextProvider: {
     loading: 'Carregando a versão...',
   },
-  devNote: `Este site ainda está sendo desenvolvido e pode conter algum erro.`,
+  devNote: `Este site ainda está em desenvolvimento e poder conter erros.`,
   mainLayout: {
     header: {
-      home: 'Página inicial',
+      home: 'Início',
       search: 'Pesquisa',
     },
   },

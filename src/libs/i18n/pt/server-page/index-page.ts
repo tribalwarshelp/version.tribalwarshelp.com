@@ -1,23 +1,23 @@
 const translations = {
-  title: 'Painel de controle - {{key}}',
+  title: 'Painel de controlo - {{key}}',
   recentlyDeletedPlayers: {
-    title: 'Jogadores recém removidos',
+    title: 'Jogadores recém apagados',
     columns: {
       name: 'Jogador',
       mostPoints: 'Maior pontuação',
-      deletedAt: 'Removido em',
+      deletedAt: 'Apagado em',
     },
   },
   recentlyDeletedTribes: {
-    title: 'Tribos recém removidas',
+    title: 'Tribos recém apagadas',
     columns: {
       name: 'Tribo',
       mostPoints: 'Maior pontuação',
-      deletedAt: 'Removida em',
+      deletedAt: 'Apagada em',
     },
   },
   todaysBestStatsPlayers: {
-    title: `Estatística diária (jogadores)`,
+    title: `Estatísticas num dia (jogadores)`,
     modes: {
       scoreAtt: 'ODA',
       scoreDef: 'ODD',
@@ -33,7 +33,7 @@ const translations = {
     },
   },
   todaysBestStatsTribes: {
-    title: `Estatística diária (tribos)`,
+    title: `Estatísticas num dia (tribos)`,
     modes: {
       scoreAtt: 'ODA',
       scoreDef: 'ODD',
@@ -51,7 +51,7 @@ const translations = {
   top5Players: {
     title: 'Classificação de jogador',
     columns: {
-      rank: 'Posição',
+      rank: 'Classificação',
       name: 'Jogador',
       points: 'Pontos',
       dailyGrowth: 'Evolução diária',
@@ -60,7 +60,7 @@ const translations = {
   top5Tribes: {
     title: 'Classificação de tribo',
     columns: {
-      rank: 'Posição',
+      rank: 'Classificação',
       tag: 'Tribo',
       points: 'Pontos',
       dominance: 'Dominância',
@@ -75,9 +75,9 @@ const translations = {
       rankTotal: 'OD',
     },
     columns: {
-      rank: 'Posição',
-      name: 'Jogador',
-      score: 'Pontuação',
+      rank: 'Rank',
+      name: 'Player',
+      score: 'Score',
     },
   },
   odRankingTribes: {

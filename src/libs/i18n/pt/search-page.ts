@@ -9,8 +9,8 @@ const translations = {
       server: 'Servidor',
       player: 'Jogador',
       bestRank: 'Melhor classificação',
-      mostPoints: 'Maior pontuação',
-      mostVillages: 'Maior quantidade de aldeias',
+      mostPoints: 'Mais pontos',
+      mostVillages: 'Mais aldeias',
     },
   },
   tribeTable: {
@@ -18,8 +18,8 @@ const translations = {
       server: 'Servidor',
       player: 'Jogador',
       bestRank: 'Melhor classificação',
-      mostPoints: 'Maior pontuação',
-      mostVillages: 'Maior quantidade de aldeias',
+      mostPoints: 'Mais pontos',
+      mostVillages: 'Mais aldeias',
     },
   },
 };
