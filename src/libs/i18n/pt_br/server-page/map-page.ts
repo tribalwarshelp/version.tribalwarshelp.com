@@ -1,5 +1,5 @@
 const translations = {
-  title: 'FErramenta de mapa - {{key}}',
+  title: 'Ferramenta de mapa - {{key}}',
   sections: {
     settings: 'Configurações',
     tribeMarkers: 'Marcadores de tribo',
