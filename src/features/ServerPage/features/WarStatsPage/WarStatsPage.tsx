@@ -304,7 +304,7 @@ function WarStatsPage() {
                 <Button
                   type="submit"
                   size="large"
-                  color="secondary"
+                  color="primary"
                   variant="contained"
                   disabled={
                     isSubmitting ||

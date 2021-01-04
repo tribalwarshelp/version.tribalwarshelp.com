@@ -383,7 +383,7 @@ function MapPage() {
                 <Button
                   variant="contained"
                   fullWidth
-                  color="secondary"
+                  color="primary"
                   onClick={handleAddTribeMarker}
                   disabled={tribeMarkers.length >= 25}
                 >
@@ -425,7 +425,7 @@ function MapPage() {
                 <Button
                   variant="contained"
                   fullWidth
-                  color="secondary"
+                  color="primary"
                   onClick={handleAddPlayerMarker}
                   disabled={playerMarkers.length >= 25}
                 >
@@ -438,7 +438,7 @@ function MapPage() {
                 <Button
                   type="submit"
                   size="large"
-                  color="secondary"
+                  color="primary"
                   variant="contained"
                 >
                   {t('buttons.generateMap')}

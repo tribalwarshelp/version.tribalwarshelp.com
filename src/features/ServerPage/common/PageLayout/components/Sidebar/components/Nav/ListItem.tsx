@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
   },
   activeLink: {
-    color: theme.palette.secondary.main,
+    color: theme.palette.primary.main,
   },
 }));
 

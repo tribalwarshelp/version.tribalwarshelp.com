@@ -9,6 +9,14 @@ const createTheme = (): Theme => {
     createMuiTheme({
       palette: {
         type: 'dark',
+        primary: {
+          main: '#BB86FC',
+          contrastText: '#000',
+        },
+        secondary: {
+          main: '#03DAC6',
+          contrastText: '#000',
+        },
       },
       typography: {
         h2: {
@@ -24,7 +32,7 @@ const createTheme = (): Theme => {
           color: 'default',
         },
         MuiLink: {
-          color: 'secondary',
+          // color: 'secondary',
           underline: 'none',
         },
       },

@@ -33,9 +33,7 @@ const NotFoundPage = () => {
           {t('description')}
         </Typography>
         <Typography variant="h4">
-          <Link color="secondary" to={INDEX_PAGE}>
-            {t('backToOurSite')}
-          </Link>
+          <Link to={INDEX_PAGE}>{t('backToOurSite')}</Link>
         </Typography>
       </Container>
     </main>
