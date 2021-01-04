@@ -1,4 +1,3 @@
-import './font.css';
 import {
   createMuiTheme,
   responsiveFontSizes,

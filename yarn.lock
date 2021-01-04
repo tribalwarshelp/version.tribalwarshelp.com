@@ -1314,6 +1314,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@kichiyaki/roboto@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@kichiyaki/roboto/-/roboto-1.0.0.tgz#6f5dfb40e2423940588946c952490b123ca8088b"
+  integrity sha512-4pfkzXOqtSWZvvkA6jI30h+y2vDOvhEavYo4O32C98jPk2zqIiFwd4SwiiFe9xzjQsPURqO89rUTZlChU255bQ==
+
 "@material-ui/core@^4.11.0":
   version "4.11.2"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.11.2.tgz#f8276dfa40d88304e6ceb98962af73803d27d42d"

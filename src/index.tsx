@@ -1,3 +1,4 @@
+import '@kichiyaki/roboto';
 import 'date-time-format-timezone';
 import React from 'react';
 import ReactDOM from 'react-dom';
