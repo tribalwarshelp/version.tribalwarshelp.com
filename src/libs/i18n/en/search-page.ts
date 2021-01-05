@@ -3,6 +3,7 @@ const translations = {
   modes: {
     player: 'Player',
     tribe: 'Tribe',
+    server: 'Server',
   },
   playerTable: {
     columns: {
@@ -20,6 +21,15 @@ const translations = {
       bestRank: 'Best rank',
       mostPoints: 'Most points',
       mostVillages: 'Most villages',
+    },
+  },
+  serverTable: {
+    columns: {
+      status: 'Status',
+      server: 'Server',
+      numberOfPlayers: 'Number of players',
+      numberOfTribes: 'Number of tribes',
+      numberOfVillages: 'Number of villages',
     },
   },
 };

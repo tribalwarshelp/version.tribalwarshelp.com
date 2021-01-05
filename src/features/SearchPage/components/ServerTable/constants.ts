@@ -9,8 +9,8 @@ export const COLUMNS: Column<Server>[] = [
     sortable: false,
   },
   {
-    field: 'key',
-    label: 'serverTable.columns.key',
+    field: 'server',
+    label: 'serverTable.columns.server',
     sortable: false,
   },
   {
