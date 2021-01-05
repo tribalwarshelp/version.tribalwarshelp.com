@@ -32,7 +32,6 @@ const createTheme = (): Theme => {
           color: 'default',
         },
         MuiLink: {
-          // color: 'secondary',
           underline: 'none',
         },
       },

@@ -10,6 +10,7 @@ import * as NAMESPACES from '@config/namespaces';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Chip, Toolbar, Typography, Tabs, ChipProps } from '@material-ui/core';
+import WordWrap from '@common/WordWrap/WordWrap';
 import Content from '@common/Content/Content';
 import TabLink from '@common/Link/TabLink';
 
@@ -39,7 +40,9 @@ function PageLayout({ children }: Props) {
       <header className={clsx(classes.header, 'bg-' + bg)}>
         <Toolbar className={classes.toolbar}>
           <div style={{ width: '100%' }}>
-            <Typography variant="h3">{tribe.name}</Typography>
+            <Typography variant="h3">
+              <WordWrap>{tribe.name}</WordWrap>
+            </Typography>
             <div className={classes.tribeTagContainer}>
               <Typography variant="h3">{tribe.tag}</Typography>
               <div className={classes.chipContainer}>

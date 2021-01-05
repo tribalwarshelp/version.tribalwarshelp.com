@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Chip, Toolbar, Typography, Tabs, ChipProps } from '@material-ui/core';
 import Content from '@common/Content/Content';
+import WordWrap from '@common/WordWrap/WordWrap';
 import Link from '@common/Link/Link';
 import TabLink from '@common/Link/TabLink';
 
@@ -42,7 +43,9 @@ function PageLayout({ children }: Props) {
         <Toolbar className={classes.toolbar}>
           <div style={{ width: '100%' }}>
             <div className={classes.playerNameContainer}>
-              <Typography variant="h3">{player.name}</Typography>
+              <Typography variant="h3">
+                <WordWrap>{player.name}</WordWrap>
+              </Typography>
               <div className={classes.chipContainer}>
                 {!player.exists ? (
                   <Chip {...chipProps} label={t('pageLayout.noLongerExists')} />
