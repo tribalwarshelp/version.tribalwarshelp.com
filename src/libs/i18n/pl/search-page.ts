@@ -3,6 +3,7 @@ const translations = {
   modes: {
     player: 'Gracz',
     tribe: 'Plemię',
+    server: 'Serwer',
   },
   playerTable: {
     columns: {
@@ -20,6 +21,15 @@ const translations = {
       bestRank: 'Najlepszy ranking',
       mostPoints: 'Najwięcej punktów',
       mostVillages: 'Najwięcej wiosek',
+    },
+  },
+  serverTable: {
+    columns: {
+      status: 'Status',
+      server: 'Serwer',
+      numberOfPlayers: 'Liczba graczy',
+      numberOfTribes: 'Liczba plemion',
+      numberOfVillages: 'Liczba wiosek',
     },
   },
 };

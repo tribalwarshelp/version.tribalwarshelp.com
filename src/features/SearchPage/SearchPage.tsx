@@ -11,17 +11,18 @@ import useTitle from '@libs/useTitle';
 import useScrollToElement from '@libs/useScrollToElement';
 import { validateRowsPerPage } from '@common/Table/helpers';
 import { SEARCH_PAGE } from '@config/namespaces';
-import { MODES, LIMIT } from './constants';
+import { MODE, LIMIT } from './constants';
 
 import { Container, Paper } from '@material-ui/core';
 import ModeSelector from '@common/ModeSelector/ModeSelector';
 import PlayerTable from './components/PlayerTable/PlayerTable';
 import TribeTable from './components/TribeTable/TribeTable';
+import ServerTable from './components/ServerTable/ServerTable';
 
 function SearchPage() {
   const [query, setQuery] = useQueryParams({
     q: withDefault(StringParam, ''),
-    mode: withDefault(StringParam, MODES.PLAYER),
+    mode: withDefault(StringParam, MODE.PLAYER),
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
   });
@@ -43,14 +44,25 @@ function SearchPage() {
     setQuery({ limit: rowsPerPage, page: 0 });
   };
 
-  const tableProps = {
-    t: t,
-    q: query.q,
-    limit: limit,
-    page: query.page,
-    version: version.code,
-    onChangePage: handlePageChange,
-    onChangeRowsPerPage: handleRowsPerPageChange,
+  const getTable = () => {
+    const tableProps = {
+      t: t,
+      q: query.q,
+      limit: limit,
+      page: query.page,
+      version: version.code,
+      onChangePage: handlePageChange,
+      onChangeRowsPerPage: handleRowsPerPageChange,
+    };
+
+    switch (query.mode.toLowerCase()) {
+      case MODE.TRIBE:
+        return <TribeTable {...tableProps} />;
+      case MODE.SERVER:
+        return <ServerTable {...tableProps} />;
+      default:
+        return <PlayerTable {...tableProps} />;
+    }
   };
 
   return (
@@ -74,13 +86,16 @@ function SearchPage() {
                 return this.name === query.mode;
               },
             },
+            {
+              name: 'server',
+              label: t('modes.server'),
+              get selected() {
+                return this.name === query.mode;
+              },
+            },
           ]}
         />
-        {query.mode === MODES.TRIBE ? (
-          <TribeTable {...tableProps} />
-        ) : (
-          <PlayerTable {...tableProps} />
-        )}
+        {getTable()}
       </Paper>
     </Container>
   );
