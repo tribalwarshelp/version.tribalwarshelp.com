@@ -28,8 +28,8 @@ export interface Props {
   ) => void;
   onChangeTribes: (_e: React.ChangeEvent<{}>, tribes: Tribe[] | null) => void;
   server: string;
-  playerIDNEQ: number[];
-  tribeIDNEQ: number[];
+  selectedPlayerIDs: number[];
+  selectedTribeIDs: number[];
   disabled?: boolean;
   className?: string;
 }
@@ -41,8 +41,8 @@ function OneSide({
   onChangePlayers,
   onChangeTribes,
   server,
-  tribeIDNEQ,
-  playerIDNEQ,
+  selectedTribeIDs,
+  selectedPlayerIDs,
   className,
   disabled,
 }: Props) {
@@ -96,7 +96,7 @@ function OneSide({
           filter: {
             exists: true,
             nameIEQ: searchValue + '%',
-            idNEQ: playerIDNEQ,
+            idNEQ: selectedPlayerIDs,
           },
           server,
           offset: 0,
@@ -124,7 +124,7 @@ function OneSide({
           filter: {
             exists: true,
             tagIEQ: searchValue + '%',
-            idNEQ: tribeIDNEQ,
+            idNEQ: selectedTribeIDs,
           },
           server,
           offset: 0,
@@ -145,7 +145,7 @@ function OneSide({
     return v1 && v2 ? v1.id === v2.id : false;
   };
 
-  const isDisabled = (id: number, blacklist: number[]) => {
+  const isSelected = (id: number, blacklist: number[]) => {
     return blacklist.some(id2 => id === id2);
   };
 
@@ -169,12 +169,17 @@ function OneSide({
         <Autocomplete
           {...autocompleteProps}
           value={players}
-          options={[...playerSuggestions, ...players]}
+          options={[
+            ...playerSuggestions.filter(
+              s => !isSelected(s.id, selectedPlayerIDs)
+            ),
+            ...players,
+          ]}
           getOptionLabel={opt => {
             return opt ? opt.name : '';
           }}
           disabled={disabled}
-          getOptionDisabled={opt => isDisabled(opt.id, playerIDNEQ)}
+          getOptionDisabled={opt => isSelected(opt.id, selectedPlayerIDs)}
           onChange={handleChangePlayers}
           renderInput={params => (
             <TextField
@@ -194,8 +199,13 @@ function OneSide({
         <Autocomplete
           {...autocompleteProps}
           value={tribes}
-          options={[...tribeSuggestions, ...tribes]}
-          getOptionDisabled={opt => isDisabled(opt.id, tribeIDNEQ)}
+          options={[
+            ...tribeSuggestions.filter(
+              s => !isSelected(s.id, selectedTribeIDs)
+            ),
+            ...tribes,
+          ]}
+          getOptionDisabled={opt => isSelected(opt.id, selectedTribeIDs)}
           getOptionLabel={opt => {
             return opt ? opt.tag : '';
           }}
