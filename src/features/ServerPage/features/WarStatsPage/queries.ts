@@ -18,6 +18,10 @@ export const PLAYERS = gql`
       items {
         id
         name
+        totalVillages
+        tribe {
+          id
+        }
       }
     }
   }
@@ -41,6 +45,7 @@ export const TRIBES = gql`
       items {
         id
         tag
+        totalVillages
       }
     }
   }

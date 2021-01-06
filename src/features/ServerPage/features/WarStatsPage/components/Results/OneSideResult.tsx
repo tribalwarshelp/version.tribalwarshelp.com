@@ -53,6 +53,10 @@ function OneSideResult({ data, t, server, title }: Props) {
         </Typography>
       )}
       <Typography>
+        {t('results.villages')}:{' '}
+        <strong>{formatNumber('commas', data.totalVillages)}</strong>
+      </Typography>
+      <Typography>
         {t('results.gained')}:{' '}
         <strong>{formatNumber('commas', data.gained)}</strong>
       </Typography>

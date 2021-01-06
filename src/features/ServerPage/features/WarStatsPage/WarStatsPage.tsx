@@ -80,6 +80,15 @@ function WarStatsPage() {
     players: Player[] = [],
     tribes: Tribe[] = []
   ): SideResult => {
+    let totalVillages = 0;
+    tribes.forEach(t => {
+      totalVillages += t.totalVillages;
+    });
+    players
+      .filter(p => !p.tribe || !tribes.some(t => t.id === p.tribe?.id))
+      .forEach(p => {
+        totalVillages += p.totalVillages;
+      });
     return {
       gained: totalGained,
       lost: totalLost,
@@ -87,6 +96,7 @@ function WarStatsPage() {
       difference: totalGained - totalLost,
       players,
       tribes,
+      totalVillages,
     };
   };
 

@@ -3,6 +3,7 @@ import { List, EnnoblementFilter } from '@libs/graphql/types';
 export type Tribe = {
   id: number;
   tag: string;
+  totalVillages: number;
 };
 
 export type TribeList = {
@@ -12,6 +13,10 @@ export type TribeList = {
 export type Player = {
   id: number;
   name: string;
+  totalVillages: number;
+  tribe?: {
+    id: number;
+  };
 };
 
 export type PlayerList = {
@@ -68,6 +73,7 @@ export type SideResult = {
   againstOppositeSide: number;
   players: Player[];
   tribes: Tribe[];
+  totalVillages: number;
 };
 
 export type Results = {
