@@ -64,10 +64,10 @@ function WarStatsPage() {
     handleChangePlayers: sideTwoHandleChangePlayers,
     handleChangeTribes: sideTwoHandleChangeTribes,
   } = useSide(server.key, { paramNamePrefix: 'sideTwo' });
-  const selectedPlayersIDs = useMemo(() => {
+  const selectedPlayerIDs = useMemo(() => {
     return [...sideOnePlayers.map(p => p.id), ...sideTwoPlayers.map(p => p.id)];
   }, [sideOnePlayers, sideTwoPlayers]);
-  const selectedTribesIDs = useMemo(() => {
+  const selectedTribeIDs = useMemo(() => {
     return [...sideOneTribes.map(p => p.id), ...sideTwoTribes.map(p => p.id)];
   }, [sideOneTribes, sideTwoTribes]);
   const loading = sideTwoLoading || sideOneLoading;
@@ -80,6 +80,15 @@ function WarStatsPage() {
     players: Player[] = [],
     tribes: Tribe[] = []
   ): SideResult => {
+    let totalVillages = 0;
+    tribes.forEach(t => {
+      totalVillages += t.totalVillages;
+    });
+    players
+      .filter(p => !p.tribe || !tribes.some(t => t.id === p.tribe?.id))
+      .forEach(p => {
+        totalVillages += p.totalVillages;
+      });
     return {
       gained: totalGained,
       lost: totalLost,
@@ -87,6 +96,7 @@ function WarStatsPage() {
       difference: totalGained - totalLost,
       players,
       tribes,
+      totalVillages,
     };
   };
 
@@ -279,8 +289,8 @@ function WarStatsPage() {
                 onChangePlayers={sideOneHandleChangePlayers}
                 onChangeTribes={sideOneHandleChangeTribes}
                 server={server.key}
-                tribeIDNEQ={selectedTribesIDs}
-                playerIDNEQ={selectedPlayersIDs}
+                selectedTribeIDs={selectedTribeIDs}
+                selectedPlayerIDs={selectedPlayerIDs}
                 className={classes.formGroup}
                 disabled={isSubmitting}
               />
@@ -293,8 +303,8 @@ function WarStatsPage() {
                 onChangePlayers={sideTwoHandleChangePlayers}
                 onChangeTribes={sideTwoHandleChangeTribes}
                 server={server.key}
-                tribeIDNEQ={selectedTribesIDs}
-                playerIDNEQ={selectedPlayersIDs}
+                selectedTribeIDs={selectedTribeIDs}
+                selectedPlayerIDs={selectedPlayerIDs}
                 className={classes.formGroup}
                 disabled={isSubmitting}
               />

@@ -18,6 +18,10 @@ export const PLAYERS = gql`
       items {
         id
         name
+        totalVillages
+        tribe {
+          id
+        }
       }
     }
   }
@@ -41,6 +45,7 @@ export const TRIBES = gql`
       items {
         id
         tag
+        totalVillages
       }
     }
   }
@@ -65,45 +70,57 @@ export const ENNOBLEMENTS = gql`
     sideOneTotalGained: ennoblements(
       server: $server
       filter: $sideOneTotalGainedFilter
+      limit: 1
     ) {
       total
     }
     sideOneTotalLost: ennoblements(
       server: $server
       filter: $sideOneTotalLostFilter
+      limit: 1
     ) {
       total
     }
     sideOnePlayers: ennoblements(
       server: $server
       filter: $sideOnePlayersFilter
+      limit: 1
     ) @skip(if: $skipSideOnePlayers) {
       total
     }
-    sideOneTribes: ennoblements(server: $server, filter: $sideOneTribesFilter)
-      @skip(if: $skipSideOneTribes) {
+    sideOneTribes: ennoblements(
+      server: $server
+      filter: $sideOneTribesFilter
+      limit: 1
+    ) @skip(if: $skipSideOneTribes) {
       total
     }
     sideTwoTotalGained: ennoblements(
       server: $server
       filter: $sideTwoTotalGainedFilter
+      limit: 1
     ) {
       total
     }
     sideTwoTotalLost: ennoblements(
       server: $server
       filter: $sideTwoTotalLostFilter
+      limit: 1
     ) {
       total
     }
     sideTwoPlayers: ennoblements(
       server: $server
       filter: $sideTwoPlayersFilter
+      limit: 1
     ) @skip(if: $skipSideTwoPlayers) {
       total
     }
-    sideTwoTribes: ennoblements(server: $server, filter: $sideTwoTribesFilter)
-      @skip(if: $skipSideTwoTribes) {
+    sideTwoTribes: ennoblements(
+      server: $server
+      filter: $sideTwoTribesFilter
+      limit: 1
+    ) @skip(if: $skipSideTwoTribes) {
       total
     }
   }

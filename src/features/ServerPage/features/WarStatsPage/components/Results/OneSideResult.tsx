@@ -23,31 +23,39 @@ function OneSideResult({ data, t, server, title }: Props) {
       {data.players.length > 0 && (
         <Typography>
           {t('players')}:{' '}
-          {data.players.map(player => (
-            <Link
-              key={player.id}
-              to={ROUTES.SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE}
-              params={{ id: player.id, key: server }}
-            >
-              {player.name}{' '}
-            </Link>
+          {data.players.map((player, index) => (
+            <span key={player.id}>
+              <Link
+                to={ROUTES.SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE}
+                params={{ id: player.id, key: server }}
+              >
+                {player.name}
+              </Link>
+              {index !== data.players.length - 1 ? ', ' : ''}
+            </span>
           ))}
         </Typography>
       )}
       {data.tribes.length > 0 && (
         <Typography>
           {t('tribes')}:{' '}
-          {data.tribes.map(tribe => (
-            <Link
-              key={tribe.id}
-              to={ROUTES.SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
-              params={{ id: tribe.id, key: server }}
-            >
-              {tribe.tag}{' '}
-            </Link>
+          {data.tribes.map((tribe, index) => (
+            <span key={tribe.id}>
+              <Link
+                to={ROUTES.SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
+                params={{ id: tribe.id, key: server }}
+              >
+                {tribe.tag}
+              </Link>
+              {index !== data.tribes.length - 1 ? ', ' : ''}
+            </span>
           ))}
         </Typography>
       )}
+      <Typography>
+        {t('results.villages')}:{' '}
+        <strong>{formatNumber('commas', data.totalVillages)}</strong>
+      </Typography>
       <Typography>
         {t('results.gained')}:{' '}
         <strong>{formatNumber('commas', data.gained)}</strong>
