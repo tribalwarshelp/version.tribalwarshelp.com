@@ -20,6 +20,7 @@ const translations = {
   results: {
     sideOne: 'Strona pierwsza',
     sideTwo: 'Strona druga',
+    villages: 'Wioski',
     lost: 'Stracone',
     gained: 'Zdobyte',
     difference: 'Różnica',

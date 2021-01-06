@@ -20,6 +20,7 @@ const translations = {
   results: {
     sideOne: 'Primeiro lado',
     sideTwo: 'Segundo lado',
+    villages: 'Aldeias',
     lost: 'Perdas',
     gained: 'Ganhos',
     difference: 'Diferença',

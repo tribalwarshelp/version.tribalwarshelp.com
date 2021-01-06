@@ -21,6 +21,7 @@ const translations = {
     sideOne: 'Side one',
     sideTwo: 'Side two',
     lost: 'Lost',
+    villages: 'Villages',
     gained: 'Gained',
     difference: 'Difference',
     ennoblementsAgainstOppositeSide: 'Ennoblements against opposite side',
