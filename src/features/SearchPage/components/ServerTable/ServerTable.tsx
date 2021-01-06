@@ -16,6 +16,7 @@ export interface Props {
   page: number;
   limit: number;
   q: string;
+  version: string;
   onChangePage: TableFooterProps['onChangePage'];
   onChangeRowsPerPage: TableFooterProps['onChangeRowsPerPage'];
 }
@@ -27,8 +28,9 @@ function ServerTable({
   page,
   onChangePage,
   onChangeRowsPerPage,
+  version,
 }: Props) {
-  const { servers, total, loading } = useServers(page, limit, q);
+  const { servers, total, loading } = useServers(version, page, limit, q);
 
   return (
     <Table
