@@ -10,7 +10,12 @@ export type QueryResult = {
   total: number;
 };
 
-const useServers = (page: number, limit: number, q: string): QueryResult => {
+const useServers = (
+  version: string,
+  page: number,
+  limit: number,
+  q: string
+): QueryResult => {
   const skip = q.trim() === '';
   const { loading: loadingServers, data } = useQuery<
     ServerList,
@@ -22,6 +27,7 @@ const useServers = (page: number, limit: number, q: string): QueryResult => {
       offset: page * limit,
       sort: ['status DESC', 'key ASC'],
       filter: {
+        versionCode: [version],
         keyIEQ: '%' + q + '%',
       },
     },
