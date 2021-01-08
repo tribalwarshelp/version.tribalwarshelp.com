@@ -63,13 +63,13 @@ function Ennoblements({ t, server, tribeID }: Props) {
             sortable: false,
             valueFormatter: (e: Ennoblement) => {
               if (
-                e.newOwner &&
-                e.newOwner.id === tribeID &&
-                e.oldOwner &&
-                e.oldOwner.id === tribeID
+                e.newOwnerTribe &&
+                e.newOwnerTribe.id === tribeID &&
+                e.oldOwnerTribe &&
+                e.oldOwnerTribe.id === tribeID
               ) {
                 return <Dot backgroundColor="yellow" />;
-              } else if (e.oldOwner && e.oldOwner.id === tribeID) {
+              } else if (e.oldOwnerTribe && e.oldOwnerTribe.id === tribeID) {
                 return <Dot backgroundColor="red" />;
               }
               return <Dot backgroundColor="green" />;
