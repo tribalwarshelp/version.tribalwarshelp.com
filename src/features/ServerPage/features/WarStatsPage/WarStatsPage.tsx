@@ -221,7 +221,7 @@ function WarStatsPage() {
         containerProps={{
           minHeight: 'inherit',
           textAlign: 'center',
-          paddingY: 5,
+          paddingY: 3,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

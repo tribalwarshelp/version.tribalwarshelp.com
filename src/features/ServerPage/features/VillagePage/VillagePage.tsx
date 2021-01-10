@@ -32,7 +32,7 @@ function VillagePage() {
           ...centerFlex,
           textAlign: 'center',
           minHeight: 'inherit',
-          paddingY: 5,
+          paddingY: 3,
         }}
         description={t('loadingVillage')}
       />

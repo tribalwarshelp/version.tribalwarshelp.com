@@ -22,7 +22,7 @@ function NameChanges({ t, nameChanges }: Props) {
           {
             field: 'changeDate',
             label: t('nameChanges.columns.changeDate'),
-            type: 'date',
+            type: 'dateutc',
           },
           {
             field: 'newName',

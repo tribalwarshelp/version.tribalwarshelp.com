@@ -198,7 +198,7 @@ function MapPage() {
           alignItems: 'center',
           textAlign: 'center',
           minHeight: 'inherit',
-          paddingY: 5,
+          paddingY: 3,
         }}
         description={t('loading')}
       />

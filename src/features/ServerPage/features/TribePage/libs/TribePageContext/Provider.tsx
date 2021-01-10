@@ -46,7 +46,7 @@ function Provider({ children }: Props) {
           textAlign: 'center',
           minHeight: 'inherit',
           height: '100%',
-          paddingY: 5,
+          paddingY: 3,
         }}
         description={t('tribePageContextProvider.loadingTribe')}
       />
