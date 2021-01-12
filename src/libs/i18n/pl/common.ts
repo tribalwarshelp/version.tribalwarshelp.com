@@ -17,10 +17,14 @@ const translations = {
     loading: 'Ładowanie wersji...',
   },
   devNote: `Strona jest ciągle w procesie tworzenia i mogą występować błędy.`,
+  globalSearch: {
+    searchInput: {
+      placeholder: 'Wyszukaj',
+    },
+  },
   mainLayout: {
     header: {
       home: 'Strona główna',
-      search: 'Wyszukaj',
     },
   },
 };

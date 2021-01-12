@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import * as ROUTES from '@config/routes';
+import useGlobalSearch from './useGlobalSearch';
 import * as NAMESPACES from '@config/namespaces';
 
 import { InputAdornment, IconButton, TextFieldProps } from '@material-ui/core';
@@ -8,13 +8,9 @@ import { Search as SearchIcon } from '@material-ui/icons';
 import SearchInput from '@common/Form/SearchInput';
 import Link from '@common/Link/Link';
 
-export type Props = TextFieldProps & {
-  defaultQ?: string;
-};
-
-function HeaderSearchInput({ defaultQ = '', ...rest }: Props) {
+function CustomizedSearchInput(props: TextFieldProps) {
   const { t } = useTranslation(NAMESPACES.COMMON);
-  const [q, setQ] = useState<string>(defaultQ);
+  const { q, setQ, href } = useGlobalSearch();
   const trimmedQLength = q.trim().length;
   const iconButton = (
     <IconButton size="small" type="submit" disabled={trimmedQLength === 0}>
@@ -26,9 +22,9 @@ function HeaderSearchInput({ defaultQ = '', ...rest }: Props) {
     <SearchInput
       fullWidth
       variant="outlined"
-      placeholder={t<string>('mainLayout.header.search')}
+      placeholder={t<string>('globalSearch.searchInput.placeholder')}
       size="small"
-      {...rest}
+      {...props}
       value={q}
       onChange={e => {
         setQ(e.target.value);
@@ -36,13 +32,7 @@ function HeaderSearchInput({ defaultQ = '', ...rest }: Props) {
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
-            {trimmedQLength ? (
-              <Link to={ROUTES.SEARCH_PAGE + `?q=${encodeURIComponent(q)}`}>
-                {iconButton}
-              </Link>
-            ) : (
-              iconButton
-            )}
+            {trimmedQLength ? <Link to={href}>{iconButton}</Link> : iconButton}
           </InputAdornment>
         ),
       }}
@@ -51,4 +41,4 @@ function HeaderSearchInput({ defaultQ = '', ...rest }: Props) {
   );
 }
 
-export default HeaderSearchInput;
+export default CustomizedSearchInput;

@@ -17,7 +17,7 @@ import {
 import { Menu as MenuIcon, Input as InputIcon } from '@material-ui/icons';
 import VersionSelector from '@common/VersionSelector/VersionSelector';
 import Link from '@common/Link/Link';
-import SearchInput from '@common/MainLayout/components/Header/SearchInput';
+import SearchInput from '@libs/GlobalSearch/SearchInput';
 
 export interface Props {
   className?: string;
