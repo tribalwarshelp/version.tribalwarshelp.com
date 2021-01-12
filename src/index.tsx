@@ -7,6 +7,7 @@ import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import { QueryParamProvider } from 'use-query-params';
+import GlobalSearchProvider from './libs/GlobalSearch/Provider';
 import App from './features/App';
 import createTheme from './theme/createTheme';
 import createGraphQLClient from './libs/graphql/createClient';
@@ -20,7 +21,9 @@ const jsx = (
       <I18nextProvider i18n={initI18N()}>
         <ApolloProvider client={createGraphQLClient(API_URI)}>
           <QueryParamProvider ReactRouterRoute={Route}>
-            <App />
+            <GlobalSearchProvider>
+              <App />
+            </GlobalSearchProvider>
           </QueryParamProvider>
         </ApolloProvider>
       </I18nextProvider>

@@ -17,6 +17,11 @@ const translations = {
     loading: 'Carregando a versão...',
   },
   devNote: `Este site ainda está em desenvolvimento e poder conter erros.`,
+  globalSearch: {
+    searchInput: {
+      placeholder: 'Pesquisa',
+    },
+  },
   mainLayout: {
     header: {
       home: 'Início',

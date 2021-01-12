@@ -24,7 +24,7 @@ import {
   Fireplace as FireplaceIcon,
 } from '@material-ui/icons';
 import DevNote from '@common/DevNote/DevNote';
-import SearchInput from '@common/MainLayout/components/Header/SearchInput';
+import SearchInput from '@libs/GlobalSearch/SearchInput';
 import Nav from './components/Nav/Nav';
 import ServerInfo from './components/ServerInfo/ServerInfo';
 

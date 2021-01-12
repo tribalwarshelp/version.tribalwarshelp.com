@@ -1,5 +1,4 @@
 import React from 'react';
-import { StringParam, useQueryParam, withDefault } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { TWHELP, NAME } from '@config/app';
@@ -20,7 +19,7 @@ import {
 import { Input as InputIcon } from '@material-ui/icons';
 import Link from '@common/Link/Link';
 import VersionSelector from '@common/VersionSelector/VersionSelector';
-import SearchInput from './SearchInput';
+import SearchInput from '@libs/GlobalSearch/SearchInput';
 
 export interface Props {
   appBarProps?: AppBarProps;
@@ -30,7 +29,6 @@ export default function Header({ appBarProps = {} }: Props) {
   const { t } = useTranslation(NAMESPACES.COMMON);
   const location = useLocation();
   const classes = useStyles();
-  const [q] = useQueryParam('q', withDefault(StringParam, ''));
 
   const versionSelector = (
     <div>
@@ -42,9 +40,7 @@ export default function Header({ appBarProps = {} }: Props) {
       <Container>
         <Toolbar disableGutters className={classes.toolbar}>
           <form className={classes.form}>
-            <SearchInput
-              defaultQ={location.pathname === ROUTES.SEARCH_PAGE ? q : ''}
-            />
+            <SearchInput />
           </form>
           {location.pathname !== ROUTES.INDEX_PAGE && (
             <Link to={ROUTES.INDEX_PAGE}>
