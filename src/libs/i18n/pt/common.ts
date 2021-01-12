@@ -25,7 +25,6 @@ const translations = {
   mainLayout: {
     header: {
       home: 'Início',
-      search: 'Pesquisa',
     },
   },
 };
