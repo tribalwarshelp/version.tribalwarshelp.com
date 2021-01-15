@@ -1,10 +1,5 @@
 const translations = {
-  title_live: 'Noblagens em tempo real - {{key}}',
-  title_latest: 'Últimas noblagens - {{key}}',
-  modes: {
-    live: 'Em tempo real',
-    latest: 'Mais recentes',
-  },
+  title: 'Últimas noblagens - {{key}}',
   table: {
     columns: {
       ennobledAt: 'Data/hora',

@@ -1,10 +1,5 @@
 const translations = {
-  title_live: 'Przejęcia na żywo - {{key}}',
-  title_latest: 'Ostatnie przejęcia - {{key}}',
-  modes: {
-    live: 'Na żywo',
-    latest: 'Ostatnie',
-  },
+  title: 'Ostatnie przejęcia - {{key}}',
   table: {
     columns: {
       ennobledAt: 'Data',

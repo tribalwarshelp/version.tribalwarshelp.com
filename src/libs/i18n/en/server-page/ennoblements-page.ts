@@ -1,10 +1,5 @@
 const translations = {
-  title_live: 'Live ennoblements - {{key}}',
-  title_latest: 'Latest ennoblements - {{key}}',
-  modes: {
-    live: 'Live',
-    latest: 'Latest',
-  },
+  title: 'Latest ennoblements - {{key}}',
   table: {
     columns: {
       ennobledAt: 'Date/time',
