@@ -10,7 +10,7 @@ jobs:
       # start proprietary DB using private Docker image
       # with credentials stored in the UI
       - run: |
-          docker login -u $DOCKER_LOGIN -p $DOCKER_PASS
+          docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
       # build the application image
       - run: docker build -t $DOCKER_LOGIN/twhelp-version-website:latest .
 
