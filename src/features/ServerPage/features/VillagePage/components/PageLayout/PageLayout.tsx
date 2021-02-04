@@ -1,14 +1,14 @@
 import React from 'react';
 import { TFunction } from 'i18next';
-import formatNumber from '@utils/formatNumber';
+import formatNumber from 'utils/formatNumber';
 import { Village } from '../../types';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Toolbar, Typography } from '@material-ui/core';
-import Content from '@common/Content/Content';
-import WordWrap from '@common/WordWrap/WordWrap';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import Content from 'common/Content/Content';
+import WordWrap from 'common/WordWrap/WordWrap';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import background from './backgrounds/bg-1-dark.jpg';
 

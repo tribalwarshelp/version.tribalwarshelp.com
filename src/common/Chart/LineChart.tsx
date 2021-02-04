@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { LINE_CHART } from '@config/namespaces';
+import { LINE_CHART } from 'config/namespaces';
 import { darkTheme } from './theme';
 
 import { ResponsiveLine, LineSvgProps } from '@nivo/line';

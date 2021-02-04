@@ -2,7 +2,7 @@ import {
   DailyPlayerStatsFilter,
   List,
   PlayerHistoryFilter,
-} from '@libs/graphql/types';
+} from 'libs/graphql/types';
 
 export type DailyPlayerStatsItem = {
   points: number;

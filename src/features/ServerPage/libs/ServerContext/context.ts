@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { SERVER_STATUS } from '@config/app';
+import { SERVER_STATUS } from 'config/app';
 import { Server } from './types';
 
 const ctx = createContext<Server>({

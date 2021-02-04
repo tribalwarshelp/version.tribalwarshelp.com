@@ -2,7 +2,7 @@ import React from 'react';
 import { TFunction } from 'i18next';
 
 import { Alert } from '@material-ui/lab';
-import Link from '@common/Link/Link';
+import Link from 'common/Link/Link';
 
 export interface Props {
   t: TFunction;

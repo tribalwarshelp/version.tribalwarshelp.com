@@ -1,21 +1,21 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
-import useScrollToElement from '@libs/useScrollToElement';
-import { validateRowsPerPage } from '@common/Table/helpers';
-import { SERVER_PAGE } from '@config/routes';
+import useScrollToElement from 'libs/useScrollToElement';
+import { validateRowsPerPage } from 'common/Table/helpers';
+import { SERVER_PAGE } from 'config/routes';
 import { ENNOBLEMENTS } from './queries';
 import { LIMIT } from './constants';
-import buildVillageName from '@utils/buildVillageName';
+import buildVillageName from 'utils/buildVillageName';
 
 import { Paper } from '@material-ui/core';
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
-import Dot from '@features/ServerPage/common/Dot/Dot';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import Dot from 'features/ServerPage/common/Dot/Dot';
 
 import { TFunction } from 'i18next';
-import { EnnoblementsQueryVariables } from '@libs/graphql/types';
+import { EnnoblementsQueryVariables } from 'libs/graphql/types';
 import { Ennoblements as EnnoblementsT, Ennoblement } from './types';
 
 export interface Props {

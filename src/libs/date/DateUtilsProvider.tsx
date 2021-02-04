@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import useVersion from '@libs/VersionContext/useVersion';
+import useVersion from 'libs/VersionContext/useVersion';
 import { getLocale } from './locales';
 import DateUtils from './DateUtils';
 

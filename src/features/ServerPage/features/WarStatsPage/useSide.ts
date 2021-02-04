@@ -9,7 +9,7 @@ import { PLAYERS, TRIBES } from './queries';
 import {
   PlayersQueryVariables,
   TribesQueryVariables,
-} from '@libs/graphql/types';
+} from 'libs/graphql/types';
 import { Player, Tribe, PlayerList, TribeList } from './types';
 
 const getParamName = (

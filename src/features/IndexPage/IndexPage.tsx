@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import useTitle from '@libs/useTitle';
-import { INDEX_PAGE } from '@config/namespaces';
+import useTitle from 'libs/useTitle';
+import { INDEX_PAGE } from 'config/namespaces';
 
 import { Container, Box } from '@material-ui/core';
-import DevNote from '@common/DevNote/DevNote';
+import DevNote from 'common/DevNote/DevNote';
 import ServerSelection from './components/ServerSelection/ServerSelection';
 
 export default function IndexPage() {

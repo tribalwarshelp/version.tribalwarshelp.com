@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { VERSIONS } from './queries';
-import { VersionsQueryVariables } from '@libs/graphql/types';
+import { VersionsQueryVariables } from 'libs/graphql/types';
 import { VersionList, Version } from './types';
 
 export type QueryResult = {

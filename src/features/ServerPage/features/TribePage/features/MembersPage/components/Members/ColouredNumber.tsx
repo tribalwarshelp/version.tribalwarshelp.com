@@ -1,5 +1,5 @@
 import React from 'react';
-import formatNumber from '@utils/formatNumber';
+import formatNumber from 'utils/formatNumber';
 
 export interface Props {
   num: number;

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { SERVER_PAGE } from '@config/namespaces';
+import { SERVER_PAGE } from 'config/namespaces';
 import { DRAWER_WIDTH } from './components/Sidebar/contants';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery, Toolbar } from '@material-ui/core';
 
-import Content from '@common/Content/Content';
+import Content from 'common/Content/Content';
 import Sidebar from './components/Sidebar/Sidebar';
 import TopBar from './components/TopBar/TopBar';
 

@@ -1,18 +1,18 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { SERVER_PAGE } from '@config/routes';
+import { SERVER_PAGE } from 'config/routes';
 import { TOP_5_PLAYERS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
 import { Typography } from '@material-ui/core';
-import TableToolbar from '@common/Table/TableToolbar';
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import TableToolbar from 'common/Table/TableToolbar';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { PlayersQueryVariables } from '@libs/graphql/types';
+import { PlayersQueryVariables } from 'libs/graphql/types';
 import { PlayerList, Player } from './types';
 
 export interface Props {

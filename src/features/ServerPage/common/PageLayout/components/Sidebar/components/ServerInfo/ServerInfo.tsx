@@ -1,8 +1,8 @@
 import React from 'react';
-import useDateUtils from '@libs/date/useDateUtils';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useDateUtils from 'libs/date/useDateUtils';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
 import useStyles from './useStyles';
-import formatNumber from '@utils/formatNumber';
+import formatNumber from 'utils/formatNumber';
 
 import { Typography } from '@material-ui/core';
 

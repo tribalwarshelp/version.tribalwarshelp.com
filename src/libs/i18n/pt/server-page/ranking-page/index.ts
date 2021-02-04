@@ -1,4 +1,4 @@
-import * as NAMESPACES from '@config/namespaces';
+import * as NAMESPACES from 'config/namespaces';
 import common from './common';
 import playerPage from './player-page';
 import tribePage from './tribe-page';

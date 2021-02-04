@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
-import useDateUtils from '@libs/date/useDateUtils';
-import useScrollToElement from '@libs/useScrollToElement';
-import { validateRowsPerPage } from '@common/Table/helpers';
-import formatNumber from '@utils/formatNumber';
+import useDateUtils from 'libs/date/useDateUtils';
+import useScrollToElement from 'libs/useScrollToElement';
+import { validateRowsPerPage } from 'common/Table/helpers';
+import formatNumber from 'utils/formatNumber';
 import { TRIBE_HISTORY_AND_DAILY_STATS } from './queries';
 import { LIMIT } from './constants';
 
 import { Paper, Tooltip } from '@material-ui/core';
-import Table from '@common/Table/Table';
+import Table from 'common/Table/Table';
 
 import { TFunction } from 'i18next';
 import {

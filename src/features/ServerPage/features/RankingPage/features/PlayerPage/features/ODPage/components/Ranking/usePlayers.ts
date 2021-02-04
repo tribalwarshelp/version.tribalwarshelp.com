@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { PLAYERS } from './queries';
 
-import { PlayersQueryVariables } from '@libs/graphql/types';
+import { PlayersQueryVariables } from 'libs/graphql/types';
 import { Player, PlayerList } from './types';
 
 export type QueryResult = {

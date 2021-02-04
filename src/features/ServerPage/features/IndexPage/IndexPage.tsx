@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import useTitle from '@libs/useTitle';
+import useTitle from 'libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
-import { SERVER_PAGE } from '@config/namespaces';
+import { SERVER_PAGE } from 'config/namespaces';
 
 import { Container, Grid, Hidden } from '@material-ui/core';
-import Content from '@common/Content/Content';
+import Content from 'common/Content/Content';
 import PlayerStatistics from './components/PlayerStatistics/PlayerStatistics';
 import TribeStatistics from './components/TribeStatistics/TribeStatistics';
 import Top5Players from './components/Top5Players/Top5Players';

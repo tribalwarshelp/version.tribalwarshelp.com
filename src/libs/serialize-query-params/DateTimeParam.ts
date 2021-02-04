@@ -1,5 +1,5 @@
 import { QueryParamConfig } from 'use-query-params';
-import DateUtils from '@libs/date/DateUtils';
+import DateUtils from 'libs/date/DateUtils';
 import { getEncodedValue } from './helpers';
 
 type Decoded = {

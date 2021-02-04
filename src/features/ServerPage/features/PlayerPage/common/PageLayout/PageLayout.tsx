@@ -1,20 +1,20 @@
 import React, { Fragment, useMemo } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
 import usePlayer from '../../libs/PlayerPageContext/usePlayer';
 import useTabs from './useTabs';
-import randomInteger from '@utils/randomInteger';
-import * as NAMESPACES from '@config/namespaces';
-import * as ROUTES from '@config/routes';
+import randomInteger from 'utils/randomInteger';
+import * as NAMESPACES from 'config/namespaces';
+import * as ROUTES from 'config/routes';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Chip, Toolbar, Typography, Tabs, ChipProps } from '@material-ui/core';
-import Content from '@common/Content/Content';
-import WordWrap from '@common/WordWrap/WordWrap';
-import Link from '@common/Link/Link';
-import TabLink from '@common/Link/TabLink';
+import Content from 'common/Content/Content';
+import WordWrap from 'common/WordWrap/WordWrap';
+import Link from 'common/Link/Link';
+import TabLink from 'common/Link/TabLink';
 
 import background1 from './backgrounds/bg-1-dark.png';
 import background2 from './backgrounds/bg-2-dark.jpg';

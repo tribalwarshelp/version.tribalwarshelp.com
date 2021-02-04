@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect } from 'react';
 import { TFunction } from 'i18next';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Spinner from '@common/Spinner/Spinner';
+import Spinner from 'common/Spinner/Spinner';
 import InfoWhileGenerating from './InfoWhileGenerating';
 import InfoAfterGenerating from './InfoAfterGenerating';
 

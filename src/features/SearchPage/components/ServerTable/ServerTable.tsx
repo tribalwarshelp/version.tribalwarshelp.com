@@ -1,12 +1,12 @@
 import React from 'react';
 import useServers from './useServers';
-import * as NAMESPACES from '@config/namespaces';
-import * as ROUTES from '@config/routes';
+import * as NAMESPACES from 'config/namespaces';
+import * as ROUTES from 'config/routes';
 import { COLUMNS } from './constants';
 
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
-import { Props as TableFooterProps } from '@common/Table/TableFooter';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
+import { Props as TableFooterProps } from 'common/Table/TableFooter';
 
 import { TFunction } from 'i18next';
 import { Server } from './types';

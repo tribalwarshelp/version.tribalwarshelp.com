@@ -1,5 +1,5 @@
 import React from 'react';
-import { SERVER_PAGE } from '@config/routes';
+import { SERVER_PAGE } from 'config/routes';
 
 import { Switch, Route } from 'react-router-dom';
 import ServerProvider from './libs/ServerContext/Provider';

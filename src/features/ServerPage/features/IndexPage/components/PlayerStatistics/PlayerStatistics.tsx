@@ -1,17 +1,17 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import useDateUtils from '@libs/date/useDateUtils';
+import useDateUtils from 'libs/date/useDateUtils';
 import { STATISTICS } from './queries';
 import { LIMIT } from './constants';
 
 import { Typography } from '@material-ui/core';
 import { Serie } from '@nivo/line';
-import LineChart from '@common/Chart/LineChart';
-import TableToolbar from '@common/Table/TableToolbar';
+import LineChart from 'common/Chart/LineChart';
+import TableToolbar from 'common/Table/TableToolbar';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { ServerStatsQueryVariables } from '@libs/graphql/types';
+import { ServerStatsQueryVariables } from 'libs/graphql/types';
 import { ServerStats } from './types';
 
 export interface Props {

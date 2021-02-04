@@ -2,9 +2,9 @@ import React from 'react';
 import usePlayers from './usePlayers';
 import { COLUMNS } from './constants';
 
-import Table from '@common/Table/Table';
-import { Props as TableFooterProps } from '@common/Table/TableFooter';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import Table from 'common/Table/Table';
+import { Props as TableFooterProps } from 'common/Table/TableFooter';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import { TFunction } from 'i18next';
 import { Player } from './types';

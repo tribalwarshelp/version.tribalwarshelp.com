@@ -2,12 +2,12 @@ import React, { useRef, useMemo, useState } from 'react';
 import { useQueryParams, DateTimeParam, withDefault } from 'use-query-params';
 import { useApolloClient } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import useDateUtils from '@libs/date/useDateUtils';
-import useTitle from '@libs/useTitle';
+import useDateUtils from 'libs/date/useDateUtils';
+import useTitle from 'libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
 import useSide from './useSide';
 import { ENNOBLEMENTS } from './queries';
-import { SERVER_PAGE } from '@config/namespaces';
+import { SERVER_PAGE } from 'config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -17,9 +17,9 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-import DateTimePicker from '@common/Picker/DateTimePicker';
-import Content from '@common/Content/Content';
-import Spinner from '@common/Spinner/Spinner';
+import DateTimePicker from 'common/Picker/DateTimePicker';
+import Content from 'common/Content/Content';
+import Spinner from 'common/Spinner/Spinner';
 import Card from './components/Card/Card';
 import OneSide from './components/OneSide/OneSide';
 import Results from './components/Results/Results';

@@ -1,15 +1,15 @@
 import React, { useMemo, useState } from 'react';
-import useDateUtils from '@libs/date/useDateUtils';
+import useDateUtils from 'libs/date/useDateUtils';
 import useMembers from './useMembers';
-import formatNumber from '@utils/formatNumber';
-import { DATE_FORMAT } from '@config/app';
+import formatNumber from 'utils/formatNumber';
+import { DATE_FORMAT } from 'config/app';
 import { HOW_MANY_DAYS_BACK } from './contants';
 
 import { Paper } from '@material-ui/core';
-import Table from '@common/Table/Table';
-import { Column } from '@common/Table/types';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
-import ModeSelector from '@common/ModeSelector/ModeSelector';
+import Table from 'common/Table/Table';
+import { Column } from 'common/Table/types';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import ModeSelector from 'common/ModeSelector/ModeSelector';
 import ColouredNumber from './ColouredNumber';
 
 import { TFunction } from 'i18next';

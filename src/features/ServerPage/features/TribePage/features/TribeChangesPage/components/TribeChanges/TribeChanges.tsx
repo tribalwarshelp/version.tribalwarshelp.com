@@ -1,18 +1,18 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
-import useScrollToElement from '@libs/useScrollToElement';
-import { validateRowsPerPage } from '@common/Table/helpers';
-import { SERVER_PAGE } from '@config/routes';
+import useScrollToElement from 'libs/useScrollToElement';
+import { validateRowsPerPage } from 'common/Table/helpers';
+import { SERVER_PAGE } from 'config/routes';
 import { TRIBE_CHANGES } from './queries';
 import { LIMIT } from './constants';
 
 import { Paper } from '@material-ui/core';
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
 
 import { TFunction } from 'i18next';
-import { TribeChangesQueryVariables } from '@libs/graphql/types';
+import { TribeChangesQueryVariables } from 'libs/graphql/types';
 import { TribeChangesQuery, TribeChange } from './types';
 
 export interface Props {

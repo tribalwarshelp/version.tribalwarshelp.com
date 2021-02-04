@@ -1,5 +1,5 @@
-import formatNumber from '@utils/formatNumber';
-import { Column } from '@common/Table/types';
+import formatNumber from 'utils/formatNumber';
+import { Column } from 'common/Table/types';
 import { Player } from './types';
 
 export const COLUMNS: Column<Player>[] = [

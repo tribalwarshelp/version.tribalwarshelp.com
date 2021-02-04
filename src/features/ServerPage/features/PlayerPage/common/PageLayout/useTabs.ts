@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
-import * as ROUTES from '@config/routes';
+import * as ROUTES from 'config/routes';
 
 import { TFunction } from 'i18next';
 

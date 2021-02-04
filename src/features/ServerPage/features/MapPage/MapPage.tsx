@@ -7,12 +7,12 @@ import {
 } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
-import useTitle from '@libs/useTitle';
+import useTitle from 'libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
 import useMarkers from './useMarkers';
-import ColorParam from '@libs/serialize-query-params/ColorParam';
-import { MAP_SERVICE } from '@config/app';
-import { SERVER_PAGE } from '@config/namespaces';
+import ColorParam from 'libs/serialize-query-params/ColorParam';
+import { MAP_SERVICE } from 'config/app';
+import { SERVER_PAGE } from 'config/namespaces';
 import { PLAYERS, TRIBES } from './queries';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,9 +25,9 @@ import {
   Checkbox,
   FormControlLabel,
 } from '@material-ui/core';
-import Content from '@common/Content/Content';
-import ColorInput from '@common/Form/ColorInput';
-import Spinner from '@common/Spinner/Spinner';
+import Content from 'common/Content/Content';
+import ColorInput from 'common/Form/ColorInput';
+import Spinner from 'common/Spinner/Spinner';
 import Map from './components/Map/Map';
 import MarkerField from './components/MarkerField/MarkerField';
 import Card from './components/Card/Card';
@@ -35,7 +35,7 @@ import Card from './components/Card/Card';
 import {
   PlayersQueryVariables,
   TribesQueryVariables,
-} from '@libs/graphql/types';
+} from 'libs/graphql/types';
 import { Tribe, Player, PlayerList, TribeList, Settings, HasID } from './types';
 
 function MapPage() {

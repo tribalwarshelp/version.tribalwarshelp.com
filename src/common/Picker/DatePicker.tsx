@@ -3,7 +3,7 @@ import {
   DatePicker as MUIDatePicker,
   DatePickerProps,
 } from '@material-ui/pickers';
-import { DATE_FORMAT } from '@config/app';
+import { DATE_FORMAT } from 'config/app';
 import useI18N from './useI18N';
 
 function DatePicker({

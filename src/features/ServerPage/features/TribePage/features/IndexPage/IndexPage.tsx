@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import useDateUtils from '@libs/date/useDateUtils';
-import useTitle from '@libs/useTitle';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useDateUtils from 'libs/date/useDateUtils';
+import useTitle from 'libs/useTitle';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
 import useTribe from '../../libs/TribePageContext/useTribe';
-import formatNumber from '@utils/formatNumber';
-import { DATE_FORMAT } from '@config/app';
-import { SERVER_PAGE } from '@config/namespaces';
+import formatNumber from 'utils/formatNumber';
+import { DATE_FORMAT } from 'config/app';
+import { SERVER_PAGE } from 'config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {

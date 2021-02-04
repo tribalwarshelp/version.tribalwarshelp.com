@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { heights } from '@theme/toolbar';
+import { heights } from 'theme/toolbar';
 
 import { makeStyles } from '@material-ui/core/styles';
 

@@ -2,14 +2,14 @@ import React from 'react';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
 import useServers from './useServers';
-import * as NAMESPACES from '@config/namespaces';
+import * as NAMESPACES from 'config/namespaces';
 
 import { useTheme } from '@material-ui/core/styles';
 import { Grid, Box, useMediaQuery } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import Pagination, {
   Props as PaginationProps,
-} from '@common/Pagination/Pagination';
+} from 'common/Pagination/Pagination';
 import GridItem from './GridItem';
 
 const PER_PAGE = 48;

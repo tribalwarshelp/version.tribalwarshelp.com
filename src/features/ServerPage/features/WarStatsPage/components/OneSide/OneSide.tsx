@@ -3,7 +3,7 @@ import { isNil } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
 import { useDebouncedCallback } from 'use-debounce';
-import { SERVER_PAGE } from '@config/namespaces';
+import { SERVER_PAGE } from 'config/namespaces';
 import { PLAYERS, TRIBES } from '../../queries';
 
 import { Typography, TextField } from '@material-ui/core';
@@ -11,7 +11,7 @@ import { Autocomplete } from '@material-ui/lab';
 import {
   PlayersQueryVariables,
   TribesQueryVariables,
-} from '@libs/graphql/types';
+} from 'libs/graphql/types';
 import { Player, Tribe, PlayerList, TribeList } from '../../types';
 
 interface HasID {

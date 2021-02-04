@@ -1,6 +1,6 @@
 import React from 'react';
-import { SERVER_PAGE } from '@config/routes';
-import Link from '@common/Link/Link';
+import { SERVER_PAGE } from 'config/routes';
+import Link from 'common/Link/Link';
 
 export interface Tribe {
   id: number;

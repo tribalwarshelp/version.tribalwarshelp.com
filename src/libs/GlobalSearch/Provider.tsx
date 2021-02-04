@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useQueryParam, StringParam, withDefault } from 'use-query-params';
-import { SEARCH_PAGE } from '@config/routes';
+import { SEARCH_PAGE } from 'config/routes';
 
 import Context from './context';
 

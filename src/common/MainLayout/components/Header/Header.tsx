@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { TWHELP, NAME } from '@config/app';
-import * as ROUTES from '@config/routes';
-import * as NAMESPACES from '@config/namespaces';
+import { TWHELP, NAME } from 'config/app';
+import * as ROUTES from 'config/routes';
+import * as NAMESPACES from 'config/namespaces';
 
 import useStyles from './styles';
 import {
@@ -17,9 +17,9 @@ import {
   AppBarProps,
 } from '@material-ui/core';
 import { Input as InputIcon } from '@material-ui/icons';
-import Link from '@common/Link/Link';
-import VersionSelector from '@common/VersionSelector/VersionSelector';
-import SearchInput from '@libs/GlobalSearch/SearchInput';
+import Link from 'common/Link/Link';
+import VersionSelector from 'common/VersionSelector/VersionSelector';
+import SearchInput from 'libs/GlobalSearch/SearchInput';
 
 export interface Props {
   appBarProps?: AppBarProps;

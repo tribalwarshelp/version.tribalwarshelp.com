@@ -1,5 +1,5 @@
-import { List } from '@libs/graphql/types';
-import { ServerStatus } from '@config/app';
+import { List } from 'libs/graphql/types';
+import { ServerStatus } from 'config/app';
 
 export type Server = {
   key: string;

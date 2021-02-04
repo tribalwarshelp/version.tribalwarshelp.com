@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { SEARCH_TRIBE } from './queries';
 
-import { SearchTribeQueryVariables } from '@libs/graphql/types';
+import { SearchTribeQueryVariables } from 'libs/graphql/types';
 import { Tribe, TribeList } from './types';
 
 export type QueryResult = {

@@ -2,15 +2,15 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
-import { SERVER_PAGE } from '@config/namespaces';
+import { SERVER_PAGE } from 'config/namespaces';
 import Context from './context';
 
 import { TRIBE } from './queries';
-import { TribeQueryVariables } from '@libs/graphql/types';
+import { TribeQueryVariables } from 'libs/graphql/types';
 import { Params, TribeQueryResult } from './types';
 
-import NotFoundPage from '@features/ServerPage/features/NotFoundPage/NotFoundPage';
-import Spinner from '@common/Spinner/Spinner';
+import NotFoundPage from 'features/ServerPage/features/NotFoundPage/NotFoundPage';
+import Spinner from 'common/Spinner/Spinner';
 
 export interface Props {
   children: React.ReactNode;

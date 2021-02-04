@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { useQueryParams, withDefault, ArrayParam } from 'use-query-params';
 import { v4 as uuidv4 } from 'uuid';
 import { isNil } from 'lodash';
-import { isValidColor } from '@libs/serialize-query-params/ColorParam';
+import { isValidColor } from 'libs/serialize-query-params/ColorParam';
 
 import { ApolloClient, DocumentNode } from '@apollo/client';
-import { List } from '@libs/graphql/types';
+import { List } from 'libs/graphql/types';
 import { Marker, HasID } from './types';
 
 export type MarkerBag<T> = {

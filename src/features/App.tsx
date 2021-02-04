@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import * as ROUTES from '@config/routes';
+import * as ROUTES from 'config/routes';
 
 import { Switch, Route } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
-import ScrollToTop from '@common/ScrollToTop/ScrollToTop';
+import ScrollToTop from 'common/ScrollToTop/ScrollToTop';
 
 import VersionProvider from '../libs/VersionContext/Provider';
 import DateUtilsProvider from '../libs/date/DateUtilsProvider';

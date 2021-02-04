@@ -1,7 +1,7 @@
 import React from 'react';
 import { get, isString, isNumber } from 'lodash';
-import useDateUtils from '@libs/date/useDateUtils';
-import { DATE_FORMAT } from '@config/app';
+import useDateUtils from 'libs/date/useDateUtils';
+import { DATE_FORMAT } from 'config/app';
 
 import { TableRow, TableCell, Checkbox, Tooltip } from '@material-ui/core';
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import useTitle from '@libs/useTitle';
-import { INDEX_PAGE } from '@config/routes';
-import { NOT_FOUND_PAGE } from '@config/namespaces';
+import useTitle from 'libs/useTitle';
+import { INDEX_PAGE } from 'config/routes';
+import { NOT_FOUND_PAGE } from 'config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography } from '@material-ui/core';
-import Link from '@common/Link/Link';
+import Link from 'common/Link/Link';
 
 const useStyles = makeStyles(() => ({
   container: {

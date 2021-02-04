@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import formatNumber from '@utils/formatNumber';
-import { SERVER_PAGE } from '@config/routes';
+import formatNumber from 'utils/formatNumber';
+import { SERVER_PAGE } from 'config/routes';
 import { PLAYERS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
 import { Typography } from '@material-ui/core';
-import TableToolbar from '@common/Table/TableToolbar';
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
-import ModeSelector from '@common/ModeSelector/ModeSelector';
+import TableToolbar from 'common/Table/TableToolbar';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import ModeSelector from 'common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { PlayersQueryVariables } from '@libs/graphql/types';
+import { PlayersQueryVariables } from 'libs/graphql/types';
 import { PlayersList, Mode, Player } from './types';
 
 export interface Props {

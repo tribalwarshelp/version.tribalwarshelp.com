@@ -3,7 +3,7 @@ import pl from 'date-fns/locale/pl';
 import enGB from 'date-fns/locale/en-GB';
 import pt from 'date-fns/locale/pt';
 import ptBR from 'date-fns/locale/pt-BR';
-import { DEFAULT_LANGUAGE } from '@config/app';
+import { DEFAULT_LANGUAGE } from 'config/app';
 
 export type Locales = {
   pl: DFLocale;

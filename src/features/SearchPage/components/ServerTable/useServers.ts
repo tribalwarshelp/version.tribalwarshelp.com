@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { SERVERS } from './queries';
 
-import { ServersQueryVariables } from '@libs/graphql/types';
+import { ServersQueryVariables } from 'libs/graphql/types';
 import { Server, ServerList } from './types';
 
 export type QueryResult = {

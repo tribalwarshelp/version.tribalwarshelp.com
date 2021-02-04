@@ -2,16 +2,16 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import useVersion from '@libs/VersionContext/useVersion';
+import useVersion from 'libs/VersionContext/useVersion';
 import { SERVERS } from './queries';
 import Context from './context';
-import { SERVER_PAGE } from '@config/namespaces';
+import { SERVER_PAGE } from 'config/namespaces';
 
-import { ServersQueryVariables } from '@libs/graphql/types';
+import { ServersQueryVariables } from 'libs/graphql/types';
 import { Params, ServerList } from './types';
 
-import NotFoundPage from '@features/NotFoundPage/NotFoundPage';
-import Spinner from '@common/Spinner/Spinner';
+import NotFoundPage from 'features/NotFoundPage/NotFoundPage';
+import Spinner from 'common/Spinner/Spinner';
 
 export interface Props {
   children: React.ReactNode;

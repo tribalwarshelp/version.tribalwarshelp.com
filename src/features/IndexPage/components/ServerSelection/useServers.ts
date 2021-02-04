@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
-import { ServersQueryVariables } from '@libs/graphql/types';
+import { ServersQueryVariables } from 'libs/graphql/types';
 import { ServerList, Server } from './types';
 import { SERVERS } from './queries';
-import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
+import extractVersionCodeFromHostname from 'utils/extractVersionCodeFromHostname';
 
 export type QueryResult = {
   servers: Server[];

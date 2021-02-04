@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
-import useDateUtils from '@libs/date/useDateUtils';
-import formatNumber from '@utils/formatNumber';
-import { SERVER_PAGE } from '@config/routes';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
+import useDateUtils from 'libs/date/useDateUtils';
+import formatNumber from 'utils/formatNumber';
+import { SERVER_PAGE } from 'config/routes';
 import { DAILY_PLAYER_STATS } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
 import { Typography } from '@material-ui/core';
-import TableToolbar from '@common/Table/TableToolbar';
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
-import ModeSelector from '@common/ModeSelector/ModeSelector';
+import TableToolbar from 'common/Table/TableToolbar';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import ModeSelector from 'common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { DailyPlayerStatsQueryVariables } from '@libs/graphql/types';
+import { DailyPlayerStatsQueryVariables } from 'libs/graphql/types';
 import { DailyPlayerStatsList, DailyPlayerStatsRecord, Mode } from './types';
 
 export interface Props {

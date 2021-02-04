@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import useGlobalSearch from './useGlobalSearch';
-import * as NAMESPACES from '@config/namespaces';
+import * as NAMESPACES from 'config/namespaces';
 
 import { InputAdornment, IconButton, TextFieldProps } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
-import SearchInput from '@common/Form/SearchInput';
-import Link from '@common/Link/Link';
+import SearchInput from 'common/Form/SearchInput';
+import Link from 'common/Link/Link';
 
 function CustomizedSearchInput(props: TextFieldProps) {
   const { t } = useTranslation(NAMESPACES.COMMON);

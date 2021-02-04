@@ -5,8 +5,8 @@ import pl from './pl';
 import en from './en';
 import pt_br from './pt_br';
 import pt from './pt';
-import { DEFAULT_LANGUAGE } from '@config/app';
-import { COMMON } from '@config/namespaces';
+import { DEFAULT_LANGUAGE } from 'config/app';
+import { COMMON } from 'config/namespaces';
 
 const init = (): i18nT => {
   i18n

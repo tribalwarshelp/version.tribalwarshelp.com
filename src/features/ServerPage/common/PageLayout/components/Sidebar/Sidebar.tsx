@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { TFunction } from 'i18next';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
 import useStyles from './useStyles';
-import * as ROUTES from '@config/routes';
+import * as ROUTES from 'config/routes';
 import { Route } from './components/Nav/types';
 
 import { useTheme } from '@material-ui/core/styles';
@@ -23,8 +23,8 @@ import {
   Beenhere as BeenhereIcon,
   Fireplace as FireplaceIcon,
 } from '@material-ui/icons';
-import DevNote from '@common/DevNote/DevNote';
-import SearchInput from '@libs/GlobalSearch/SearchInput';
+import DevNote from 'common/DevNote/DevNote';
+import SearchInput from 'libs/GlobalSearch/SearchInput';
 import Nav from './components/Nav/Nav';
 import ServerInfo from './components/ServerInfo/ServerInfo';
 

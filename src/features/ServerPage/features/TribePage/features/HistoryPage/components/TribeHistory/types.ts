@@ -2,7 +2,7 @@ import {
   DailyTribeStatsFilter,
   List,
   TribeHistoryFilter,
-} from '@libs/graphql/types';
+} from 'libs/graphql/types';
 
 export type DailyTribeStatsItem = {
   points: number;

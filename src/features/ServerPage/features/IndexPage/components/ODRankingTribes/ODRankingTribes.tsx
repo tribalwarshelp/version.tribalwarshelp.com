@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import formatNumber from '@utils/formatNumber';
-import { SERVER_PAGE } from '@config/routes';
+import formatNumber from 'utils/formatNumber';
+import { SERVER_PAGE } from 'config/routes';
 import { TRIBES } from './queries';
 import { COLUMNS, LIMIT } from './constants';
 
 import { Typography } from '@material-ui/core';
-import TableToolbar from '@common/Table/TableToolbar';
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
-import ModeSelector from '@common/ModeSelector/ModeSelector';
+import TableToolbar from 'common/Table/TableToolbar';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
+import ModeSelector from 'common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { TribesQueryVariables } from '@libs/graphql/types';
+import { TribesQueryVariables } from 'libs/graphql/types';
 import { TribesList, Mode, Tribe } from './types';
 
 export interface Props {

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { NAME } from '@config/app';
+import { NAME } from 'config/app';
 
 export interface UseTitleOptions {
   skip?: boolean;

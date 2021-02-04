@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import formatNumber from '@utils/formatNumber';
-import { SERVER_PAGE } from '@config/namespaces';
+import formatNumber from 'utils/formatNumber';
+import { SERVER_PAGE } from 'config/namespaces';
 
 import { useTheme } from '@material-ui/core/styles';
 import {
@@ -11,7 +11,7 @@ import {
   useMediaQuery,
   Grid,
 } from '@material-ui/core';
-import BarChart from '@common/Chart/BarChart';
+import BarChart from 'common/Chart/BarChart';
 import OneSideResult from './OneSideResult';
 import ChartWrapper from './ChartWrapper';
 

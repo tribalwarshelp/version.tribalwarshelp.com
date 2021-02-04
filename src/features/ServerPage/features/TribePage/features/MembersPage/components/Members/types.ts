@@ -2,7 +2,7 @@ import {
   List,
   PlayersQueryVariables,
   DailyPlayerStatsQueryVariables,
-} from '@libs/graphql/types';
+} from 'libs/graphql/types';
 
 export type Mode =
   | 'points'

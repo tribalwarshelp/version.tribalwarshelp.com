@@ -1,4 +1,4 @@
-import { Props } from '@common/Link/Link';
+import { Props } from 'common/Link/Link';
 
 export interface Route {
   name: string;

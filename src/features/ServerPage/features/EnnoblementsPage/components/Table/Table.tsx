@@ -1,18 +1,18 @@
 import React from 'react';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
-import useVersion from '@libs/VersionContext/useVersion';
-import { SERVER_PAGE } from '@config/routes';
-import buildVillageName from '@utils/buildVillageName';
-import { buildVillageURL } from '@utils/buildTribalwarsURL';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
+import useVersion from 'libs/VersionContext/useVersion';
+import { SERVER_PAGE } from 'config/routes';
+import buildVillageName from 'utils/buildVillageName';
+import { buildVillageURL } from 'utils/buildTribalwarsURL';
 
 import { IconButton, Link as MUILink } from '@material-ui/core';
 import { Visibility } from '@material-ui/icons';
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import { TFunction } from 'i18next';
-import { Props as TableFooterProps } from '@common/Table/TableFooter';
+import { Props as TableFooterProps } from 'common/Table/TableFooter';
 import { Ennoblement } from './types';
 
 export interface Props {

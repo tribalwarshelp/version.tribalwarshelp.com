@@ -1,4 +1,4 @@
-import { List } from '@libs/graphql/types';
+import { List } from 'libs/graphql/types';
 
 export type Version = {
   code: string;

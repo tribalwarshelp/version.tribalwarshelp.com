@@ -1,4 +1,4 @@
-import { DEFAULT_LANGUAGE } from '@config/app';
+import { DEFAULT_LANGUAGE } from 'config/app';
 
 const extractVersionCodeFromHostname = (hostname = ''): string => {
   let versionCode = hostname.substring(0, hostname.indexOf('.'));

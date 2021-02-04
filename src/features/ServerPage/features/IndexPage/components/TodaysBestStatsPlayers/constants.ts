@@ -1,4 +1,4 @@
-import { Column } from '@common/Table/types';
+import { Column } from 'common/Table/types';
 import { DailyPlayerStatsRecord } from './types';
 
 export const COLUMNS: Column<DailyPlayerStatsRecord>[] = [

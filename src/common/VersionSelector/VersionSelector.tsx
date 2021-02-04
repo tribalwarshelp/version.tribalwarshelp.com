@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import useVersion from '@libs/VersionContext/useVersion';
+import useVersion from 'libs/VersionContext/useVersion';
 import useVersions from './useVersions';
-import { COMMON } from '@config/namespaces';
+import { COMMON } from 'config/namespaces';
 
 import { Button, Menu, MenuItem, Link, Tooltip } from '@material-ui/core';
 import { Language as LanguageIcon } from '@material-ui/icons';

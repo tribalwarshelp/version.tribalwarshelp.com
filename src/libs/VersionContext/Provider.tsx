@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import extractVersionCodeFromHostname from '@utils/extractVersionCodeFromHostname';
+import extractVersionCodeFromHostname from 'utils/extractVersionCodeFromHostname';
 import { VERSIONS } from './queries';
 import Context from './context';
-import * as NAMESPACES from '@config/namespaces';
+import * as NAMESPACES from 'config/namespaces';
 
-import { VersionsQueryVariables } from '@libs/graphql/types';
+import { VersionsQueryVariables } from 'libs/graphql/types';
 import { VersionList } from './types';
 
-import NotFoundPage from '@features/NotFoundPage/NotFoundPage';
-import Spinner from '@common/Spinner/Spinner';
+import NotFoundPage from 'features/NotFoundPage/NotFoundPage';
+import Spinner from 'common/Spinner/Spinner';
 
 export interface Props {
   children: React.ReactNode;

@@ -6,15 +6,15 @@ import {
   NumberParam,
 } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
-import useVersion from '@libs/VersionContext/useVersion';
-import useTitle from '@libs/useTitle';
-import useScrollToElement from '@libs/useScrollToElement';
-import { validateRowsPerPage } from '@common/Table/helpers';
-import { SEARCH_PAGE } from '@config/namespaces';
+import useVersion from 'libs/VersionContext/useVersion';
+import useTitle from 'libs/useTitle';
+import useScrollToElement from 'libs/useScrollToElement';
+import { validateRowsPerPage } from 'common/Table/helpers';
+import { SEARCH_PAGE } from 'config/namespaces';
 import { MODE, LIMIT } from './constants';
 
 import { Container, Paper } from '@material-ui/core';
-import ModeSelector from '@common/ModeSelector/ModeSelector';
+import ModeSelector from 'common/ModeSelector/ModeSelector';
 import PlayerTable from './components/PlayerTable/PlayerTable';
 import TribeTable from './components/TribeTable/TribeTable';
 import ServerTable from './components/ServerTable/ServerTable';

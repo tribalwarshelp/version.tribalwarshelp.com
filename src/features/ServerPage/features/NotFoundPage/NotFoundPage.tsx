@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import useTitle from '@libs/useTitle';
-import { NOT_FOUND_PAGE } from '@config/namespaces';
+import useTitle from 'libs/useTitle';
+import { NOT_FOUND_PAGE } from 'config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import Content from '@common/Content/Content';
+import Content from 'common/Content/Content';
 
 const useStyles = makeStyles(theme => ({
   container: {

@@ -1,4 +1,4 @@
-import { List, EnnoblementFilter } from '@libs/graphql/types';
+import { List, EnnoblementFilter } from 'libs/graphql/types';
 
 export type Tribe = {
   id: number;

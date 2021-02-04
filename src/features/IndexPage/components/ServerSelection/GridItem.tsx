@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import formatNumber from '@utils/formatNumber';
-import * as ROUTES from '@config/routes';
-import * as NAMESPACES from '@config/namespaces';
-import { SERVER_STATUS } from '@config/app';
+import formatNumber from 'utils/formatNumber';
+import * as ROUTES from 'config/routes';
+import * as NAMESPACES from 'config/namespaces';
+import { SERVER_STATUS } from 'config/app';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -18,7 +18,7 @@ import {
   ExpandMore as ExpandMoreIcon,
   InfoOutlined as InfoIcon,
 } from '@material-ui/icons';
-import Link from '@common/Link/Link';
+import Link from 'common/Link/Link';
 
 import { TFunction } from 'i18next';
 import { Server } from './types';

@@ -1,18 +1,18 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import useDateUtils from '@libs/date/useDateUtils';
-import formatNumber from '@utils/formatNumber';
+import useDateUtils from 'libs/date/useDateUtils';
+import formatNumber from 'utils/formatNumber';
 import { TRIBE_HISTORY } from './queries';
 import { LIMIT } from './constants';
 
 import { useTheme } from '@material-ui/core/styles';
 import { Paper, useMediaQuery } from '@material-ui/core';
-import LineChart from '@common/Chart/LineChart';
-import ModeSelector from '@common/ModeSelector/ModeSelector';
+import LineChart from 'common/Chart/LineChart';
+import ModeSelector from 'common/ModeSelector/ModeSelector';
 
 import { TFunction } from 'i18next';
 import { Serie } from '@nivo/line';
-import { TribeHistoryQueryVariables } from '@libs/graphql/types';
+import { TribeHistoryQueryVariables } from 'libs/graphql/types';
 import { Mode, TribeHistory } from './types';
 
 export interface Props {

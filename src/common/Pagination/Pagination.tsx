@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { COMMON } from '@config/namespaces';
+import { COMMON } from 'config/namespaces';
 
 import {
   Pagination as MaterialUIPagination,

@@ -1,4 +1,4 @@
-import * as NAMESPACES from '@config/namespaces';
+import * as NAMESPACES from 'config/namespaces';
 import indexPage from './index-page';
 import odPage from './od-page';
 import dailyPage from './daily-page';

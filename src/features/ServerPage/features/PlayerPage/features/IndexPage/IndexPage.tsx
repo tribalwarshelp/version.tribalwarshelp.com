@@ -1,13 +1,13 @@
 import React from 'react';
-import useDateUtils from '@libs/date/useDateUtils';
+import useDateUtils from 'libs/date/useDateUtils';
 import { useTranslation } from 'react-i18next';
-import useTitle from '@libs/useTitle';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useTitle from 'libs/useTitle';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
 import usePlayer from '../../libs/PlayerPageContext/usePlayer';
-import formatNumber from '@utils/formatNumber';
-import { DATE_FORMAT } from '@config/app';
-import { SERVER_PAGE } from '@config/namespaces';
-import * as ROUTES from '@config/routes';
+import formatNumber from 'utils/formatNumber';
+import { DATE_FORMAT } from 'config/app';
+import { SERVER_PAGE } from 'config/namespaces';
+import * as ROUTES from 'config/routes';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -19,7 +19,7 @@ import {
   Typography,
   Chip,
 } from '@material-ui/core';
-import Link from '@common/Link/Link';
+import Link from 'common/Link/Link';
 import Statistics from './components/Statistics/Statistics';
 import NameChanges from './components/NameChanges/NameChanges';
 

@@ -11,7 +11,7 @@ import {
   List,
 } from '@material-ui/core';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
-import Link from '@common/Link/Link';
+import Link from 'common/Link/Link';
 import clsx from 'clsx';
 
 export interface Props {

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { DATE_PICKER } from '@config/namespaces';
+import { DATE_PICKER } from 'config/namespaces';
 
 type Translations = {
   cancelLabel: string;

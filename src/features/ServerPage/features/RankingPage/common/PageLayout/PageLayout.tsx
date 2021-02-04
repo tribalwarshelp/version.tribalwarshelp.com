@@ -1,14 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
 import useTabs from './useTabs';
-import * as NAMESPACES from '@config/namespaces';
+import * as NAMESPACES from 'config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Tabs } from '@material-ui/core';
-import TabLink from '@common/Link/TabLink';
-import Content from '@common/Content/Content';
+import TabLink from 'common/Link/TabLink';
+import Content from 'common/Content/Content';
 
 import background from './backgrounds/bg-1-dark.png';
 

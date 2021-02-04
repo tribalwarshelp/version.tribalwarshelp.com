@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TABLE } from '@config/namespaces';
-import isObjKey from '@utils/isObjKey';
+import { TABLE } from 'config/namespaces';
+import isObjKey from 'utils/isObjKey';
 import { validateRowsPerPage } from './helpers';
 import { Action, Column, OrderDirection } from './types';
 

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { Toolbar } from '@material-ui/core';
-import Content from '@common/Content/Content';
+import Content from 'common/Content/Content';
 import Header, { Props as HeaderProps } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 

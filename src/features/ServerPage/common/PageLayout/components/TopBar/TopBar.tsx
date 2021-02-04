@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import { TFunction } from 'i18next';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
-import * as ROUTES from '@config/routes';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
+import * as ROUTES from 'config/routes';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -15,9 +15,9 @@ import {
   Container,
 } from '@material-ui/core';
 import { Menu as MenuIcon, Input as InputIcon } from '@material-ui/icons';
-import VersionSelector from '@common/VersionSelector/VersionSelector';
-import Link from '@common/Link/Link';
-import SearchInput from '@libs/GlobalSearch/SearchInput';
+import VersionSelector from 'common/VersionSelector/VersionSelector';
+import Link from 'common/Link/Link';
+import SearchInput from 'libs/GlobalSearch/SearchInput';
 
 export interface Props {
   className?: string;

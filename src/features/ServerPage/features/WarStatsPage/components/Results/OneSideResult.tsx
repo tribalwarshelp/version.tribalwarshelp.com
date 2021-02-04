@@ -1,9 +1,9 @@
 import React from 'react';
-import formatNumber from '@utils/formatNumber';
-import * as ROUTES from '@config/routes';
+import formatNumber from 'utils/formatNumber';
+import * as ROUTES from 'config/routes';
 
 import { Typography } from '@material-ui/core';
-import Link from '@common/Link/Link';
+import Link from 'common/Link/Link';
 import { TFunction } from 'i18next';
 import { SideResult } from '../../types';
 

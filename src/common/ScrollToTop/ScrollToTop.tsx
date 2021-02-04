@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import useScrollToElement from '@libs/useScrollToElement';
+import useScrollToElement from 'libs/useScrollToElement';
 
 function ScrollToTop() {
   const { pathname } = useLocation();

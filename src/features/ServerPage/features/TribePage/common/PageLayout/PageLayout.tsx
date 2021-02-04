@@ -1,18 +1,18 @@
 import React, { Fragment, useMemo } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
 import useTribe from '../../libs/TribePageContext/useTribe';
 import useTabs from './useTabs';
-import randomInteger from '@utils/randomInteger';
-import * as NAMESPACES from '@config/namespaces';
+import randomInteger from 'utils/randomInteger';
+import * as NAMESPACES from 'config/namespaces';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Chip, Toolbar, Typography, Tabs, ChipProps } from '@material-ui/core';
-import WordWrap from '@common/WordWrap/WordWrap';
-import Content from '@common/Content/Content';
-import TabLink from '@common/Link/TabLink';
+import WordWrap from 'common/WordWrap/WordWrap';
+import Content from 'common/Content/Content';
+import TabLink from 'common/Link/TabLink';
 
 import background1 from './backgrounds/bg-1-dark.jpg';
 import background2 from './backgrounds/bg-2-dark.jpg';

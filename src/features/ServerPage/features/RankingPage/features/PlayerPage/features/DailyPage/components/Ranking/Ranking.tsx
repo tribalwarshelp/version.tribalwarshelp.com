@@ -6,23 +6,23 @@ import {
   StringParam,
 } from 'use-query-params';
 import { useDebouncedCallback } from 'use-debounce';
-import useDateUtils from '@libs/date/useDateUtils';
-import useUpdateEffect from '@libs/useUpdateEffect';
-import useScrollToElement from '@libs/useScrollToElement';
-import useServer from '@features/ServerPage/libs/ServerContext/useServer';
-import SortParam from '@libs/serialize-query-params/SortParam';
-import DateParam from '@libs/serialize-query-params/DateParam';
+import useDateUtils from 'libs/date/useDateUtils';
+import useUpdateEffect from 'libs/useUpdateEffect';
+import useScrollToElement from 'libs/useScrollToElement';
+import useServer from 'features/ServerPage/libs/ServerContext/useServer';
+import SortParam from 'libs/serialize-query-params/SortParam';
+import DateParam from 'libs/serialize-query-params/DateParam';
 import useStats from './useStats';
-import { validateRowsPerPage } from '@common/Table/helpers';
+import { validateRowsPerPage } from 'common/Table/helpers';
 import { COLUMNS, LIMIT, DEFAULT_SORT } from './constants';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
-import Table from '@common/Table/Table';
-import TableToolbar from '@common/Table/TableToolbar';
-import SearchInput from '@common/Form/SearchInput';
-import DatePicker from '@common/Picker/DatePicker';
-import PlayerProfileLink from '@features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
+import Table from 'common/Table/Table';
+import TableToolbar from 'common/Table/TableToolbar';
+import SearchInput from 'common/Form/SearchInput';
+import DatePicker from 'common/Picker/DatePicker';
+import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import { TFunction } from 'i18next';
 import { DailyPlayerStatsRecord } from './types';

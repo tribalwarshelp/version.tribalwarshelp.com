@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import buildVillageName from '@utils/buildVillageName';
-import { VillageQueryVariables } from '@libs/graphql/types';
+import buildVillageName from 'utils/buildVillageName';
+import { VillageQueryVariables } from 'libs/graphql/types';
 import { Village, Params } from './types';
 
 const QUERY = gql`

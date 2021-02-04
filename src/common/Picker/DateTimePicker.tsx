@@ -1,5 +1,5 @@
 import React from 'react';
-import { DATE_FORMAT } from '@config/app';
+import { DATE_FORMAT } from 'config/app';
 import useI18N from './useI18N';
 
 import {

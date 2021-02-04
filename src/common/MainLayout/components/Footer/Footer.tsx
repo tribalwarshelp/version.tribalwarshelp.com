@@ -1,6 +1,6 @@
 import React from 'react';
-import useDateUtils from '@libs/date/useDateUtils';
-import { AUTHOR } from '@config/app';
+import useDateUtils from 'libs/date/useDateUtils';
+import { AUTHOR } from 'config/app';
 
 import useStyles from './styles';
 import { AppBar, Toolbar, Container, Typography } from '@material-ui/core';

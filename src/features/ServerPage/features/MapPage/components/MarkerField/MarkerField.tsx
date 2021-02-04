@@ -4,7 +4,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { TextField, Box, IconButton } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { Delete as DeleteIcon } from '@material-ui/icons';
-import ColorInput from '@common/Form/ColorInput';
+import ColorInput from 'common/Form/ColorInput';
 
 export interface Props<T> {
   onDelete: () => void;

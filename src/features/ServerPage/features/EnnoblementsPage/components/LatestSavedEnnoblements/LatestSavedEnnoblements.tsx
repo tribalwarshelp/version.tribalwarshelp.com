@@ -1,20 +1,20 @@
 import React, { useRef } from 'react';
 import { useQuery } from '@apollo/client';
 import { useQueryParams, NumberParam, withDefault } from 'use-query-params';
-import useDateUtils from '@libs/date/useDateUtils';
-import useScrollToElement from '@libs/useScrollToElement';
-import DateTimeParam from '@libs/serialize-query-params/DateTimeParam';
-import { validateRowsPerPage } from '@common/Table/helpers';
+import useDateUtils from 'libs/date/useDateUtils';
+import useScrollToElement from 'libs/useScrollToElement';
+import DateTimeParam from 'libs/serialize-query-params/DateTimeParam';
+import { validateRowsPerPage } from 'common/Table/helpers';
 import { ENNOBLEMENTS } from './queries';
 import { LIMIT } from './constants';
 
 import { makeStyles } from '@material-ui/core/styles';
-import TableToolbar from '@common/Table/TableToolbar';
-import DateTimePicker from '@common/Picker/DateTimePicker';
+import TableToolbar from 'common/Table/TableToolbar';
+import DateTimePicker from 'common/Picker/DateTimePicker';
 import Table from '../Table/Table';
 
 import { TFunction } from 'i18next';
-import { EnnoblementsQueryVariables } from '@libs/graphql/types';
+import { EnnoblementsQueryVariables } from 'libs/graphql/types';
 import { Ennoblements as EnnoblementsT } from './types';
 
 export interface Props {

@@ -1,11 +1,11 @@
 import React from 'react';
 import useTribes from './useTribes';
-import * as ROUTES from '@config/routes';
+import * as ROUTES from 'config/routes';
 import { COLUMNS } from './constants';
 
-import Table from '@common/Table/Table';
-import Link from '@common/Link/Link';
-import { Props as TableFooterProps } from '@common/Table/TableFooter';
+import Table from 'common/Table/Table';
+import Link from 'common/Link/Link';
+import { Props as TableFooterProps } from 'common/Table/TableFooter';
 
 import { TFunction } from 'i18next';
 import { Tribe } from './types';

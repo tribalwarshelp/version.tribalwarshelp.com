@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { DAILY_PLAYER_STATS } from './queries';
 
-import { DailyPlayerStatsQueryVariables } from '@libs/graphql/types';
+import { DailyPlayerStatsQueryVariables } from 'libs/graphql/types';
 import { DailyPlayerStatsRecord, DailyStats } from './types';
 
 export type QueryResult = {
