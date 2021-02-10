@@ -27,6 +27,7 @@ export const PLAYER = gql`
       joinedAt
       servers
       deletedAt
+      lastActivityAt
       nameChanges {
         oldName
         newName

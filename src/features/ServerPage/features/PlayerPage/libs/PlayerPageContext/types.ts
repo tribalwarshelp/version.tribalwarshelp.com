@@ -28,6 +28,7 @@ export type Player = {
   bestRankAt: Date | string;
   joinedAt: Date | string;
   deletedAt?: Date | string;
+  lastActivityAt: Date | string;
   servers: string[];
   nameChanges: NameChange[];
   tribe?: {

@@ -21,6 +21,7 @@ const ctx = createContext<Player>({
   mostPointsAt: new Date(0),
   mostVillages: 0,
   mostVillagesAt: new Date(0),
+  lastActivityAt: new Date(0),
   bestRank: 0,
   bestRankAt: new Date(0),
   joinedAt: new Date(0),

@@ -24,6 +24,7 @@ const translations = {
     mostPoints: 'Most points',
     mostVillages: 'Most villages',
     servers: 'Servers',
+    lastActivityAt: 'Last activity',
   },
   nameChanges: {
     title: 'Name changes',

@@ -82,13 +82,18 @@ function IndexPage() {
             })`,
           },
           {
-            field: 'deletedAt',
+            field: player.deletedAt ? 'deletedAt' : 'lastActivityAt',
             value: player.deletedAt
               ? dateUtils.format(
                   dateUtils.date(player.deletedAt),
                   DATE_FORMAT.DAY_MONTH_AND_YEAR
                 )
-              : '-',
+              : dateUtils.formatDistanceToNow(
+                  new Date(player.lastActivityAt ?? 0),
+                  {
+                    addSuffix: true,
+                  }
+                ),
           },
           {
             field: 'bestRank',

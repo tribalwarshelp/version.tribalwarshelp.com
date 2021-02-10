@@ -24,6 +24,7 @@ const translations = {
     mostPoints: 'Najwięcej punktów',
     mostVillages: 'Najwięcej wiosek',
     servers: 'Serwery',
+    lastActivityAt: 'Ostatnia aktywność',
   },
   nameChanges: {
     title: 'Zmiany nicków',
