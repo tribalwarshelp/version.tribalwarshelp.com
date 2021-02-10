@@ -25,7 +25,7 @@ function Provider({ children }: Props) {
     ServerList,
     ServersQueryVariables
   >(SERVERS, {
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'cache-and-network',
     variables: {
       limit: 1,
       filter: {

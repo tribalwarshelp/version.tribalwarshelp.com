@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useDateUtils from 'libs/date/useDateUtils';
 import useServer from 'features/ServerPage/libs/ServerContext/useServer';
 import useStyles from './useStyles';
@@ -20,8 +20,26 @@ const ServerInfo = ({ t }: Props) => {
     numberOfVillages,
   } = useServer();
   const dateUtils = useDateUtils();
-
   const classes = useStyles();
+
+  const getDataUpdatedAtText = () => {
+    return t('pageLayout.sidebar.serverInfo.dataUpdatedAt', {
+      date: dateUtils.formatDistanceToNow(new Date(dataUpdatedAt), {
+        addSuffix: true,
+      }),
+    });
+  };
+  const [dataUpdatedAtText, setDataUpdatedAtText] = useState<string>(
+    getDataUpdatedAtText()
+  );
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      setDataUpdatedAtText(getDataUpdatedAtText());
+    }, 30000);
+    return () => {
+      clearInterval(intervalID);
+    }; // eslint-disable-next-line
+  }, [dataUpdatedAt, t, dateUtils]);
 
   return (
     <div className={classes.root}>
@@ -43,13 +61,7 @@ const ServerInfo = ({ t }: Props) => {
           count: numberOfVillages,
         })}
       </Typography>
-      <Typography>
-        {t('pageLayout.sidebar.serverInfo.dataUpdatedAt', {
-          date: dateUtils.formatDistanceToNow(new Date(dataUpdatedAt), {
-            addSuffix: true,
-          }),
-        })}
-      </Typography>
+      <Typography>{dataUpdatedAtText}</Typography>
     </div>
   );
 };
