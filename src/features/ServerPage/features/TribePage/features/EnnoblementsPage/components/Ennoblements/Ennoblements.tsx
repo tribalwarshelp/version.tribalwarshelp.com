@@ -88,7 +88,7 @@ function Ennoblements({ t, server, tribeID }: Props) {
               return (
                 <Link
                   to={SERVER_PAGE.VILLAGE_PAGE.INDEX_PAGE}
-                  params={{ key: server, id: e.village?.id }}
+                  params={{ key: server, id: e.village?.id ?? 0 }}
                 >
                   {buildVillageName(
                     e.village?.name,

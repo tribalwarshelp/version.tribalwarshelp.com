@@ -49,7 +49,7 @@ function EnnoblementsTable({
             return (
               <Link
                 to={SERVER_PAGE.VILLAGE_PAGE.INDEX_PAGE}
-                params={{ key: server, id: e.village?.id }}
+                params={{ key: server, id: e.village?.id ?? 0 }}
               >
                 {buildVillageName(e.village?.name, e.village?.x, e.village?.y)}
               </Link>
