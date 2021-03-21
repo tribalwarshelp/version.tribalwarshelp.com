@@ -7,10 +7,12 @@ import {
 } from 'use-query-params';
 import { PLAYERS, TRIBES } from './queries';
 import {
-  PlayersQueryVariables,
-  TribesQueryVariables,
+  QueryPlayersArgs,
+  QueryTribesArgs,
+  Player,
+  Tribe,
+  Query,
 } from 'libs/graphql/types';
-import { Player, Tribe, PlayerList, TribeList } from './types';
 
 const getParamName = (
   type: 'player' | 'tribe',
@@ -89,22 +91,22 @@ const useSide = (server: string, opts: Options): Bag => {
 
   const loadData = (
     query: DocumentNode,
-    variables: PlayersQueryVariables | TribesQueryVariables
+    variables: QueryPlayersArgs | QueryTribesArgs
   ) => {
     return client
       .query<
-        PlayerList | TribeList,
-        PlayersQueryVariables | TribesQueryVariables
+        Pick<Query, 'tribes' | 'players'>,
+        QueryPlayersArgs | QueryTribesArgs
       >({
         query,
         variables,
         fetchPolicy: 'network-only',
       })
       .then(res => {
-        if ('players' in res.data && res.data.players) {
+        if ('players' in res.data && res.data.players?.items) {
           setPlayers(res.data.players.items);
         }
-        if ('tribes' in res.data && res.data.tribes) {
+        if ('tribes' in res.data && res.data.tribes?.items) {
           setTribes(res.data.tribes.items);
         }
       });

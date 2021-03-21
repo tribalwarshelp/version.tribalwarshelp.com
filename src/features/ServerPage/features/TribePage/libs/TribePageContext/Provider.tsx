@@ -6,8 +6,8 @@ import { SERVER_PAGE } from 'config/namespaces';
 import Context from './context';
 
 import { TRIBE } from './queries';
-import { TribeQueryVariables } from 'libs/graphql/types';
-import { Params, TribeQueryResult } from './types';
+import { QueryTribeArgs, Query } from 'libs/graphql/types';
+import { Params } from './types';
 
 import NotFoundPage from 'features/ServerPage/features/NotFoundPage/NotFoundPage';
 import Spinner from 'common/Spinner/Spinner';
@@ -20,8 +20,8 @@ function Provider({ children }: Props) {
   const { key, id } = useParams<Params>();
   const { t } = useTranslation(SERVER_PAGE.TRIBE_PAGE.COMMON);
   const { loading: loadingServers, data } = useQuery<
-    TribeQueryResult,
-    TribeQueryVariables
+    Pick<Query, 'tribe'>,
+    QueryTribeArgs
   >(TRIBE, {
     fetchPolicy: 'cache-and-network',
     variables: {

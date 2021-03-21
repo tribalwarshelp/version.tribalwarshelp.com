@@ -1,21 +1,6 @@
 {
   "plugins": [
     [
-      "module-resolver",
-      {
-        "@": ["./src"],
-        "alias": {
-          "@": "./src",
-          "@common": "./src/common",
-          "@config": "./src/config",
-          "@features": "./src/features",
-          "@libs": "./src/libs",
-          "@theme": "./src/theme",
-          "@utils": "./src/utils"
-        }
-      }
-    ],
-    [
       "babel-plugin-transform-imports",
       {
         "@material-ui/core": {

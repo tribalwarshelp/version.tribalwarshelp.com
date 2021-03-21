@@ -1,6 +1,6 @@
 import formatNumber from 'utils/formatNumber';
 import { Column } from 'common/Table/types';
-import { Server } from './types';
+import { Server } from 'libs/graphql/types';
 
 export const COLUMNS: Column<Server>[] = [
   {

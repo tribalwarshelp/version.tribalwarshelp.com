@@ -1,7 +1,7 @@
-export const MODE = {
-  PLAYER: 'player',
-  TRIBE: 'tribe',
-  SERVER: 'server',
-};
+export enum Mode {
+  Player = 'player',
+  Tribe = 'tribe',
+  Server = 'server',
+}
 
 export const LIMIT = 25;

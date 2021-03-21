@@ -1,0 +1,14 @@
+overwrite: true
+schema: ${REACT_APP_API_URI:https://api.tribalwarshelp.com/graphql}
+generates:
+  src/libs/graphql/types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+    config:
+      skipTypename: true
+      namingConvention:
+        enumValues: keep
+      scalars:
+        ID: number
+        Time: Date | string

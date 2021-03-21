@@ -23,8 +23,11 @@ function Map({ src = '', alt = 'Map', maxWidth = 1000, t }: Props) {
 
   return (
     <div>
-      {isGenerating && <InfoWhileGenerating t={t} />}
-      {!isGenerating && <InfoAfterGenerating t={t} />}
+      {isGenerating ? (
+        <InfoWhileGenerating t={t} />
+      ) : (
+        <InfoAfterGenerating t={t} />
+      )}
       <div
         className={classes.imageWrapper}
         style={{ maxWidth: `${maxWidth}px` }}

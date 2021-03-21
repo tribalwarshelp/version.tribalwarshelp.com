@@ -8,7 +8,7 @@ import Link from 'common/Link/Link';
 import { Props as TableFooterProps } from 'common/Table/TableFooter';
 
 import { TFunction } from 'i18next';
-import { Tribe } from './types';
+import { FoundTribe } from 'libs/graphql/types';
 
 export interface Props {
   t: TFunction;
@@ -37,7 +37,7 @@ function TribeTable({
         ...column,
         valueFormatter:
           index === 1
-            ? (tribe: Tribe) => (
+            ? (tribe: FoundTribe) => (
                 <Link
                   to={ROUTES.SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
                   params={{ key: tribe.server, id: tribe.id }}
@@ -51,7 +51,7 @@ function TribeTable({
       loading={loading}
       data={tribes}
       size="small"
-      getRowKey={(row: Tribe) => row.server + row.id}
+      getIDFieldName={(row: FoundTribe) => row.server + row.id}
       footerProps={{
         page,
         rowsPerPage: limit,

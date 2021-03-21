@@ -1,5 +1,5 @@
 import { Column } from 'common/Table/types';
-import { Player } from './types';
+import { Player } from 'libs/graphql/types';
 
 export const COLUMNS: Column<Player>[] = [
   {

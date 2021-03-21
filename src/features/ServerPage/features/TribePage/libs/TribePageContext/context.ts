@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { Tribe } from './types';
+import { Tribe } from 'libs/graphql/types';
 
 const ctx = createContext<Tribe>({
   id: 0,
@@ -25,6 +25,7 @@ const ctx = createContext<Tribe>({
   bestRankAt: new Date(0),
   createdAt: new Date(0),
   deletedAt: new Date(0),
+  totalMembers: 0,
 });
 
 export default ctx;

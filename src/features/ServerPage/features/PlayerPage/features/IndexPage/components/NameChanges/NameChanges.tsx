@@ -2,13 +2,13 @@ import React from 'react';
 
 import { Card, CardContent, Typography } from '@material-ui/core';
 import Table from 'common/Table/Table';
-import { NameChange } from '../../../../libs/PlayerPageContext/types';
+import { PlayerNameChange } from 'libs/graphql/types';
 
 import { TFunction } from 'i18next';
 
 export interface Props {
   t: TFunction;
-  nameChanges: NameChange[];
+  nameChanges: PlayerNameChange[];
 }
 
 function NameChanges({ t, nameChanges }: Props) {

@@ -15,8 +15,7 @@ import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/Play
 import Dot from 'features/ServerPage/common/Dot/Dot';
 
 import { TFunction } from 'i18next';
-import { EnnoblementsQueryVariables } from 'libs/graphql/types';
-import { Ennoblements as EnnoblementsT, Ennoblement } from './types';
+import { QueryEnnoblementsArgs, Ennoblement, Query } from 'libs/graphql/types';
 
 export interface Props {
   server: string;
@@ -32,8 +31,8 @@ function Ennoblements({ t, server, playerID }: Props) {
   const limit = validateRowsPerPage(query.limit);
   useScrollToElement(document.documentElement, [query.page, limit]);
   const { data: queryData, loading: queryLoading } = useQuery<
-    EnnoblementsT,
-    EnnoblementsQueryVariables
+    Pick<Query, 'ennoblements'>,
+    QueryEnnoblementsArgs
   >(ENNOBLEMENTS, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -89,9 +88,13 @@ function Ennoblements({ t, server, playerID }: Props) {
               return (
                 <Link
                   to={SERVER_PAGE.VILLAGE_PAGE.INDEX_PAGE}
-                  params={{ key: server, id: e.village.id }}
+                  params={{ key: server, id: e.village?.id }}
                 >
-                  {buildVillageName(e.village.name, e.village.x, e.village.y)}
+                  {buildVillageName(
+                    e.village?.name,
+                    e.village?.x,
+                    e.village?.y
+                  )}
                 </Link>
               );
             },

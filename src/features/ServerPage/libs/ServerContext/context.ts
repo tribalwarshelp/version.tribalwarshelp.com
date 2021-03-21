@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { SERVER_STATUS } from 'config/app';
+import { ServerStatus } from 'libs/graphql/types';
 import { Server } from './types';
 
 const ctx = createContext<Server>({
@@ -10,7 +10,7 @@ const ctx = createContext<Server>({
   dataUpdatedAt: new Date(0).toJSON(),
   historyUpdatedAt: new Date(0).toJSON(),
   statsUpdatedAt: new Date(0).toJSON(),
-  status: SERVER_STATUS.OPEN,
+  status: ServerStatus.OPEN,
 });
 
 export default ctx;

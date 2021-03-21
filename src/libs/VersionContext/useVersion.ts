@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import ctx from './context';
-import { Version } from './types';
 
-const useVersion = (): Version => {
+const useVersion = () => {
   return useContext(ctx);
 };
 

@@ -1,21 +1,17 @@
-import { List } from 'libs/graphql/types';
-import { ServerStatus } from 'config/app';
-
-export type Server = {
-  key: string;
-  status: ServerStatus;
-  numberOfPlayers: number;
-  numberOfTribes: number;
-  numberOfVillages: number;
-  dataUpdatedAt: string;
-  historyUpdatedAt: string;
-  statsUpdatedAt: string;
-};
-
-export type ServerList = {
-  servers?: List<Server[]>;
-};
+import { Server as _Server } from 'libs/graphql/types';
 
 export type Params = {
   key: string;
 };
+
+export type Server = Pick<
+  _Server,
+  | 'key'
+  | 'numberOfPlayers'
+  | 'numberOfTribes'
+  | 'numberOfVillages'
+  | 'status'
+  | 'dataUpdatedAt'
+  | 'historyUpdatedAt'
+  | 'statsUpdatedAt'
+>;

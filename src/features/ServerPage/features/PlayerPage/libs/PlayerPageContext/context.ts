@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { Player } from './types';
+import { Player } from 'libs/graphql/types';
 
 const ctx = createContext<Player>({
   id: 0,

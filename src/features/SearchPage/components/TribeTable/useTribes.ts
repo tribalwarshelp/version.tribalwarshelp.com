@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
 import { SEARCH_TRIBE } from './queries';
 
-import { SearchTribeQueryVariables } from 'libs/graphql/types';
-import { Tribe, TribeList } from './types';
+import { QuerySearchTribeArgs, FoundTribe } from 'libs/graphql/types';
+import { TribeList } from './types';
 
 export type QueryResult = {
-  tribes: Tribe[];
+  tribes: FoundTribe[];
   loading: boolean;
   total: number;
 };
@@ -19,7 +19,7 @@ const useTribes = (
   const skip = q.trim() === '';
   const { loading: loadingTribes, data } = useQuery<
     TribeList,
-    SearchTribeQueryVariables
+    QuerySearchTribeArgs
   >(SEARCH_TRIBE, {
     fetchPolicy: 'cache-and-network',
     variables: {

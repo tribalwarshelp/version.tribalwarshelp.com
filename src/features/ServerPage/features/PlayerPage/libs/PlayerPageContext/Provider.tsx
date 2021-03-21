@@ -6,8 +6,8 @@ import { SERVER_PAGE } from 'config/namespaces';
 import Context from './context';
 
 import { PLAYER } from './queries';
-import { PlayerQueryVariables } from 'libs/graphql/types';
-import { Params, PlayerQueryResult } from './types';
+import { QueryPlayerArgs, Query } from 'libs/graphql/types';
+import { Params } from './types';
 
 import NotFoundPage from 'features/ServerPage/features/NotFoundPage/NotFoundPage';
 import Spinner from 'common/Spinner/Spinner';
@@ -19,9 +19,9 @@ export interface Props {
 function Provider({ children }: Props) {
   const { key, id } = useParams<Params>();
   const { t } = useTranslation(SERVER_PAGE.PLAYER_PAGE.COMMON);
-  const { loading: loadingServers, data } = useQuery<
-    PlayerQueryResult,
-    PlayerQueryVariables
+  const { loading: loadingPlayer, data } = useQuery<
+    Pick<Query, 'player'>,
+    QueryPlayerArgs
   >(PLAYER, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -30,7 +30,7 @@ function Provider({ children }: Props) {
     },
   });
   const player = data?.player ? data.player : undefined;
-  const loading = loadingServers && !player;
+  const loading = loadingPlayer && !player;
 
   if (loading) {
     const centerFlex = {

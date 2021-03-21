@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import buildVillageName from 'utils/buildVillageName';
-import { VillageQueryVariables } from 'libs/graphql/types';
-import { Village, Params } from './types';
+import { QueryVillageArgs, Query } from 'libs/graphql/types';
+import { Params, Village } from './types';
 
 const QUERY = gql`
   query village($server: String!, $id: Int!) {
@@ -26,10 +26,6 @@ const QUERY = gql`
   }
 `;
 
-type VillageQueryResult = {
-  village?: Village;
-};
-
 export type QueryResult = {
   village?: Village;
   loading: boolean;
@@ -38,8 +34,8 @@ export type QueryResult = {
 const useVillage = (): QueryResult => {
   const { key, id } = useParams<Params>();
   const { loading: loadingServers, data } = useQuery<
-    VillageQueryResult,
-    VillageQueryVariables
+    Pick<Query, 'village'>,
+    QueryVillageArgs
   >(QUERY, {
     fetchPolicy: 'cache-and-network',
     variables: {

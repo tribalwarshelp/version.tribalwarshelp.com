@@ -49,9 +49,9 @@ function EnnoblementsTable({
             return (
               <Link
                 to={SERVER_PAGE.VILLAGE_PAGE.INDEX_PAGE}
-                params={{ key: server, id: e.village.id }}
+                params={{ key: server, id: e.village?.id }}
               >
-                {buildVillageName(e.village.name, e.village.x, e.village.y)}
+                {buildVillageName(e.village?.name, e.village?.x, e.village?.y)}
               </Link>
             );
           },
@@ -102,7 +102,7 @@ function EnnoblementsTable({
             <MUILink
               target="_blank"
               rel="noopener noreferrer"
-              href={buildVillageURL(version.host, server, e.village.id)}
+              href={buildVillageURL(version.host, server, e.village?.id ?? 0)}
             >
               <IconButton>
                 <Visibility />

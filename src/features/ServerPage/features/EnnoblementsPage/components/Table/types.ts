@@ -1,3 +1,5 @@
+import { Maybe } from 'libs/graphql/types';
+
 export interface Tribe {
   id: number;
   tag: string;
@@ -6,19 +8,21 @@ export interface Tribe {
 export interface Player {
   id: number;
   name: string;
-  tribe?: Tribe;
+  tribe?: Maybe<Tribe>;
+}
+
+export interface Village {
+  id: number;
+  name: string;
+  x: number;
+  y: number;
 }
 
 export interface Ennoblement {
-  village: {
-    id: number;
-    name: string;
-    x: number;
-    y: number;
-  };
-  newOwner?: Player;
-  newOwnerTribe?: Tribe;
-  oldOwner?: Player;
-  oldOwnerTribe?: Tribe;
+  village?: Maybe<Village>;
+  newOwner?: Maybe<Player>;
+  newOwnerTribe?: Maybe<Tribe>;
+  oldOwner?: Maybe<Player>;
+  oldOwnerTribe?: Maybe<Tribe>;
   ennobledAt: Date | string;
 }

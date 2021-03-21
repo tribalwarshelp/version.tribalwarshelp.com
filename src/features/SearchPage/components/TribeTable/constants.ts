@@ -1,8 +1,8 @@
 import formatNumber from 'utils/formatNumber';
 import { Column } from 'common/Table/types';
-import { Tribe } from './types';
+import { FoundTribe } from 'libs/graphql/types';
 
-export const COLUMNS: Column<Tribe>[] = [
+export const COLUMNS: Column<FoundTribe>[] = [
   {
     field: 'server',
     label: 'tribeTable.columns.server',
@@ -17,19 +17,20 @@ export const COLUMNS: Column<Tribe>[] = [
     field: 'bestRank',
     label: 'tribeTable.columns.bestRank',
     sortable: false,
-    valueFormatter: (tribe: Tribe) => tribe.bestRank,
+    valueFormatter: (tribe: FoundTribe) => tribe.bestRank,
   },
   {
     field: 'mostPoints',
     label: 'tribeTable.columns.mostPoints',
     sortable: false,
-    valueFormatter: (tribe: Tribe) => formatNumber('commas', tribe.mostPoints),
+    valueFormatter: (tribe: FoundTribe) =>
+      formatNumber('commas', tribe.mostPoints),
   },
   {
     field: 'mostVillages',
     label: 'tribeTable.columns.mostVillages',
     sortable: false,
-    valueFormatter: (tribe: Tribe) =>
+    valueFormatter: (tribe: FoundTribe) =>
       formatNumber('commas', tribe.mostVillages),
   },
 ];

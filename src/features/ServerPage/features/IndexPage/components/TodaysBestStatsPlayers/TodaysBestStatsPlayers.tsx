@@ -16,8 +16,12 @@ import ModeSelector from 'common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { DailyPlayerStatsQueryVariables } from 'libs/graphql/types';
-import { DailyPlayerStatsList, DailyPlayerStatsRecord, Mode } from './types';
+import {
+  QueryDailyPlayerStatsArgs,
+  DailyPlayerStatsRecord,
+  Query,
+} from 'libs/graphql/types';
+import { Mode } from './types';
 
 export interface Props {
   t: TFunction;
@@ -28,8 +32,8 @@ function TodaysBestStatsPlayers({ t }: Props) {
   const dateUtils = useDateUtils();
   const [mode, setMode] = useState<Mode>('scoreAtt');
   const { loading: loadingData, data } = useQuery<
-    DailyPlayerStatsList,
-    DailyPlayerStatsQueryVariables
+    Pick<Query, 'dailyPlayerStats'>,
+    QueryDailyPlayerStatsArgs
   >(DAILY_PLAYER_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -108,12 +112,15 @@ function TodaysBestStatsPlayers({ t }: Props) {
           ...column,
           valueFormatter:
             index === 0
-              ? (record: DailyPlayerStatsRecord) => (
-                  <PlayerProfileLink
-                    player={record.player}
-                    server={server.key}
-                  />
-                )
+              ? (record: DailyPlayerStatsRecord) =>
+                  record.player ? (
+                    <PlayerProfileLink
+                      player={record.player}
+                      server={server.key}
+                    />
+                  ) : (
+                    '-'
+                  )
               : index === 1
               ? (record: DailyPlayerStatsRecord) =>
                   formatNumber('commas', record[mode])

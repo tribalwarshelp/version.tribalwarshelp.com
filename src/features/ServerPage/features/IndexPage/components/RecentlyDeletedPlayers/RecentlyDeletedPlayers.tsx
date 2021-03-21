@@ -11,8 +11,7 @@ import Link from 'common/Link/Link';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { PlayersQueryVariables } from 'libs/graphql/types';
-import { PlayerList, Player } from './types';
+import { QueryPlayersArgs, Query, Player } from 'libs/graphql/types';
 
 export interface Props {
   server: string;
@@ -21,8 +20,8 @@ export interface Props {
 
 function RecentlyDeletedPlayers({ server, t }: Props) {
   const { loading: loadingPlayers, data } = useQuery<
-    PlayerList,
-    PlayersQueryVariables
+    Pick<Query, 'players'>,
+    QueryPlayersArgs
   >(RECENTLY_DELETED_PLAYERS, {
     fetchPolicy: 'cache-and-network',
     variables: {

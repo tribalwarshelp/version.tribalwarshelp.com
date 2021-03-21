@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import useDateUtils from 'libs/date/useDateUtils';
-import useMembers from './useMembers';
+import useMembers, { Player } from './useMembers';
 import formatNumber from 'utils/formatNumber';
 import { DATE_FORMAT } from 'config/app';
 import { HOW_MANY_DAYS_BACK } from './contants';
@@ -13,7 +13,7 @@ import ModeSelector from 'common/ModeSelector/ModeSelector';
 import ColouredNumber from './ColouredNumber';
 
 import { TFunction } from 'i18next';
-import { Player, Mode } from './types';
+import { Mode } from './types';
 
 export interface Props {
   server: string;
@@ -90,12 +90,9 @@ function Members({ t, server, tribeID }: Props) {
             label: formatted,
             sortable: false,
             valueFormatter: (p: Player) => {
-              const record = p.dailyPlayerStatsRecords
-                ? p.dailyPlayerStatsRecords.find(
-                    r =>
-                      dateUtils.date(r.createDate).getTime() === date.getTime()
-                  )
-                : undefined;
+              const record = p.stats.find(
+                r => dateUtils.date(r.createDate).getTime() === date.getTime()
+              );
               return <ColouredNumber num={record ? record[mode] : 0} />;
             },
           });
@@ -108,11 +105,9 @@ function Members({ t, server, tribeID }: Props) {
             return (
               <ColouredNumber
                 num={
-                  p.dailyPlayerStatsRecords
-                    ? p.dailyPlayerStatsRecords.reduce(function (a, b) {
-                        return a + b[mode];
-                      }, 0)
-                    : 0
+                  p.stats.reduce(function (a, b) {
+                    return a + b[mode];
+                  }, 0) ?? 0
                 }
                 bold
               />

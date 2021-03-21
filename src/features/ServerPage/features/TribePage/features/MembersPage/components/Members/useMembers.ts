@@ -1,14 +1,15 @@
 import { useRef, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
+import { subDays } from 'date-fns';
 import { PLAYERS_AND_DAILY_PLAYER_STATS } from './queries';
 
+import { Player as _Player, DailyPlayerStatsRecord } from 'libs/graphql/types';
 import {
   PlayersAndDailyPlayerStatsQueryResult,
-  PlayersAndDailyPlayerStatsQueryVariables,
-  Player,
-  DailyPlayerStatsRecord,
+  PlayersAndQueryDailyPlayerStatsArgs,
 } from './types';
-import { subDays } from 'date-fns';
+
+export type Player = _Player & { stats: DailyPlayerStatsRecord[] };
 
 export type QueryResult = {
   members: Player[];
@@ -24,7 +25,7 @@ const useMembers = (
   const createDateGTE = useRef(subDays(new Date(), howManyDaysBack));
   const { data: queryData, loading: queryLoading } = useQuery<
     PlayersAndDailyPlayerStatsQueryResult,
-    PlayersAndDailyPlayerStatsQueryVariables
+    PlayersAndQueryDailyPlayerStatsArgs
   >(PLAYERS_AND_DAILY_PLAYER_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -42,7 +43,7 @@ const useMembers = (
       server,
     },
   });
-  const members = useMemo(() => {
+  const members: Player[] = useMemo(() => {
     const members = queryData?.players?.items ?? [];
     const dailyPlayerStatsRecords = [
       ...(queryData?.dailyPlayerStats?.items ?? []),
@@ -50,8 +51,8 @@ const useMembers = (
     return members.map(p => {
       return {
         ...p,
-        dailyPlayerStatsRecords: dailyPlayerStatsRecords.filter(
-          record => record.player.id === p.id
+        stats: dailyPlayerStatsRecords.filter(
+          record => record.player?.id === p.id
         ),
       };
     });

@@ -11,7 +11,7 @@ import useTitle from 'libs/useTitle';
 import useScrollToElement from 'libs/useScrollToElement';
 import { validateRowsPerPage } from 'common/Table/helpers';
 import { SEARCH_PAGE } from 'config/namespaces';
-import { MODE, LIMIT } from './constants';
+import { LIMIT, Mode } from './constants';
 
 import { Container, Paper } from '@material-ui/core';
 import ModeSelector from 'common/ModeSelector/ModeSelector';
@@ -22,7 +22,7 @@ import ServerTable from './components/ServerTable/ServerTable';
 function SearchPage() {
   const [query, setQuery] = useQueryParams({
     q: withDefault(StringParam, ''),
-    mode: withDefault(StringParam, MODE.PLAYER),
+    mode: withDefault(StringParam, Mode.Player),
     page: withDefault(NumberParam, 0),
     limit: withDefault(NumberParam, LIMIT),
   });
@@ -56,9 +56,9 @@ function SearchPage() {
     };
 
     switch (query.mode.toLowerCase()) {
-      case MODE.TRIBE:
+      case Mode.Tribe:
         return <TribeTable {...tableProps} />;
-      case MODE.SERVER:
+      case Mode.Server:
         return <ServerTable {...tableProps} />;
       default:
         return <PlayerTable {...tableProps} />;

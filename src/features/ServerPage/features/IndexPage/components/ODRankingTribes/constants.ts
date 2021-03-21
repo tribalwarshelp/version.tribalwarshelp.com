@@ -1,5 +1,5 @@
 import { Column } from 'common/Table/types';
-import { Tribe } from './types';
+import { Tribe } from 'libs/graphql/types';
 
 export const COLUMNS: Column<Tribe>[] = [
   {

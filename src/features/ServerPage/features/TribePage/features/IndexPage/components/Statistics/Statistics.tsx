@@ -12,8 +12,8 @@ import ModeSelector from 'common/ModeSelector/ModeSelector';
 
 import { TFunction } from 'i18next';
 import { Serie } from '@nivo/line';
-import { TribeHistoryQueryVariables } from 'libs/graphql/types';
-import { Mode, TribeHistory } from './types';
+import { QueryTribeHistoryArgs, Query } from 'libs/graphql/types';
+import { Mode } from './types';
 
 export interface Props {
   server: string;
@@ -27,8 +27,8 @@ function Statistics({ t, server, tribeID }: Props) {
   const dateUtils = useDateUtils();
   const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
   const { data: queryRes, loading } = useQuery<
-    TribeHistory,
-    TribeHistoryQueryVariables
+    Pick<Query, 'tribeHistory'>,
+    QueryTribeHistoryArgs
   >(TRIBE_HISTORY, {
     fetchPolicy: 'cache-and-network',
     variables: {

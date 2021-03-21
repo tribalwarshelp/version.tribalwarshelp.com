@@ -19,7 +19,7 @@ import SearchInput from 'common/Form/SearchInput';
 import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import { TFunction } from 'i18next';
-import { Player } from './types';
+import { Player } from 'libs/graphql/types';
 
 export interface Props {
   server: string;

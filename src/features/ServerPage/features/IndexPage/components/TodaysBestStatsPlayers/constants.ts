@@ -1,5 +1,5 @@
 import { Column } from 'common/Table/types';
-import { DailyPlayerStatsRecord } from './types';
+import { DailyPlayerStatsRecord } from 'libs/graphql/types';
 
 export const COLUMNS: Column<DailyPlayerStatsRecord>[] = [
   {

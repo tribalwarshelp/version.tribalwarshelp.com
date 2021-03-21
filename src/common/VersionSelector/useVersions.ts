@@ -1,7 +1,11 @@
 import { useQuery } from '@apollo/client';
 import { VERSIONS } from './queries';
-import { VersionsQueryVariables } from 'libs/graphql/types';
-import { VersionList, Version } from './types';
+import {
+  QueryVersionsArgs,
+  VersionCode,
+  Query,
+  Version,
+} from 'libs/graphql/types';
 
 export type QueryResult = {
   versions: Version[];
@@ -9,18 +13,18 @@ export type QueryResult = {
 };
 
 const useVersions = (versionCode: string): QueryResult => {
-  const { data, loading } = useQuery<VersionList, VersionsQueryVariables>(
-    VERSIONS,
-    {
-      fetchPolicy: 'cache-first',
-      variables: {
-        sort: ['host ASC'],
-        filter: {
-          codeNEQ: [versionCode],
-        },
+  const { data, loading } = useQuery<
+    Pick<Query, 'versions'>,
+    QueryVersionsArgs
+  >(VERSIONS, {
+    fetchPolicy: 'cache-first',
+    variables: {
+      sort: ['host ASC'],
+      filter: {
+        codeNEQ: [versionCode as VersionCode],
       },
-    }
-  );
+    },
+  });
   return {
     versions: data?.versions?.items ?? [],
     loading,

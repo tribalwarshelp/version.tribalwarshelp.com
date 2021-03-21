@@ -1,8 +1,8 @@
 import { createContext } from 'react';
-import { Version } from './types';
+import { Version, VersionCode } from 'libs/graphql/types';
 
 const ctx = createContext<Version>({
-  code: '',
+  code: VersionCode.PL,
   host: '',
   name: '',
   timezone: '',

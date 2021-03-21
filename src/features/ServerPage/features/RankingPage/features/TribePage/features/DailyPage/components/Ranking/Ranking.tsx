@@ -26,7 +26,7 @@ import DatePicker from 'common/Picker/DatePicker';
 import Link from 'common/Link/Link';
 
 import { TFunction } from 'i18next';
-import { DailyTribeStatsRecord } from './types';
+import { DailyTribeStatsRecord } from 'libs/graphql/types';
 
 export interface Props {
   t: TFunction;
@@ -112,9 +112,9 @@ function Ranking({ t }: Props) {
             newCol.valueFormatter = (record: DailyTribeStatsRecord) => (
               <Link
                 to={ROUTES.SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
-                params={{ id: record.tribe.id, key: server.key }}
+                params={{ id: record.tribe?.id, key: server.key }}
               >
-                {record.tribe.tag}
+                {record.tribe?.tag ?? '-'}
               </Link>
             );
           }
@@ -122,7 +122,9 @@ function Ranking({ t }: Props) {
         })}
         loading={loading}
         data={dailyStats}
-        getRowKey={(record: DailyTribeStatsRecord) => record.tribe.id}
+        getIDFieldName={(record: DailyTribeStatsRecord, index) =>
+          record.tribe?.id ?? index
+        }
         size="small"
         orderBy={query.sort.orderBy}
         orderDirection={query.sort.orderDirection}

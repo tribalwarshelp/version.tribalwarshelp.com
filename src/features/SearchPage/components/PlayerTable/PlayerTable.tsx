@@ -7,7 +7,7 @@ import { Props as TableFooterProps } from 'common/Table/TableFooter';
 import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import { TFunction } from 'i18next';
-import { Player } from './types';
+import { FoundPlayer } from 'libs/graphql/types';
 
 export interface Props {
   t: TFunction;
@@ -36,7 +36,7 @@ function PlayerTable({
         ...column,
         valueFormatter:
           index === 1
-            ? (player: Player) => (
+            ? (player: FoundPlayer) => (
                 <PlayerProfileLink
                   player={player}
                   tribe={
@@ -53,7 +53,7 @@ function PlayerTable({
       loading={loading}
       data={players}
       size="small"
-      getRowKey={(row: Player) => row.server + row.id}
+      getIDFieldName={(row: FoundPlayer) => row.server + row.id}
       footerProps={{
         page,
         rowsPerPage: limit,

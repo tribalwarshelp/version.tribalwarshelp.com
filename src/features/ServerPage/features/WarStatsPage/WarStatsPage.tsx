@@ -24,13 +24,12 @@ import Card from './components/Card/Card';
 import OneSide from './components/OneSide/OneSide';
 import Results from './components/Results/Results';
 
+import { Player, Tribe } from 'libs/graphql/types';
 import {
   EnnoblementsQueryResult,
-  EnnoblementsQueryVariables,
+  QueryEnnoblementsArgs,
   Results as ResultsT,
   SideResult,
-  Player,
-  Tribe,
 } from './types';
 
 function WarStatsPage() {
@@ -115,7 +114,7 @@ function WarStatsPage() {
       };
       const { data } = await client.query<
         EnnoblementsQueryResult,
-        EnnoblementsQueryVariables
+        QueryEnnoblementsArgs
       >({
         query: ENNOBLEMENTS,
         fetchPolicy: 'network-only',

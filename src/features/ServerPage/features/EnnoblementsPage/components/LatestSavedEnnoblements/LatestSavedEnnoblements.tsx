@@ -14,8 +14,7 @@ import DateTimePicker from 'common/Picker/DateTimePicker';
 import Table from '../Table/Table';
 
 import { TFunction } from 'i18next';
-import { EnnoblementsQueryVariables } from 'libs/graphql/types';
-import { Ennoblements as EnnoblementsT } from './types';
+import { QueryEnnoblementsArgs, Query } from 'libs/graphql/types';
 
 export interface Props {
   server: string;
@@ -36,8 +35,8 @@ function LatestSavedEnnoblements({ t, server }: Props) {
   const limit = validateRowsPerPage(query.limit);
   useScrollToElement(document.documentElement, [query.page, limit]);
   const { data: queryData, loading: queryLoading } = useQuery<
-    EnnoblementsT,
-    EnnoblementsQueryVariables
+    Pick<Query, 'ennoblements'>,
+    QueryEnnoblementsArgs
   >(ENNOBLEMENTS, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -81,9 +80,9 @@ function LatestSavedEnnoblements({ t, server }: Props) {
               maxDate={maxDate}
               minDate={minDate}
               showTodayButton
-              onChange={d => {
+              onChange={date => {
                 setQuery({
-                  [id]: d ? d : undefined,
+                  [id]: date ? date : undefined,
                   page: 0,
                 });
               }}
