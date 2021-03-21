@@ -9,11 +9,12 @@ import {
   Checkbox,
   SortDirection,
 } from '@material-ui/core';
+import { TFunction } from 'i18next';
 
 export interface Props {
   columns: Column[];
   selection: boolean;
-  onSelectAll?: () => void;
+  onSelectAll?: (checked: boolean) => void;
   allSelected: boolean;
   orderDirection: OrderDirection;
   orderBy: string;
@@ -22,6 +23,8 @@ export interface Props {
     property: string,
     orderDirection: OrderDirection
   ) => void | Promise<void>;
+  hasActions: boolean;
+  t: TFunction;
 }
 
 function TableHead({
@@ -33,6 +36,8 @@ function TableHead({
   allSelected = false,
   onRequestSort,
   size = 'medium',
+  hasActions = false,
+  t,
 }: Props) {
   const createSortHandler = (property: string) => () => {
     if (onRequestSort) {
@@ -46,7 +51,7 @@ function TableHead({
 
   const handleSelectAll = () => {
     if (onSelectAll) {
-      onSelectAll();
+      onSelectAll(!allSelected);
     }
   };
 
@@ -85,6 +90,7 @@ function TableHead({
             </TableCell>
           );
         })}
+        {hasActions && <TableCell size={size}>{t('actions')}</TableCell>}
       </TableRow>
     </MUITableHead>
   );

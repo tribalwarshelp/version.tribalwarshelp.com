@@ -31,7 +31,7 @@ export interface Props<T> {
     orderBy: string,
     orderDirection: OrderDirection
   ) => void | Promise<void>;
-  onSelect?: (rows: T[]) => void;
+  onSelect?: (checked: boolean, rows: T[]) => void;
   loading?: boolean;
   tableProps?: TableProps;
   tableBodyProps?: TableBodyProps;
@@ -61,10 +61,6 @@ function Table<T extends object>({
   getRowKey,
 }: Props<T>) {
   const { t } = useTranslation(TABLE);
-  const headColumns =
-    actions.length > 0
-      ? [...columns, { field: 'action', label: t('actions') }]
-      : columns;
   const preparedFooterProps = {
     page: 0,
     rowsPerPage: validateRowsPerPage(
@@ -92,23 +88,29 @@ function Table<T extends object>({
     <TableContainer>
       <MUITable size={size} {...tableProps}>
         <TableHead
-          columns={headColumns}
+          t={t}
+          columns={columns}
+          hasActions={actions.length > 0}
           selection={selection}
           orderBy={orderBy}
           orderDirection={orderDirection}
           onRequestSort={onRequestSort}
           size={size}
-          onSelectAll={() => {
+          onSelectAll={checked => {
             if (onSelect) {
-              onSelect(data);
+              onSelect(
+                checked,
+                data.filter(item =>
+                  checked ? !isSelected(item) : isSelected(item)
+                )
+              );
             }
           }}
-          allSelected={selected?.length === data.length}
+          allSelected={selected?.length === data.length && data.length > 0}
         />
         <TableBody {...tableBodyProps}>
           {loading ? (
             <TableLoading
-              columns={headColumns}
               size={size}
               rowsPerPage={preparedFooterProps.rowsPerPage}
             />
@@ -130,9 +132,9 @@ function Table<T extends object>({
                   selection={selection}
                   columns={columns}
                   size={size}
-                  onSelect={row => {
+                  onSelect={(checked, row) => {
                     if (onSelect) {
-                      onSelect([row]);
+                      onSelect(checked, [row]);
                     }
                   }}
                 />
