@@ -1,7 +1,7 @@
 import {
-  List,
-  PlayersQueryVariables,
-  DailyPlayerStatsQueryVariables,
+  Query,
+  QueryPlayersArgs,
+  QueryDailyPlayerStatsArgs,
 } from 'libs/graphql/types';
 
 export type Mode =
@@ -12,38 +12,16 @@ export type Mode =
   | 'scoreSup'
   | 'scoreTotal';
 
-export type DailyPlayerStatsRecord = {
-  points: number;
-  scoreAtt: number;
-  scoreDef: number;
-  scoreSup: number;
-  scoreTotal: number;
-  villages: number;
-  createDate: string | Date;
-  player: {
-    id: number;
-  };
-};
+export type PlayersAndDailyPlayerStatsQueryResult = Pick<
+  Query,
+  'players' | 'dailyPlayerStats'
+>;
 
-export type Player = {
-  id: number;
-  name: string;
-  rank: number;
-  points: number;
-  totalVillages: number;
-  dailyPlayerStatsRecords?: DailyPlayerStatsRecord[];
-};
-
-export type PlayersAndDailyPlayerStatsQueryResult = {
-  players?: List<Player[]>;
-  dailyPlayerStats?: List<DailyPlayerStatsRecord[]>;
-};
-
-export type PlayersAndDailyPlayerStatsQueryVariables = {
-  dailyPlayerStatsFilter?: DailyPlayerStatsQueryVariables['filter'];
-  dailyPlayerStatsSort?: DailyPlayerStatsQueryVariables['sort'];
-  playerFilter?: PlayersQueryVariables['filter'];
-  playersSort?: PlayersQueryVariables['sort'];
+export type PlayersAndQueryDailyPlayerStatsArgs = {
+  dailyPlayerStatsFilter?: QueryDailyPlayerStatsArgs['filter'];
+  dailyPlayerStatsSort?: QueryDailyPlayerStatsArgs['sort'];
+  playerFilter?: QueryPlayersArgs['filter'];
+  playersSort?: QueryPlayersArgs['sort'];
   limit?: number;
   offset?: number;
   server?: string;

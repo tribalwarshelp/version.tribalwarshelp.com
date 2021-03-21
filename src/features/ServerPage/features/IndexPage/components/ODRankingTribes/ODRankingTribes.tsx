@@ -13,8 +13,8 @@ import ModeSelector from 'common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { TribesQueryVariables } from 'libs/graphql/types';
-import { TribesList, Mode, Tribe } from './types';
+import { QueryTribesArgs, Query, Tribe } from 'libs/graphql/types';
+import { Mode } from './types';
 
 export interface Props {
   server: string;
@@ -24,8 +24,8 @@ export interface Props {
 function ODRankingTribes({ server, t }: Props) {
   const [mode, setMode] = useState<Mode>('rankTotal');
   const { loading: loadingData, data } = useQuery<
-    TribesList,
-    TribesQueryVariables
+    Pick<Query, 'tribes'>,
+    QueryTribesArgs
   >(TRIBES, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -41,14 +41,14 @@ function ODRankingTribes({ server, t }: Props) {
   const items = data?.tribes?.items ?? [];
   const loading = loadingData && items.length === 0;
 
-  const formatScore = (p: Tribe): string => {
+  const formatScore = (tribe: Tribe): string => {
     switch (mode) {
       case 'rankAtt':
-        return formatNumber('commas', p.scoreAtt);
+        return formatNumber('commas', tribe.scoreAtt);
       case 'rankDef':
-        return formatNumber('commas', p.scoreDef);
+        return formatNumber('commas', tribe.scoreDef);
       case 'rankTotal':
-        return formatNumber('commas', p.scoreTotal);
+        return formatNumber('commas', tribe.scoreTotal);
     }
   };
 

@@ -12,8 +12,7 @@ import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/Play
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { PlayersQueryVariables } from 'libs/graphql/types';
-import { PlayerList, Player } from './types';
+import { QueryPlayersArgs, Player, Query } from 'libs/graphql/types';
 
 export interface Props {
   server: string;
@@ -22,8 +21,8 @@ export interface Props {
 
 function Top5Players({ server, t }: Props) {
   const { loading: loadingPlayers, data } = useQuery<
-    PlayerList,
-    PlayersQueryVariables
+    Pick<Query, 'players'>,
+    QueryPlayersArgs
   >(TOP_5_PLAYERS, {
     fetchPolicy: 'cache-and-network',
     variables: {

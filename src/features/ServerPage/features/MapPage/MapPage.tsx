@@ -33,10 +33,13 @@ import MarkerField from './components/MarkerField/MarkerField';
 import Card from './components/Card/Card';
 
 import {
-  PlayersQueryVariables,
-  TribesQueryVariables,
+  QueryPlayersArgs,
+  QueryTribesArgs,
+  Tribe,
+  Player,
+  Query,
 } from 'libs/graphql/types';
-import { Tribe, Player, PlayerList, TribeList, Settings, HasID } from './types';
+import { Settings, HasID } from './types';
 
 function MapPage() {
   const [mapURL, setMapURL] = useState<string>('');
@@ -64,7 +67,7 @@ function MapPage() {
     createUpdateMarkerItemHandler: createUpdateTribeMarkerItemHandler,
     handleAddMarker: handleAddTribeMarker,
     loading: loadingTribeMarkers,
-  } = useMarkers<Tribe, TribesQueryVariables>(client, {
+  } = useMarkers<Tribe, QueryTribesArgs>(client, {
     paramName: 'tribe',
     query: TRIBES,
     dataKey: 'tribes',
@@ -80,7 +83,7 @@ function MapPage() {
     createUpdateMarkerItemHandler: createUpdatePlayerMarkerItemHandler,
     handleAddMarker: handleAddPlayerMarker,
     loading: loadingPlayerMarkers,
-  } = useMarkers<Player, PlayersQueryVariables>(client, {
+  } = useMarkers<Player, QueryPlayersArgs>(client, {
     paramName: 'player',
     query: PLAYERS,
     dataKey: 'players',
@@ -94,7 +97,7 @@ function MapPage() {
   useTitle(t('title', { key }));
   const loading = loadingTribeMarkers || loadingPlayerMarkers;
 
-  const createSettingsChangeHandler = (key: keyof Settings) => (
+  const createChangeSettingsHandler = (key: keyof Settings) => (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     colorOrChecked?: string | boolean
   ) => {
@@ -109,7 +112,10 @@ function MapPage() {
 
   const searchPlayers = async (searchValue: string): Promise<Player[]> => {
     try {
-      const { data } = await client.query<PlayerList, PlayersQueryVariables>({
+      const { data } = await client.query<
+        Pick<Query, 'players'>,
+        QueryPlayersArgs
+      >({
         query: PLAYERS,
         variables: {
           limit: 10,
@@ -132,7 +138,10 @@ function MapPage() {
 
   const searchTribes = async (searchValue: string): Promise<Tribe[]> => {
     try {
-      const { data } = await client.query<TribeList, TribesQueryVariables>({
+      const { data } = await client.query<
+        Pick<Query, 'tribes'>,
+        QueryTribesArgs
+      >({
         query: TRIBES,
         variables: {
           limit: 10,
@@ -225,7 +234,7 @@ function MapPage() {
                   type="number"
                   name="scale"
                   value={query.scale}
-                  onChange={createSettingsChangeHandler('scale')}
+                  onChange={createChangeSettingsHandler('scale')}
                   fullWidth
                   variant="standard"
                   inputProps={{
@@ -239,7 +248,7 @@ function MapPage() {
                   type="number"
                   name="centerX"
                   value={query.centerX}
-                  onChange={createSettingsChangeHandler('centerX')}
+                  onChange={createChangeSettingsHandler('centerX')}
                   fullWidth
                   variant="standard"
                   inputProps={{
@@ -253,7 +262,7 @@ function MapPage() {
                   type="number"
                   name="centerY"
                   value={query.centerY}
-                  onChange={createSettingsChangeHandler('centerY')}
+                  onChange={createChangeSettingsHandler('centerY')}
                   fullWidth
                   variant="standard"
                   inputProps={{
@@ -266,29 +275,29 @@ function MapPage() {
                   {
                     name: 'backgroundColor',
                     color: query.backgroundColor,
-                    onChange: createSettingsChangeHandler('backgroundColor'),
+                    onChange: createChangeSettingsHandler('backgroundColor'),
                   },
                   {
                     name: 'playerVillageColor',
                     color: query.playerVillageColor,
-                    onChange: createSettingsChangeHandler('playerVillageColor'),
+                    onChange: createChangeSettingsHandler('playerVillageColor'),
                   },
                   {
                     name: 'barbarianVillageColor',
                     color: query.barbarianVillageColor,
-                    onChange: createSettingsChangeHandler(
+                    onChange: createChangeSettingsHandler(
                       'barbarianVillageColor'
                     ),
                   },
                   {
                     name: 'gridLineColor',
                     color: query.gridLineColor,
-                    onChange: createSettingsChangeHandler('gridLineColor'),
+                    onChange: createChangeSettingsHandler('gridLineColor'),
                   },
                   {
                     name: 'continentNumberColor',
                     color: query.continentNumberColor,
-                    onChange: createSettingsChangeHandler(
+                    onChange: createChangeSettingsHandler(
                       'continentNumberColor'
                     ),
                   },
@@ -307,27 +316,27 @@ function MapPage() {
                   {
                     name: 'markersOnly',
                     checked: query.markersOnly,
-                    onChange: createSettingsChangeHandler('markersOnly'),
+                    onChange: createChangeSettingsHandler('markersOnly'),
                   },
                   {
                     name: 'showBarbarian',
                     checked: query.showBarbarian,
-                    onChange: createSettingsChangeHandler('showBarbarian'),
+                    onChange: createChangeSettingsHandler('showBarbarian'),
                   },
                   {
                     name: 'largerMarkers',
                     checked: query.largerMarkers,
-                    onChange: createSettingsChangeHandler('largerMarkers'),
+                    onChange: createChangeSettingsHandler('largerMarkers'),
                   },
                   {
                     name: 'showGrid',
                     checked: query.showGrid,
-                    onChange: createSettingsChangeHandler('showGrid'),
+                    onChange: createChangeSettingsHandler('showGrid'),
                   },
                   {
                     name: 'showContinentNumbers',
                     checked: query.showContinentNumbers,
-                    onChange: createSettingsChangeHandler(
+                    onChange: createChangeSettingsHandler(
                       'showContinentNumbers'
                     ),
                   },

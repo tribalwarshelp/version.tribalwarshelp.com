@@ -15,10 +15,10 @@ import Link from 'common/Link/Link';
 
 import { TFunction } from 'i18next';
 import {
-  PlayerHistory as PlayerHistoryT,
-  PlayerHistoryItem,
-  Variables,
-} from './types';
+  DailyPlayerStatsRecord,
+  PlayerHistoryRecord,
+} from 'libs/graphql/types';
+import { PlayerHistory as PlayerHistoryT, Variables } from './types';
 
 export interface Props {
   server: string;
@@ -75,7 +75,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
   const total = queryData?.playerHistory?.total ?? 0;
 
   const formatColumn = (
-    v: PlayerHistoryItem,
+    v: PlayerHistoryRecord & { stats?: DailyPlayerStatsRecord },
     valueKey:
       | 'points'
       | 'totalVillages'
@@ -125,7 +125,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
             field: 'tribe',
             label: t('playerHistory.columns.tribe'),
             sortable: false,
-            valueFormatter: (v: PlayerHistoryItem) => {
+            valueFormatter: (v: PlayerHistoryRecord) => {
               return v.tribe ? (
                 <Link
                   to={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
@@ -142,7 +142,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
             field: 'points',
             label: t('playerHistory.columns.points'),
             sortable: false,
-            valueFormatter: (v: PlayerHistoryItem) => {
+            valueFormatter: (v: PlayerHistoryRecord) => {
               return formatColumn(v, 'points', 'points', 'rank');
             },
           },
@@ -150,7 +150,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
             field: 'totalVillages',
             label: t('playerHistory.columns.totalVillages'),
             sortable: false,
-            valueFormatter: (v: PlayerHistoryItem) => {
+            valueFormatter: (v: PlayerHistoryRecord) => {
               return formatColumn(v, 'totalVillages', 'villages');
             },
           },
@@ -158,14 +158,14 @@ function PlayerHistory({ t, server, playerID }: Props) {
             field: 'scoreAtt',
             label: t('playerHistory.columns.scoreAtt'),
             sortable: false,
-            valueFormatter: (v: PlayerHistoryItem) => {
+            valueFormatter: (v: PlayerHistoryRecord) => {
               return formatColumn(v, 'scoreAtt', 'scoreAtt', 'rankAtt');
             },
           },
           {
             field: 'scoreDef',
             label: t('playerHistory.columns.scoreDef'),
-            valueFormatter: (v: PlayerHistoryItem) => {
+            valueFormatter: (v: PlayerHistoryRecord) => {
               return formatColumn(v, 'scoreDef', 'scoreDef', 'rankDef');
             },
             sortable: false,
@@ -173,7 +173,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
           {
             field: 'scoreSup',
             label: t('playerHistory.columns.scoreSup'),
-            valueFormatter: (v: PlayerHistoryItem) => {
+            valueFormatter: (v: PlayerHistoryRecord) => {
               return formatColumn(v, 'scoreSup', 'scoreSup', 'rankSup');
             },
             sortable: false,
@@ -181,7 +181,7 @@ function PlayerHistory({ t, server, playerID }: Props) {
           {
             field: 'scoreTotal',
             label: t('playerHistory.columns.scoreTotal'),
-            valueFormatter: (v: PlayerHistoryItem) => {
+            valueFormatter: (v: PlayerHistoryRecord) => {
               return formatColumn(v, 'scoreTotal', 'scoreTotal', 'rankTotal');
             },
             sortable: false,

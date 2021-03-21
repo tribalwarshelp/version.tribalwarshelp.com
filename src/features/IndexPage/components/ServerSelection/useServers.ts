@@ -1,6 +1,10 @@
 import { useQuery } from '@apollo/client';
-import { ServersQueryVariables } from 'libs/graphql/types';
-import { ServerList, Server } from './types';
+import {
+  QueryServersArgs,
+  VersionCode,
+  Server,
+  Query,
+} from 'libs/graphql/types';
 import { SERVERS } from './queries';
 import extractVersionCodeFromHostname from 'utils/extractVersionCodeFromHostname';
 
@@ -12,8 +16,8 @@ export type QueryResult = {
 
 const useServers = (page: number, perPage: number): QueryResult => {
   const { data, loading: loadingServers } = useQuery<
-    ServerList,
-    ServersQueryVariables
+    Pick<Query, 'servers'>,
+    QueryServersArgs
   >(SERVERS, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -21,7 +25,11 @@ const useServers = (page: number, perPage: number): QueryResult => {
       offset: (page - 1) * perPage,
       limit: perPage,
       filter: {
-        versionCode: [extractVersionCodeFromHostname(window.location.hostname)],
+        versionCode: [
+          extractVersionCodeFromHostname(
+            window.location.hostname
+          ) as VersionCode,
+        ],
       },
     },
   });

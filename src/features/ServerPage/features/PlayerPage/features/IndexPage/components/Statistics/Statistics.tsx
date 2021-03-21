@@ -12,8 +12,8 @@ import ModeSelector from 'common/ModeSelector/ModeSelector';
 
 import { TFunction } from 'i18next';
 import { Serie } from '@nivo/line';
-import { PlayerHistoryQueryVariables } from 'libs/graphql/types';
-import { Mode, PlayerHistory } from './types';
+import { QueryPlayerHistoryArgs, Query } from 'libs/graphql/types';
+import { Mode } from './types';
 
 export interface Props {
   server: string;
@@ -27,8 +27,8 @@ function Statistics({ t, server, playerID }: Props) {
   const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
   const dateUtils = useDateUtils();
   const { data: queryRes, loading } = useQuery<
-    PlayerHistory,
-    PlayerHistoryQueryVariables
+    Pick<Query, 'playerHistory'>,
+    QueryPlayerHistoryArgs
   >(PLAYER_HISTORY, {
     fetchPolicy: 'cache-and-network',
     variables: {

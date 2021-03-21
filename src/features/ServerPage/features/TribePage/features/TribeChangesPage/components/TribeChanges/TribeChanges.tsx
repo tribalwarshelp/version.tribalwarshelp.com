@@ -12,8 +12,11 @@ import Table from 'common/Table/Table';
 import Link from 'common/Link/Link';
 
 import { TFunction } from 'i18next';
-import { TribeChangesQueryVariables } from 'libs/graphql/types';
-import { TribeChangesQuery, TribeChange } from './types';
+import {
+  QueryTribeChangesArgs,
+  TribeChangeRecord,
+  Query,
+} from 'libs/graphql/types';
 
 export interface Props {
   server: string;
@@ -29,8 +32,8 @@ function TribeChanges({ t, server, tribeID }: Props) {
   const limit = validateRowsPerPage(query.limit);
   useScrollToElement(document.documentElement, [query.page, limit]);
   const { data: queryData, loading: queryLoading } = useQuery<
-    TribeChangesQuery,
-    TribeChangesQueryVariables
+    Pick<Query, 'tribeChanges'>,
+    QueryTribeChangesArgs
   >(TRIBE_CHANGES, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -64,13 +67,13 @@ function TribeChanges({ t, server, tribeID }: Props) {
             field: 'player',
             label: t('tribeChanges.columns.player'),
             sortable: false,
-            valueFormatter: (v: TribeChange) => {
+            valueFormatter: (v: TribeChangeRecord) => {
               return (
                 <Link
                   to={SERVER_PAGE.PLAYER_PAGE.INDEX_PAGE}
-                  params={{ id: v.player.id, key: server }}
+                  params={{ id: v.player?.id, key: server }}
                 >
-                  {v.player.name}
+                  {v.player?.name}
                 </Link>
               );
             },
@@ -79,7 +82,7 @@ function TribeChanges({ t, server, tribeID }: Props) {
             field: 'oldTribe',
             label: t('tribeChanges.columns.oldTribe'),
             sortable: false,
-            valueFormatter: (v: TribeChange) => {
+            valueFormatter: (v: TribeChangeRecord) => {
               return v.oldTribe ? (
                 <Link
                   to={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
@@ -96,7 +99,7 @@ function TribeChanges({ t, server, tribeID }: Props) {
             field: 'newTribe',
             label: t('tribeChanges.columns.newTribe'),
             sortable: false,
-            valueFormatter: (v: TribeChange) => {
+            valueFormatter: (v: TribeChangeRecord) => {
               return v.newTribe ? (
                 <Link
                   to={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}

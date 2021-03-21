@@ -12,11 +12,8 @@ import { Paper, Tooltip } from '@material-ui/core';
 import Table from 'common/Table/Table';
 
 import { TFunction } from 'i18next';
-import {
-  TribeHistory as TribeHistoryT,
-  TribeHistoryItem,
-  Variables,
-} from './types';
+import { TribeHistoryRecord, DailyTribeStatsRecord } from 'libs/graphql/types';
+import { TribeHistory as TribeHistoryT, Variables } from './types';
 
 export interface Props {
   server: string;
@@ -53,16 +50,16 @@ function TribeHistory({ t, server, tribeID }: Props) {
   });
   const tribeHistoryItems = useMemo(() => {
     const dailyTribeStatsItems = queryData?.dailyTribeStats?.items ?? [];
-    return (queryData?.tribeHistory?.items ?? []).map(phItem => {
+    return (queryData?.tribeHistory?.items ?? []).map(item => {
       const dateOfTheDayBeforeDate = dateUtils.subDays(
-        dateUtils.date(phItem.createDate),
+        dateUtils.date(item.createDate),
         1
       );
       return {
-        ...phItem,
-        stats: dailyTribeStatsItems.find(dpsItem =>
+        ...item,
+        stats: dailyTribeStatsItems.find(dailyPlayerStatsRecord =>
           dateUtils.isEqual(
-            dateUtils.date(dpsItem.createDate),
+            dateUtils.date(dailyPlayerStatsRecord.createDate),
             dateOfTheDayBeforeDate
           )
         ),
@@ -73,7 +70,7 @@ function TribeHistory({ t, server, tribeID }: Props) {
   const total = queryData?.tribeHistory?.total ?? 0;
 
   const formatColumn = (
-    v: TribeHistoryItem,
+    v: TribeHistoryRecord & { stats?: DailyTribeStatsRecord },
     valueKey:
       | 'points'
       | 'totalVillages'
@@ -116,7 +113,7 @@ function TribeHistory({ t, server, tribeID }: Props) {
             field: 'points',
             label: t('tribeHistory.columns.points'),
             sortable: false,
-            valueFormatter: (v: TribeHistoryItem) => {
+            valueFormatter: (v: TribeHistoryRecord) => {
               return formatColumn(v, 'points', 'points', 'rank');
             },
           },
@@ -124,7 +121,7 @@ function TribeHistory({ t, server, tribeID }: Props) {
             field: 'totalVillages',
             label: t('tribeHistory.columns.totalVillages'),
             sortable: false,
-            valueFormatter: (v: TribeHistoryItem) => {
+            valueFormatter: (v: TribeHistoryRecord) => {
               return formatColumn(v, 'totalVillages', 'villages');
             },
           },
@@ -132,7 +129,7 @@ function TribeHistory({ t, server, tribeID }: Props) {
             field: 'dominance',
             label: t('tribeHistory.columns.dominance'),
             sortable: false,
-            valueFormatter: (v: TribeHistoryItem) => {
+            valueFormatter: (v: TribeHistoryRecord) => {
               return formatNumber('dominance', v.dominance);
             },
           },
@@ -140,14 +137,14 @@ function TribeHistory({ t, server, tribeID }: Props) {
             field: 'scoreAtt',
             label: t('tribeHistory.columns.scoreAtt'),
             sortable: false,
-            valueFormatter: (v: TribeHistoryItem) => {
+            valueFormatter: (v: TribeHistoryRecord) => {
               return formatColumn(v, 'scoreAtt', 'scoreAtt', 'rankAtt');
             },
           },
           {
             field: 'scoreDef',
             label: t('tribeHistory.columns.scoreDef'),
-            valueFormatter: (v: TribeHistoryItem) => {
+            valueFormatter: (v: TribeHistoryRecord) => {
               return formatColumn(v, 'scoreDef', 'scoreDef', 'rankDef');
             },
             sortable: false,
@@ -155,7 +152,7 @@ function TribeHistory({ t, server, tribeID }: Props) {
           {
             field: 'scoreTotal',
             label: t('tribeHistory.columns.scoreTotal'),
-            valueFormatter: (v: TribeHistoryItem) => {
+            valueFormatter: (v: TribeHistoryRecord) => {
               return formatColumn(v, 'scoreTotal', 'scoreTotal', 'rankTotal');
             },
             sortable: false,

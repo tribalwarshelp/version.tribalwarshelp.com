@@ -15,8 +15,12 @@ import ModeSelector from 'common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { DailyTribeStatsQueryVariables } from 'libs/graphql/types';
-import { DailyTribeStatsList, DailyTribeStatsRecord, Mode } from './types';
+import {
+  QueryDailyTribeStatsArgs,
+  DailyTribeStatsRecord,
+  Query,
+} from 'libs/graphql/types';
+import { Mode } from './types';
 
 export interface Props {
   t: TFunction;
@@ -27,8 +31,8 @@ function TodaysBestStatsTribes({ t }: Props) {
   const dateUtils = useDateUtils();
   const [mode, setMode] = useState<Mode>('scoreAtt');
   const { loading: loadingData, data } = useQuery<
-    DailyTribeStatsList,
-    DailyTribeStatsQueryVariables
+    Pick<Query, 'dailyTribeStats'>,
+    QueryDailyTribeStatsArgs
   >(DAILY_TRIBE_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {
@@ -103,14 +107,17 @@ function TodaysBestStatsTribes({ t }: Props) {
           ...column,
           valueFormatter:
             index === 0
-              ? (record: DailyTribeStatsRecord) => (
-                  <Link
-                    to={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
-                    params={{ key: server.key, id: record.tribe.id }}
-                  >
-                    {record.tribe.tag}
-                  </Link>
-                )
+              ? (record: DailyTribeStatsRecord) =>
+                  record.tribe ? (
+                    <Link
+                      to={SERVER_PAGE.TRIBE_PAGE.INDEX_PAGE}
+                      params={{ key: server.key, id: record.tribe.id }}
+                    >
+                      {record.tribe.tag}
+                    </Link>
+                  ) : (
+                    '-'
+                  )
               : index === 1
               ? (record: DailyTribeStatsRecord) =>
                   formatNumber('commas', record[mode])

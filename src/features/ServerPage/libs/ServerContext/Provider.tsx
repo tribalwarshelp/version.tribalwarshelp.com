@@ -7,8 +7,8 @@ import { SERVERS } from './queries';
 import Context from './context';
 import { SERVER_PAGE } from 'config/namespaces';
 
-import { ServersQueryVariables } from 'libs/graphql/types';
-import { Params, ServerList } from './types';
+import { QueryServersArgs, Query } from 'libs/graphql/types';
+import { Params } from './types';
 
 import NotFoundPage from 'features/NotFoundPage/NotFoundPage';
 import Spinner from 'common/Spinner/Spinner';
@@ -22,8 +22,8 @@ function Provider({ children }: Props) {
   const { t } = useTranslation(SERVER_PAGE.COMMON);
   const version = useVersion();
   const { loading: loadingServers, data } = useQuery<
-    ServerList,
-    ServersQueryVariables
+    Pick<Query, 'servers'>,
+    QueryServersArgs
   >(SERVERS, {
     fetchPolicy: 'cache-and-network',
     variables: {

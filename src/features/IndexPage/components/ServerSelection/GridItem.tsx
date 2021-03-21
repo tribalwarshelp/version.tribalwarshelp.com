@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import formatNumber from 'utils/formatNumber';
 import * as ROUTES from 'config/routes';
 import * as NAMESPACES from 'config/namespaces';
-import { SERVER_STATUS } from 'config/app';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -21,7 +20,7 @@ import {
 import Link from 'common/Link/Link';
 
 import { TFunction } from 'i18next';
-import { Server } from './types';
+import { Server, ServerStatus } from 'libs/graphql/types';
 
 export interface Props {
   server?: Server;
@@ -91,7 +90,7 @@ function GridItem({ t, server, hideTooltip = true }: Props) {
                 params={{ key: server.key }}
               >
                 {server.key}{' '}
-                {SERVER_STATUS.CLOSED === server.status
+                {ServerStatus.CLOSED === server.status
                   ? `(${t(
                       NAMESPACES.COMMON + `:serverStatus.${server.status}`
                     ).toLowerCase()})`

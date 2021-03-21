@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import ctx from './context';
-import { Server } from './types';
 
-const useServer = (): Server => {
+const useServer = () => {
   return useContext(ctx);
 };
 

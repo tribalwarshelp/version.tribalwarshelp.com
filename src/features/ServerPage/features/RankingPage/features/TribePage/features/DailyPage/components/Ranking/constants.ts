@@ -1,7 +1,7 @@
 import { decodeSort } from 'libs/serialize-query-params/SortParam';
 import formatNumber from 'utils/formatNumber';
 import { Column } from 'common/Table/types';
-import { DailyTribeStatsRecord } from './types';
+import { DailyTribeStatsRecord } from 'libs/graphql/types';
 
 export const COLUMNS: Column<DailyTribeStatsRecord>[] = [
   {

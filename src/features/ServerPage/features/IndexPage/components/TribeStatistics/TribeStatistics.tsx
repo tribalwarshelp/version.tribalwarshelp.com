@@ -11,8 +11,7 @@ import TableToolbar from 'common/Table/TableToolbar';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { ServerStatsQueryVariables } from 'libs/graphql/types';
-import { ServerStats } from './types';
+import { QueryServerStatsArgs, Query } from 'libs/graphql/types';
 
 export interface Props {
   server: string;
@@ -22,8 +21,8 @@ export interface Props {
 function TribeStatistics({ server, t }: Props) {
   const dateUtils = useDateUtils();
   const { loading: loadingData, data: queryRes } = useQuery<
-    ServerStats,
-    ServerStatsQueryVariables
+    Pick<Query, 'serverStats'>,
+    QueryServerStatsArgs
   >(STATISTICS, {
     fetchPolicy: 'cache-and-network',
     variables: {

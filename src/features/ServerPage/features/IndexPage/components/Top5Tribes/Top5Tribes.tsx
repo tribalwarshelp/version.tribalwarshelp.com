@@ -11,8 +11,7 @@ import Link from 'common/Link/Link';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { TribesQueryVariables } from 'libs/graphql/types';
-import { TribeList, Tribe } from './types';
+import { QueryTribesArgs, Query, Tribe } from 'libs/graphql/types';
 
 export interface Props {
   server: string;
@@ -21,8 +20,8 @@ export interface Props {
 
 function Top5Tribes({ server, t }: Props) {
   const { loading: loadingTribes, data } = useQuery<
-    TribeList,
-    TribesQueryVariables
+    Pick<Query, 'tribes'>,
+    QueryTribesArgs
   >(TOP_5_TRIBES, {
     fetchPolicy: 'cache-and-network',
     variables: {

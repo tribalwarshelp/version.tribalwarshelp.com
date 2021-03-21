@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import ctx from './context';
-import { Player } from './types';
 
-const usePlayer = (): Player => {
+const usePlayer = () => {
   return useContext(ctx);
 };
 

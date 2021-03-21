@@ -26,6 +26,7 @@ export const TRIBE = gql`
       bestRankAt
       createdAt
       deletedAt
+      totalMembers
     }
   }
 `;

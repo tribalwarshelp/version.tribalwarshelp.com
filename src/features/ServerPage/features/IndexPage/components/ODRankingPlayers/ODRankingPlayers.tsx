@@ -14,8 +14,8 @@ import ModeSelector from 'common/ModeSelector/ModeSelector';
 import Paper from '../Paper/Paper';
 
 import { TFunction } from 'i18next';
-import { PlayersQueryVariables } from 'libs/graphql/types';
-import { PlayersList, Mode, Player } from './types';
+import { QueryPlayersArgs, Query, Player } from 'libs/graphql/types';
+import { Mode } from './types';
 
 export interface Props {
   server: string;
@@ -25,8 +25,8 @@ export interface Props {
 function ODRankingPlayers({ server, t }: Props) {
   const [mode, setMode] = useState<Mode>('rankTotal');
   const { loading: loadingData, data } = useQuery<
-    PlayersList,
-    PlayersQueryVariables
+    Pick<Query, 'players'>,
+    QueryPlayersArgs
   >(PLAYERS, {
     fetchPolicy: 'cache-and-network',
     variables: {

@@ -1,20 +1,6 @@
-export type Village = {
-  id: number;
-  x: number;
-  y: number;
-  name: string;
-  bonus: number;
-  points: number;
-  fullName: string;
-  player?: {
-    id: number;
-    name: string;
-    tribe?: {
-      id: number;
-      tag: string;
-    };
-  };
-};
+import { Village as _Village } from 'libs/graphql/types';
+
+export type Village = _Village & { fullName: string };
 
 export type Params = {
   id: string;

@@ -9,7 +9,7 @@ import Link from 'common/Link/Link';
 import { Props as TableFooterProps } from 'common/Table/TableFooter';
 
 import { TFunction } from 'i18next';
-import { Server } from './types';
+import { Server } from 'libs/graphql/types';
 
 export interface Props {
   t: TFunction;

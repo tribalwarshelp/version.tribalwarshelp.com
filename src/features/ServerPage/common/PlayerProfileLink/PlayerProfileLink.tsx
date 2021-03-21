@@ -1,6 +1,7 @@
 import React from 'react';
 import { SERVER_PAGE } from 'config/routes';
 import Link from 'common/Link/Link';
+import { Maybe } from 'libs/graphql/types';
 
 export interface Tribe {
   id: number;
@@ -10,13 +11,13 @@ export interface Tribe {
 export interface Player {
   id: number;
   name: string;
-  tribe?: Tribe;
+  tribe?: Maybe<Tribe>;
 }
 
 export interface Props {
   player: Player;
   server: string;
-  tribe?: Tribe;
+  tribe?: Maybe<Tribe>;
 }
 
 function PlayerProfileLink({ player, server, tribe }: Props) {

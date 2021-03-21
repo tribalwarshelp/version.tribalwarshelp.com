@@ -20,7 +20,7 @@ import SearchInput from 'common/Form/SearchInput';
 import Link from 'common/Link/Link';
 
 import { TFunction } from 'i18next';
-import { Tribe } from './types';
+import { Tribe } from 'libs/graphql/types';
 
 export interface Props {
   server: string;

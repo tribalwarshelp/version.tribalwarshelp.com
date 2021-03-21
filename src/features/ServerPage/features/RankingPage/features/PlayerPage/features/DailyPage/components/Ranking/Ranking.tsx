@@ -25,7 +25,7 @@ import DatePicker from 'common/Picker/DatePicker';
 import PlayerProfileLink from 'features/ServerPage/common/PlayerProfileLink/PlayerProfileLink';
 
 import { TFunction } from 'i18next';
-import { DailyPlayerStatsRecord } from './types';
+import { DailyPlayerStatsRecord } from 'libs/graphql/types';
 
 export interface Props {
   t: TFunction;
@@ -108,15 +108,20 @@ function Ranking({ t }: Props) {
             };
           }
           if (index === 1) {
-            newCol.valueFormatter = (record: DailyPlayerStatsRecord) => (
-              <PlayerProfileLink player={record.player} server={server.key} />
-            );
+            newCol.valueFormatter = (record: DailyPlayerStatsRecord) =>
+              record.player ? (
+                <PlayerProfileLink player={record.player} server={server.key} />
+              ) : (
+                '-'
+              );
           }
           return newCol;
         })}
         loading={loading}
         data={dailyStats}
-        getRowKey={(record: DailyPlayerStatsRecord) => record.player.id}
+        getIDFieldName={(record: DailyPlayerStatsRecord, index) =>
+          record.player?.id ?? index
+        }
         size="small"
         orderBy={query.sort.orderBy}
         orderDirection={query.sort.orderDirection}

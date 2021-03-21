@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { PLAYERS } from './queries';
 
-import { PlayersQueryVariables } from 'libs/graphql/types';
-import { Player, PlayerList } from './types';
+import { QueryPlayersArgs, Player, Query } from 'libs/graphql/types';
 
 export type QueryResult = {
   players: Player[];
@@ -18,8 +17,8 @@ const usePlayers = (
   sort: string
 ): QueryResult => {
   const { loading: loadingPlayers, data } = useQuery<
-    PlayerList,
-    PlayersQueryVariables
+    Pick<Query, 'players'>,
+    QueryPlayersArgs
   >(PLAYERS, {
     fetchPolicy: 'cache-and-network',
     variables: {

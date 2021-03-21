@@ -1,8 +1,11 @@
 import { useQuery } from '@apollo/client';
 import { DAILY_TRIBE_STATS } from './queries';
 
-import { DailyTribeStatsQueryVariables } from 'libs/graphql/types';
-import { DailyTribeStatsRecord, DailyStats } from './types';
+import {
+  QueryDailyTribeStatsArgs,
+  DailyTribeStatsRecord,
+  Query,
+} from 'libs/graphql/types';
 
 export type QueryResult = {
   dailyStats: DailyTribeStatsRecord[];
@@ -19,8 +22,8 @@ const useTribes = (
   createDate: Date | string
 ): QueryResult => {
   const { loading: loadingStats, data } = useQuery<
-    DailyStats,
-    DailyTribeStatsQueryVariables
+    Pick<Query, 'dailyTribeStats'>,
+    QueryDailyTribeStatsArgs
   >(DAILY_TRIBE_STATS, {
     fetchPolicy: 'cache-and-network',
     variables: {

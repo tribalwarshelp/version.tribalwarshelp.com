@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
 import { SEARCH_PLAYER } from './queries';
 
-import { SearchPlayerQueryVariables } from 'libs/graphql/types';
-import { Player, PlayerList } from './types';
+import { QuerySearchPlayerArgs, FoundPlayer } from 'libs/graphql/types';
+import { PlayerList } from './types';
 
 export type QueryResult = {
-  players: Player[];
+  players: FoundPlayer[];
   loading: boolean;
   total: number;
 };
@@ -20,7 +20,7 @@ const usePlayers = (
   const skip = q.trim() === '';
   const { loading: loadingPlayers, data } = useQuery<
     PlayerList,
-    SearchPlayerQueryVariables
+    QuerySearchPlayerArgs
   >(SEARCH_PLAYER, {
     fetchPolicy: 'cache-and-network',
     variables: {

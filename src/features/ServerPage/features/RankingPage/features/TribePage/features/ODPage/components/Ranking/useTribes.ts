@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { TRIBES } from './queries';
 
-import { TribesQueryVariables } from 'libs/graphql/types';
-import { Tribe, TribeList } from './types';
+import { QueryTribesArgs, Tribe, Query } from 'libs/graphql/types';
 
 export type QueryResult = {
   tribes: Tribe[];
@@ -18,8 +17,8 @@ const useTribes = (
   sort: string
 ): QueryResult => {
   const { loading: loadingTribes, data } = useQuery<
-    TribeList,
-    TribesQueryVariables
+    Pick<Query, 'tribes'>,
+    QueryTribesArgs
   >(TRIBES, {
     fetchPolicy: 'cache-and-network',
     variables: {

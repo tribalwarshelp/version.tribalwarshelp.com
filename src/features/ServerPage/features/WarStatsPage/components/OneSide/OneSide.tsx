@@ -9,10 +9,12 @@ import { PLAYERS, TRIBES } from '../../queries';
 import { Typography, TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import {
-  PlayersQueryVariables,
-  TribesQueryVariables,
+  QueryPlayersArgs,
+  QueryTribesArgs,
+  Query,
+  Player,
+  Tribe,
 } from 'libs/graphql/types';
-import { Player, Tribe, PlayerList, TribeList } from '../../types';
 
 interface HasID {
   id: number;
@@ -89,7 +91,10 @@ function OneSide({
     let players: Player[] = [];
     setLoading(true);
     try {
-      const { data } = await client.query<PlayerList, PlayersQueryVariables>({
+      const { data } = await client.query<
+        Pick<Query, 'players'>,
+        QueryPlayersArgs
+      >({
         query: PLAYERS,
         variables: {
           limit: 10,
@@ -117,7 +122,10 @@ function OneSide({
     let tribes: Tribe[] = [];
     setLoading(true);
     try {
-      const { data } = await client.query<TribeList, TribesQueryVariables>({
+      const { data } = await client.query<
+        Pick<Query, 'tribes'>,
+        QueryTribesArgs
+      >({
         query: TRIBES,
         variables: {
           limit: 10,

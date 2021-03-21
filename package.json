@@ -45,7 +45,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codegen": "graphql-codegen"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +67,9 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.3",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-operations": "^1.17.15",
     "@types/lodash": "^4.14.165",
     "@types/react-color": "^3.0.4",
     "@types/react-router-dom": "^5.1.6",

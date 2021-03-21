@@ -5,7 +5,6 @@ import { isNil } from 'lodash';
 import { isValidColor } from 'libs/serialize-query-params/ColorParam';
 
 import { ApolloClient, DocumentNode } from '@apollo/client';
-import { List } from 'libs/graphql/types';
 import { Marker, HasID } from './types';
 
 export type MarkerBag<T> = {
@@ -22,6 +21,11 @@ export type MarkerBag<T> = {
   ) => void;
   createDeleteMarkerHandler: (id: string) => () => void;
   loading: boolean;
+};
+
+type List<T> = {
+  items: T[];
+  total: number;
 };
 
 export interface Options<VariablesT> {
@@ -87,7 +91,7 @@ const useMarkers = <T extends HasID, VariablesT>(
     indexByID: { [key: number]: number }
   ) => {
     return client
-      .query<Record<string, List<T[]>>, VariablesT>({
+      .query<Record<string, List<T>>, VariablesT>({
         query: opts.query,
         variables: opts.getVariables(ids),
         fetchPolicy: 'network-only',
@@ -97,7 +101,7 @@ const useMarkers = <T extends HasID, VariablesT>(
           setMarkers(
             res.data[opts.dataKey].items
               .map(item => {
-                return getNewMarker(item, colorByID[item.id]);
+                return createMarker(item, colorByID[item.id]);
               })
               .sort((a, b) => {
                 if (a.item && b.item) {
@@ -113,7 +117,7 @@ const useMarkers = <T extends HasID, VariablesT>(
       });
   };
 
-  const getNewMarker = (
+  const createMarker = (
     item: T | null = null,
     color: string = '#000000'
   ): Marker<T> => ({
@@ -131,7 +135,7 @@ const useMarkers = <T extends HasID, VariablesT>(
   };
 
   const handleAddMarker = () => {
-    setMarkers([...markers, getNewMarker()]);
+    setMarkers([...markers, createMarker()]);
   };
 
   const createDeleteMarkerHandler = (id: string) => () => {

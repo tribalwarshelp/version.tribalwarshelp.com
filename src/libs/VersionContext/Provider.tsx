@@ -6,8 +6,7 @@ import { VERSIONS } from './queries';
 import Context from './context';
 import * as NAMESPACES from 'config/namespaces';
 
-import { VersionsQueryVariables } from 'libs/graphql/types';
-import { VersionList } from './types';
+import { QueryVersionsArgs, Query, VersionCode } from 'libs/graphql/types';
 
 import NotFoundPage from 'features/NotFoundPage/NotFoundPage';
 import Spinner from 'common/Spinner/Spinner';
@@ -19,11 +18,13 @@ export interface Props {
 function Provider({ children }: Props) {
   const { t } = useTranslation(NAMESPACES.COMMON);
   const versionCode = useMemo(() => {
-    return extractVersionCodeFromHostname(window.location.hostname);
+    return extractVersionCodeFromHostname(
+      window.location.hostname
+    ) as VersionCode;
   }, []);
   const { loading: loadingVersion, data } = useQuery<
-    VersionList,
-    VersionsQueryVariables
+    Pick<Query, 'versions'>,
+    QueryVersionsArgs
   >(VERSIONS, {
     fetchPolicy: 'cache-first',
     variables: {
