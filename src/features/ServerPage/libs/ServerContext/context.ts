@@ -10,7 +10,7 @@ const ctx = createContext<Server>({
   dataUpdatedAt: new Date(0).toJSON(),
   historyUpdatedAt: new Date(0).toJSON(),
   statsUpdatedAt: new Date(0).toJSON(),
-  status: ServerStatus.OPEN,
+  status: ServerStatus.closed,
 });
 
 export default ctx;
