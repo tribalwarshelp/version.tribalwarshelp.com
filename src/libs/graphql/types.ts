@@ -28,160 +28,63 @@ export type Building = {
   buildTimeFactor: Scalars['Float'];
 };
 
-export type PlayerList = {
-  items?: Maybe<Array<Player>>;
-  total: Scalars['Int'];
-};
-
-export enum ServerStatus {
-  OPEN = 'OPEN',
-  CLOSED = 'CLOSED'
-}
-
-export type Tribe = {
-  id: Scalars['Int'];
-  name: Scalars['String'];
-  tag: Scalars['String'];
-  totalMembers: Scalars['Int'];
-  totalVillages: Scalars['Int'];
-  points: Scalars['Int'];
-  allPoints: Scalars['Int'];
-  rank: Scalars['Int'];
-  exists: Scalars['Boolean'];
-  rankAtt: Scalars['Int'];
-  scoreAtt: Scalars['Int'];
-  rankDef: Scalars['Int'];
-  scoreDef: Scalars['Int'];
-  rankTotal: Scalars['Int'];
-  scoreTotal: Scalars['Int'];
-  dominance: Scalars['Float'];
-  bestRank: Scalars['Int'];
-  bestRankAt: Scalars['Time'];
-  mostPoints: Scalars['Int'];
-  mostPointsAt: Scalars['Time'];
-  mostVillages: Scalars['Int'];
-  mostVillagesAt: Scalars['Time'];
-  createdAt: Scalars['Time'];
-  deletedAt?: Maybe<Scalars['Time']>;
-};
-
-export type Village = {
-  id: Scalars['Int'];
-  name: Scalars['String'];
-  points: Scalars['Int'];
-  x: Scalars['Int'];
-  y: Scalars['Int'];
-  bonus: Scalars['Int'];
-  player?: Maybe<Player>;
-};
-
-export type PlayerFilter = {
-  id?: Maybe<Array<Scalars['Int']>>;
-  idNEQ?: Maybe<Array<Scalars['Int']>>;
-  exists?: Maybe<Scalars['Boolean']>;
-  name?: Maybe<Array<Scalars['String']>>;
-  nameNEQ?: Maybe<Array<Scalars['String']>>;
-  nameMATCH?: Maybe<Scalars['String']>;
-  nameIEQ?: Maybe<Scalars['String']>;
-  totalVillages?: Maybe<Scalars['Int']>;
-  totalVillagesGT?: Maybe<Scalars['Int']>;
-  totalVillagesGTE?: Maybe<Scalars['Int']>;
-  totalVillagesLT?: Maybe<Scalars['Int']>;
-  totalVillagesLTE?: Maybe<Scalars['Int']>;
-  points?: Maybe<Scalars['Int']>;
-  pointsGT?: Maybe<Scalars['Int']>;
-  pointsGTE?: Maybe<Scalars['Int']>;
-  pointsLT?: Maybe<Scalars['Int']>;
-  pointsLTE?: Maybe<Scalars['Int']>;
-  rank?: Maybe<Scalars['Int']>;
-  rankGT?: Maybe<Scalars['Int']>;
-  rankGTE?: Maybe<Scalars['Int']>;
-  rankLT?: Maybe<Scalars['Int']>;
-  rankLTE?: Maybe<Scalars['Int']>;
-  rankAtt?: Maybe<Scalars['Int']>;
-  rankAttGT?: Maybe<Scalars['Int']>;
-  rankAttGTE?: Maybe<Scalars['Int']>;
-  rankAttLT?: Maybe<Scalars['Int']>;
-  rankAttLTE?: Maybe<Scalars['Int']>;
-  scoreAtt?: Maybe<Scalars['Int']>;
-  scoreAttGT?: Maybe<Scalars['Int']>;
-  scoreAttGTE?: Maybe<Scalars['Int']>;
-  scoreAttLT?: Maybe<Scalars['Int']>;
-  scoreAttLTE?: Maybe<Scalars['Int']>;
-  rankDef?: Maybe<Scalars['Int']>;
-  rankDefGT?: Maybe<Scalars['Int']>;
-  rankDefGTE?: Maybe<Scalars['Int']>;
-  rankDefLT?: Maybe<Scalars['Int']>;
-  rankDefLTE?: Maybe<Scalars['Int']>;
-  scoreDef?: Maybe<Scalars['Int']>;
-  scoreDefGT?: Maybe<Scalars['Int']>;
-  scoreDefGTE?: Maybe<Scalars['Int']>;
-  scoreDefLT?: Maybe<Scalars['Int']>;
-  scoreDefLTE?: Maybe<Scalars['Int']>;
-  rankSup?: Maybe<Scalars['Int']>;
-  rankSupGT?: Maybe<Scalars['Int']>;
-  rankSupGTE?: Maybe<Scalars['Int']>;
-  rankSupLT?: Maybe<Scalars['Int']>;
-  rankSupLTE?: Maybe<Scalars['Int']>;
-  scoreSup?: Maybe<Scalars['Int']>;
-  scoreSupGT?: Maybe<Scalars['Int']>;
-  scoreSupGTE?: Maybe<Scalars['Int']>;
-  scoreSupLT?: Maybe<Scalars['Int']>;
-  scoreSupLTE?: Maybe<Scalars['Int']>;
-  rankTotal?: Maybe<Scalars['Int']>;
-  rankTotalGT?: Maybe<Scalars['Int']>;
-  rankTotalGTE?: Maybe<Scalars['Int']>;
-  rankTotalLT?: Maybe<Scalars['Int']>;
-  rankTotalLTE?: Maybe<Scalars['Int']>;
-  scoreTotal?: Maybe<Scalars['Int']>;
-  scoreTotalGT?: Maybe<Scalars['Int']>;
-  scoreTotalGTE?: Maybe<Scalars['Int']>;
-  scoreTotalLT?: Maybe<Scalars['Int']>;
-  scoreTotalLTE?: Maybe<Scalars['Int']>;
-  dailyGrowth?: Maybe<Scalars['Int']>;
-  dailyGrowthGT?: Maybe<Scalars['Int']>;
-  dailyGrowthGTE?: Maybe<Scalars['Int']>;
-  dailyGrowthLT?: Maybe<Scalars['Int']>;
-  dailyGrowthLTE?: Maybe<Scalars['Int']>;
-  joinedAt?: Maybe<Scalars['Time']>;
-  joinedAtGT?: Maybe<Scalars['Time']>;
-  joinedAtGTE?: Maybe<Scalars['Time']>;
-  joinedAtLT?: Maybe<Scalars['Time']>;
-  joinedAtLTE?: Maybe<Scalars['Time']>;
-  lastActivityAt?: Maybe<Scalars['Time']>;
-  lastActivityAtGT?: Maybe<Scalars['Time']>;
-  lastActivityAtGTE?: Maybe<Scalars['Time']>;
-  lastActivityAtLT?: Maybe<Scalars['Time']>;
-  lastActivityAtLTE?: Maybe<Scalars['Time']>;
-  deletedAt?: Maybe<Scalars['Time']>;
-  deletedAtGT?: Maybe<Scalars['Time']>;
-  deletedAtGTE?: Maybe<Scalars['Time']>;
-  deletedAtLT?: Maybe<Scalars['Time']>;
-  deletedAtLTE?: Maybe<Scalars['Time']>;
+export type DailyTribeStatsFilter = {
   tribeID?: Maybe<Array<Scalars['Int']>>;
   tribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
   tribeFilter?: Maybe<TribeFilter>;
+  createDate?: Maybe<Scalars['Time']>;
+  createDateGT?: Maybe<Scalars['Time']>;
+  createDateGTE?: Maybe<Scalars['Time']>;
+  createDateLT?: Maybe<Scalars['Time']>;
+  createDateLTE?: Maybe<Scalars['Time']>;
 };
 
-export type ServerConfigBuildings = {
-  customMain: Scalars['Int'];
-  customFarm: Scalars['Int'];
-  customStorage: Scalars['Int'];
-  customPlace: Scalars['Int'];
-  customBarracks: Scalars['Int'];
-  customChurch: Scalars['Int'];
-  customSmith: Scalars['Int'];
-  customWood: Scalars['Int'];
-  customStone: Scalars['Int'];
-  customIron: Scalars['Int'];
-  customMarket: Scalars['Int'];
-  customStable: Scalars['Int'];
-  customWall: Scalars['Int'];
-  customGarage: Scalars['Int'];
-  customHide: Scalars['Int'];
-  customSnob: Scalars['Int'];
-  customStatue: Scalars['Int'];
-  customWatchtower: Scalars['Int'];
+export type EnnoblementFilterOr = {
+  newOwnerID?: Maybe<Array<Scalars['Int']>>;
+  newOwnerTribeID?: Maybe<Array<Scalars['Int']>>;
+  oldOwnerID?: Maybe<Array<Scalars['Int']>>;
+  oldOwnerTribeID?: Maybe<Array<Scalars['Int']>>;
+};
+
+export type FoundPlayer = {
+  server: Scalars['String'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  bestRank: Scalars['Int'];
+  mostPoints: Scalars['Int'];
+  mostVillages: Scalars['Int'];
+  tribeID: Scalars['Int'];
+  tribeTag: Scalars['String'];
+};
+
+export type ServerList = {
+  items?: Maybe<Array<Server>>;
+  total: Scalars['Int'];
+};
+
+export type ServerFilter = {
+  key?: Maybe<Array<Scalars['String']>>;
+  keyNEQ?: Maybe<Array<Scalars['String']>>;
+  keyMATCH?: Maybe<Scalars['String']>;
+  keyIEQ?: Maybe<Scalars['String']>;
+  status?: Maybe<Array<ServerStatus>>;
+  statusNEQ?: Maybe<Array<ServerStatus>>;
+  versionCode?: Maybe<Array<VersionCode>>;
+  versionCodeNEQ?: Maybe<Array<VersionCode>>;
+};
+
+export type ServerConfigWin = {
+  check: Scalars['Int'];
+};
+
+export type ServerConfigSleep = {
+  active: Scalars['Int'];
+  delay: Scalars['Int'];
+  min: Scalars['Int'];
+  max: Scalars['Int'];
+  minAwake: Scalars['Int'];
+  maxAwake: Scalars['Int'];
+  warnTime: Scalars['Int'];
 };
 
 export type ServerConfigNight = {
@@ -191,69 +94,53 @@ export type ServerConfigNight = {
   defFactor: Scalars['Float'];
 };
 
-export type EnnoblementFilter = {
-  villageID?: Maybe<Array<Scalars['Int']>>;
-  villageIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  villageFilter?: Maybe<VillageFilter>;
-  newOwnerID?: Maybe<Array<Scalars['Int']>>;
-  newOwnerIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  newOwnerFilter?: Maybe<PlayerFilter>;
-  newOwnerTribeID?: Maybe<Array<Scalars['Int']>>;
-  newOwnerTribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  newOwnerTribeFilter?: Maybe<TribeFilter>;
-  oldOwnerID?: Maybe<Array<Scalars['Int']>>;
-  oldOwnerIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  oldOwnerFilter?: Maybe<PlayerFilter>;
-  oldOwnerTribeID?: Maybe<Array<Scalars['Int']>>;
-  oldOwnerTribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  oldOwnerTribeFilter?: Maybe<TribeFilter>;
-  ennobledAt?: Maybe<Scalars['Time']>;
-  ennobledAtGT?: Maybe<Scalars['Time']>;
-  ennobledAtGTE?: Maybe<Scalars['Time']>;
-  ennobledAtLT?: Maybe<Scalars['Time']>;
-  ennobledAtLTE?: Maybe<Scalars['Time']>;
-  or?: Maybe<EnnoblementFilterOr>;
+export type VersionList = {
+  items?: Maybe<Array<Version>>;
+  total: Scalars['Int'];
+};
+
+export type DailyTribeStatsRecord = {
+  tribe?: Maybe<Tribe>;
+  members: Scalars['Int'];
+  villages: Scalars['Int'];
+  points: Scalars['Int'];
+  allPoints: Scalars['Int'];
+  rank: Scalars['Int'];
+  rankAtt: Scalars['Int'];
+  scoreAtt: Scalars['Int'];
+  rankDef: Scalars['Int'];
+  scoreDef: Scalars['Int'];
+  rankTotal: Scalars['Int'];
+  scoreTotal: Scalars['Int'];
+  dominance: Scalars['Float'];
+  createDate: Scalars['Time'];
+};
+
+export type DailyTribeStats = {
+  total: Scalars['Int'];
+  items?: Maybe<Array<DailyTribeStatsRecord>>;
+};
+
+export type ServerConfigSitter = {
+  allow: Scalars['Int'];
 };
 
 export type ServerConfigBuild = {
   destroy: Scalars['Int'];
 };
 
-export type ServerConfigWin = {
-  check: Scalars['Int'];
+export type FoundTribeList = {
+  items?: Maybe<Array<FoundTribe>>;
+  total: Scalars['Int'];
 };
 
-export type TribeChangeRecord = {
-  player?: Maybe<Player>;
-  oldTribe?: Maybe<Tribe>;
-  newTribe?: Maybe<Tribe>;
-  createdAt: Scalars['Time'];
-};
-
-export type ServerConfigMisc = {
-  killRanking: Scalars['Int'];
-  tutorial: Scalars['Int'];
-  tradeCancelTime: Scalars['Int'];
-};
-
-export type ServerConfigCommands = {
-  millisArrival: Scalars['Int'];
-  commandCancelTime: Scalars['Int'];
-};
-
-export type ServerStatsFilter = {
-  createDate?: Maybe<Scalars['Time']>;
-  createDateGT?: Maybe<Scalars['Time']>;
-  createDateGTE?: Maybe<Scalars['Time']>;
-  createDateLT?: Maybe<Scalars['Time']>;
-  createDateLTE?: Maybe<Scalars['Time']>;
-};
-
-export type Version = {
-  code: VersionCode;
-  name: Scalars['String'];
-  host: Scalars['String'];
-  timezone: Scalars['String'];
+export type VersionFilter = {
+  code?: Maybe<Array<VersionCode>>;
+  codeNEQ?: Maybe<Array<VersionCode>>;
+  host?: Maybe<Array<Scalars['String']>>;
+  hostNEQ?: Maybe<Array<Scalars['String']>>;
+  hostMATCH?: Maybe<Scalars['String']>;
+  hostIEQ?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -431,6 +318,29 @@ export type QueryVillageArgs = {
   id: Scalars['Int'];
 };
 
+export type PlayerHistory = {
+  total: Scalars['Int'];
+  items?: Maybe<Array<PlayerHistoryRecord>>;
+};
+
+export type ServerStatsFilter = {
+  createDate?: Maybe<Scalars['Time']>;
+  createDateGT?: Maybe<Scalars['Time']>;
+  createDateGTE?: Maybe<Scalars['Time']>;
+  createDateLT?: Maybe<Scalars['Time']>;
+  createDateLTE?: Maybe<Scalars['Time']>;
+};
+
+export type FoundTribe = {
+  server: Scalars['String'];
+  id: Scalars['Int'];
+  tag: Scalars['String'];
+  name: Scalars['String'];
+  bestRank: Scalars['Int'];
+  mostPoints: Scalars['Int'];
+  mostVillages: Scalars['Int'];
+};
+
 export type TribeHistoryFilter = {
   tribeID?: Maybe<Array<Scalars['Int']>>;
   tribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
@@ -442,15 +352,67 @@ export type TribeHistoryFilter = {
   createDateLTE?: Maybe<Scalars['Time']>;
 };
 
-export type FoundPlayer = {
-  server: Scalars['String'];
+export type Unit = {
+  buildTime: Scalars['Float'];
+  pop: Scalars['Int'];
+  speed: Scalars['Float'];
+  attack: Scalars['Int'];
+  defense: Scalars['Int'];
+  defenseCavalry: Scalars['Int'];
+  defenseArcher: Scalars['Int'];
+  carry: Scalars['Int'];
+};
+
+export type DailyPlayerStatsRecord = {
+  player?: Maybe<Player>;
+  villages: Scalars['Int'];
+  points: Scalars['Int'];
+  rank: Scalars['Int'];
+  rankAtt: Scalars['Int'];
+  scoreAtt: Scalars['Int'];
+  rankDef: Scalars['Int'];
+  scoreDef: Scalars['Int'];
+  rankSup: Scalars['Int'];
+  scoreSup: Scalars['Int'];
+  rankTotal: Scalars['Int'];
+  scoreTotal: Scalars['Int'];
+  createDate: Scalars['Time'];
+};
+
+export type PlayerNameChange = {
+  oldName: Scalars['String'];
+  newName: Scalars['String'];
+  changeDate: Scalars['Time'];
+};
+
+export type Player = {
   id: Scalars['Int'];
   name: Scalars['String'];
+  totalVillages: Scalars['Int'];
+  points: Scalars['Int'];
+  rank: Scalars['Int'];
+  exists: Scalars['Boolean'];
+  rankAtt: Scalars['Int'];
+  scoreAtt: Scalars['Int'];
+  rankDef: Scalars['Int'];
+  scoreDef: Scalars['Int'];
+  rankSup: Scalars['Int'];
+  scoreSup: Scalars['Int'];
+  rankTotal: Scalars['Int'];
+  scoreTotal: Scalars['Int'];
+  dailyGrowth: Scalars['Int'];
   bestRank: Scalars['Int'];
+  bestRankAt: Scalars['Time'];
   mostPoints: Scalars['Int'];
+  mostPointsAt: Scalars['Time'];
   mostVillages: Scalars['Int'];
-  tribeID: Scalars['Int'];
-  tribeTag: Scalars['String'];
+  mostVillagesAt: Scalars['Time'];
+  joinedAt: Scalars['Time'];
+  lastActivityAt: Scalars['Time'];
+  deletedAt?: Maybe<Scalars['Time']>;
+  tribe?: Maybe<Tribe>;
+  servers: Array<Scalars['String']>;
+  nameChanges: Array<PlayerNameChange>;
 };
 
 export type FoundPlayerList = {
@@ -458,26 +420,41 @@ export type FoundPlayerList = {
   total: Scalars['Int'];
 };
 
-export type Server = {
-  key: Scalars['String'];
-  status: ServerStatus;
-  numberOfPlayers: Scalars['Int'];
-  numberOfTribes: Scalars['Int'];
-  numberOfVillages: Scalars['Int'];
-  version?: Maybe<Version>;
-  config: ServerConfig;
-  unitConfig: UnitConfig;
-  buildingConfig: BuildingConfig;
-  dataUpdatedAt: Scalars['Time'];
-  historyUpdatedAt: Scalars['Time'];
-  statsUpdatedAt: Scalars['Time'];
+export type ServerStatsRecord = {
+  activePlayers: Scalars['Int'];
+  inactivePlayers: Scalars['Int'];
+  players: Scalars['Int'];
+  activeTribes: Scalars['Int'];
+  inactiveTribes: Scalars['Int'];
+  tribes: Scalars['Int'];
+  bonusVillages: Scalars['Int'];
+  barbarianVillages: Scalars['Int'];
+  playerVillages: Scalars['Int'];
+  villages: Scalars['Int'];
+  createDate: Scalars['Time'];
 };
 
-export type ServerConfigNewbie = {
-  days: Scalars['Int'];
-  ratioDays: Scalars['Int'];
-  ratio: Scalars['Int'];
-  removeNewbieVillages: Scalars['Int'];
+export type TribeChangeFilter = {
+  playerID?: Maybe<Array<Scalars['Int']>>;
+  playerIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  playerFilter?: Maybe<PlayerFilter>;
+  oldTribeID?: Maybe<Array<Scalars['Int']>>;
+  oldTribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  oldTribeFilter?: Maybe<TribeFilter>;
+  newTribeID?: Maybe<Array<Scalars['Int']>>;
+  newTribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  newTribeFilter?: Maybe<TribeFilter>;
+  createdAt?: Maybe<Scalars['Time']>;
+  createdAtGT?: Maybe<Scalars['Time']>;
+  createdAtGTE?: Maybe<Scalars['Time']>;
+  createdAtLT?: Maybe<Scalars['Time']>;
+  createdAtLTE?: Maybe<Scalars['Time']>;
+  or?: Maybe<TribeChangeFilterOr>;
+};
+
+export type ServerConfigCommands = {
+  millisArrival: Scalars['Int'];
+  commandCancelTime: Scalars['Int'];
 };
 
 export type ServerConfigGame = {
@@ -502,8 +479,9 @@ export type ServerConfigGame = {
   suppressEvents: Scalars['Int'];
 };
 
-export type ServerConfigSitter = {
-  allow: Scalars['Int'];
+export type TribeHistory = {
+  total: Scalars['Int'];
+  items?: Maybe<Array<TribeHistoryRecord>>;
 };
 
 export type UnitConfig = {
@@ -522,51 +500,33 @@ export type UnitConfig = {
   militia: Unit;
 };
 
+export type Village = {
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  points: Scalars['Int'];
+  x: Scalars['Int'];
+  y: Scalars['Int'];
+  bonus: Scalars['Int'];
+  player?: Maybe<Player>;
+};
+
 export type EnnoblementList = {
   items?: Maybe<Array<Ennoblement>>;
   total: Scalars['Int'];
 };
 
-export enum VersionCode {
-  PL = 'PL',
-  pl = 'pl',
-  EN = 'EN',
-  en = 'en',
-  DE = 'DE',
-  de = 'de',
-  UK = 'UK',
-  uk = 'uk',
-  IT = 'IT',
-  it = 'it',
-  FR = 'FR',
-  fr = 'fr',
-  US = 'US',
-  us = 'us',
-  NL = 'NL',
-  nl = 'nl',
-  ES = 'ES',
-  es = 'es',
-  RO = 'RO',
-  ro = 'ro',
-  RU = 'RU',
-  ru = 'ru',
-  GR = 'GR',
-  gr = 'gr',
-  TR = 'TR',
-  tr = 'tr',
-  CS = 'CS',
-  cs = 'cs',
-  CH = 'CH',
-  ch = 'ch',
-  PT = 'PT',
-  pt = 'pt',
-  BR = 'BR',
-  br = 'br',
-  HU = 'HU',
-  hu = 'hu',
-  SK = 'SK',
-  sk = 'sk'
-}
+
+export type ServerConfigNewbie = {
+  days: Scalars['Int'];
+  ratioDays: Scalars['Int'];
+  ratio: Scalars['Int'];
+  removeNewbieVillages: Scalars['Int'];
+};
+
+export type TribeChangeFilterOr = {
+  oldTribeID?: Maybe<Array<Scalars['Int']>>;
+  newTribeID?: Maybe<Array<Scalars['Int']>>;
+};
 
 export type BuildingConfig = {
   main: Building;
@@ -588,25 +548,160 @@ export type BuildingConfig = {
   wall: Building;
 };
 
-export type PlayerNameChange = {
-  oldName: Scalars['String'];
-  newName: Scalars['String'];
-  changeDate: Scalars['Time'];
+export type TribeList = {
+  items?: Maybe<Array<Tribe>>;
+  total: Scalars['Int'];
 };
 
-export type TribeHistory = {
-  total: Scalars['Int'];
-  items?: Maybe<Array<TribeHistoryRecord>>;
+export type VillageFilter = {
+  id?: Maybe<Array<Scalars['Int']>>;
+  idNEQ?: Maybe<Array<Scalars['Int']>>;
+  name?: Maybe<Array<Scalars['String']>>;
+  nameNEQ?: Maybe<Array<Scalars['String']>>;
+  nameMATCH?: Maybe<Scalars['String']>;
+  nameIEQ?: Maybe<Scalars['String']>;
+  points?: Maybe<Scalars['Int']>;
+  pointsGT?: Maybe<Scalars['Int']>;
+  pointsGTE?: Maybe<Scalars['Int']>;
+  pointsLT?: Maybe<Scalars['Int']>;
+  pointsLTE?: Maybe<Scalars['Int']>;
+  xGT?: Maybe<Scalars['Int']>;
+  xGTE?: Maybe<Scalars['Int']>;
+  xLT?: Maybe<Scalars['Int']>;
+  xLTE?: Maybe<Scalars['Int']>;
+  yGT?: Maybe<Scalars['Int']>;
+  yGTE?: Maybe<Scalars['Int']>;
+  yLT?: Maybe<Scalars['Int']>;
+  yLTE?: Maybe<Scalars['Int']>;
+  xy?: Maybe<Array<Scalars['String']>>;
+  bonus?: Maybe<Scalars['Int']>;
+  bonusGT?: Maybe<Scalars['Int']>;
+  bonusGTE?: Maybe<Scalars['Int']>;
+  bonusLT?: Maybe<Scalars['Int']>;
+  bonusLTE?: Maybe<Scalars['Int']>;
+  playerID?: Maybe<Array<Scalars['Int']>>;
+  playerIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  playerFilter?: Maybe<PlayerFilter>;
+};
+
+export type PlayerFilter = {
+  id?: Maybe<Array<Scalars['Int']>>;
+  idNEQ?: Maybe<Array<Scalars['Int']>>;
+  exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Array<Scalars['String']>>;
+  nameNEQ?: Maybe<Array<Scalars['String']>>;
+  nameMATCH?: Maybe<Scalars['String']>;
+  nameIEQ?: Maybe<Scalars['String']>;
+  totalVillages?: Maybe<Scalars['Int']>;
+  totalVillagesGT?: Maybe<Scalars['Int']>;
+  totalVillagesGTE?: Maybe<Scalars['Int']>;
+  totalVillagesLT?: Maybe<Scalars['Int']>;
+  totalVillagesLTE?: Maybe<Scalars['Int']>;
+  points?: Maybe<Scalars['Int']>;
+  pointsGT?: Maybe<Scalars['Int']>;
+  pointsGTE?: Maybe<Scalars['Int']>;
+  pointsLT?: Maybe<Scalars['Int']>;
+  pointsLTE?: Maybe<Scalars['Int']>;
+  rank?: Maybe<Scalars['Int']>;
+  rankGT?: Maybe<Scalars['Int']>;
+  rankGTE?: Maybe<Scalars['Int']>;
+  rankLT?: Maybe<Scalars['Int']>;
+  rankLTE?: Maybe<Scalars['Int']>;
+  rankAtt?: Maybe<Scalars['Int']>;
+  rankAttGT?: Maybe<Scalars['Int']>;
+  rankAttGTE?: Maybe<Scalars['Int']>;
+  rankAttLT?: Maybe<Scalars['Int']>;
+  rankAttLTE?: Maybe<Scalars['Int']>;
+  scoreAtt?: Maybe<Scalars['Int']>;
+  scoreAttGT?: Maybe<Scalars['Int']>;
+  scoreAttGTE?: Maybe<Scalars['Int']>;
+  scoreAttLT?: Maybe<Scalars['Int']>;
+  scoreAttLTE?: Maybe<Scalars['Int']>;
+  rankDef?: Maybe<Scalars['Int']>;
+  rankDefGT?: Maybe<Scalars['Int']>;
+  rankDefGTE?: Maybe<Scalars['Int']>;
+  rankDefLT?: Maybe<Scalars['Int']>;
+  rankDefLTE?: Maybe<Scalars['Int']>;
+  scoreDef?: Maybe<Scalars['Int']>;
+  scoreDefGT?: Maybe<Scalars['Int']>;
+  scoreDefGTE?: Maybe<Scalars['Int']>;
+  scoreDefLT?: Maybe<Scalars['Int']>;
+  scoreDefLTE?: Maybe<Scalars['Int']>;
+  rankSup?: Maybe<Scalars['Int']>;
+  rankSupGT?: Maybe<Scalars['Int']>;
+  rankSupGTE?: Maybe<Scalars['Int']>;
+  rankSupLT?: Maybe<Scalars['Int']>;
+  rankSupLTE?: Maybe<Scalars['Int']>;
+  scoreSup?: Maybe<Scalars['Int']>;
+  scoreSupGT?: Maybe<Scalars['Int']>;
+  scoreSupGTE?: Maybe<Scalars['Int']>;
+  scoreSupLT?: Maybe<Scalars['Int']>;
+  scoreSupLTE?: Maybe<Scalars['Int']>;
+  rankTotal?: Maybe<Scalars['Int']>;
+  rankTotalGT?: Maybe<Scalars['Int']>;
+  rankTotalGTE?: Maybe<Scalars['Int']>;
+  rankTotalLT?: Maybe<Scalars['Int']>;
+  rankTotalLTE?: Maybe<Scalars['Int']>;
+  scoreTotal?: Maybe<Scalars['Int']>;
+  scoreTotalGT?: Maybe<Scalars['Int']>;
+  scoreTotalGTE?: Maybe<Scalars['Int']>;
+  scoreTotalLT?: Maybe<Scalars['Int']>;
+  scoreTotalLTE?: Maybe<Scalars['Int']>;
+  dailyGrowth?: Maybe<Scalars['Int']>;
+  dailyGrowthGT?: Maybe<Scalars['Int']>;
+  dailyGrowthGTE?: Maybe<Scalars['Int']>;
+  dailyGrowthLT?: Maybe<Scalars['Int']>;
+  dailyGrowthLTE?: Maybe<Scalars['Int']>;
+  joinedAt?: Maybe<Scalars['Time']>;
+  joinedAtGT?: Maybe<Scalars['Time']>;
+  joinedAtGTE?: Maybe<Scalars['Time']>;
+  joinedAtLT?: Maybe<Scalars['Time']>;
+  joinedAtLTE?: Maybe<Scalars['Time']>;
+  lastActivityAt?: Maybe<Scalars['Time']>;
+  lastActivityAtGT?: Maybe<Scalars['Time']>;
+  lastActivityAtGTE?: Maybe<Scalars['Time']>;
+  lastActivityAtLT?: Maybe<Scalars['Time']>;
+  lastActivityAtLTE?: Maybe<Scalars['Time']>;
+  deletedAt?: Maybe<Scalars['Time']>;
+  deletedAtGT?: Maybe<Scalars['Time']>;
+  deletedAtGTE?: Maybe<Scalars['Time']>;
+  deletedAtLT?: Maybe<Scalars['Time']>;
+  deletedAtLTE?: Maybe<Scalars['Time']>;
+  tribeID?: Maybe<Array<Scalars['Int']>>;
+  tribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  tribeFilter?: Maybe<TribeFilter>;
+};
+
+export enum ServerStatus {
+  OPEN = 'OPEN',
+  open = 'open',
+  CLOSED = 'CLOSED',
+  closed = 'closed'
+}
+
+export type ServerConfigCoord = {
+  mapSize: Scalars['Int'];
+  func: Scalars['Int'];
+  emptyVillages: Scalars['Int'];
+  bonusVillages: Scalars['Int'];
+  bonusNew: Scalars['Int'];
+  inner: Scalars['Int'];
+  selectStart: Scalars['Int'];
+  villageMoveWait: Scalars['Int'];
+  nobleRestart: Scalars['Int'];
+  startVillages: Scalars['Int'];
+};
+
+export type TribeChangeRecord = {
+  player?: Maybe<Player>;
+  oldTribe?: Maybe<Tribe>;
+  newTribe?: Maybe<Tribe>;
+  createdAt: Scalars['Time'];
 };
 
 export type DailyPlayerStats = {
   total: Scalars['Int'];
   items?: Maybe<Array<DailyPlayerStatsRecord>>;
-};
-
-export type DailyTribeStats = {
-  total: Scalars['Int'];
-  items?: Maybe<Array<DailyTribeStatsRecord>>;
 };
 
 export type Ennoblement = {
@@ -616,50 +711,6 @@ export type Ennoblement = {
   oldOwner?: Maybe<Player>;
   oldOwnerTribe?: Maybe<Tribe>;
   ennobledAt: Scalars['Time'];
-};
-
-export type ServerConfigSnob = {
-  gold: Scalars['Int'];
-  cheapRebuild: Scalars['Int'];
-  rise: Scalars['Int'];
-  maxDist: Scalars['Int'];
-  factor: Scalars['Float'];
-  coinWood: Scalars['Int'];
-  coinStone: Scalars['Int'];
-  coinIron: Scalars['Int'];
-  noBarbConquer: Scalars['Boolean'];
-};
-
-export type ServerStatsRecord = {
-  activePlayers: Scalars['Int'];
-  inactivePlayers: Scalars['Int'];
-  players: Scalars['Int'];
-  activeTribes: Scalars['Int'];
-  inactiveTribes: Scalars['Int'];
-  tribes: Scalars['Int'];
-  bonusVillages: Scalars['Int'];
-  barbarianVillages: Scalars['Int'];
-  playerVillages: Scalars['Int'];
-  villages: Scalars['Int'];
-  createDate: Scalars['Time'];
-};
-
-export type DailyTribeStatsFilter = {
-  tribeID?: Maybe<Array<Scalars['Int']>>;
-  tribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  tribeFilter?: Maybe<TribeFilter>;
-  createDate?: Maybe<Scalars['Time']>;
-  createDateGT?: Maybe<Scalars['Time']>;
-  createDateGTE?: Maybe<Scalars['Time']>;
-  createDateLT?: Maybe<Scalars['Time']>;
-  createDateLTE?: Maybe<Scalars['Time']>;
-};
-
-export type EnnoblementFilterOr = {
-  newOwnerID?: Maybe<Array<Scalars['Int']>>;
-  newOwnerTribeID?: Maybe<Array<Scalars['Int']>>;
-  oldOwnerID?: Maybe<Array<Scalars['Int']>>;
-  oldOwnerTribeID?: Maybe<Array<Scalars['Int']>>;
 };
 
 export type PlayerHistoryRecord = {
@@ -679,15 +730,25 @@ export type PlayerHistoryRecord = {
   createDate: Scalars['Time'];
 };
 
-export type PlayerHistoryFilter = {
-  playerID?: Maybe<Array<Scalars['Int']>>;
-  playerIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  playerFilter?: Maybe<PlayerFilter>;
-  createDate?: Maybe<Scalars['Time']>;
-  createDateGT?: Maybe<Scalars['Time']>;
-  createDateGTE?: Maybe<Scalars['Time']>;
-  createDateLT?: Maybe<Scalars['Time']>;
-  createDateLTE?: Maybe<Scalars['Time']>;
+export type ServerConfigBuildings = {
+  customMain: Scalars['Int'];
+  customFarm: Scalars['Int'];
+  customStorage: Scalars['Int'];
+  customPlace: Scalars['Int'];
+  customBarracks: Scalars['Int'];
+  customChurch: Scalars['Int'];
+  customSmith: Scalars['Int'];
+  customWood: Scalars['Int'];
+  customStone: Scalars['Int'];
+  customIron: Scalars['Int'];
+  customMarket: Scalars['Int'];
+  customStable: Scalars['Int'];
+  customWall: Scalars['Int'];
+  customGarage: Scalars['Int'];
+  customHide: Scalars['Int'];
+  customSnob: Scalars['Int'];
+  customStatue: Scalars['Int'];
+  customWatchtower: Scalars['Int'];
 };
 
 export type ServerConfigAlly = {
@@ -706,42 +767,103 @@ export type ServerConfigAlly = {
   xpRequirements: Scalars['String'];
 };
 
-export type TribeChangeFilter = {
+export type DailyPlayerStatsFilter = {
   playerID?: Maybe<Array<Scalars['Int']>>;
   playerIDNEQ?: Maybe<Array<Scalars['Int']>>;
   playerFilter?: Maybe<PlayerFilter>;
-  oldTribeID?: Maybe<Array<Scalars['Int']>>;
-  oldTribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  oldTribeFilter?: Maybe<TribeFilter>;
-  newTribeID?: Maybe<Array<Scalars['Int']>>;
-  newTribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  newTribeFilter?: Maybe<TribeFilter>;
-  createdAt?: Maybe<Scalars['Time']>;
-  createdAtGT?: Maybe<Scalars['Time']>;
-  createdAtGTE?: Maybe<Scalars['Time']>;
-  createdAtLT?: Maybe<Scalars['Time']>;
-  createdAtLTE?: Maybe<Scalars['Time']>;
-  or?: Maybe<TribeChangeFilterOr>;
+  createDate?: Maybe<Scalars['Time']>;
+  createDateGT?: Maybe<Scalars['Time']>;
+  createDateGTE?: Maybe<Scalars['Time']>;
+  createDateLT?: Maybe<Scalars['Time']>;
+  createDateLTE?: Maybe<Scalars['Time']>;
 };
 
-export type VersionFilter = {
-  code?: Maybe<Array<VersionCode>>;
-  codeNEQ?: Maybe<Array<VersionCode>>;
-  host?: Maybe<Array<Scalars['String']>>;
-  hostNEQ?: Maybe<Array<Scalars['String']>>;
-  hostMATCH?: Maybe<Scalars['String']>;
-  hostIEQ?: Maybe<Scalars['String']>;
-};
-
-
-export type ServerList = {
-  items?: Maybe<Array<Server>>;
+export type PlayerList = {
+  items?: Maybe<Array<Player>>;
   total: Scalars['Int'];
 };
 
-export type TribeList = {
-  items?: Maybe<Array<Tribe>>;
+export type Server = {
+  key: Scalars['String'];
+  status: ServerStatus;
+  numberOfPlayers: Scalars['Int'];
+  numberOfTribes: Scalars['Int'];
+  numberOfVillages: Scalars['Int'];
+  version?: Maybe<Version>;
+  config: ServerConfig;
+  unitConfig: UnitConfig;
+  buildingConfig: BuildingConfig;
+  dataUpdatedAt: Scalars['Time'];
+  historyUpdatedAt: Scalars['Time'];
+  statsUpdatedAt: Scalars['Time'];
+};
+
+export type ServerConfigSnob = {
+  gold: Scalars['Int'];
+  cheapRebuild: Scalars['Int'];
+  rise: Scalars['Int'];
+  maxDist: Scalars['Int'];
+  factor: Scalars['Float'];
+  coinWood: Scalars['Int'];
+  coinStone: Scalars['Int'];
+  coinIron: Scalars['Int'];
+  noBarbConquer: Scalars['Boolean'];
+};
+
+export type Tribe = {
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  tag: Scalars['String'];
+  totalMembers: Scalars['Int'];
+  totalVillages: Scalars['Int'];
+  points: Scalars['Int'];
+  allPoints: Scalars['Int'];
+  rank: Scalars['Int'];
+  exists: Scalars['Boolean'];
+  rankAtt: Scalars['Int'];
+  scoreAtt: Scalars['Int'];
+  rankDef: Scalars['Int'];
+  scoreDef: Scalars['Int'];
+  rankTotal: Scalars['Int'];
+  scoreTotal: Scalars['Int'];
+  dominance: Scalars['Float'];
+  bestRank: Scalars['Int'];
+  bestRankAt: Scalars['Time'];
+  mostPoints: Scalars['Int'];
+  mostPointsAt: Scalars['Time'];
+  mostVillages: Scalars['Int'];
+  mostVillagesAt: Scalars['Time'];
+  createdAt: Scalars['Time'];
+  deletedAt?: Maybe<Scalars['Time']>;
+};
+
+export type TribeChanges = {
   total: Scalars['Int'];
+  items?: Maybe<Array<TribeChangeRecord>>;
+};
+
+export type EnnoblementFilter = {
+  villageID?: Maybe<Array<Scalars['Int']>>;
+  villageIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  villageFilter?: Maybe<VillageFilter>;
+  newOwnerID?: Maybe<Array<Scalars['Int']>>;
+  newOwnerIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  newOwnerFilter?: Maybe<PlayerFilter>;
+  newOwnerTribeID?: Maybe<Array<Scalars['Int']>>;
+  newOwnerTribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  newOwnerTribeFilter?: Maybe<TribeFilter>;
+  oldOwnerID?: Maybe<Array<Scalars['Int']>>;
+  oldOwnerIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  oldOwnerFilter?: Maybe<PlayerFilter>;
+  oldOwnerTribeID?: Maybe<Array<Scalars['Int']>>;
+  oldOwnerTribeIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  oldOwnerTribeFilter?: Maybe<TribeFilter>;
+  ennobledAt?: Maybe<Scalars['Time']>;
+  ennobledAtGT?: Maybe<Scalars['Time']>;
+  ennobledAtGTE?: Maybe<Scalars['Time']>;
+  ennobledAtLT?: Maybe<Scalars['Time']>;
+  ennobledAtLTE?: Maybe<Scalars['Time']>;
+  or?: Maybe<EnnoblementFilterOr>;
 };
 
 export type TribeFilterOr = {
@@ -854,39 +976,33 @@ export type TribeHistoryRecord = {
   createDate: Scalars['Time'];
 };
 
-export type VersionList = {
-  items?: Maybe<Array<Version>>;
+export type VillageList = {
+  items?: Maybe<Array<Village>>;
   total: Scalars['Int'];
 };
 
-export type DailyTribeStatsRecord = {
-  tribe?: Maybe<Tribe>;
-  members: Scalars['Int'];
-  villages: Scalars['Int'];
-  points: Scalars['Int'];
-  allPoints: Scalars['Int'];
-  rank: Scalars['Int'];
-  rankAtt: Scalars['Int'];
-  scoreAtt: Scalars['Int'];
-  rankDef: Scalars['Int'];
-  scoreDef: Scalars['Int'];
-  rankTotal: Scalars['Int'];
-  scoreTotal: Scalars['Int'];
-  dominance: Scalars['Float'];
-  createDate: Scalars['Time'];
+export type ServerConfigMisc = {
+  killRanking: Scalars['Int'];
+  tutorial: Scalars['Int'];
+  tradeCancelTime: Scalars['Int'];
 };
 
-export type ServerConfigCoord = {
-  mapSize: Scalars['Int'];
-  func: Scalars['Int'];
-  emptyVillages: Scalars['Int'];
-  bonusVillages: Scalars['Int'];
-  bonusNew: Scalars['Int'];
-  inner: Scalars['Int'];
-  selectStart: Scalars['Int'];
-  villageMoveWait: Scalars['Int'];
-  nobleRestart: Scalars['Int'];
-  startVillages: Scalars['Int'];
+export type Version = {
+  code: VersionCode;
+  name: Scalars['String'];
+  host: Scalars['String'];
+  timezone: Scalars['String'];
+};
+
+export type PlayerHistoryFilter = {
+  playerID?: Maybe<Array<Scalars['Int']>>;
+  playerIDNEQ?: Maybe<Array<Scalars['Int']>>;
+  playerFilter?: Maybe<PlayerFilter>;
+  createDate?: Maybe<Scalars['Time']>;
+  createDateGT?: Maybe<Scalars['Time']>;
+  createDateGTE?: Maybe<Scalars['Time']>;
+  createDateLT?: Maybe<Scalars['Time']>;
+  createDateLTE?: Maybe<Scalars['Time']>;
 };
 
 export type ServerConfig = {
@@ -908,162 +1024,48 @@ export type ServerConfig = {
   win: ServerConfigWin;
 };
 
-export type TribeChangeFilterOr = {
-  oldTribeID?: Maybe<Array<Scalars['Int']>>;
-  newTribeID?: Maybe<Array<Scalars['Int']>>;
-};
-
-export type TribeChanges = {
-  total: Scalars['Int'];
-  items?: Maybe<Array<TribeChangeRecord>>;
-};
-
-export type DailyPlayerStatsRecord = {
-  player?: Maybe<Player>;
-  villages: Scalars['Int'];
-  points: Scalars['Int'];
-  rank: Scalars['Int'];
-  rankAtt: Scalars['Int'];
-  scoreAtt: Scalars['Int'];
-  rankDef: Scalars['Int'];
-  scoreDef: Scalars['Int'];
-  rankSup: Scalars['Int'];
-  scoreSup: Scalars['Int'];
-  rankTotal: Scalars['Int'];
-  scoreTotal: Scalars['Int'];
-  createDate: Scalars['Time'];
-};
-
-export type DailyPlayerStatsFilter = {
-  playerID?: Maybe<Array<Scalars['Int']>>;
-  playerIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  playerFilter?: Maybe<PlayerFilter>;
-  createDate?: Maybe<Scalars['Time']>;
-  createDateGT?: Maybe<Scalars['Time']>;
-  createDateGTE?: Maybe<Scalars['Time']>;
-  createDateLT?: Maybe<Scalars['Time']>;
-  createDateLTE?: Maybe<Scalars['Time']>;
-};
-
-export type Player = {
-  id: Scalars['Int'];
-  name: Scalars['String'];
-  totalVillages: Scalars['Int'];
-  points: Scalars['Int'];
-  rank: Scalars['Int'];
-  exists: Scalars['Boolean'];
-  rankAtt: Scalars['Int'];
-  scoreAtt: Scalars['Int'];
-  rankDef: Scalars['Int'];
-  scoreDef: Scalars['Int'];
-  rankSup: Scalars['Int'];
-  scoreSup: Scalars['Int'];
-  rankTotal: Scalars['Int'];
-  scoreTotal: Scalars['Int'];
-  dailyGrowth: Scalars['Int'];
-  bestRank: Scalars['Int'];
-  bestRankAt: Scalars['Time'];
-  mostPoints: Scalars['Int'];
-  mostPointsAt: Scalars['Time'];
-  mostVillages: Scalars['Int'];
-  mostVillagesAt: Scalars['Time'];
-  joinedAt: Scalars['Time'];
-  lastActivityAt: Scalars['Time'];
-  deletedAt?: Maybe<Scalars['Time']>;
-  tribe?: Maybe<Tribe>;
-  servers: Array<Scalars['String']>;
-  nameChanges: Array<PlayerNameChange>;
-};
-
-export type PlayerHistory = {
-  total: Scalars['Int'];
-  items?: Maybe<Array<PlayerHistoryRecord>>;
-};
-
-export type ServerFilter = {
-  key?: Maybe<Array<Scalars['String']>>;
-  keyNEQ?: Maybe<Array<Scalars['String']>>;
-  keyMATCH?: Maybe<Scalars['String']>;
-  keyIEQ?: Maybe<Scalars['String']>;
-  status?: Maybe<Array<ServerStatus>>;
-  statusNEQ?: Maybe<Array<ServerStatus>>;
-  versionCode?: Maybe<Array<VersionCode>>;
-  versionCodeNEQ?: Maybe<Array<VersionCode>>;
-};
-
-export type FoundTribe = {
-  server: Scalars['String'];
-  id: Scalars['Int'];
-  tag: Scalars['String'];
-  name: Scalars['String'];
-  bestRank: Scalars['Int'];
-  mostPoints: Scalars['Int'];
-  mostVillages: Scalars['Int'];
-};
-
-export type VillageFilter = {
-  id?: Maybe<Array<Scalars['Int']>>;
-  idNEQ?: Maybe<Array<Scalars['Int']>>;
-  name?: Maybe<Array<Scalars['String']>>;
-  nameNEQ?: Maybe<Array<Scalars['String']>>;
-  nameMATCH?: Maybe<Scalars['String']>;
-  nameIEQ?: Maybe<Scalars['String']>;
-  points?: Maybe<Scalars['Int']>;
-  pointsGT?: Maybe<Scalars['Int']>;
-  pointsGTE?: Maybe<Scalars['Int']>;
-  pointsLT?: Maybe<Scalars['Int']>;
-  pointsLTE?: Maybe<Scalars['Int']>;
-  xGT?: Maybe<Scalars['Int']>;
-  xGTE?: Maybe<Scalars['Int']>;
-  xLT?: Maybe<Scalars['Int']>;
-  xLTE?: Maybe<Scalars['Int']>;
-  yGT?: Maybe<Scalars['Int']>;
-  yGTE?: Maybe<Scalars['Int']>;
-  yLT?: Maybe<Scalars['Int']>;
-  yLTE?: Maybe<Scalars['Int']>;
-  xy?: Maybe<Array<Scalars['String']>>;
-  bonus?: Maybe<Scalars['Int']>;
-  bonusGT?: Maybe<Scalars['Int']>;
-  bonusGTE?: Maybe<Scalars['Int']>;
-  bonusLT?: Maybe<Scalars['Int']>;
-  bonusLTE?: Maybe<Scalars['Int']>;
-  playerID?: Maybe<Array<Scalars['Int']>>;
-  playerIDNEQ?: Maybe<Array<Scalars['Int']>>;
-  playerFilter?: Maybe<PlayerFilter>;
-};
-
-export type ServerConfigSleep = {
-  active: Scalars['Int'];
-  delay: Scalars['Int'];
-  min: Scalars['Int'];
-  max: Scalars['Int'];
-  minAwake: Scalars['Int'];
-  maxAwake: Scalars['Int'];
-  warnTime: Scalars['Int'];
-};
-
 export type ServerStats = {
   items?: Maybe<Array<ServerStatsRecord>>;
   total: Scalars['Int'];
 };
 
-export type FoundTribeList = {
-  items?: Maybe<Array<FoundTribe>>;
-  total: Scalars['Int'];
-};
-
-export type Unit = {
-  buildTime: Scalars['Float'];
-  pop: Scalars['Int'];
-  speed: Scalars['Float'];
-  attack: Scalars['Int'];
-  defense: Scalars['Int'];
-  defenseCavalry: Scalars['Int'];
-  defenseArcher: Scalars['Int'];
-  carry: Scalars['Int'];
-};
-
-export type VillageList = {
-  items?: Maybe<Array<Village>>;
-  total: Scalars['Int'];
-};
+export enum VersionCode {
+  PL = 'PL',
+  pl = 'pl',
+  EN = 'EN',
+  en = 'en',
+  DE = 'DE',
+  de = 'de',
+  UK = 'UK',
+  uk = 'uk',
+  IT = 'IT',
+  it = 'it',
+  FR = 'FR',
+  fr = 'fr',
+  US = 'US',
+  us = 'us',
+  NL = 'NL',
+  nl = 'nl',
+  ES = 'ES',
+  es = 'es',
+  RO = 'RO',
+  ro = 'ro',
+  RU = 'RU',
+  ru = 'ru',
+  GR = 'GR',
+  gr = 'gr',
+  TR = 'TR',
+  tr = 'tr',
+  CS = 'CS',
+  cs = 'cs',
+  CH = 'CH',
+  ch = 'ch',
+  PT = 'PT',
+  pt = 'pt',
+  BR = 'BR',
+  br = 'br',
+  HU = 'HU',
+  hu = 'hu',
+  SK = 'SK',
+  sk = 'sk'
+}

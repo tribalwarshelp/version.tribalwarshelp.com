@@ -90,7 +90,7 @@ function GridItem({ t, server, hideTooltip = true }: Props) {
                 params={{ key: server.key }}
               >
                 {server.key}{' '}
-                {ServerStatus.CLOSED === server.status
+                {ServerStatus.closed === server.status
                   ? `(${t(
                       NAMESPACES.COMMON + `:serverStatus.${server.status}`
                     ).toLowerCase()})`
