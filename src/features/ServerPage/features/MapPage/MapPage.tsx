@@ -41,6 +41,9 @@ import {
 } from 'libs/graphql/types';
 import { Settings, HasID } from './types';
 
+const MAX_TRIBE_MARKERS = 75;
+const MAX_PLAYER_MARKERS = MAX_TRIBE_MARKERS;
+
 function MapPage() {
   const [mapURL, setMapURL] = useState<string>('');
   const [query, setQuery] = useQueryParams({
@@ -394,7 +397,7 @@ function MapPage() {
                   fullWidth
                   color="primary"
                   onClick={handleAddTribeMarker}
-                  disabled={tribeMarkers.length >= 25}
+                  disabled={tribeMarkers.length >= MAX_TRIBE_MARKERS}
                 >
                   {t('buttons.addMarker')}
                 </Button>
@@ -436,7 +439,7 @@ function MapPage() {
                   fullWidth
                   color="primary"
                   onClick={handleAddPlayerMarker}
-                  disabled={playerMarkers.length >= 25}
+                  disabled={playerMarkers.length >= MAX_PLAYER_MARKERS}
                 >
                   {t('buttons.addMarker')}
                 </Button>
