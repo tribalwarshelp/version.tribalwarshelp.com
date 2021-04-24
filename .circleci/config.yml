@@ -2,11 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:12.9.1-browsers
+      - image: circleci/node:14.16.1-browsers
     working_directory: ~/twhelp
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.2
       # start proprietary DB using private Docker image
       # with credentials stored in the UI
       - run: |
@@ -26,4 +27,3 @@ workflows:
             branches:
               only:
                 - master
-  
