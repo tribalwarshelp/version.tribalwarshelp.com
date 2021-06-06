@@ -19,7 +19,7 @@ git clone git@github.com:tribalwarshelp/version.tribalwarshelp.com.git
 ```
 2. Navigate to the directory where you have cloned this repo.
 3. ``yarn install``
-4. ``yarn run develop``
+4. ``yarn run start``
 
 ## License
 
