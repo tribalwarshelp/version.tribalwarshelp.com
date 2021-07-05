@@ -1,4 +1,4 @@
-FROM node:14.16.1-alpine as build-deps
+FROM node:14.17.1-alpine as build-deps
 
 
 #Stage 1
