@@ -2,7 +2,7 @@ version: 2
 jobs:
   build_latest:
     docker:
-      - image: circleci/node:14.17.3-browsers
+      - image: circleci/node:14.17.4-browsers
     working_directory: ~/twhelp
     steps:
       - checkout
@@ -16,7 +16,7 @@ jobs:
       - run: docker push $DOCKER_LOGIN/twhelp-version-website:latest
   build_version:
     docker:
-      - image: circleci/node:14.17.3-browsers
+      - image: circleci/node:14.17.4-browsers
     working_directory: ~/twhelp
     steps:
       - checkout
