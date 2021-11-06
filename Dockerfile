@@ -1,5 +1,5 @@
-FROM node:14.18.1-alpine as build-deps
 
+FROM node:14.18.1-alpine as build-deps
 
 #Stage 1
 
@@ -7,7 +7,24 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 RUN yarn
 COPY . ./
-ENV NODE_ENV=production
+
+ARG VERSION="v0.0.0"
+ARG ENABLE_SENTRY="false"
+ARG SENTRY_URL=""
+ARG SENTRY_ORG=""
+ARG SENTRY_PROJECT=""
+ARG SENTRY_AUTH_TOKEN=""
+ARG SENTRY_DSN=""
+
+ENV REACT_APP_ENABLE_SENTRY=$ENABLE_SENTRY \
+    SENTRY_URL=$SENTRY_URL \
+    SENTRY_ORG=$SENTRY_ORG \
+    SENTRY_PROJECT=$SENTRY_PROJECT \
+    SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN \
+    REACT_APP_SENTRY_DSN=$SENTRY_DSN \
+    REACT_APP_VERSION=$VERSION \
+    NODE_ENV=production
+
 RUN yarn build
 
 #Stage 2

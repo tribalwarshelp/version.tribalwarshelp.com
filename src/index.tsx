@@ -12,8 +12,11 @@ import App from './features/App';
 import createTheme from './theme/createTheme';
 import createGraphQLClient from './libs/graphql/createClient';
 import initI18N from './libs/i18n/init';
+import initSentry from './libs/sentry/initSentry';
 import { URI as API_URI } from './config/api';
 import reportWebVitals from './reportWebVitals';
+
+initSentry();
 
 const jsx = (
   <BrowserRouter>

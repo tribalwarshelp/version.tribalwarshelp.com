@@ -3,6 +3,7 @@ import { isNil } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
 import { useDebouncedCallback } from 'use-debounce';
+import * as Sentry from '@sentry/react';
 import { SERVER_PAGE } from 'config/namespaces';
 import { PLAYERS, TRIBES } from '../../queries';
 
@@ -110,7 +111,9 @@ function OneSide({
         fetchPolicy: 'network-only',
       });
       players = data.players?.items ?? [];
-    } catch (error) {}
+    } catch (error) {
+      Sentry.captureException(error);
+    }
     setPlayerSuggsetions(players);
     setLoading(false);
   };
@@ -141,7 +144,9 @@ function OneSide({
         fetchPolicy: 'network-only',
       });
       tribes = data.tribes?.items ?? [];
-    } catch (error) {}
+    } catch (error) {
+      Sentry.captureException(error);
+    }
     setTribeSuggsetions(tribes);
     setLoading(false);
   };

@@ -7,6 +7,7 @@ import {
 } from 'use-query-params';
 import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
+import * as Sentry from '@sentry/react';
 import useTitle from 'libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
 import useMarkers from './useMarkers';
@@ -100,18 +101,20 @@ function MapPage() {
   useTitle(t('title', { key }));
   const loading = loadingTribeMarkers || loadingPlayerMarkers;
 
-  const createChangeSettingsHandler = (key: keyof Settings) => (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-    colorOrChecked?: string | boolean
-  ) => {
-    setQuery({
-      [key]:
-        typeof colorOrChecked === 'boolean' ||
-        typeof colorOrChecked === 'string'
-          ? colorOrChecked
-          : e.target.value,
-    });
-  };
+  const createChangeSettingsHandler =
+    (key: keyof Settings) =>
+    (
+      e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+      colorOrChecked?: string | boolean
+    ) => {
+      setQuery({
+        [key]:
+          typeof colorOrChecked === 'boolean' ||
+          typeof colorOrChecked === 'string'
+            ? colorOrChecked
+            : e.target.value,
+      });
+    };
 
   const searchPlayers = async (searchValue: string): Promise<Player[]> => {
     try {
@@ -135,6 +138,7 @@ function MapPage() {
       });
       return data.players?.items ?? [];
     } catch (error) {
+      Sentry.captureException(error);
       return [];
     }
   };
@@ -161,6 +165,7 @@ function MapPage() {
       });
       return data.tribes?.items ?? [];
     } catch (error) {
+      Sentry.captureException(error);
       return [];
     }
   };
