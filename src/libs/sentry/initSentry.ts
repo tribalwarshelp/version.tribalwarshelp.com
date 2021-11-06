@@ -11,6 +11,7 @@ const initSentry = () => {
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 0.3,
     release: process.env.REACT_APP_VERSION,
+    environment: process.env.NODE_ENV ?? 'development',
   });
 };
 
