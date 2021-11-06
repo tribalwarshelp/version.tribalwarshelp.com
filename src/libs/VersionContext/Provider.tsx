@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
+import * as Sentry from '@sentry/react';
 import extractVersionCodeFromHostname from 'utils/extractVersionCodeFromHostname';
 import { VERSIONS } from './queries';
 import Context from './context';
@@ -17,11 +18,13 @@ export interface Props {
 
 function Provider({ children }: Props) {
   const { t } = useTranslation(NAMESPACES.COMMON);
+
   const versionCode = useMemo(() => {
     return extractVersionCodeFromHostname(
       window.location.hostname
     ) as VersionCode;
   }, []);
+
   const { loading: loadingVersion, data } = useQuery<
     Pick<Query, 'versions'>,
     QueryVersionsArgs
@@ -34,11 +37,20 @@ function Provider({ children }: Props) {
       },
     },
   });
+
   const version =
     data?.versions?.items && data.versions.items.length > 0
       ? data.versions.items[0]
-      : undefined;
+      : null;
   const loading = loadingVersion && !version;
+
+  useEffect(() => {
+    if (!version) {
+      return;
+    }
+
+    Sentry.setTag('version', version.code.toLowerCase());
+  }, [version]);
 
   if (loading) {
     return (

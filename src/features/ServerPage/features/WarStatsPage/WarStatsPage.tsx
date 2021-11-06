@@ -2,6 +2,7 @@ import React, { useRef, useMemo, useState } from 'react';
 import { useQueryParams, DateTimeParam, withDefault } from 'use-query-params';
 import { useApolloClient } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
+import * as Sentry from '@sentry/react';
 import useDateUtils from 'libs/date/useDateUtils';
 import useTitle from 'libs/useTitle';
 import useServer from '../../libs/ServerContext/useServer';
@@ -210,7 +211,9 @@ function WarStatsPage() {
             computedSideTwoResult.againstOppositeSide
         ),
       });
-    } catch (error) {}
+    } catch (error) {
+      Sentry.captureException(error);
+    }
     setIsSubmitting(false);
   };
 
