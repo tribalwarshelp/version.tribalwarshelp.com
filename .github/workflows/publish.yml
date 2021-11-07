@@ -39,12 +39,15 @@ jobs:
         with:
           context: .
           build-args: |
-            ENABLE_SENTRY=true
+            SENTRY_ENABLED=true
             SENTRY_URL=${{ secrets.SENTRY_URL }}
             SENTRY_ORG=${{ secrets.SENTRY_ORG }}
             SENTRY_PROJECT=${{ secrets.SENTRY_PROJECT }}
             SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            PLAUSIBLE_ENABLED=true
+            PLAUSIBLE_DOMAIN=${{ secrets.PLAUSIBLE_DOMAIN }}
+            PLAUSIBLE_SCRIPT_SRC=${{ secrets.PLAUSIBLE_SCRIPT_SRC }}
             VERSION=v${{ steps.get_version.outputs.VERSION }}
           tags: |
             ${{ secrets.REGISTRY_NAME }}/twhelp-version-website:latest

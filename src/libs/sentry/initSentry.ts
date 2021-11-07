@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 
 const initSentry = () => {
-  if (process.env.REACT_APP_ENABLE_SENTRY !== 'true') {
+  if (process.env.REACT_APP_SENTRY_ENABLED !== 'true') {
     return;
   }
 
