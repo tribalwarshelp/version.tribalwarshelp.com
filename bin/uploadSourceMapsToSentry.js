@@ -1,7 +1,7 @@
 const SentryCli = require('@sentry/cli');
 
 async function createReleaseAndUpload() {
-  if (process.env.REACT_APP_ENABLE_SENTRY !== 'true') {
+  if (process.env.REACT_APP_SENTRY_ENABLED !== 'true') {
     return;
   }
 
