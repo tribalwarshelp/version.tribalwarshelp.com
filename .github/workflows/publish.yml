@@ -48,7 +48,7 @@ jobs:
             PLAUSIBLE_ENABLED=true
             PLAUSIBLE_DOMAIN=${{ secrets.PLAUSIBLE_DOMAIN }}
             PLAUSIBLE_SCRIPT_SRC=${{ secrets.PLAUSIBLE_SCRIPT_SRC }}
-            VERSION=v${{ steps.get_version.outputs.VERSION }}
+            VERSION=${{ steps.get_version.outputs.VERSION }}
           tags: |
             ${{ secrets.REGISTRY_NAME }}/twhelp-version-website:latest
             ${{ secrets.REGISTRY_NAME }}/twhelp-version-website:${{ steps.get_version.outputs.VERSION }}

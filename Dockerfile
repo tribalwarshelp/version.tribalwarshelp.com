@@ -8,7 +8,7 @@ COPY package.json yarn.lock ./
 RUN yarn
 COPY . ./
 
-ARG VERSION="v0.0.0"
+ARG VERSION="0.0.0"
 ARG SENTRY_ENABLED="false"
 ARG SENTRY_URL=""
 ARG SENTRY_ORG=""

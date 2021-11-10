@@ -12,14 +12,16 @@ async function createReleaseAndUpload() {
     );
   }
 
+  const releaseName = 'twhelp-version-website@' + version;
+
   const cli = new SentryCli();
-  await cli.releases.new(version);
-  await cli.releases.uploadSourceMaps(version, {
+  await cli.releases.new(releaseName);
+  await cli.releases.uploadSourceMaps(releaseName, {
     include: ['build/static/js'],
     urlPrefix: '~/static/js',
     rewrite: false,
   });
-  await cli.releases.finalize(version);
+  await cli.releases.finalize(releaseName);
 }
 
 createReleaseAndUpload();
