@@ -26,7 +26,7 @@
     "date-fns": "^2.16.1",
     "date-fns-tz": "^1.0.12",
     "date-time-format-timezone": "^1.0.22",
-    "graphql": "^15.4.0",
+    "graphql": "^16.0.0",
     "i18next": "^19.8.3",
     "i18next-browser-languagedetector": "^6.0.1",
     "lodash": "^4.17.20",
